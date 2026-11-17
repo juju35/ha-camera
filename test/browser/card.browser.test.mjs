@@ -1443,3 +1443,71 @@ test("a camera without a live stream shows its still, refreshed, instead of Home
   });
   assert.deepEqual(hidden, { out: false, back: true });
 });
+
+// The header's status pill (live, motion, private, unavailable): right after the title only while the title stays
+// whole beside it, else on its own line under the summary; its label whole, or its dot alone (at 200 px or less, or
+// when even its own line does not fit the banner); nothing of the banner's text under its floor strip.
+test("the status pill sits beside a whole title or under the summary, its label whole or its dot alone", async () => {
+  const r = await page.evaluate(async () => {
+    const out = [];
+    const rect = (n) => n.getBoundingClientRect();
+    const whole = (n) => {
+      const range = document.createRange();
+      range.selectNodeContents(n);
+      return range.getBoundingClientRect().width;
+    };
+    for (const language of ["en", "fr", "de", "hu", "el", "ru"])
+      for (const width of [190, 245, 300, 400, 460, 500])
+        for (const illustration of [true, false])
+          for (const cameras of [[{ camera: "camera.b_hd_stream", name: "Kids' room" }], ["camera.a_hd_stream", "camera.b_hd_stream", "camera.c"]]) {
+            document.body.replaceChildren();
+            const box = document.createElement("div");
+            box.style.width = `${width}px`;
+            document.body.appendChild(box);
+            const card = document.createElement("home-camera-card");
+            card.setConfig({ cameras, language, illustration });
+            card.hass = makeHass(baseStates());
+            box.appendChild(card);
+            const root = card.shadowRoot;
+            for (const i of root.querySelectorAll("ha-icon"))
+              Object.assign(i.style, { display: "inline-block", width: "var(--mdc-icon-size, 24px)", height: "var(--mdc-icon-size, 24px)" });
+            card._fitPill();
+            await new Promise((ok) => requestAnimationFrame(() => requestAnimationFrame(ok)));
+            const pill = root.querySelector(".stpill");
+            const txt = pill.querySelector(".st-text");
+            const name = root.querySelector(".name");
+            const mid = (n) => (rect(n).top + rect(n).bottom) / 2;
+            const banner = root.querySelector(".banner");
+            const low = banner
+              ? [...banner.querySelectorAll(".header *")]
+                  .filter((n) => n.getClientRects().length && n.children.length === 0 && n.textContent.trim())
+                  .filter((n) => {
+                    let { top, bottom } = rect(n);
+                    for (let p = n.parentElement; p && p !== banner; p = p.parentElement)
+                      if (getComputedStyle(p).overflowY !== "visible") {
+                        top = Math.max(top, rect(p).top);
+                        bottom = Math.min(bottom, rect(p).bottom);
+                      }
+                    return bottom - top > 0.5 && (bottom > rect(banner).bottom - 10 + 0.5 || top < rect(banner).top - 0.5);
+                  })
+                  .map((n) => n.textContent.trim())
+              : [];
+            out.push({
+              what: `${language} ${width}px ${illustration ? "banner" : "classic"} ${cameras.length} camera(s)`,
+              width,
+              dotOnly: getComputedStyle(txt).display === "none",
+              cut: txt.scrollWidth > txt.clientWidth + 1,
+              onRow: Math.abs(mid(pill) - mid(name)) < 4,
+              nameWhole: whole(name) <= rect(name).width + 0.05,
+              low,
+            });
+          }
+    return out;
+  });
+  for (const m of r) {
+    assert.deepEqual(m.low, [], `${m.what}: under the floor strip`);
+    if (m.width <= 200) assert.ok(m.dotOnly, `${m.what}: label shown at 200 px or less`);
+    else assert.ok(m.dotOnly || !m.cut, `${m.what}: pill label cut`);
+    if (m.onRow && !m.dotOnly) assert.ok(m.nameWhole, `${m.what}: title cut beside the pill`);
+  }
+});

@@ -1645,6 +1645,13 @@ function hcT(lang, key) {
   return strings[key] || HcI18n.en[key] || key;
 }
 
+// The width of an element's whole text in fractional pixels, even while an ellipsis cuts it.
+const hcTextWidth = (el) => {
+  const range = document.createRange();
+  range.selectNodeContents(el);
+  return range.getBoundingClientRect().width || el.scrollWidth;
+};
+
 function hcEsc(s) {
   return String(s == null ? '' : s).replace(
     /[&<>"']/g,
@@ -2241,7 +2248,70 @@ class HomeCameraCard extends HTMLElement {
     this._update();
   }
 
+  // The header's status pill goes right after the title, on its row, only while the title stays whole and the
+  // pill's whole label fits beside it (with the HD / SD switch, which ends the row); otherwise it takes a line of its
+  // own under the summary (.below), the title whole on its row (cut only when it does not fit alone). There, in the
+  // banner, the summary keeps one line; if the text still does not fit above the floor strip, the pill keeps its dot
+  // alone (.dot-only, its label in its tooltip and for screen readers). Measured after each render and on each new
+  // width, whatever the language: no fixed width threshold.
+  _fitPill() {
+    if (!this.isConnected) return;
+    for (const t of this.shadowRoot?.querySelectorAll?.('.head .titles') || []) {
+      const row = t.querySelector('.name-row');
+      const pill = row?.querySelector(':scope > .stpill');
+      if (!pill?.getBoundingClientRect) continue;
+      t.classList.remove('below', 'dot-only');
+      const name = row.querySelector(':scope > .name');
+      const chips = row.querySelector(':scope > .chips');
+      const gap = parseFloat(getComputedStyle(row).columnGap) || 0;
+      const title = name && getComputedStyle(name).display !== 'none' ? hcTextWidth(name) + gap : 0;
+      const tail = chips && chips.children.length ? chips.getBoundingClientRect().width + gap : 0;
+      // A card of 200 px or less: the dot alone beside the title (its label in its tooltip), as in the banner.
+      if (this.getBoundingClientRect().width <= 200) {
+        t.classList.add('dot-only');
+        continue;
+      }
+      if (title + pill.getBoundingClientRect().width + tail > row.getBoundingClientRect().width - 0.5) {
+        t.classList.add('below');
+        const banner = t.closest('.banner');
+        if (banner) {
+          const b = banner.getBoundingClientRect();
+          // Each element as it shows: its box cut by its ancestors that hide their overflow (a clamped line).
+          const out = [...t.querySelectorAll('*')].some((n) => {
+            let { top, bottom } = n.getBoundingClientRect();
+            for (let p = n.parentElement; p && p !== t; p = p.parentElement) {
+              if (getComputedStyle(p).overflowY === 'visible') continue;
+              top = Math.max(top, p.getBoundingClientRect().top);
+              bottom = Math.min(bottom, p.getBoundingClientRect().bottom);
+            }
+            return bottom - top > 0.5 && (top < b.top - 0.5 || bottom > b.bottom - 10 + 0.5);
+          });
+          if (out) t.classList.add('dot-only');
+        }
+      }
+      // A summary cut by its ellipsis keeps its whole text in its tooltip.
+      const s = t.querySelector('.summary');
+      if (s) {
+        const cut = s.scrollWidth > s.clientWidth + 1 || s.scrollHeight > s.clientHeight + 1;
+        if (cut) s.title = s.textContent.trim();
+        else s.removeAttribute('title');
+      }
+    }
+  }
+
   connectedCallback() {
+    // A new width (or the web font loaded): the status pill is fitted again, in the next frame.
+    if (typeof ResizeObserver === 'function') {
+      this._resize ??= new ResizeObserver((entries) => {
+        const w = Math.round(entries.at(-1).contentRect.width);
+        if (w === this._fitWidth) return;
+        this._fitWidth = w;
+        cancelAnimationFrame(this._fitFrame);
+        this._fitFrame = requestAnimationFrame(() => this._fitPill());
+      });
+      this._resize.observe(this);
+    }
+    document.fonts?.ready?.then(() => this._fitPill());
     if (!this._onQuality) {
       this._onQuality = (ev) => {
         if (!ev.key || ev.key === HC_QUALITY_KEY) this._update();
@@ -2274,6 +2344,8 @@ class HomeCameraCard extends HTMLElement {
   }
 
   disconnectedCallback() {
+    this._resize?.disconnect();
+    this._fitWidth = null;
     window.removeEventListener('storage', this._onQuality);
     window.removeEventListener(HC_QUALITY_EVENT, this._onQuality);
     document.removeEventListener('visibilitychange', this._onVisibility);
@@ -2740,6 +2812,7 @@ class HomeCameraCard extends HTMLElement {
         : `<div class="banner${hcIsNight(this._hass, c) ? ' night' : ''}${zoom ? ' zoomable' : ''}">` +
           `${hcSceneSvg(state, this._uid)}${row}</div>${zoom}</div>`;
     head.innerHTML = top + (badges ? `<div class="chips badges">${badges}</div>` : '');
+    this._fitPill();
   }
 
   // The grid of tiles, one per visible camera. Tiles are kept across renders and only added or removed
@@ -3158,30 +3231,32 @@ class HomeCameraCard extends HTMLElement {
       '.hicon ha-icon { --mdc-icon-size: 24px; }' +
       // Narrow card (half a Sections view, or a narrow column): the title shrinks to an ellipsis but keeps a few letters,
       // the HD / SD switch goes under it rather than out of the card, and the round buttons never shrink.
-      '.titles { flex: 1 1 auto; min-width: 0; align-self: center; container: hc-titles / inline-size; }' +
+      '.titles { flex: 1 1 auto; min-width: 0; align-self: center; }' +
       ':host([hide-title]) .name-row > .name { display: none; }' +
       '.name-row { display: flex; flex-wrap: wrap; align-items: center; column-gap: 8px; row-gap: 4px; }' +
       '.name-row > .chips { flex: none; margin-left: auto; }' +
       '.chips:empty { display: none; }' +
-      '.name { flex: 0 1 auto; min-width: 4ch; font-size: 16px; font-weight: 500; line-height: 1.25; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
+      '.name { flex: 0 1 auto; min-width: 0; font-size: 16px; font-weight: 500; line-height: 1.25; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.summary { font-size: 12px; line-height: 1.35; margin-top: 2px; color: var(--secondary-text-color); }' +
-      // The status pill right after the title, in the header icon's colour; the title ellipsises first (4 characters
-      // kept). Short of room it goes on its own line under the summary, the HD / SD switch staying beside the title;
-      // narrower still, its dot alone (the text in its tooltip and for screen readers).
+      // The status pill right after the title, in the header icon's colour, while the title stays whole beside it
+      // (measured by the card, see _fitPill). Otherwise it goes on its own line under a one-line summary, the HD / SD
+      // switch staying beside the title; with its dot alone when even that does not fit the header, or below 200 px
+      // (the text in its tooltip and for screen readers).
       '.stpill { display: inline-flex; align-items: center; gap: 4px; flex: none; max-width: 100%; box-sizing: border-box; padding: 1px 8px; border-radius: 12px;' +
       ' font-size: 11px; font-weight: 500; line-height: 16px; white-space: nowrap; --c: var(--primary-color, #03a9f4);' +
       ' background: color-mix(in srgb, var(--c) 15%, transparent); color: color-mix(in srgb, var(--c) 50%, var(--primary-text-color)); }' +
       '.stpill.motion { --c: var(--warning-color, #ffa600); } .stpill.privacy { --c: var(--secondary-text-color, #727272); } .stpill.offline { --c: var(--error-color, #db4437); }' +
       '.stpill .sdot { width: 7px; height: 7px; border-radius: 50%; flex: none; background: var(--c); }' +
-      '.stpill .st-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; }' +
-      '@container hc-titles (max-width: 280px) {' +
-      ' .tstack { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 8px; }' +
-      ' .tstack > .name-row { display: contents; }' +
-      ' .name-row > .name { grid-column: 1; grid-row: 1; justify-self: start; max-width: 100%; }' +
-      ' .name-row > .chips { grid-column: 2; grid-row: 1; margin-left: 0; }' +
-      ' .tstack > .summary, .tstack > .chips.sub { grid-column: 1 / -1; }' +
-      ' .stpill { grid-column: 1 / -1; grid-row: 9; justify-self: start; margin-top: 3px; }' +
-      ' }' +
+      '.stpill .st-text { white-space: nowrap; }' +
+      '.titles.below:not(.dot-only) .tstack { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 8px; }' +
+      '.titles.below:not(.dot-only) .tstack > .name-row { display: contents; }' +
+      '.titles.below:not(.dot-only) .name-row > .name { grid-column: 1; grid-row: 1; justify-self: start; max-width: 100%; }' +
+      '.titles.below:not(.dot-only) .name-row > .chips { grid-column: 2; grid-row: 1; margin-left: 0; }' +
+      '.titles.below:not(.dot-only) .tstack > .summary, .titles.below:not(.dot-only) .tstack > .chips.sub { grid-column: 1 / -1; }' +
+      '.titles.below:not(.dot-only) .stpill { grid-column: 1 / -1; grid-row: 9; justify-self: start; margin-top: 3px; }' +
+      '.titles.below .summary { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
+      '.titles.below .chips.sub { flex-wrap: nowrap; overflow: hidden; }' +
+      '.titles.dot-only .stpill { padding: 4px; } .titles.dot-only .stpill .st-text { display: none; }' +
       '@container hc-card (max-width: 200px) { .stpill { padding: 4px; } .stpill .st-text { display: none; } }' +
       '.chips { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }' +
       '.chips.badges, .chips.sub { justify-content: flex-start; }' +
