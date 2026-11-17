@@ -5,6 +5,7 @@
 ### Features
 - Illustrated header on the cards (full and mini, 90 px): the icon and the title on a wall, a camera drawn on the right over a 10 px parquet strip, in the cards' state — live (red recording light, field of view), motion detected (someone walking in the field of view, framed in amber), privacy (lens shut) or offline (greyed camera, no-signal mark). The header icon's colour follows the same state (accent, amber, grey, red), with or without the illustration. Night picture after sunset (`sun.sun`) or in a dark theme, forced with `illustration_theme: day | night`; `illustration: false` keeps the classic header; animations stop with *reduce motion*. Both options are in the visual editors (not on the video wall).
 - Status pill in the header, right after the title and in the icon's colour: Live, Motion detected, Private (every camera hidden) or Unavailable (new `st_private` label in every language); on its own line under the summary when the title needs the room, its dot alone below 200 px. The summary keeps the camera counts. The mini card's expand / collapse button is a 24 px frosted disc in the banner's top-right corner.
+- **Night picture with the dark theme even while the sun is up**: in `auto`, the banner shows the night picture when the sun is below the horizon or Home Assistant's theme is dark.
 
 ## 4.5.1 - 2026-11-14
 

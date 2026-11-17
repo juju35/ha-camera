@@ -47,7 +47,7 @@ List the cameras, the cards find their privacy switch, SD stream and PTZ buttons
 ### Cards
 
 - Header with the number of cameras live and hidden, and an **HD / SD** switch
-- **Illustrated header** (90 px, full and mini card): a camera on a wall over a parquet strip, drawn in the cards' state — *live* (red recording light, field of view), *motion detected* (someone framed in the field of view, amber), *privacy* (lens shut) or *offline* (greyed camera, no signal); the header icon's colour follows the same state; night picture after sunset (`sun.sun`) or in a dark theme; animations stop with *reduce motion*; `illustration: false` brings the classic header back
+- **Illustrated header** (90 px, full and mini card): a camera on a wall over a parquet strip, drawn in the cards' state — *live* (red recording light, field of view), *motion detected* (someone framed in the field of view, amber), *privacy* (lens shut) or *offline* (greyed camera, no signal); the header icon's colour follows the same state; night picture after sunset (`sun.sun`) or in a dark theme, even while the sun is up; animations stop with *reduce motion*; `illustration: false` brings the classic header back
 - One badge per camera: a red live dot while it films, a green lock while it is hidden; tap to toggle its privacy switch (or its smart plug); greyed out, and ignoring taps, while that switch is unavailable (camera offline)
 - Each image carries its name with a live dot; when every camera is hidden, a panel says how to bring one back
 - **Motion badge**: a pulsing amber sensor icon on the image's name (and on the mini card's snapshot) while a motion, occupancy or person sensor of the camera's device is on
@@ -188,7 +188,7 @@ The mini card takes the same options as the full card except `layout`, plus `zoo
 | `show_badges` | ❌ | `true` | Privacy badges under the header |
 | `show_motion` | ❌ | `true` | Motion badge on the images while a camera's motion sensor is on |
 | `illustration` | ❌ | `true` | Both cards: the illustrated header (a camera on a wall drawn in the cards' state); `false` for the classic header |
-| `illustration_theme` | ❌ | `auto` | Both cards: `auto` (night after sunset, else from the dark theme), `day` or `night` |
+| `illustration_theme` | ❌ | `auto` | Both cards: `auto` (night after sunset or with the dark theme, even while the sun is up), `day` or `night` |
 | `zoom` | ❌ | `true` | Mini card only: its detail button to the full card; with `false`, a tap on a snapshot opens the camera's dialog |
 | `language` | ❌ | Auto | Force language: `en`, `fr`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` (auto-detects from HA settings) |
 

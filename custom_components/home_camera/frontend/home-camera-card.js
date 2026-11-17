@@ -1830,14 +1830,13 @@ const HC_QUALITY_EVENT = 'home-camera-card-quality';
 // the card's text sits there), over a 10 px parquet strip that runs the banner's whole width.
 // state: live (red recording light, field of view), motion (someone framed in the field of view), privacy (lens
 // shut, no field of view) or offline (camera greyed, no signal). `uid` keeps each card's gradient ids apart.
-// Night: forced by illustration_theme, else the sun below the horizon, else Home Assistant's dark mode.
+// Night: forced by illustration_theme, else the sun below the horizon or Home Assistant's dark mode (the dark
+// theme shows the night picture even while the sun is up; an unavailable sun leaves the dark mode alone).
 function hcIsNight(hass, config) {
   const theme = config?.illustration_theme;
   if (theme === 'night') return true;
   if (theme === 'day') return false;
-  const sun = hass?.states?.['sun.sun']?.state;
-  if (sun && sun !== 'unavailable' && sun !== 'unknown') return sun === 'below_horizon';
-  return !!hass?.themes?.darkMode;
+  return hass?.states?.['sun.sun']?.state === 'below_horizon' || !!hass?.themes?.darkMode;
 }
 
 function hcSceneSvg(state, uid) {

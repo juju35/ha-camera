@@ -529,6 +529,18 @@ test("the header shows its state: live, motion, privacy or offline, in the illus
   assert.match(html(base, { illustration_theme: "night" }), /class="banner night"/);
   assert.match(html({ ...base, "sun.sun": "below_horizon" }, { illustration_theme: "day" }), /class="banner"/);
   assert.match(html({ ...base, "sun.sun": "below_horizon" }), /class="banner night"/);
+  // The dark theme shows the night picture even while the sun is up; the light theme keeps the day one.
+  const themed = (sun, dark, config) => {
+    const { card, render } = headCard(cameras, { ...base, "sun.sun": sun }, config);
+    card._hass.themes = { darkMode: dark };
+    render();
+    return card.shadowRoot.querySelector(".head").innerHTML;
+  };
+  assert.match(themed("above_horizon", true), /class="banner night"/);
+  assert.match(themed("above_horizon", false), /class="banner"/);
+  assert.match(themed("unavailable", true), /class="banner night"/);
+  assert.match(themed("above_horizon", true, { illustration_theme: "day" }), /class="banner"/);
+  assert.match(themed("above_horizon", false, { illustration_theme: "night" }), /class="banner night"/);
   const classic = html(base, { illustration: false });
   assert.doesNotMatch(classic, /banner|hc-scene/);
   assert.match(classic, /class="hicon live"/);
