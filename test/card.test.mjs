@@ -515,13 +515,16 @@ test("the header shows its state: live, motion, privacy or offline, in the illus
   assert.deepEqual(state(html(base)), ["live", "live"]);
   const motion = html({ ...base, "binary_sensor.a_motion": "on" });
   assert.deepEqual(state(motion), ["motion", "motion"]);
-  assert.match(motion, /<div class="summary">Motion detected · 2 cameras live<\/div>/);
+  // The state in the status pill right after the title, the summary keeps the count.
+  assert.match(motion, /<div class="name">[^<]*<\/div><span class="stpill motion"[^>]*><span class="sdot"><\/span><span class="st-text">Motion detected<\/span>/);
+  assert.match(motion, /<div class="summary">2 cameras live<\/div>/);
   // show_motion: false leaves motion out of the header too.
   assert.deepEqual(state(html({ ...base, "binary_sensor.a_motion": "on" }, { show_motion: false })), ["live", "live"]);
   assert.deepEqual(state(html({ ...base, "switch.a_privacy": "on", "switch.b_privacy": "on" })), ["privacy", "privacy"]);
   const offline = html({ ...base, "camera.a": "unavailable", "camera.b": "unavailable" });
   assert.deepEqual(state(offline), ["offline", "offline"]);
-  assert.match(offline, /<div class="summary">Unavailable<\/div>/);
+  assert.match(offline, /<span class="stpill offline"[^>]*>.*Unavailable<\/span>/);
+  assert.doesNotMatch(offline, /class="summary"/);
   // Night: illustration_theme wins over the sun; illustration: false keeps the classic header (its icon still coloured).
   assert.match(html(base, { illustration_theme: "night" }), /class="banner night"/);
   assert.match(html({ ...base, "sun.sun": "below_horizon" }, { illustration_theme: "day" }), /class="banner"/);
@@ -529,6 +532,7 @@ test("the header shows its state: live, motion, privacy or offline, in the illus
   const classic = html(base, { illustration: false });
   assert.doesNotMatch(classic, /banner|hc-scene/);
   assert.match(classic, /class="hicon live"/);
+  assert.match(classic, /class="stpill live"/);
 });
 
 test("every language has the illustration's editor labels", () => {

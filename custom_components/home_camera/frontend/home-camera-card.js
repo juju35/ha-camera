@@ -62,6 +62,7 @@ const HcI18n = {
     zoom_out: 'Revenir à la vue compacte',
     ed_zoom: 'Bouton détail',
     motion: 'Mouvement détecté',
+    st_private: 'Privé',
     cam_hidden: '{c} : masquée',
     ed_show_motion: 'Pastille de mouvement',
     cf_motion: 'Capteur de mouvement (pastille sur l\'image)',
@@ -135,6 +136,7 @@ const HcI18n = {
     zoom_out: 'Back to the compact view',
     ed_zoom: 'Detail button',
     motion: 'Motion detected',
+    st_private: 'Private',
     cam_hidden: '{c}: hidden',
     ed_show_motion: 'Motion badge',
     cf_motion: 'Motion sensor (badge on the image)',
@@ -208,6 +210,7 @@ const HcI18n = {
     zoom_out: 'Zurück zur kompakten Ansicht',
     ed_zoom: 'Detail-Schaltfläche',
     motion: 'Bewegung erkannt',
+    st_private: 'Privat',
     cam_hidden: '{c}: ausgeblendet',
     ed_show_motion: 'Bewegungs-Badge',
     cf_motion: 'Bewegungssensor (Badge auf dem Bild)',
@@ -281,6 +284,7 @@ const HcI18n = {
     zoom_out: 'Volver a la vista compacta',
     ed_zoom: 'Botón de detalle',
     motion: 'Movimiento detectado',
+    st_private: 'Privado',
     cam_hidden: '{c}: oculta',
     ed_show_motion: 'Insignia de movimiento',
     cf_motion: 'Sensor de movimiento (insignia en la imagen)',
@@ -354,6 +358,7 @@ const HcI18n = {
     zoom_out: 'Назад на компактни приказ',
     ed_zoom: 'Дугме за детаље',
     motion: 'Откривен покрет',
+    st_private: 'Приватно',
     cam_hidden: '{c}: скривена',
     ed_show_motion: 'Значка покрета',
     cf_motion: 'Сензор покрета (значка на слици)',
@@ -427,6 +432,7 @@ const HcI18n = {
     zoom_out: 'Nazad na kompaktni prikaz',
     ed_zoom: 'Dugme za detalje',
     motion: 'Otkriven pokret',
+    st_private: 'Privatno',
     cam_hidden: '{c}: skrivena',
     ed_show_motion: 'Značka pokreta',
     cf_motion: 'Senzor pokreta (značka na slici)',
@@ -500,6 +506,7 @@ const HcI18n = {
     zoom_out: 'Torna alla vista compatta',
     ed_zoom: 'Pulsante dettagli',
     motion: 'Movimento rilevato',
+    st_private: 'Privato',
     cam_hidden: '{c}: nascosta',
     ed_show_motion: 'Badge di movimento',
     cf_motion: 'Sensore di movimento (badge sull\'immagine)',
@@ -573,6 +580,7 @@ const HcI18n = {
     zoom_out: 'Terug naar de compacte weergave',
     ed_zoom: 'Detailknop',
     motion: 'Beweging gedetecteerd',
+    st_private: 'Privé',
     cam_hidden: '{c}: verborgen',
     ed_show_motion: 'Bewegingsbadge',
     cf_motion: 'Bewegingssensor (badge op het beeld)',
@@ -646,6 +654,7 @@ const HcI18n = {
     zoom_out: 'Voltar à vista compacta',
     ed_zoom: 'Botão de detalhe',
     motion: 'Movimento detetado',
+    st_private: 'Privado',
     cam_hidden: '{c}: oculta',
     ed_show_motion: 'Emblema de movimento',
     cf_motion: 'Sensor de movimento (emblema na imagem)',
@@ -719,6 +728,7 @@ const HcI18n = {
     zoom_out: 'Wróć do widoku kompaktowego',
     ed_zoom: 'Przycisk szczegółów',
     motion: 'Wykryto ruch',
+    st_private: 'Prywatne',
     cam_hidden: '{c}: ukryta',
     ed_show_motion: 'Plakietka ruchu',
     cf_motion: 'Czujnik ruchu (plakietka na obrazie)',
@@ -792,6 +802,7 @@ const HcI18n = {
     zoom_out: 'Înapoi la vizualizarea compactă',
     ed_zoom: 'Buton de detalii',
     motion: 'Mișcare detectată',
+    st_private: 'Privat',
     cam_hidden: '{c}: ascunsă',
     ed_show_motion: 'Insignă de mișcare',
     cf_motion: 'Senzor de mișcare (insignă pe imagine)',
@@ -865,6 +876,7 @@ const HcI18n = {
     zoom_out: 'Tilbage til kompakt visning',
     ed_zoom: 'Detaljeknap',
     motion: 'Bevægelse registreret',
+    st_private: 'Privat',
     cam_hidden: '{c}: skjult',
     ed_show_motion: 'Bevægelsesbadge',
     cf_motion: 'Bevægelsessensor (badge på billedet)',
@@ -938,6 +950,7 @@ const HcI18n = {
     zoom_out: 'Tillbaka till kompakt vy',
     ed_zoom: 'Detaljknapp',
     motion: 'Rörelse upptäckt',
+    st_private: 'Privat',
     cam_hidden: '{c}: dold',
     ed_show_motion: 'Rörelsebricka',
     cf_motion: 'Rörelsesensor (bricka på bilden)',
@@ -1011,6 +1024,7 @@ const HcI18n = {
     zoom_out: 'Обратно към компактния изглед',
     ed_zoom: 'Бутон за подробности',
     motion: 'Открито движение',
+    st_private: 'Поверително',
     cam_hidden: '{c}: скрита',
     ed_show_motion: 'Значка за движение',
     cf_motion: 'Сензор за движение (значка върху изображението)',
@@ -1084,6 +1098,7 @@ const HcI18n = {
     zoom_out: 'Вернуться к компактному виду',
     ed_zoom: 'Кнопка подробностей',
     motion: 'Обнаружено движение',
+    st_private: 'Приватно',
     cam_hidden: '{c}: скрыта',
     ed_show_motion: 'Значок движения',
     cf_motion: 'Датчик движения (значок на изображении)',
@@ -1157,6 +1172,7 @@ const HcI18n = {
     zoom_out: 'Повернутися до компактного вигляду',
     ed_zoom: 'Кнопка деталей',
     motion: 'Виявлено рух',
+    st_private: 'Приватно',
     cam_hidden: '{c}: прихована',
     ed_show_motion: 'Значок руху',
     cf_motion: 'Датчик руху (значок на зображенні)',
@@ -1230,6 +1246,7 @@ const HcI18n = {
     zoom_out: 'Vissza a kompakt nézethez',
     ed_zoom: 'Részletek gomb',
     motion: 'Mozgás észlelve',
+    st_private: 'Privát',
     cam_hidden: '{c}: rejtett',
     ed_show_motion: 'Mozgásjelvény',
     cf_motion: 'Mozgásérzékelő (jelvény a képen)',
@@ -1303,6 +1320,7 @@ const HcI18n = {
     zoom_out: 'Späť na kompaktné zobrazenie',
     ed_zoom: 'Tlačidlo podrobností',
     motion: 'Zistený pohyb',
+    st_private: 'Súkromné',
     cam_hidden: '{c}: skrytá',
     ed_show_motion: 'Odznak pohybu',
     cf_motion: 'Senzor pohybu (odznak na obraze)',
@@ -1376,6 +1394,7 @@ const HcI18n = {
     zoom_out: 'Zpět na kompaktní zobrazení',
     ed_zoom: 'Tlačítko podrobností',
     motion: 'Zjištěn pohyb',
+    st_private: 'Soukromé',
     cam_hidden: '{c}: skrytá',
     ed_show_motion: 'Odznak pohybu',
     cf_motion: 'Senzor pohybu (odznak na obraze)',
@@ -1449,6 +1468,7 @@ const HcI18n = {
     zoom_out: 'Nazaj na kompaktni pogled',
     ed_zoom: 'Gumb za podrobnosti',
     motion: 'Zaznano gibanje',
+    st_private: 'Zasebno',
     cam_hidden: '{c}: skrita',
     ed_show_motion: 'Značka gibanja',
     cf_motion: 'Senzor gibanja (značka na sliki)',
@@ -1522,6 +1542,7 @@ const HcI18n = {
     zoom_out: 'Atpakaļ uz kompakto skatu',
     ed_zoom: 'Detaļu poga',
     motion: 'Konstatēta kustība',
+    st_private: 'Privāti',
     cam_hidden: '{c}: paslēpta',
     ed_show_motion: 'Kustības žetons',
     cf_motion: 'Kustības sensors (žetons attēlā)',
@@ -1595,6 +1616,7 @@ const HcI18n = {
     zoom_out: 'Επιστροφή στη συμπαγή προβολή',
     ed_zoom: 'Κουμπί λεπτομερειών',
     motion: 'Εντοπίστηκε κίνηση',
+    st_private: 'Ιδιωτικό',
     cam_hidden: '{c}: κρυφή',
     ed_show_motion: 'Σήμα κίνησης',
     cf_motion: 'Αισθητήρας κίνησης (σήμα στην εικόνα)',
@@ -1854,7 +1876,7 @@ function hcSceneSvg(state, uid) {
 // The banner's colours and animations, day and night. Only added to the card when the illustration is shown.
 const HC_BANNER_STYLE =
   // 90 px, edge to edge at the top of the card: the wall, the camera picture on the right, the parquet strip.
-  '.banner { position: relative; height: 90px; margin: -12px -12px 0; overflow: hidden; container-type: inline-size;' +
+  '.banner { position: relative; height: 90px; margin: -12px -12px 0; overflow: hidden; container: hc-card / inline-size;' +
   ' background: #f2efe9; color: #1f2328; --hc-muted: #5d6670; }' +
   '.banner.night { background: #2a2b33; color: #fff; --hc-muted: rgba(255,255,255,0.78); }' +
   '.hc-scene { position: absolute; right: 0; bottom: 10px; width: min(200px, 62%); height: 80px; }' +
@@ -1882,8 +1904,15 @@ const HC_BANNER_STYLE =
   '.banner .opt { color: var(--hc-muted); }' +
   '.banner .opt.on { background: #fff; color: var(--primary-color, #03a9f4); }' +
   '.banner.night .opt.on { background: rgba(255,255,255,0.2); color: #fff; }' +
-  '.banner .zoom { position: absolute; top: 6px; right: 6px; margin: 0; color: #1f2328; background: rgba(255,255,255,0.55); }' +
-  '.banner.night .zoom { color: #fff; background: rgba(10,14,24,0.45); }' +
+  // The status pill on the wall: the state colour on frosted glass.
+  '.banner .stpill { background: color-mix(in srgb, var(--c) 18%, rgba(255,255,255,.78)); color: color-mix(in srgb, var(--c) 45%, #0d2a45); }' +
+  '.banner.night .stpill { background: color-mix(in srgb, var(--c) 30%, rgba(8,18,38,.55)); color: color-mix(in srgb, var(--c) 35%, #ffffff); }' +
+  // The mini card's expand / collapse button: a 24 px frosted disc in the banner's top-right corner.
+  '.banner .zoom { position: absolute; z-index: 2; top: 5px; right: 5px; margin: 0; width: 24px; height: 24px; box-sizing: border-box; color: #33506b;' +
+  ' background: rgba(255,255,255,.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,.7); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }' +
+  '.banner .zoom:hover { background: rgba(255,255,255,.75); color: #33506b; }' +
+  '.banner.night .zoom { color: #fff; background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }' +
+  '.banner.night .zoom:hover { background: rgba(255,255,255,.22); color: #fff; }' +
   // Narrow card: no room for the camera beside the text, the wall alone stays.
   '@container (max-width: 279px) { .hc-scene { display: none; } .banner .header { right: 12px; } .banner.zoomable .header { right: 34px; } }' +
   // The camera: white body on its wall mount, dark lens, the red recording light.
@@ -2652,17 +2681,13 @@ class HomeCameraCard extends HTMLElement {
       right = '';
       side = '';
       badges = '';
-      const status = single && visible.length && c.show_summary ? this._t('live') : summary;
-      sub = status ? `<div class="summary">${hcEsc(status)}</div>` : '';
+      sub = summary ? `<div class="summary">${hcEsc(summary)}</div>` : '';
     }
 
     // The header's status: its icon's colour, and the illustration's picture.
     const state = this._headState(cams, visible);
-    if (sub.startsWith('<div class="summary">') && (state === 'motion' || state === 'offline')) {
-      const what = this._t(state === 'motion' ? 'motion' : 'unavailable');
-      // The compact view keeps it short: the state alone.
-      sub = `<div class="summary">${hcEsc(state === 'motion' && summary && !this._compact() ? `${what} · ${summary}` : what)}</div>`;
-    }
+    // Every camera on screen unavailable: the pill says so, a count of live cameras would contradict it.
+    if (state === 'offline' && sub.startsWith('<div class="summary">')) sub = '';
 
     const head = this.shadowRoot.querySelector('.head');
     // Replacing the header drops the keyboard focus (HD/SD toggled, a badge tapped): remember which
@@ -2701,11 +2726,15 @@ class HomeCameraCard extends HTMLElement {
   _renderHeader(head, { title, right, side, sub, badges, state }) {
     const c = this._config;
     const zoom = this._zoomButton();
+    // The status pill right after the title, in the icon's colour: live, motion, private (every camera hidden) or
+    // unavailable.
+    const label = this._t({ live: 'live', motion: 'motion', privacy: 'st_private', offline: 'unavailable' }[state] || 'live');
+    const pill = `<span class="stpill ${state}" role="status" title="${hcEsc(label)}" aria-label="${hcEsc(label)}"><span class="sdot"></span><span class="st-text">${hcEsc(label)}</span></span>`;
     const row =
       `<div class="header"><div class="hicon ${state}"><ha-icon icon="${hcEsc(c.icon || 'mdi:cctv')}"></ha-icon></div>` +
-      `<div class="titles"><div class="name-row"><div class="name">${hcEsc(title)}</div><div class="chips">${right}</div></div>` +
+      `<div class="titles"><div class="tstack"><div class="name-row"><div class="name">${hcEsc(title)}</div>${pill}<div class="chips">${right}</div></div>` +
       sub +
-      `</div>${side}`;
+      `</div></div>${side}`;
     const top =
       c.illustration === false
         ? `${row}${zoom}</div>`
@@ -3130,13 +3159,31 @@ class HomeCameraCard extends HTMLElement {
       '.hicon ha-icon { --mdc-icon-size: 24px; }' +
       // Narrow card (half a Sections view, or a narrow column): the title shrinks to an ellipsis but keeps a few letters,
       // the HD / SD switch goes under it rather than out of the card, and the round buttons never shrink.
-      '.titles { flex: 1 1 auto; min-width: 0; align-self: center; }' +
+      '.titles { flex: 1 1 auto; min-width: 0; align-self: center; container: hc-titles / inline-size; }' +
       ':host([hide-title]) .name-row > .name { display: none; }' +
       '.name-row { display: flex; flex-wrap: wrap; align-items: center; column-gap: 8px; row-gap: 4px; }' +
       '.name-row > .chips { flex: none; margin-left: auto; }' +
       '.chips:empty { display: none; }' +
-      '.name { flex: 1 1 0; min-width: 4ch; font-size: 16px; font-weight: 500; line-height: 1.25; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
+      '.name { flex: 0 1 auto; min-width: 4ch; font-size: 16px; font-weight: 500; line-height: 1.25; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.summary { font-size: 12px; line-height: 1.35; margin-top: 2px; color: var(--secondary-text-color); }' +
+      // The status pill right after the title, in the header icon's colour; the title ellipsises first (4 characters
+      // kept). Short of room it goes on its own line under the summary, the HD / SD switch staying beside the title;
+      // narrower still, its dot alone (the text in its tooltip and for screen readers).
+      '.stpill { display: inline-flex; align-items: center; gap: 4px; flex: none; max-width: 100%; box-sizing: border-box; padding: 1px 8px; border-radius: 12px;' +
+      ' font-size: 11px; font-weight: 500; line-height: 16px; white-space: nowrap; --c: var(--primary-color, #03a9f4);' +
+      ' background: color-mix(in srgb, var(--c) 15%, transparent); color: color-mix(in srgb, var(--c) 50%, var(--primary-text-color)); }' +
+      '.stpill.motion { --c: var(--warning-color, #ffa600); } .stpill.privacy { --c: var(--secondary-text-color, #727272); } .stpill.offline { --c: var(--error-color, #db4437); }' +
+      '.stpill .sdot { width: 7px; height: 7px; border-radius: 50%; flex: none; background: var(--c); }' +
+      '.stpill .st-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; }' +
+      '@container hc-titles (max-width: 280px) {' +
+      ' .tstack { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 8px; }' +
+      ' .tstack > .name-row { display: contents; }' +
+      ' .name-row > .name { grid-column: 1; grid-row: 1; justify-self: start; max-width: 100%; }' +
+      ' .name-row > .chips { grid-column: 2; grid-row: 1; margin-left: 0; }' +
+      ' .tstack > .summary, .tstack > .chips.sub { grid-column: 1 / -1; }' +
+      ' .stpill { grid-column: 1 / -1; grid-row: 9; justify-self: start; margin-top: 3px; }' +
+      ' }' +
+      '@container hc-card (max-width: 200px) { .stpill { padding: 4px; } .stpill .st-text { display: none; } }' +
       '.chips { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }' +
       '.chips.badges, .chips.sub { justify-content: flex-start; }' +
       '.chips.badges { margin-top: 8px; }' +
@@ -3284,7 +3331,7 @@ class HomeCameraCard extends HTMLElement {
       // before it gives the host up to 240px there, and no minimum. The header icon keeps its 40px.
       ':host([mini]) { display: block; min-width: 0; }' +
       ':host([mini])::before { content: ""; display: grid; grid-template-columns: minmax(0, 240px); height: 0; }' +
-      'ha-card.mini { container-type: inline-size; }' +
+      'ha-card.mini { container: hc-card / inline-size; }' +
       // Detail button, top right of the header: the full card and back.
       '.zoom { flex: none; cursor: pointer; width: 24px; height: 24px; margin: -4px -4px 0 0; border-radius: 50%; display: grid; place-items: center;' +
       ' color: var(--secondary-text-color); --mdc-icon-size: 16px; -webkit-tap-highlight-color: transparent; }' +
