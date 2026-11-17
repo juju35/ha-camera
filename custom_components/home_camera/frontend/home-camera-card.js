@@ -1,4 +1,4 @@
-const HOME_CAMERA_CARD_VERSION = '4.5.1';
+const HOME_CAMERA_CARD_VERSION = '4.6.0';
 
 // ── i18n ─────────────────────────────────────────────────────────────────────
 const HcI18n = {
@@ -69,6 +69,11 @@ const HcI18n = {
     ed_layout_helper: 'Mur vidéo : pas de carte autour de la grille, une barre d\'état à la place de l\'en-tête',
     ed_layout_card: 'Carte',
     ed_layout_wall: 'Mur vidéo',
+    ed_illustration: 'Illustration animée',
+    ed_illustration_theme: 'Thème de l’illustration',
+    ed_theme_auto: 'Automatique (soleil)',
+    ed_theme_day: 'Jour',
+    ed_theme_night: 'Nuit',
   },
   en: {
     title: 'Cameras',
@@ -137,6 +142,11 @@ const HcI18n = {
     ed_layout_helper: 'Video wall: no card around the grid, a status bar instead of the header',
     ed_layout_card: 'Card',
     ed_layout_wall: 'Video wall',
+    ed_illustration: 'Animated illustration',
+    ed_illustration_theme: 'Illustration theme',
+    ed_theme_auto: 'Automatic (sun)',
+    ed_theme_day: 'Day',
+    ed_theme_night: 'Night',
   },
   de: {
     title: 'Kameras',
@@ -205,6 +215,11 @@ const HcI18n = {
     ed_layout_helper: 'Videowand: keine Karte um das Raster, eine Statusleiste statt der Kopfzeile',
     ed_layout_card: 'Karte',
     ed_layout_wall: 'Videowand',
+    ed_illustration: 'Animierte Illustration',
+    ed_illustration_theme: 'Thema der Illustration',
+    ed_theme_auto: 'Automatisch (Sonne)',
+    ed_theme_day: 'Tag',
+    ed_theme_night: 'Nacht',
   },
   es: {
     title: 'Cámaras',
@@ -273,6 +288,11 @@ const HcI18n = {
     ed_layout_helper: 'Videowall: sin tarjeta alrededor de la cuadrícula, una barra de estado en lugar del encabezado',
     ed_layout_card: 'Tarjeta',
     ed_layout_wall: 'Videowall',
+    ed_illustration: 'Ilustración animada',
+    ed_illustration_theme: 'Tema de la ilustración',
+    ed_theme_auto: 'Automático (sol)',
+    ed_theme_day: 'Día',
+    ed_theme_night: 'Noche',
   },
   sr: {
     title: 'Камере',
@@ -341,6 +361,11 @@ const HcI18n = {
     ed_layout_helper: 'Видео зид: без картице око мреже, трака стања уместо заглавља',
     ed_layout_card: 'Картица',
     ed_layout_wall: 'Видео зид',
+    ed_illustration: 'Анимирана илустрација',
+    ed_illustration_theme: 'Тема илустрације',
+    ed_theme_auto: 'Аутоматски (сунце)',
+    ed_theme_day: 'Дан',
+    ed_theme_night: 'Ноћ',
   },
   'sr-Latn': {
     title: 'Kamere',
@@ -409,6 +434,11 @@ const HcI18n = {
     ed_layout_helper: 'Video zid: bez kartice oko mreže, traka stanja umesto zaglavlja',
     ed_layout_card: 'Kartica',
     ed_layout_wall: 'Video zid',
+    ed_illustration: 'Animirana ilustracija',
+    ed_illustration_theme: 'Tema ilustracije',
+    ed_theme_auto: 'Automatski (sunce)',
+    ed_theme_day: 'Dan',
+    ed_theme_night: 'Noć',
   },
   it: {
     title: 'Telecamere',
@@ -477,6 +507,11 @@ const HcI18n = {
     ed_layout_helper: 'Videowall: nessuna scheda attorno alla griglia, una barra di stato al posto dell\'intestazione',
     ed_layout_card: 'Scheda',
     ed_layout_wall: 'Videowall',
+    ed_illustration: 'Illustrazione animata',
+    ed_illustration_theme: 'Tema dell’illustrazione',
+    ed_theme_auto: 'Automatico (sole)',
+    ed_theme_day: 'Giorno',
+    ed_theme_night: 'Notte',
   },
   nl: {
     title: 'Camera\'s',
@@ -545,6 +580,11 @@ const HcI18n = {
     ed_layout_helper: 'Videowand: geen kaart rond het raster, een statusbalk in plaats van de koptekst',
     ed_layout_card: 'Kaart',
     ed_layout_wall: 'Videowand',
+    ed_illustration: 'Geanimeerde illustratie',
+    ed_illustration_theme: 'Thema van de illustratie',
+    ed_theme_auto: 'Automatisch (zon)',
+    ed_theme_day: 'Dag',
+    ed_theme_night: 'Nacht',
   },
   pt: {
     title: 'Câmaras',
@@ -613,6 +653,11 @@ const HcI18n = {
     ed_layout_helper: 'Videowall: sem cartão à volta da grelha, uma barra de estado em vez do cabeçalho',
     ed_layout_card: 'Cartão',
     ed_layout_wall: 'Videowall',
+    ed_illustration: 'Ilustração animada',
+    ed_illustration_theme: 'Tema da ilustração',
+    ed_theme_auto: 'Automático (sol)',
+    ed_theme_day: 'Dia',
+    ed_theme_night: 'Noite',
   },
   pl: {
     title: 'Kamery',
@@ -681,6 +726,11 @@ const HcI18n = {
     ed_layout_helper: 'Ściana wideo: bez karty wokół siatki, pasek stanu zamiast nagłówka',
     ed_layout_card: 'Karta',
     ed_layout_wall: 'Ściana wideo',
+    ed_illustration: 'Animowana ilustracja',
+    ed_illustration_theme: 'Motyw ilustracji',
+    ed_theme_auto: 'Automatycznie (słońce)',
+    ed_theme_day: 'Dzień',
+    ed_theme_night: 'Noc',
   },
   ro: {
     title: 'Camere',
@@ -749,6 +799,11 @@ const HcI18n = {
     ed_layout_helper: 'Perete video: fără card în jurul grilei, o bară de stare în locul antetului',
     ed_layout_card: 'Card',
     ed_layout_wall: 'Perete video',
+    ed_illustration: 'Ilustrație animată',
+    ed_illustration_theme: 'Tema ilustrației',
+    ed_theme_auto: 'Automat (soare)',
+    ed_theme_day: 'Zi',
+    ed_theme_night: 'Noapte',
   },
   da: {
     title: 'Kameraer',
@@ -817,6 +872,11 @@ const HcI18n = {
     ed_layout_helper: 'Videovæg: intet kort om gitteret, en statuslinje i stedet for overskriften',
     ed_layout_card: 'Kort',
     ed_layout_wall: 'Videovæg',
+    ed_illustration: 'Animeret illustration',
+    ed_illustration_theme: 'Illustrationens tema',
+    ed_theme_auto: 'Automatisk (sol)',
+    ed_theme_day: 'Dag',
+    ed_theme_night: 'Nat',
   },
   sv: {
     title: 'Kameror',
@@ -885,6 +945,11 @@ const HcI18n = {
     ed_layout_helper: 'Videovägg: inget kort runt rutnätet, en statusrad i stället för rubriken',
     ed_layout_card: 'Kort',
     ed_layout_wall: 'Videovägg',
+    ed_illustration: 'Animerad illustration',
+    ed_illustration_theme: 'Illustrationens tema',
+    ed_theme_auto: 'Automatiskt (sol)',
+    ed_theme_day: 'Dag',
+    ed_theme_night: 'Natt',
   },
   bg: {
     title: 'Камери',
@@ -953,6 +1018,11 @@ const HcI18n = {
     ed_layout_helper: 'Видеостена: без карта около мрежата, лента за състояние вместо заглавката',
     ed_layout_card: 'Карта',
     ed_layout_wall: 'Видеостена',
+    ed_illustration: 'Анимирана илюстрация',
+    ed_illustration_theme: 'Тема на илюстрацията',
+    ed_theme_auto: 'Автоматично (слънце)',
+    ed_theme_day: 'Ден',
+    ed_theme_night: 'Нощ',
   },
   ru: {
     title: 'Камеры',
@@ -1021,6 +1091,11 @@ const HcI18n = {
     ed_layout_helper: 'Видеостена: без карточки вокруг сетки, строка состояния вместо заголовка',
     ed_layout_card: 'Карточка',
     ed_layout_wall: 'Видеостена',
+    ed_illustration: 'Анимированная иллюстрация',
+    ed_illustration_theme: 'Тема иллюстрации',
+    ed_theme_auto: 'Автоматически (солнце)',
+    ed_theme_day: 'День',
+    ed_theme_night: 'Ночь',
   },
   uk: {
     title: 'Камери',
@@ -1089,6 +1164,11 @@ const HcI18n = {
     ed_layout_helper: 'Відеостіна: без картки навколо сітки, рядок стану замість заголовка',
     ed_layout_card: 'Картка',
     ed_layout_wall: 'Відеостіна',
+    ed_illustration: 'Анімована ілюстрація',
+    ed_illustration_theme: 'Тема ілюстрації',
+    ed_theme_auto: 'Автоматично (сонце)',
+    ed_theme_day: 'День',
+    ed_theme_night: 'Ніч',
   },
   hu: {
     title: 'Kamerák',
@@ -1157,6 +1237,11 @@ const HcI18n = {
     ed_layout_helper: 'Videófal: nincs kártya a rács körül, állapotsor a fejléc helyett',
     ed_layout_card: 'Kártya',
     ed_layout_wall: 'Videófal',
+    ed_illustration: 'Animált illusztráció',
+    ed_illustration_theme: 'Az illusztráció témája',
+    ed_theme_auto: 'Automatikus (nap)',
+    ed_theme_day: 'Nappal',
+    ed_theme_night: 'Éjszaka',
   },
   sk: {
     title: 'Kamery',
@@ -1225,6 +1310,11 @@ const HcI18n = {
     ed_layout_helper: 'Videostena: bez karty okolo mriežky, stavový riadok namiesto hlavičky',
     ed_layout_card: 'Karta',
     ed_layout_wall: 'Videostena',
+    ed_illustration: 'Animovaná ilustrácia',
+    ed_illustration_theme: 'Téma ilustrácie',
+    ed_theme_auto: 'Automaticky (slnko)',
+    ed_theme_day: 'Deň',
+    ed_theme_night: 'Noc',
   },
   cs: {
     title: 'Kamery',
@@ -1293,6 +1383,11 @@ const HcI18n = {
     ed_layout_helper: 'Videostěna: bez karty kolem mřížky, stavový řádek místo záhlaví',
     ed_layout_card: 'Karta',
     ed_layout_wall: 'Videostěna',
+    ed_illustration: 'Animovaná ilustrace',
+    ed_illustration_theme: 'Motiv ilustrace',
+    ed_theme_auto: 'Automaticky (slunce)',
+    ed_theme_day: 'Den',
+    ed_theme_night: 'Noc',
   },
   sl: {
     title: 'Kamere',
@@ -1361,6 +1456,11 @@ const HcI18n = {
     ed_layout_helper: 'Video stena: brez kartice okoli mreže, vrstica stanja namesto glave',
     ed_layout_card: 'Kartica',
     ed_layout_wall: 'Video stena',
+    ed_illustration: 'Animirana ilustracija',
+    ed_illustration_theme: 'Tema ilustracije',
+    ed_theme_auto: 'Samodejno (sonce)',
+    ed_theme_day: 'Dan',
+    ed_theme_night: 'Noč',
   },
   lv: {
     title: 'Kameras',
@@ -1429,6 +1529,11 @@ const HcI18n = {
     ed_layout_helper: 'Video siena: bez kartītes ap režģi, statusa josla galvenes vietā',
     ed_layout_card: 'Kartīte',
     ed_layout_wall: 'Video siena',
+    ed_illustration: 'Animēta ilustrācija',
+    ed_illustration_theme: 'Ilustrācijas motīvs',
+    ed_theme_auto: 'Automātiski (saule)',
+    ed_theme_day: 'Diena',
+    ed_theme_night: 'Nakts',
   },
   el: {
     title: 'Κάμερες',
@@ -1497,6 +1602,11 @@ const HcI18n = {
     ed_layout_helper: 'Τοίχος βίντεο: χωρίς κάρτα γύρω από το πλέγμα, γραμμή κατάστασης αντί για την κεφαλίδα',
     ed_layout_card: 'Κάρτα',
     ed_layout_wall: 'Τοίχος βίντεο',
+    ed_illustration: 'Κινούμενη εικονογράφηση',
+    ed_illustration_theme: 'Θέμα εικονογράφησης',
+    ed_theme_auto: 'Αυτόματα (ήλιος)',
+    ed_theme_day: 'Ημέρα',
+    ed_theme_night: 'Νύχτα',
   },
 };
 
@@ -1528,6 +1638,8 @@ const HC_DEFAULTS = {
   show_summary: true,
   show_badges: true,
   show_motion: true,
+  illustration: true,
+  illustration_theme: 'auto',
 };
 
 const HC_PTZ_DIRS = ['left', 'right', 'up', 'down'];
@@ -1690,6 +1802,128 @@ function hcCamera(hass, raw, index) {
 // HD / SD choice of the cards without quality_entity, shared by every card of the browser.
 const HC_QUALITY_KEY = 'home-camera-card-quality';
 const HC_QUALITY_EVENT = 'home-camera-card-quality';
+
+// ── Illustrated header ───────────────────────────────────────────────────────
+// A camera on a wall, top right of a 200 × 80 picture drawn at the banner's right edge (its left half stays open:
+// the card's text sits there), over a 10 px parquet strip that runs the banner's whole width.
+// state: live (red recording light, field of view), motion (someone framed in the field of view), privacy (lens
+// shut, no field of view) or offline (camera greyed, no signal). `uid` keeps each card's gradient ids apart.
+// Night: forced by illustration_theme, else the sun below the horizon, else Home Assistant's dark mode.
+function hcIsNight(hass, config) {
+  const theme = config?.illustration_theme;
+  if (theme === 'night') return true;
+  if (theme === 'day') return false;
+  const sun = hass?.states?.['sun.sun']?.state;
+  if (sun && sun !== 'unavailable' && sun !== 'unknown') return sun === 'below_horizon';
+  return !!hass?.themes?.darkMode;
+}
+
+function hcSceneSvg(state, uid) {
+  const watching = state === 'live' || state === 'motion';
+  const lens =
+    state === 'privacy'
+      ? '<circle class="hc-lens shut" cx="-12" cy="6" r="4.2"/><path class="hc-shutter" d="M-16 6h8"/>'
+      : `<circle class="hc-lens" cx="-12" cy="6" r="4.2"/><circle class="hc-glint" cx="-13.4" cy="4.6" r="1.1"/>`;
+  const led = watching ? '<circle class="hc-rec" cx="4" cy="3" r="1.2"/>' : '';
+  const fov = watching
+    ? `<path class="hc-fov" d="M155 25 L92 80 H174Z" fill="url(#hc-fov-${uid})"/>`
+    : '';
+  const person =
+    state === 'motion'
+      ? '<g class="hc-walker"><g transform="translate(130 80) scale(1.3)"><circle class="hc-person" cy="-24" r="4"/>' +
+        '<path class="hc-person" d="M-5 -19h10l2 12h-3l-1 7h-3l-1 -7h-1l-1 7h-3l-1 -7h-3z"/>' +
+        '<rect class="hc-frame" x="-9" y="-30.5" width="18" height="31" rx="1"/></g></g>'
+      : '';
+  const nosignal =
+    state === 'offline'
+      ? '<g class="hc-nosig" transform="translate(140 18)"><circle r="5.2"/><path d="M-3.6 3.6 3.6 -3.6"/></g>'
+      : '';
+  return (
+    `<svg class="hc-scene ${state}" viewBox="0 0 200 80" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false">` +
+    `<defs><linearGradient id="hc-fov-${uid}" gradientUnits="userSpaceOnUse" x1="155" y1="25" x2="132" y2="80">` +
+    '<stop offset="0" class="hc-fov-a"/><stop offset="1" class="hc-fov-b"/></linearGradient></defs>' +
+    fov +
+    person +
+    '<g transform="translate(173 16) scale(1.4)"><rect class="hc-mount" x="-2" y="-8.6" width="4" height="10" rx=".6"/>' +
+    `<g class="hc-head"><rect class="hc-body" x="-15" y="0" width="23" height="12.4" rx="3"/>${lens}${led}</g></g>` +
+    nosignal +
+    '</svg><div class="hc-ground" aria-hidden="true"></div>'
+  );
+}
+
+// The banner's colours and animations, day and night. Only added to the card when the illustration is shown.
+const HC_BANNER_STYLE =
+  // 90 px, edge to edge at the top of the card: the wall, the camera picture on the right, the parquet strip.
+  '.banner { position: relative; height: 90px; margin: -12px -12px 0; overflow: hidden; container-type: inline-size;' +
+  ' background: #f2efe9; color: #1f2328; --hc-muted: #5d6670; }' +
+  '.banner.night { background: #2a2b33; color: #fff; --hc-muted: rgba(255,255,255,0.78); }' +
+  '.hc-scene { position: absolute; right: 0; bottom: 10px; width: min(200px, 62%); height: 80px; }' +
+  '.banner.zoomable .hc-scene { right: 26px; }' +
+  '.hc-ground { position: absolute; left: 0; right: 0; bottom: 0; height: 10px;' +
+  ' background: repeating-linear-gradient(90deg, #c99a6b 0 38px, #b98a5c 38px 40px); box-shadow: inset 0 2px 0 #a97c50; }' +
+  '.night .hc-ground { background: repeating-linear-gradient(90deg, #4a3a2c 0 38px, #3e3024 38px 40px); box-shadow: inset 0 2px 0 #5a4634; }' +
+  // The text row on the wall, left of the camera (whose picture starts halfway across it).
+  '.banner .header { position: absolute; left: 12px; top: 0; bottom: 10px; right: calc(min(200px, 62%) / 2 + 4px); align-items: center; }' +
+  '.banner.zoomable .header { right: calc(min(200px, 62%) / 2 + 30px); }' +
+  '.banner .titles { align-self: center; }' +
+  '.banner .name { color: inherit; }' +
+  '.banner .summary { color: var(--hc-muted); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }' +
+  '.banner .hicon { position: relative; align-self: center; background: rgba(255,255,255,0.62);' +
+  ' box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--hc-c) 22%, transparent); }' +
+  '.banner.night .hicon { background: rgba(255,255,255,0.12); color: color-mix(in srgb, var(--hc-c) 72%, #fff);' +
+  ' box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14); }' +
+  // Opaque buttons on the wall: their contrast never depends on what is behind them.
+  '.banner .toggle { align-self: center; background: #fbfaf7; color: #1f2328; }' +
+  '.banner.night .toggle { background: #3d3e46; color: #fff; }' +
+  '.banner .toggle.private { background: color-mix(in srgb, var(--hc-on) 22%, #fff); color: color-mix(in srgb, var(--hc-on) 60%, #1f2328); }' +
+  '.banner.night .toggle.private { background: color-mix(in srgb, var(--hc-on) 26%, #2a2b33); color: color-mix(in srgb, var(--hc-on) 55%, #fff); }' +
+  '.banner .seg { background: rgba(255,255,255,0.6); }' +
+  '.banner.night .seg { background: rgba(0,0,0,0.25); }' +
+  '.banner .opt { color: var(--hc-muted); }' +
+  '.banner .opt.on { background: #fff; color: var(--primary-color, #03a9f4); }' +
+  '.banner.night .opt.on { background: rgba(255,255,255,0.2); color: #fff; }' +
+  '.banner .zoom { position: absolute; top: 6px; right: 6px; margin: 0; color: #1f2328; background: rgba(255,255,255,0.55); }' +
+  '.banner.night .zoom { color: #fff; background: rgba(10,14,24,0.45); }' +
+  // Narrow card: no room for the camera beside the text, the wall alone stays.
+  '@container (max-width: 279px) { .hc-scene { display: none; } .banner .header { right: 12px; } .banner.zoomable .header { right: 34px; } }' +
+  // The camera: white body on its wall mount, dark lens, the red recording light.
+  '.hc-mount { fill: #9aa3ae; }' +
+  '.hc-body { fill: #fff; stroke: #c9ced6; stroke-width: 0.7; }' +
+  '.night .hc-body { fill: #d8dce2; stroke: #aab1bb; }' +
+  '.hc-lens { fill: #2a3038; }' +
+  '.hc-lens.shut { fill: #9aa3ae; }' +
+  '.hc-shutter { stroke: #fff; stroke-width: 1.4; }' +
+  '.hc-glint { fill: #6f86a6; }' +
+  '.hc-rec { fill: #e5484d; animation: hc-blink 1.2s steps(2) infinite; }' +
+  '.hc-head { transform-box: fill-box; transform-origin: 85% 40%; }' +
+  '.live .hc-head { animation: hc-pan 6s ease-in-out infinite; }' +
+  '.offline .hc-body { fill: #e3e6ea; }' +
+  '.night .offline .hc-body { fill: #8c939e; stroke: #6b7280; }' +
+  '.offline .hc-lens { fill: #6b7380; }' +
+  // Field of view: a soft blue cone from the lens to the floor, breathing.
+  '.hc-fov-a { stop-color: #2f80ed; stop-opacity: 0.2; }' +
+  '.hc-fov-b { stop-color: #2f80ed; stop-opacity: 0.05; }' +
+  '.night .hc-fov-a { stop-color: #6aa8ff; stop-opacity: 0.26; }' +
+  '.night .hc-fov-b { stop-color: #6aa8ff; stop-opacity: 0.06; }' +
+  '.hc-fov { animation: hc-breathe 3s ease-in-out infinite; }' +
+  '.motion .hc-fov-a { stop-color: #f5b400; stop-opacity: 0.24; }' +
+  '.motion .hc-fov-b { stop-color: #f5b400; stop-opacity: 0.06; }' +
+  // Motion: someone walks in the field of view, framed by an amber detection box.
+  '.hc-person { fill: #5f6b7a; }' +
+  '.night .hc-person { fill: #8fa3c4; }' +
+  '.hc-frame { fill: none; stroke: #f5b400; stroke-width: 1; stroke-dasharray: 3 2; vector-effect: non-scaling-stroke; animation: hc-blink 1s steps(2) infinite; }' +
+  '.hc-walker { animation: hc-walk 4s ease-in-out infinite alternate; }' +
+  // Offline: a no-signal mark beside the camera.
+  '.hc-nosig circle { fill: none; stroke: #e5484d; stroke-width: 1.4; }' +
+  '.hc-nosig path { stroke: #e5484d; stroke-width: 1.4; stroke-linecap: round; }' +
+  '.hc-nosig { animation: hc-breathe 2s ease-in-out infinite; }' +
+  '@keyframes hc-blink { 50% { opacity: 0.2; } }' +
+  '@keyframes hc-breathe { 50% { opacity: 0.55; } }' +
+  '@keyframes hc-pan { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(5deg); } }' +
+  '@keyframes hc-walk { from { transform: translateX(-10px); } to { transform: translateX(8px); } }' +
+  '@media (prefers-reduced-motion: reduce) { .hc-scene * { animation: none !important; } }';
+
+let hcUid = 0;
 
 // ── home-camera-card ─────────────────────────────────────────────────────────
 // A tile's player. Home Assistant's own (ha-camera-stream) starts HLS and WebRTC side by side and keeps the
@@ -1959,6 +2193,7 @@ class HomeCameraCard extends HTMLElement {
     if (!config) throw new Error('Invalid configuration');
     if (config.cameras && !Array.isArray(config.cameras)) throw new Error('cameras must be a list');
     this._config = Object.assign({}, HC_DEFAULTS, config);
+    if (!this._uid) this._uid = ++hcUid;
     // show_title: the header's title, hidden by the stylesheet (HD / SD and the summary stay)
     this.toggleAttribute?.('hide-title', config.show_title === false);
     // Video wall (the Cameras panel, or `layout: wall` on a dashboard): no card around the grid, a status bar
@@ -2169,9 +2404,12 @@ class HomeCameraCard extends HTMLElement {
     const compact = this._compact();
     this.shadowRoot.querySelector('ha-card')?.classList.toggle('mini', compact);
 
+    const banner = this._config.illustration !== false;
     const headSig = JSON.stringify([
       this._lang(),
       compact,
+      this._headState(cams, visible),
+      banner && hcIsNight(this._hass, this._config),
       this._zoomButton(),
       hd,
       [...(this._pending?.keys() || [])],
@@ -2418,6 +2656,14 @@ class HomeCameraCard extends HTMLElement {
       sub = status ? `<div class="summary">${hcEsc(status)}</div>` : '';
     }
 
+    // The header's status: its icon's colour, and the illustration's picture.
+    const state = this._headState(cams, visible);
+    if (sub.startsWith('<div class="summary">') && (state === 'motion' || state === 'offline')) {
+      const what = this._t(state === 'motion' ? 'motion' : 'unavailable');
+      // The compact view keeps it short: the state alone.
+      sub = `<div class="summary">${hcEsc(state === 'motion' && summary && !this._compact() ? `${what} · ${summary}` : what)}</div>`;
+    }
+
     const head = this.shadowRoot.querySelector('.head');
     // Replacing the header drops the keyboard focus (HD/SD toggled, a badge tapped): remember which
     // control held it, and give it back to its replacement.
@@ -2429,7 +2675,7 @@ class HomeCameraCard extends HTMLElement {
         `<div class="wallbar">${summary ? `<div class="summary">${hcEsc(summary)}</div>` : ''}` +
         `<div class="chips badges">${badges}</div><div class="chips">${right}</div></div>`;
     } else {
-      this._renderHeader(head, { title, right, side, sub, badges, level: cams.length && !visible.length ? 'off' : 'on' });
+      this._renderHeader(head, { title, right, side, sub, badges, state });
     }
     if (kind) {
       for (const el of head.querySelectorAll(`[data-${kind}]`)) {
@@ -2440,15 +2686,32 @@ class HomeCameraCard extends HTMLElement {
     }
   }
 
-  // The card's own header: icon, title with HD / SD, status line, then the privacy badges.
-  _renderHeader(head, { title, right, side, sub, badges, level }) {
+  // What the header shows: offline (no camera, or every camera on screen unavailable), privacy (every camera
+  // hidden), motion (a motion sensor of a camera on screen is on) or live.
+  _headState(cams, visible) {
+    if (cams.length && !visible.length) return 'privacy';
+    const up = visible.filter((cam) => this._usable(cam.camera));
+    if (!up.length) return 'offline';
+    if (this._config.show_motion !== false && up.some((cam) => cam.motion.some((id) => this._state(id) === 'on'))) return 'motion';
+    return 'live';
+  }
+
+  // The card's own header: icon, title with HD / SD, status line, then the privacy badges. With the illustration
+  // (default), the icon and the titles sit on a wall, left of a camera drawn in the header's state.
+  _renderHeader(head, { title, right, side, sub, badges, state }) {
     const c = this._config;
-    head.innerHTML =
-      `<div class="header"><div class="hicon ${level}"><ha-icon icon="${hcEsc(c.icon || 'mdi:cctv')}"></ha-icon></div>` +
+    const zoom = this._zoomButton();
+    const row =
+      `<div class="header"><div class="hicon ${state}"><ha-icon icon="${hcEsc(c.icon || 'mdi:cctv')}"></ha-icon></div>` +
       `<div class="titles"><div class="name-row"><div class="name">${hcEsc(title)}</div><div class="chips">${right}</div></div>` +
       sub +
-      `</div>${side}${this._zoomButton()}</div>` +
-      (badges ? `<div class="chips badges">${badges}</div>` : '');
+      `</div>${side}`;
+    const top =
+      c.illustration === false
+        ? `${row}${zoom}</div>`
+        : `<div class="banner${hcIsNight(this._hass, c) ? ' night' : ''}${zoom ? ' zoomable' : ''}">` +
+          `${hcSceneSvg(state, this._uid)}${row}</div>${zoom}</div>`;
+    head.innerHTML = top + (badges ? `<div class="chips badges">${badges}</div>` : '');
   }
 
   // The grid of tiles, one per visible camera. Tiles are kept across renders and only added or removed
@@ -2860,7 +3123,10 @@ class HomeCameraCard extends HTMLElement {
       '.header { display: flex; align-items: flex-start; gap: 10px; }' +
       '.hicon { width: 40px; height: 40px; border-radius: 50%; flex: none; display: grid; place-items: center;' +
       ' --hc-c: var(--primary-color, #03a9f4); background: color-mix(in srgb, var(--hc-c) 16%, transparent); color: var(--hc-c); }' +
-      '.hicon.off { --hc-c: var(--secondary-text-color); }' +
+      // The icon's colour says the header's state: live, motion (amber), privacy (grey), offline (red).
+      '.hicon.motion { --hc-c: var(--warning-color, #ffa600); }' +
+      '.hicon.privacy { --hc-c: var(--secondary-text-color, #727272); }' +
+      '.hicon.offline { --hc-c: var(--error-color, #db4437); }' +
       '.hicon ha-icon { --mdc-icon-size: 24px; }' +
       // Narrow card (half a Sections view, or a narrow column): the title shrinks to an ellipsis but keeps a few letters,
       // the HD / SD switch goes under it rather than out of the card, and the round buttons never shrink.
@@ -3012,6 +3278,7 @@ class HomeCameraCard extends HTMLElement {
       ' border-radius: 12px; border: 1px dashed var(--divider-color, rgba(128,128,128,0.3)); font-size: 12px; color: var(--secondary-text-color); text-align: center; }' +
       '.asleep ha-icon { --mdc-icon-size: 18px; color: var(--hc-on); }' +
       '.empty { display: flex; align-items: center; gap: 10px; color: var(--secondary-text-color); }' +
+      HC_BANNER_STYLE +
       // Mini card. Only its compact ha-card is a size container; a size container takes no width from its
       // content, so in a parent sized by its content it would fold to its padding: an empty, zero-height grid
       // before it gives the host up to 240px there, and no minimum. The header icon keeps its 40px.
@@ -3217,6 +3484,27 @@ class HomeCameraCardEditor extends HTMLElement {
           { name: 'show_motion', selector: { boolean: {} } },
         ],
       },
+      // The illustrated header (not on the video wall, which has a status bar instead).
+      ...(this._wall()
+        ? []
+        : [
+            {
+              type: 'grid',
+              name: '',
+              schema: [
+                { name: 'illustration', selector: { boolean: {} } },
+                {
+                  name: 'illustration_theme',
+                  selector: {
+                    select: {
+                      mode: 'dropdown',
+                      options: ['auto', 'day', 'night'].map((v) => ({ value: v, label: t(`ed_theme_${v}`) })),
+                    },
+                  },
+                },
+              ],
+            },
+          ]),
       // Mini card: its detail button (on unless `zoom: false`).
       ...(this.constructor.mini ? [{ name: 'zoom', selector: { boolean: {} } }] : []),
       {

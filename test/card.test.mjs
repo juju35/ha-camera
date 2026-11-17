@@ -499,3 +499,41 @@ test("a privacy switch going unavailable while its badge waits stops the spinner
   assert.equal(card._isPending("switch.salon_privacy"), false);
   assert.match(head(), /class="toggle dis"/);
 });
+
+test("the header shows its state: live, motion, privacy or offline, in the illustration and the icon's colour", () => {
+  const cameras = [
+    { camera: "camera.a", privacy: "switch.a_privacy", motion: "binary_sensor.a_motion" },
+    { camera: "camera.b", privacy: "switch.b_privacy" },
+  ];
+  const html = (states, config) => {
+    const { card, render } = headCard(cameras, states, config);
+    render();
+    return card.shadowRoot.querySelector(".head").innerHTML;
+  };
+  const base = { "camera.a": "idle", "camera.b": "idle", "switch.a_privacy": "off", "switch.b_privacy": "off", "binary_sensor.a_motion": "off" };
+  const state = (h) => [/class="hicon (\w+)"/.exec(h)?.[1], /class="hc-scene (\w+)"/.exec(h)?.[1]];
+  assert.deepEqual(state(html(base)), ["live", "live"]);
+  const motion = html({ ...base, "binary_sensor.a_motion": "on" });
+  assert.deepEqual(state(motion), ["motion", "motion"]);
+  assert.match(motion, /<div class="summary">Motion detected · 2 cameras live<\/div>/);
+  // show_motion: false leaves motion out of the header too.
+  assert.deepEqual(state(html({ ...base, "binary_sensor.a_motion": "on" }, { show_motion: false })), ["live", "live"]);
+  assert.deepEqual(state(html({ ...base, "switch.a_privacy": "on", "switch.b_privacy": "on" })), ["privacy", "privacy"]);
+  const offline = html({ ...base, "camera.a": "unavailable", "camera.b": "unavailable" });
+  assert.deepEqual(state(offline), ["offline", "offline"]);
+  assert.match(offline, /<div class="summary">Unavailable<\/div>/);
+  // Night: illustration_theme wins over the sun; illustration: false keeps the classic header (its icon still coloured).
+  assert.match(html(base, { illustration_theme: "night" }), /class="banner night"/);
+  assert.match(html({ ...base, "sun.sun": "below_horizon" }, { illustration_theme: "day" }), /class="banner"/);
+  assert.match(html({ ...base, "sun.sun": "below_horizon" }), /class="banner night"/);
+  const classic = html(base, { illustration: false });
+  assert.doesNotMatch(classic, /banner|hc-scene/);
+  assert.match(classic, /class="hicon live"/);
+});
+
+test("every language has the illustration's editor labels", () => {
+  const { HcI18n } = loadCard("home-camera-card.js", ["HcI18n"]);
+  for (const [code, strings] of Object.entries(HcI18n))
+    for (const key of ["ed_illustration", "ed_illustration_theme", "ed_theme_auto", "ed_theme_day", "ed_theme_night"])
+      assert.ok(strings[key], `${code}: ${key}`);
+});

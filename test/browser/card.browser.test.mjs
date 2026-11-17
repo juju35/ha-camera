@@ -758,7 +758,9 @@ for (const width of [160, 245]) {
             Object.assign(i.style, { display: "inline-block", width: "var(--mdc-icon-size, 24px)", height: "var(--mdc-icon-size, 24px)" });
           const inner = root.querySelector(".head").getBoundingClientRect();
           const name = root.querySelector(".name");
+          // The illustrated header's wall and floor run edge to edge on purpose (over the card's padding).
           const outside = [...root.querySelectorAll(".head *")]
+            .filter((n) => !n.matches(".banner, .hc-ground, .hc-scene, .hc-scene *"))
             .filter((n) => {
               const b = n.getBoundingClientRect();
               return b.width && (b.right > inner.right + 0.5 || b.left < inner.left - 0.5);
