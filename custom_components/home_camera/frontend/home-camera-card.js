@@ -1,4 +1,4 @@
-const HOME_CAMERA_CARD_VERSION = '4.5.1';
+const HOME_CAMERA_CARD_VERSION = '4.6.0';
 
 // ── i18n ─────────────────────────────────────────────────────────────────────
 const HcI18n = {
@@ -62,6 +62,7 @@ const HcI18n = {
     zoom_out: 'Revenir à la vue compacte',
     ed_zoom: 'Bouton détail',
     motion: 'Mouvement détecté',
+    st_private: 'Privé',
     cam_hidden: '{c} : masquée',
     ed_show_motion: 'Pastille de mouvement',
     cf_motion: 'Capteur de mouvement (pastille sur l\'image)',
@@ -69,6 +70,11 @@ const HcI18n = {
     ed_layout_helper: 'Mur vidéo : pas de carte autour de la grille, une barre d\'état à la place de l\'en-tête',
     ed_layout_card: 'Carte',
     ed_layout_wall: 'Mur vidéo',
+    ed_illustration: 'Illustration animée',
+    ed_illustration_theme: 'Thème de l’illustration',
+    ed_theme_auto: 'Automatique (soleil ou thème sombre)',
+    ed_theme_day: 'Jour',
+    ed_theme_night: 'Nuit',
   },
   en: {
     title: 'Cameras',
@@ -130,6 +136,7 @@ const HcI18n = {
     zoom_out: 'Back to the compact view',
     ed_zoom: 'Detail button',
     motion: 'Motion detected',
+    st_private: 'Private',
     cam_hidden: '{c}: hidden',
     ed_show_motion: 'Motion badge',
     cf_motion: 'Motion sensor (badge on the image)',
@@ -137,6 +144,11 @@ const HcI18n = {
     ed_layout_helper: 'Video wall: no card around the grid, a status bar instead of the header',
     ed_layout_card: 'Card',
     ed_layout_wall: 'Video wall',
+    ed_illustration: 'Animated illustration',
+    ed_illustration_theme: 'Illustration theme',
+    ed_theme_auto: 'Automatic (sun or dark theme)',
+    ed_theme_day: 'Day',
+    ed_theme_night: 'Night',
   },
   de: {
     title: 'Kameras',
@@ -198,6 +210,7 @@ const HcI18n = {
     zoom_out: 'Zurück zur kompakten Ansicht',
     ed_zoom: 'Detail-Schaltfläche',
     motion: 'Bewegung erkannt',
+    st_private: 'Privat',
     cam_hidden: '{c}: ausgeblendet',
     ed_show_motion: 'Bewegungs-Badge',
     cf_motion: 'Bewegungssensor (Badge auf dem Bild)',
@@ -205,6 +218,11 @@ const HcI18n = {
     ed_layout_helper: 'Videowand: keine Karte um das Raster, eine Statusleiste statt der Kopfzeile',
     ed_layout_card: 'Karte',
     ed_layout_wall: 'Videowand',
+    ed_illustration: 'Animierte Illustration',
+    ed_illustration_theme: 'Thema der Illustration',
+    ed_theme_auto: 'Automatisch (Sonne oder dunkles Design)',
+    ed_theme_day: 'Tag',
+    ed_theme_night: 'Nacht',
   },
   es: {
     title: 'Cámaras',
@@ -266,6 +284,7 @@ const HcI18n = {
     zoom_out: 'Volver a la vista compacta',
     ed_zoom: 'Botón de detalle',
     motion: 'Movimiento detectado',
+    st_private: 'Privado',
     cam_hidden: '{c}: oculta',
     ed_show_motion: 'Insignia de movimiento',
     cf_motion: 'Sensor de movimiento (insignia en la imagen)',
@@ -273,6 +292,11 @@ const HcI18n = {
     ed_layout_helper: 'Videowall: sin tarjeta alrededor de la cuadrícula, una barra de estado en lugar del encabezado',
     ed_layout_card: 'Tarjeta',
     ed_layout_wall: 'Videowall',
+    ed_illustration: 'Ilustración animada',
+    ed_illustration_theme: 'Tema de la ilustración',
+    ed_theme_auto: 'Automático (sol o tema oscuro)',
+    ed_theme_day: 'Día',
+    ed_theme_night: 'Noche',
   },
   sr: {
     title: 'Камере',
@@ -334,6 +358,7 @@ const HcI18n = {
     zoom_out: 'Назад на компактни приказ',
     ed_zoom: 'Дугме за детаље',
     motion: 'Откривен покрет',
+    st_private: 'Приватно',
     cam_hidden: '{c}: скривена',
     ed_show_motion: 'Значка покрета',
     cf_motion: 'Сензор покрета (значка на слици)',
@@ -341,6 +366,11 @@ const HcI18n = {
     ed_layout_helper: 'Видео зид: без картице око мреже, трака стања уместо заглавља',
     ed_layout_card: 'Картица',
     ed_layout_wall: 'Видео зид',
+    ed_illustration: 'Анимирана илустрација',
+    ed_illustration_theme: 'Тема илустрације',
+    ed_theme_auto: 'Аутоматски (сунце или тамна тема)',
+    ed_theme_day: 'Дан',
+    ed_theme_night: 'Ноћ',
   },
   'sr-Latn': {
     title: 'Kamere',
@@ -402,6 +432,7 @@ const HcI18n = {
     zoom_out: 'Nazad na kompaktni prikaz',
     ed_zoom: 'Dugme za detalje',
     motion: 'Otkriven pokret',
+    st_private: 'Privatno',
     cam_hidden: '{c}: skrivena',
     ed_show_motion: 'Značka pokreta',
     cf_motion: 'Senzor pokreta (značka na slici)',
@@ -409,6 +440,11 @@ const HcI18n = {
     ed_layout_helper: 'Video zid: bez kartice oko mreže, traka stanja umesto zaglavlja',
     ed_layout_card: 'Kartica',
     ed_layout_wall: 'Video zid',
+    ed_illustration: 'Animirana ilustracija',
+    ed_illustration_theme: 'Tema ilustracije',
+    ed_theme_auto: 'Automatski (sunce ili tamna tema)',
+    ed_theme_day: 'Dan',
+    ed_theme_night: 'Noć',
   },
   it: {
     title: 'Telecamere',
@@ -470,6 +506,7 @@ const HcI18n = {
     zoom_out: 'Torna alla vista compatta',
     ed_zoom: 'Pulsante dettagli',
     motion: 'Movimento rilevato',
+    st_private: 'Privato',
     cam_hidden: '{c}: nascosta',
     ed_show_motion: 'Badge di movimento',
     cf_motion: 'Sensore di movimento (badge sull\'immagine)',
@@ -477,6 +514,11 @@ const HcI18n = {
     ed_layout_helper: 'Videowall: nessuna scheda attorno alla griglia, una barra di stato al posto dell\'intestazione',
     ed_layout_card: 'Scheda',
     ed_layout_wall: 'Videowall',
+    ed_illustration: 'Illustrazione animata',
+    ed_illustration_theme: 'Tema dell’illustrazione',
+    ed_theme_auto: 'Automatico (sole o tema scuro)',
+    ed_theme_day: 'Giorno',
+    ed_theme_night: 'Notte',
   },
   nl: {
     title: 'Camera\'s',
@@ -538,6 +580,7 @@ const HcI18n = {
     zoom_out: 'Terug naar de compacte weergave',
     ed_zoom: 'Detailknop',
     motion: 'Beweging gedetecteerd',
+    st_private: 'Privé',
     cam_hidden: '{c}: verborgen',
     ed_show_motion: 'Bewegingsbadge',
     cf_motion: 'Bewegingssensor (badge op het beeld)',
@@ -545,6 +588,11 @@ const HcI18n = {
     ed_layout_helper: 'Videowand: geen kaart rond het raster, een statusbalk in plaats van de koptekst',
     ed_layout_card: 'Kaart',
     ed_layout_wall: 'Videowand',
+    ed_illustration: 'Geanimeerde illustratie',
+    ed_illustration_theme: 'Thema van de illustratie',
+    ed_theme_auto: 'Automatisch (zon of donker thema)',
+    ed_theme_day: 'Dag',
+    ed_theme_night: 'Nacht',
   },
   pt: {
     title: 'Câmaras',
@@ -606,6 +654,7 @@ const HcI18n = {
     zoom_out: 'Voltar à vista compacta',
     ed_zoom: 'Botão de detalhe',
     motion: 'Movimento detetado',
+    st_private: 'Privado',
     cam_hidden: '{c}: oculta',
     ed_show_motion: 'Emblema de movimento',
     cf_motion: 'Sensor de movimento (emblema na imagem)',
@@ -613,6 +662,11 @@ const HcI18n = {
     ed_layout_helper: 'Videowall: sem cartão à volta da grelha, uma barra de estado em vez do cabeçalho',
     ed_layout_card: 'Cartão',
     ed_layout_wall: 'Videowall',
+    ed_illustration: 'Ilustração animada',
+    ed_illustration_theme: 'Tema da ilustração',
+    ed_theme_auto: 'Automático (sol ou tema escuro)',
+    ed_theme_day: 'Dia',
+    ed_theme_night: 'Noite',
   },
   pl: {
     title: 'Kamery',
@@ -674,6 +728,7 @@ const HcI18n = {
     zoom_out: 'Wróć do widoku kompaktowego',
     ed_zoom: 'Przycisk szczegółów',
     motion: 'Wykryto ruch',
+    st_private: 'Prywatne',
     cam_hidden: '{c}: ukryta',
     ed_show_motion: 'Plakietka ruchu',
     cf_motion: 'Czujnik ruchu (plakietka na obrazie)',
@@ -681,6 +736,11 @@ const HcI18n = {
     ed_layout_helper: 'Ściana wideo: bez karty wokół siatki, pasek stanu zamiast nagłówka',
     ed_layout_card: 'Karta',
     ed_layout_wall: 'Ściana wideo',
+    ed_illustration: 'Animowana ilustracja',
+    ed_illustration_theme: 'Motyw ilustracji',
+    ed_theme_auto: 'Automatycznie (słońce lub ciemny motyw)',
+    ed_theme_day: 'Dzień',
+    ed_theme_night: 'Noc',
   },
   ro: {
     title: 'Camere',
@@ -742,6 +802,7 @@ const HcI18n = {
     zoom_out: 'Înapoi la vizualizarea compactă',
     ed_zoom: 'Buton de detalii',
     motion: 'Mișcare detectată',
+    st_private: 'Privat',
     cam_hidden: '{c}: ascunsă',
     ed_show_motion: 'Insignă de mișcare',
     cf_motion: 'Senzor de mișcare (insignă pe imagine)',
@@ -749,6 +810,11 @@ const HcI18n = {
     ed_layout_helper: 'Perete video: fără card în jurul grilei, o bară de stare în locul antetului',
     ed_layout_card: 'Card',
     ed_layout_wall: 'Perete video',
+    ed_illustration: 'Ilustrație animată',
+    ed_illustration_theme: 'Tema ilustrației',
+    ed_theme_auto: 'Automat (soare sau temă întunecată)',
+    ed_theme_day: 'Zi',
+    ed_theme_night: 'Noapte',
   },
   da: {
     title: 'Kameraer',
@@ -810,6 +876,7 @@ const HcI18n = {
     zoom_out: 'Tilbage til kompakt visning',
     ed_zoom: 'Detaljeknap',
     motion: 'Bevægelse registreret',
+    st_private: 'Privat',
     cam_hidden: '{c}: skjult',
     ed_show_motion: 'Bevægelsesbadge',
     cf_motion: 'Bevægelsessensor (badge på billedet)',
@@ -817,6 +884,11 @@ const HcI18n = {
     ed_layout_helper: 'Videovæg: intet kort om gitteret, en statuslinje i stedet for overskriften',
     ed_layout_card: 'Kort',
     ed_layout_wall: 'Videovæg',
+    ed_illustration: 'Animeret illustration',
+    ed_illustration_theme: 'Illustrationens tema',
+    ed_theme_auto: 'Automatisk (sol eller mørkt tema)',
+    ed_theme_day: 'Dag',
+    ed_theme_night: 'Nat',
   },
   sv: {
     title: 'Kameror',
@@ -878,6 +950,7 @@ const HcI18n = {
     zoom_out: 'Tillbaka till kompakt vy',
     ed_zoom: 'Detaljknapp',
     motion: 'Rörelse upptäckt',
+    st_private: 'Privat',
     cam_hidden: '{c}: dold',
     ed_show_motion: 'Rörelsebricka',
     cf_motion: 'Rörelsesensor (bricka på bilden)',
@@ -885,6 +958,11 @@ const HcI18n = {
     ed_layout_helper: 'Videovägg: inget kort runt rutnätet, en statusrad i stället för rubriken',
     ed_layout_card: 'Kort',
     ed_layout_wall: 'Videovägg',
+    ed_illustration: 'Animerad illustration',
+    ed_illustration_theme: 'Illustrationens tema',
+    ed_theme_auto: 'Automatiskt (sol eller mörkt tema)',
+    ed_theme_day: 'Dag',
+    ed_theme_night: 'Natt',
   },
   bg: {
     title: 'Камери',
@@ -946,6 +1024,7 @@ const HcI18n = {
     zoom_out: 'Обратно към компактния изглед',
     ed_zoom: 'Бутон за подробности',
     motion: 'Открито движение',
+    st_private: 'Поверително',
     cam_hidden: '{c}: скрита',
     ed_show_motion: 'Значка за движение',
     cf_motion: 'Сензор за движение (значка върху изображението)',
@@ -953,6 +1032,11 @@ const HcI18n = {
     ed_layout_helper: 'Видеостена: без карта около мрежата, лента за състояние вместо заглавката',
     ed_layout_card: 'Карта',
     ed_layout_wall: 'Видеостена',
+    ed_illustration: 'Анимирана илюстрация',
+    ed_illustration_theme: 'Тема на илюстрацията',
+    ed_theme_auto: 'Автоматично (слънце или тъмна тема)',
+    ed_theme_day: 'Ден',
+    ed_theme_night: 'Нощ',
   },
   ru: {
     title: 'Камеры',
@@ -1014,6 +1098,7 @@ const HcI18n = {
     zoom_out: 'Вернуться к компактному виду',
     ed_zoom: 'Кнопка подробностей',
     motion: 'Обнаружено движение',
+    st_private: 'Приватно',
     cam_hidden: '{c}: скрыта',
     ed_show_motion: 'Значок движения',
     cf_motion: 'Датчик движения (значок на изображении)',
@@ -1021,6 +1106,11 @@ const HcI18n = {
     ed_layout_helper: 'Видеостена: без карточки вокруг сетки, строка состояния вместо заголовка',
     ed_layout_card: 'Карточка',
     ed_layout_wall: 'Видеостена',
+    ed_illustration: 'Анимированная иллюстрация',
+    ed_illustration_theme: 'Тема иллюстрации',
+    ed_theme_auto: 'Автоматически (солнце или тёмная тема)',
+    ed_theme_day: 'День',
+    ed_theme_night: 'Ночь',
   },
   uk: {
     title: 'Камери',
@@ -1082,6 +1172,7 @@ const HcI18n = {
     zoom_out: 'Повернутися до компактного вигляду',
     ed_zoom: 'Кнопка деталей',
     motion: 'Виявлено рух',
+    st_private: 'Приватно',
     cam_hidden: '{c}: прихована',
     ed_show_motion: 'Значок руху',
     cf_motion: 'Датчик руху (значок на зображенні)',
@@ -1089,6 +1180,11 @@ const HcI18n = {
     ed_layout_helper: 'Відеостіна: без картки навколо сітки, рядок стану замість заголовка',
     ed_layout_card: 'Картка',
     ed_layout_wall: 'Відеостіна',
+    ed_illustration: 'Анімована ілюстрація',
+    ed_illustration_theme: 'Тема ілюстрації',
+    ed_theme_auto: 'Автоматично (сонце або темна тема)',
+    ed_theme_day: 'День',
+    ed_theme_night: 'Ніч',
   },
   hu: {
     title: 'Kamerák',
@@ -1150,6 +1246,7 @@ const HcI18n = {
     zoom_out: 'Vissza a kompakt nézethez',
     ed_zoom: 'Részletek gomb',
     motion: 'Mozgás észlelve',
+    st_private: 'Privát',
     cam_hidden: '{c}: rejtett',
     ed_show_motion: 'Mozgásjelvény',
     cf_motion: 'Mozgásérzékelő (jelvény a képen)',
@@ -1157,6 +1254,11 @@ const HcI18n = {
     ed_layout_helper: 'Videófal: nincs kártya a rács körül, állapotsor a fejléc helyett',
     ed_layout_card: 'Kártya',
     ed_layout_wall: 'Videófal',
+    ed_illustration: 'Animált illusztráció',
+    ed_illustration_theme: 'Az illusztráció témája',
+    ed_theme_auto: 'Automatikus (nap vagy sötét téma)',
+    ed_theme_day: 'Nappal',
+    ed_theme_night: 'Éjszaka',
   },
   sk: {
     title: 'Kamery',
@@ -1218,6 +1320,7 @@ const HcI18n = {
     zoom_out: 'Späť na kompaktné zobrazenie',
     ed_zoom: 'Tlačidlo podrobností',
     motion: 'Zistený pohyb',
+    st_private: 'Súkromné',
     cam_hidden: '{c}: skrytá',
     ed_show_motion: 'Odznak pohybu',
     cf_motion: 'Senzor pohybu (odznak na obraze)',
@@ -1225,6 +1328,11 @@ const HcI18n = {
     ed_layout_helper: 'Videostena: bez karty okolo mriežky, stavový riadok namiesto hlavičky',
     ed_layout_card: 'Karta',
     ed_layout_wall: 'Videostena',
+    ed_illustration: 'Animovaná ilustrácia',
+    ed_illustration_theme: 'Téma ilustrácie',
+    ed_theme_auto: 'Automaticky (slnko alebo tmavá téma)',
+    ed_theme_day: 'Deň',
+    ed_theme_night: 'Noc',
   },
   cs: {
     title: 'Kamery',
@@ -1286,6 +1394,7 @@ const HcI18n = {
     zoom_out: 'Zpět na kompaktní zobrazení',
     ed_zoom: 'Tlačítko podrobností',
     motion: 'Zjištěn pohyb',
+    st_private: 'Soukromé',
     cam_hidden: '{c}: skrytá',
     ed_show_motion: 'Odznak pohybu',
     cf_motion: 'Senzor pohybu (odznak na obraze)',
@@ -1293,6 +1402,11 @@ const HcI18n = {
     ed_layout_helper: 'Videostěna: bez karty kolem mřížky, stavový řádek místo záhlaví',
     ed_layout_card: 'Karta',
     ed_layout_wall: 'Videostěna',
+    ed_illustration: 'Animovaná ilustrace',
+    ed_illustration_theme: 'Motiv ilustrace',
+    ed_theme_auto: 'Automaticky (slunce nebo tmavý motiv)',
+    ed_theme_day: 'Den',
+    ed_theme_night: 'Noc',
   },
   sl: {
     title: 'Kamere',
@@ -1354,6 +1468,7 @@ const HcI18n = {
     zoom_out: 'Nazaj na kompaktni pogled',
     ed_zoom: 'Gumb za podrobnosti',
     motion: 'Zaznano gibanje',
+    st_private: 'Zasebno',
     cam_hidden: '{c}: skrita',
     ed_show_motion: 'Značka gibanja',
     cf_motion: 'Senzor gibanja (značka na sliki)',
@@ -1361,6 +1476,11 @@ const HcI18n = {
     ed_layout_helper: 'Video stena: brez kartice okoli mreže, vrstica stanja namesto glave',
     ed_layout_card: 'Kartica',
     ed_layout_wall: 'Video stena',
+    ed_illustration: 'Animirana ilustracija',
+    ed_illustration_theme: 'Tema ilustracije',
+    ed_theme_auto: 'Samodejno (sonce ali temna tema)',
+    ed_theme_day: 'Dan',
+    ed_theme_night: 'Noč',
   },
   lv: {
     title: 'Kameras',
@@ -1422,6 +1542,7 @@ const HcI18n = {
     zoom_out: 'Atpakaļ uz kompakto skatu',
     ed_zoom: 'Detaļu poga',
     motion: 'Konstatēta kustība',
+    st_private: 'Privāti',
     cam_hidden: '{c}: paslēpta',
     ed_show_motion: 'Kustības žetons',
     cf_motion: 'Kustības sensors (žetons attēlā)',
@@ -1429,6 +1550,11 @@ const HcI18n = {
     ed_layout_helper: 'Video siena: bez kartītes ap režģi, statusa josla galvenes vietā',
     ed_layout_card: 'Kartīte',
     ed_layout_wall: 'Video siena',
+    ed_illustration: 'Animēta ilustrācija',
+    ed_illustration_theme: 'Ilustrācijas motīvs',
+    ed_theme_auto: 'Automātiski (saule vai tumšā tēma)',
+    ed_theme_day: 'Diena',
+    ed_theme_night: 'Nakts',
   },
   el: {
     title: 'Κάμερες',
@@ -1490,6 +1616,7 @@ const HcI18n = {
     zoom_out: 'Επιστροφή στη συμπαγή προβολή',
     ed_zoom: 'Κουμπί λεπτομερειών',
     motion: 'Εντοπίστηκε κίνηση',
+    st_private: 'Ιδιωτικό',
     cam_hidden: '{c}: κρυφή',
     ed_show_motion: 'Σήμα κίνησης',
     cf_motion: 'Αισθητήρας κίνησης (σήμα στην εικόνα)',
@@ -1497,6 +1624,11 @@ const HcI18n = {
     ed_layout_helper: 'Τοίχος βίντεο: χωρίς κάρτα γύρω από το πλέγμα, γραμμή κατάστασης αντί για την κεφαλίδα',
     ed_layout_card: 'Κάρτα',
     ed_layout_wall: 'Τοίχος βίντεο',
+    ed_illustration: 'Κινούμενη εικονογράφηση',
+    ed_illustration_theme: 'Θέμα εικονογράφησης',
+    ed_theme_auto: 'Αυτόματο (ήλιος ή σκούρο θέμα)',
+    ed_theme_day: 'Ημέρα',
+    ed_theme_night: 'Νύχτα',
   },
 };
 
@@ -1513,6 +1645,13 @@ function hcT(lang, key) {
   return strings[key] || HcI18n.en[key] || key;
 }
 
+// The width of an element's whole text in fractional pixels, even while an ellipsis cuts it.
+const hcTextWidth = (el) => {
+  const range = document.createRange();
+  range.selectNodeContents(el);
+  return range.getBoundingClientRect().width || el.scrollWidth;
+};
+
 function hcEsc(s) {
   return String(s == null ? '' : s).replace(
     /[&<>"']/g,
@@ -1528,6 +1667,8 @@ const HC_DEFAULTS = {
   show_summary: true,
   show_badges: true,
   show_motion: true,
+  illustration: true,
+  illustration_theme: 'auto',
 };
 
 const HC_PTZ_DIRS = ['left', 'right', 'up', 'down'];
@@ -1690,6 +1831,134 @@ function hcCamera(hass, raw, index) {
 // HD / SD choice of the cards without quality_entity, shared by every card of the browser.
 const HC_QUALITY_KEY = 'home-camera-card-quality';
 const HC_QUALITY_EVENT = 'home-camera-card-quality';
+
+// ── Illustrated header ───────────────────────────────────────────────────────
+// A camera on a wall, top right of a 200 × 80 picture drawn at the banner's right edge (its left half stays open:
+// the card's text sits there), over a 10 px parquet strip that runs the banner's whole width.
+// state: live (red recording light, field of view), motion (someone framed in the field of view), privacy (lens
+// shut, no field of view) or offline (camera greyed, no signal). `uid` keeps each card's gradient ids apart.
+// Night: forced by illustration_theme, else the sun below the horizon or Home Assistant's dark mode (the dark
+// theme shows the night picture even while the sun is up; an unavailable sun leaves the dark mode alone).
+function hcIsNight(hass, config) {
+  const theme = config?.illustration_theme;
+  if (theme === 'night') return true;
+  if (theme === 'day') return false;
+  return hass?.states?.['sun.sun']?.state === 'below_horizon' || !!hass?.themes?.darkMode;
+}
+
+function hcSceneSvg(state, uid) {
+  const watching = state === 'live' || state === 'motion';
+  const lens =
+    state === 'privacy'
+      ? '<circle class="hc-lens shut" cx="-12" cy="6" r="4.2"/><path class="hc-shutter" d="M-16 6h8"/>'
+      : `<circle class="hc-lens" cx="-12" cy="6" r="4.2"/><circle class="hc-glint" cx="-13.4" cy="4.6" r="1.1"/>`;
+  const led = watching ? '<circle class="hc-rec" cx="4" cy="3" r="1.2"/>' : '';
+  const fov = watching
+    ? `<path class="hc-fov" d="M155 25 L92 80 H174Z" fill="url(#hc-fov-${uid})"/>`
+    : '';
+  const person =
+    state === 'motion'
+      ? '<g class="hc-walker"><g transform="translate(130 80) scale(1.3)"><circle class="hc-person" cy="-24" r="4"/>' +
+        '<path class="hc-person" d="M-5 -19h10l2 12h-3l-1 7h-3l-1 -7h-1l-1 7h-3l-1 -7h-3z"/>' +
+        '<rect class="hc-frame" x="-9" y="-30.5" width="18" height="31" rx="1"/></g></g>'
+      : '';
+  const nosignal =
+    state === 'offline'
+      ? '<g class="hc-nosig" transform="translate(140 18)"><circle r="5.2"/><path d="M-3.6 3.6 3.6 -3.6"/></g>'
+      : '';
+  return (
+    `<svg class="hc-scene ${state}" viewBox="0 0 200 80" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false">` +
+    `<defs><linearGradient id="hc-fov-${uid}" gradientUnits="userSpaceOnUse" x1="155" y1="25" x2="132" y2="80">` +
+    '<stop offset="0" class="hc-fov-a"/><stop offset="1" class="hc-fov-b"/></linearGradient></defs>' +
+    fov +
+    person +
+    '<g transform="translate(173 16) scale(1.4)"><rect class="hc-mount" x="-2" y="-8.6" width="4" height="10" rx=".6"/>' +
+    `<g class="hc-head"><rect class="hc-body" x="-15" y="0" width="23" height="12.4" rx="3"/>${lens}${led}</g></g>` +
+    nosignal +
+    '</svg><div class="hc-ground" aria-hidden="true"></div>'
+  );
+}
+
+// The banner's colours and animations, day and night. Only added to the card when the illustration is shown.
+const HC_BANNER_STYLE =
+  // 90 px, edge to edge at the top of the card: the wall, the camera picture on the right, the parquet strip.
+  '.banner { position: relative; height: 90px; margin: -12px -12px 0; overflow: hidden; container: hc-card / inline-size;' +
+  ' background: #f2efe9; color: #1f2328; --hc-muted: #5d6670; }' +
+  '.banner.night { background: #2a2b33; color: #fff; --hc-muted: rgba(255,255,255,0.78); }' +
+  '.hc-scene { position: absolute; right: 0; bottom: 10px; width: min(200px, 62%); height: 80px; }' +
+  '.banner.zoomable .hc-scene { right: 26px; }' +
+  '.hc-ground { position: absolute; left: 0; right: 0; bottom: 0; height: 10px;' +
+  ' background: repeating-linear-gradient(90deg, #c99a6b 0 38px, #b98a5c 38px 40px); box-shadow: inset 0 2px 0 #a97c50; }' +
+  '.night .hc-ground { background: repeating-linear-gradient(90deg, #4a3a2c 0 38px, #3e3024 38px 40px); box-shadow: inset 0 2px 0 #5a4634; }' +
+  // The text row on the wall, left of the camera (whose picture starts halfway across it).
+  '.banner .header { position: absolute; left: 12px; top: 0; bottom: 10px; right: calc(min(200px, 62%) / 2 + 4px); align-items: center; }' +
+  '.banner.zoomable .header { right: calc(min(200px, 62%) / 2 + 30px); }' +
+  '.banner .titles { align-self: center; }' +
+  '.banner .name { color: inherit; }' +
+  '.banner .summary { color: var(--hc-muted); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }' +
+  '.banner .hicon { position: relative; align-self: center; background: rgba(255,255,255,0.62);' +
+  ' box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--hc-c) 22%, transparent); }' +
+  '.banner.night .hicon { background: rgba(255,255,255,0.12); color: color-mix(in srgb, var(--hc-c) 72%, #fff);' +
+  ' box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14); }' +
+  // Opaque buttons on the wall: their contrast never depends on what is behind them.
+  '.banner .toggle { align-self: center; background: #fbfaf7; color: #1f2328; }' +
+  '.banner.night .toggle { background: #3d3e46; color: #fff; }' +
+  '.banner .toggle.private { background: color-mix(in srgb, var(--hc-on) 22%, #fff); color: color-mix(in srgb, var(--hc-on) 60%, #1f2328); }' +
+  '.banner.night .toggle.private { background: color-mix(in srgb, var(--hc-on) 26%, #2a2b33); color: color-mix(in srgb, var(--hc-on) 55%, #fff); }' +
+  '.banner .seg { background: rgba(255,255,255,0.6); }' +
+  '.banner.night .seg { background: rgba(0,0,0,0.25); }' +
+  '.banner .opt { color: var(--hc-muted); }' +
+  '.banner .opt.on { background: #fff; color: var(--primary-color, #03a9f4); }' +
+  '.banner.night .opt.on { background: rgba(255,255,255,0.2); color: #fff; }' +
+  // The status pill on the wall: the state colour on frosted glass.
+  '.banner .stpill { background: color-mix(in srgb, var(--c) 18%, rgba(255,255,255,.78)); color: color-mix(in srgb, var(--c) 45%, #0d2a45); }' +
+  '.banner.night .stpill { background: color-mix(in srgb, var(--c) 30%, rgba(8,18,38,.55)); color: color-mix(in srgb, var(--c) 35%, #ffffff); }' +
+  // The mini card's expand / collapse button: a 24 px frosted disc in the banner's top-right corner.
+  '.banner .zoom { position: absolute; z-index: 2; top: 5px; right: 5px; margin: 0; width: 24px; height: 24px; box-sizing: border-box; color: #33506b;' +
+  ' background: rgba(255,255,255,.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,.7); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }' +
+  '.banner .zoom:hover { background: rgba(255,255,255,.75); color: #33506b; }' +
+  '.banner.night .zoom { color: #fff; background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }' +
+  '.banner.night .zoom:hover { background: rgba(255,255,255,.22); color: #fff; }' +
+  // Narrow card: no room for the camera beside the text, the wall alone stays.
+  '@container (max-width: 279px) { .hc-scene { display: none; } .banner .header { right: 12px; } .banner.zoomable .header { right: 34px; } }' +
+  // The camera: white body on its wall mount, dark lens, the red recording light.
+  '.hc-mount { fill: #9aa3ae; }' +
+  '.hc-body { fill: #fff; stroke: #c9ced6; stroke-width: 0.7; }' +
+  '.night .hc-body { fill: #d8dce2; stroke: #aab1bb; }' +
+  '.hc-lens { fill: #2a3038; }' +
+  '.hc-lens.shut { fill: #9aa3ae; }' +
+  '.hc-shutter { stroke: #fff; stroke-width: 1.4; }' +
+  '.hc-glint { fill: #6f86a6; }' +
+  '.hc-rec { fill: #e5484d; animation: hc-blink 1.2s steps(2) infinite; }' +
+  '.hc-head { transform-box: fill-box; transform-origin: 85% 40%; }' +
+  '.live .hc-head { animation: hc-pan 6s ease-in-out infinite; }' +
+  '.offline .hc-body { fill: #e3e6ea; }' +
+  '.night .offline .hc-body { fill: #8c939e; stroke: #6b7280; }' +
+  '.offline .hc-lens { fill: #6b7380; }' +
+  // Field of view: a soft blue cone from the lens to the floor, breathing.
+  '.hc-fov-a { stop-color: #2f80ed; stop-opacity: 0.2; }' +
+  '.hc-fov-b { stop-color: #2f80ed; stop-opacity: 0.05; }' +
+  '.night .hc-fov-a { stop-color: #6aa8ff; stop-opacity: 0.26; }' +
+  '.night .hc-fov-b { stop-color: #6aa8ff; stop-opacity: 0.06; }' +
+  '.hc-fov { animation: hc-breathe 3s ease-in-out infinite; }' +
+  '.motion .hc-fov-a { stop-color: #f5b400; stop-opacity: 0.24; }' +
+  '.motion .hc-fov-b { stop-color: #f5b400; stop-opacity: 0.06; }' +
+  // Motion: someone walks in the field of view, framed by an amber detection box.
+  '.hc-person { fill: #5f6b7a; }' +
+  '.night .hc-person { fill: #8fa3c4; }' +
+  '.hc-frame { fill: none; stroke: #f5b400; stroke-width: 1; stroke-dasharray: 3 2; vector-effect: non-scaling-stroke; animation: hc-blink 1s steps(2) infinite; }' +
+  '.hc-walker { animation: hc-walk 4s ease-in-out infinite alternate; }' +
+  // Offline: a no-signal mark beside the camera.
+  '.hc-nosig circle { fill: none; stroke: #e5484d; stroke-width: 1.4; }' +
+  '.hc-nosig path { stroke: #e5484d; stroke-width: 1.4; stroke-linecap: round; }' +
+  '.hc-nosig { animation: hc-breathe 2s ease-in-out infinite; }' +
+  '@keyframes hc-blink { 50% { opacity: 0.2; } }' +
+  '@keyframes hc-breathe { 50% { opacity: 0.55; } }' +
+  '@keyframes hc-pan { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(5deg); } }' +
+  '@keyframes hc-walk { from { transform: translateX(-10px); } to { transform: translateX(8px); } }' +
+  '@media (prefers-reduced-motion: reduce) { .hc-scene * { animation: none !important; } }';
+
+let hcUid = 0;
 
 // ── home-camera-card ─────────────────────────────────────────────────────────
 // A tile's player. Home Assistant's own (ha-camera-stream) starts HLS and WebRTC side by side and keeps the
@@ -1959,6 +2228,7 @@ class HomeCameraCard extends HTMLElement {
     if (!config) throw new Error('Invalid configuration');
     if (config.cameras && !Array.isArray(config.cameras)) throw new Error('cameras must be a list');
     this._config = Object.assign({}, HC_DEFAULTS, config);
+    if (!this._uid) this._uid = ++hcUid;
     // show_title: the header's title, hidden by the stylesheet (HD / SD and the summary stay)
     this.toggleAttribute?.('hide-title', config.show_title === false);
     // Video wall (the Cameras panel, or `layout: wall` on a dashboard): no card around the grid, a status bar
@@ -1978,7 +2248,70 @@ class HomeCameraCard extends HTMLElement {
     this._update();
   }
 
+  // The header's status pill goes right after the title, on its row, only while the title stays whole and the
+  // pill's whole label fits beside it (with the HD / SD switch, which ends the row); otherwise it takes a line of its
+  // own under the summary (.below), the title whole on its row (cut only when it does not fit alone). There, in the
+  // banner, the summary keeps one line; if the text still does not fit above the floor strip, the pill keeps its dot
+  // alone (.dot-only, its label in its tooltip and for screen readers). Measured after each render and on each new
+  // width, whatever the language: no fixed width threshold.
+  _fitPill() {
+    if (!this.isConnected) return;
+    for (const t of this.shadowRoot?.querySelectorAll?.('.head .titles') || []) {
+      const row = t.querySelector('.name-row');
+      const pill = row?.querySelector(':scope > .stpill');
+      if (!pill?.getBoundingClientRect) continue;
+      t.classList.remove('below', 'dot-only');
+      const name = row.querySelector(':scope > .name');
+      const chips = row.querySelector(':scope > .chips');
+      const gap = parseFloat(getComputedStyle(row).columnGap) || 0;
+      const title = name && getComputedStyle(name).display !== 'none' ? hcTextWidth(name) + gap : 0;
+      const tail = chips && chips.children.length ? chips.getBoundingClientRect().width + gap : 0;
+      // A card of 200 px or less: the dot alone beside the title (its label in its tooltip), as in the banner.
+      if (this.getBoundingClientRect().width <= 200) {
+        t.classList.add('dot-only');
+        continue;
+      }
+      if (title + pill.getBoundingClientRect().width + tail > row.getBoundingClientRect().width - 0.5) {
+        t.classList.add('below');
+        const banner = t.closest('.banner');
+        if (banner) {
+          const b = banner.getBoundingClientRect();
+          // Each element as it shows: its box cut by its ancestors that hide their overflow (a clamped line).
+          const out = [...t.querySelectorAll('*')].some((n) => {
+            let { top, bottom } = n.getBoundingClientRect();
+            for (let p = n.parentElement; p && p !== t; p = p.parentElement) {
+              if (getComputedStyle(p).overflowY === 'visible') continue;
+              top = Math.max(top, p.getBoundingClientRect().top);
+              bottom = Math.min(bottom, p.getBoundingClientRect().bottom);
+            }
+            return bottom - top > 0.5 && (top < b.top - 0.5 || bottom > b.bottom - 10 + 0.5);
+          });
+          if (out) t.classList.add('dot-only');
+        }
+      }
+      // A summary cut by its ellipsis keeps its whole text in its tooltip.
+      const s = t.querySelector('.summary');
+      if (s) {
+        const cut = s.scrollWidth > s.clientWidth + 1 || s.scrollHeight > s.clientHeight + 1;
+        if (cut) s.title = s.textContent.trim();
+        else s.removeAttribute('title');
+      }
+    }
+  }
+
   connectedCallback() {
+    // A new width (or the web font loaded): the status pill is fitted again, in the next frame.
+    if (typeof ResizeObserver === 'function') {
+      this._resize ??= new ResizeObserver((entries) => {
+        const w = Math.round(entries.at(-1).contentRect.width);
+        if (w === this._fitWidth) return;
+        this._fitWidth = w;
+        cancelAnimationFrame(this._fitFrame);
+        this._fitFrame = requestAnimationFrame(() => this._fitPill());
+      });
+      this._resize.observe(this);
+    }
+    document.fonts?.ready?.then(() => this._fitPill());
     if (!this._onQuality) {
       this._onQuality = (ev) => {
         if (!ev.key || ev.key === HC_QUALITY_KEY) this._update();
@@ -2011,6 +2344,8 @@ class HomeCameraCard extends HTMLElement {
   }
 
   disconnectedCallback() {
+    this._resize?.disconnect();
+    this._fitWidth = null;
     window.removeEventListener('storage', this._onQuality);
     window.removeEventListener(HC_QUALITY_EVENT, this._onQuality);
     document.removeEventListener('visibilitychange', this._onVisibility);
@@ -2169,9 +2504,12 @@ class HomeCameraCard extends HTMLElement {
     const compact = this._compact();
     this.shadowRoot.querySelector('ha-card')?.classList.toggle('mini', compact);
 
+    const banner = this._config.illustration !== false;
     const headSig = JSON.stringify([
       this._lang(),
       compact,
+      this._headState(cams, visible),
+      banner && hcIsNight(this._hass, this._config),
       this._zoomButton(),
       hd,
       [...(this._pending?.keys() || [])],
@@ -2414,9 +2752,13 @@ class HomeCameraCard extends HTMLElement {
       right = '';
       side = '';
       badges = '';
-      const status = single && visible.length && c.show_summary ? this._t('live') : summary;
-      sub = status ? `<div class="summary">${hcEsc(status)}</div>` : '';
+      sub = summary ? `<div class="summary">${hcEsc(summary)}</div>` : '';
     }
+
+    // The header's status: its icon's colour, and the illustration's picture.
+    const state = this._headState(cams, visible);
+    // Every camera on screen unavailable: the pill says so, a count of live cameras would contradict it.
+    if (state === 'offline' && sub.startsWith('<div class="summary">')) sub = '';
 
     const head = this.shadowRoot.querySelector('.head');
     // Replacing the header drops the keyboard focus (HD/SD toggled, a badge tapped): remember which
@@ -2429,7 +2771,7 @@ class HomeCameraCard extends HTMLElement {
         `<div class="wallbar">${summary ? `<div class="summary">${hcEsc(summary)}</div>` : ''}` +
         `<div class="chips badges">${badges}</div><div class="chips">${right}</div></div>`;
     } else {
-      this._renderHeader(head, { title, right, side, sub, badges, level: cams.length && !visible.length ? 'off' : 'on' });
+      this._renderHeader(head, { title, right, side, sub, badges, state });
     }
     if (kind) {
       for (const el of head.querySelectorAll(`[data-${kind}]`)) {
@@ -2440,15 +2782,37 @@ class HomeCameraCard extends HTMLElement {
     }
   }
 
-  // The card's own header: icon, title with HD / SD, status line, then the privacy badges.
-  _renderHeader(head, { title, right, side, sub, badges, level }) {
+  // What the header shows: offline (no camera, or every camera on screen unavailable), privacy (every camera
+  // hidden), motion (a motion sensor of a camera on screen is on) or live.
+  _headState(cams, visible) {
+    if (cams.length && !visible.length) return 'privacy';
+    const up = visible.filter((cam) => this._usable(cam.camera));
+    if (!up.length) return 'offline';
+    if (this._config.show_motion !== false && up.some((cam) => cam.motion.some((id) => this._state(id) === 'on'))) return 'motion';
+    return 'live';
+  }
+
+  // The card's own header: icon, title with HD / SD, status line, then the privacy badges. With the illustration
+  // (default), the icon and the titles sit on a wall, left of a camera drawn in the header's state.
+  _renderHeader(head, { title, right, side, sub, badges, state }) {
     const c = this._config;
-    head.innerHTML =
-      `<div class="header"><div class="hicon ${level}"><ha-icon icon="${hcEsc(c.icon || 'mdi:cctv')}"></ha-icon></div>` +
-      `<div class="titles"><div class="name-row"><div class="name">${hcEsc(title)}</div><div class="chips">${right}</div></div>` +
+    const zoom = this._zoomButton();
+    // The status pill right after the title, in the icon's colour: live, motion, private (every camera hidden) or
+    // unavailable.
+    const label = this._t({ live: 'live', motion: 'motion', privacy: 'st_private', offline: 'unavailable' }[state] || 'live');
+    const pill = `<span class="stpill ${state}" role="status" title="${hcEsc(label)}" aria-label="${hcEsc(label)}"><span class="sdot"></span><span class="st-text">${hcEsc(label)}</span></span>`;
+    const row =
+      `<div class="header"><div class="hicon ${state}"><ha-icon icon="${hcEsc(c.icon || 'mdi:cctv')}"></ha-icon></div>` +
+      `<div class="titles"><div class="tstack"><div class="name-row"><div class="name">${hcEsc(title)}</div>${pill}<div class="chips">${right}</div></div>` +
       sub +
-      `</div>${side}${this._zoomButton()}</div>` +
-      (badges ? `<div class="chips badges">${badges}</div>` : '');
+      `</div></div>${side}`;
+    const top =
+      c.illustration === false
+        ? `${row}${zoom}</div>`
+        : `<div class="banner${hcIsNight(this._hass, c) ? ' night' : ''}${zoom ? ' zoomable' : ''}">` +
+          `${hcSceneSvg(state, this._uid)}${row}</div>${zoom}</div>`;
+    head.innerHTML = top + (badges ? `<div class="chips badges">${badges}</div>` : '');
+    this._fitPill();
   }
 
   // The grid of tiles, one per visible camera. Tiles are kept across renders and only added or removed
@@ -2860,7 +3224,10 @@ class HomeCameraCard extends HTMLElement {
       '.header { display: flex; align-items: flex-start; gap: 10px; }' +
       '.hicon { width: 40px; height: 40px; border-radius: 50%; flex: none; display: grid; place-items: center;' +
       ' --hc-c: var(--primary-color, #03a9f4); background: color-mix(in srgb, var(--hc-c) 16%, transparent); color: var(--hc-c); }' +
-      '.hicon.off { --hc-c: var(--secondary-text-color); }' +
+      // The icon's colour says the header's state: live, motion (amber), privacy (grey), offline (red).
+      '.hicon.motion { --hc-c: var(--warning-color, #ffa600); }' +
+      '.hicon.privacy { --hc-c: var(--secondary-text-color, #727272); }' +
+      '.hicon.offline { --hc-c: var(--error-color, #db4437); }' +
       '.hicon ha-icon { --mdc-icon-size: 24px; }' +
       // Narrow card (half a Sections view, or a narrow column): the title shrinks to an ellipsis but keeps a few letters,
       // the HD / SD switch goes under it rather than out of the card, and the round buttons never shrink.
@@ -2869,8 +3236,28 @@ class HomeCameraCard extends HTMLElement {
       '.name-row { display: flex; flex-wrap: wrap; align-items: center; column-gap: 8px; row-gap: 4px; }' +
       '.name-row > .chips { flex: none; margin-left: auto; }' +
       '.chips:empty { display: none; }' +
-      '.name { flex: 1 1 0; min-width: 4ch; font-size: 16px; font-weight: 500; line-height: 1.25; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
+      '.name { flex: 0 1 auto; min-width: 0; font-size: 16px; font-weight: 500; line-height: 1.25; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.summary { font-size: 12px; line-height: 1.35; margin-top: 2px; color: var(--secondary-text-color); }' +
+      // The status pill right after the title, in the header icon's colour, while the title stays whole beside it
+      // (measured by the card, see _fitPill). Otherwise it goes on its own line under a one-line summary, the HD / SD
+      // switch staying beside the title; with its dot alone when even that does not fit the header, or below 200 px
+      // (the text in its tooltip and for screen readers).
+      '.stpill { display: inline-flex; align-items: center; gap: 4px; flex: none; max-width: 100%; box-sizing: border-box; padding: 1px 8px; border-radius: 12px;' +
+      ' font-size: 11px; font-weight: 500; line-height: 16px; white-space: nowrap; --c: var(--primary-color, #03a9f4);' +
+      ' background: color-mix(in srgb, var(--c) 15%, transparent); color: color-mix(in srgb, var(--c) 50%, var(--primary-text-color)); }' +
+      '.stpill.motion { --c: var(--warning-color, #ffa600); } .stpill.privacy { --c: var(--secondary-text-color, #727272); } .stpill.offline { --c: var(--error-color, #db4437); }' +
+      '.stpill .sdot { width: 7px; height: 7px; border-radius: 50%; flex: none; background: var(--c); }' +
+      '.stpill .st-text { white-space: nowrap; }' +
+      '.titles.below:not(.dot-only) .tstack { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 8px; }' +
+      '.titles.below:not(.dot-only) .tstack > .name-row { display: contents; }' +
+      '.titles.below:not(.dot-only) .name-row > .name { grid-column: 1; grid-row: 1; justify-self: start; max-width: 100%; }' +
+      '.titles.below:not(.dot-only) .name-row > .chips { grid-column: 2; grid-row: 1; margin-left: 0; }' +
+      '.titles.below:not(.dot-only) .tstack > .summary, .titles.below:not(.dot-only) .tstack > .chips.sub { grid-column: 1 / -1; }' +
+      '.titles.below:not(.dot-only) .stpill { grid-column: 1 / -1; grid-row: 9; justify-self: start; margin-top: 3px; }' +
+      '.titles.below .summary { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
+      '.titles.below .chips.sub { flex-wrap: nowrap; overflow: hidden; }' +
+      '.titles.dot-only .stpill { padding: 4px; } .titles.dot-only .stpill .st-text { display: none; }' +
+      '@container hc-card (max-width: 200px) { .stpill { padding: 4px; } .stpill .st-text { display: none; } }' +
       '.chips { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }' +
       '.chips.badges, .chips.sub { justify-content: flex-start; }' +
       '.chips.badges { margin-top: 8px; }' +
@@ -3012,12 +3399,13 @@ class HomeCameraCard extends HTMLElement {
       ' border-radius: 12px; border: 1px dashed var(--divider-color, rgba(128,128,128,0.3)); font-size: 12px; color: var(--secondary-text-color); text-align: center; }' +
       '.asleep ha-icon { --mdc-icon-size: 18px; color: var(--hc-on); }' +
       '.empty { display: flex; align-items: center; gap: 10px; color: var(--secondary-text-color); }' +
+      HC_BANNER_STYLE +
       // Mini card. Only its compact ha-card is a size container; a size container takes no width from its
       // content, so in a parent sized by its content it would fold to its padding: an empty, zero-height grid
       // before it gives the host up to 240px there, and no minimum. The header icon keeps its 40px.
       ':host([mini]) { display: block; min-width: 0; }' +
       ':host([mini])::before { content: ""; display: grid; grid-template-columns: minmax(0, 240px); height: 0; }' +
-      'ha-card.mini { container-type: inline-size; }' +
+      'ha-card.mini { container: hc-card / inline-size; }' +
       // Detail button, top right of the header: the full card and back.
       '.zoom { flex: none; cursor: pointer; width: 24px; height: 24px; margin: -4px -4px 0 0; border-radius: 50%; display: grid; place-items: center;' +
       ' color: var(--secondary-text-color); --mdc-icon-size: 16px; -webkit-tap-highlight-color: transparent; }' +
@@ -3217,6 +3605,27 @@ class HomeCameraCardEditor extends HTMLElement {
           { name: 'show_motion', selector: { boolean: {} } },
         ],
       },
+      // The illustrated header (not on the video wall, which has a status bar instead).
+      ...(this._wall()
+        ? []
+        : [
+            {
+              type: 'grid',
+              name: '',
+              schema: [
+                { name: 'illustration', selector: { boolean: {} } },
+                {
+                  name: 'illustration_theme',
+                  selector: {
+                    select: {
+                      mode: 'dropdown',
+                      options: ['auto', 'day', 'night'].map((v) => ({ value: v, label: t(`ed_theme_${v}`) })),
+                    },
+                  },
+                },
+              ],
+            },
+          ]),
       // Mini card: its detail button (on unless `zoom: false`).
       ...(this.constructor.mini ? [{ name: 'zoom', selector: { boolean: {} } }] : []),
       {
