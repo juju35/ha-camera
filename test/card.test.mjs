@@ -525,11 +525,11 @@ test("the header shows its state: live, motion, privacy or offline, in the illus
   assert.deepEqual(state(offline), ["offline", "offline"]);
   assert.match(offline, /<span class="stpill offline"[^>]*>.*Unavailable<\/span>/);
   assert.doesNotMatch(offline, /class="summary"/);
-  // Night: illustration_theme wins over the sun; illustration: false keeps the classic header (its icon still coloured).
+  // Night: illustration_theme wins over the theme; illustration: false keeps the classic header (its icon still coloured).
   assert.match(html(base, { illustration_theme: "night" }), /class="banner night"/);
   assert.match(html({ ...base, "sun.sun": "below_horizon" }, { illustration_theme: "day" }), /class="banner"/);
-  assert.match(html({ ...base, "sun.sun": "below_horizon" }), /class="banner night"/);
-  // The dark theme shows the night picture even while the sun is up; the light theme keeps the day one.
+  // The theme alone decides: a light theme keeps the day picture after sunset, a dark one shows the night picture
+  // even while the sun is up.
   const themed = (sun, dark, config) => {
     const { card, render } = headCard(cameras, { ...base, "sun.sun": sun }, config);
     card._hass.themes = { darkMode: dark };
@@ -538,6 +538,8 @@ test("the header shows its state: live, motion, privacy or offline, in the illus
   };
   assert.match(themed("above_horizon", true), /class="banner night"/);
   assert.match(themed("above_horizon", false), /class="banner"/);
+  assert.match(themed("below_horizon", false), /class="banner"/);
+  assert.match(themed("below_horizon", true), /class="banner night"/);
   assert.match(themed("unavailable", true), /class="banner night"/);
   assert.match(themed("above_horizon", true, { illustration_theme: "day" }), /class="banner"/);
   assert.match(themed("above_horizon", false, { illustration_theme: "night" }), /class="banner night"/);

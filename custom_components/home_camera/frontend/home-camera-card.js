@@ -1,4 +1,4 @@
-const HOME_CAMERA_CARD_VERSION = '4.6.0';
+const HOME_CAMERA_CARD_VERSION = '4.6.1';
 
 // ── i18n ─────────────────────────────────────────────────────────────────────
 const HcI18n = {
@@ -72,7 +72,7 @@ const HcI18n = {
     ed_layout_wall: 'Mur vidéo',
     ed_illustration: 'Illustration animée',
     ed_illustration_theme: 'Thème de l’illustration',
-    ed_theme_auto: 'Automatique (soleil ou thème sombre)',
+    ed_theme_auto: 'Automatique (suit le thème)',
     ed_theme_day: 'Jour',
     ed_theme_night: 'Nuit',
   },
@@ -146,7 +146,7 @@ const HcI18n = {
     ed_layout_wall: 'Video wall',
     ed_illustration: 'Animated illustration',
     ed_illustration_theme: 'Illustration theme',
-    ed_theme_auto: 'Automatic (sun or dark theme)',
+    ed_theme_auto: 'Automatic (follows the theme)',
     ed_theme_day: 'Day',
     ed_theme_night: 'Night',
   },
@@ -220,7 +220,7 @@ const HcI18n = {
     ed_layout_wall: 'Videowand',
     ed_illustration: 'Animierte Illustration',
     ed_illustration_theme: 'Thema der Illustration',
-    ed_theme_auto: 'Automatisch (Sonne oder dunkles Design)',
+    ed_theme_auto: 'Automatisch (folgt dem Thema)',
     ed_theme_day: 'Tag',
     ed_theme_night: 'Nacht',
   },
@@ -294,7 +294,7 @@ const HcI18n = {
     ed_layout_wall: 'Videowall',
     ed_illustration: 'Ilustración animada',
     ed_illustration_theme: 'Tema de la ilustración',
-    ed_theme_auto: 'Automático (sol o tema oscuro)',
+    ed_theme_auto: 'Automático (sigue el tema)',
     ed_theme_day: 'Día',
     ed_theme_night: 'Noche',
   },
@@ -368,7 +368,7 @@ const HcI18n = {
     ed_layout_wall: 'Видео зид',
     ed_illustration: 'Анимирана илустрација',
     ed_illustration_theme: 'Тема илустрације',
-    ed_theme_auto: 'Аутоматски (сунце или тамна тема)',
+    ed_theme_auto: 'Аутоматски (прати тему)',
     ed_theme_day: 'Дан',
     ed_theme_night: 'Ноћ',
   },
@@ -442,7 +442,7 @@ const HcI18n = {
     ed_layout_wall: 'Video zid',
     ed_illustration: 'Animirana ilustracija',
     ed_illustration_theme: 'Tema ilustracije',
-    ed_theme_auto: 'Automatski (sunce ili tamna tema)',
+    ed_theme_auto: 'Automatski (prati temu)',
     ed_theme_day: 'Dan',
     ed_theme_night: 'Noć',
   },
@@ -516,7 +516,7 @@ const HcI18n = {
     ed_layout_wall: 'Videowall',
     ed_illustration: 'Illustrazione animata',
     ed_illustration_theme: 'Tema dell’illustrazione',
-    ed_theme_auto: 'Automatico (sole o tema scuro)',
+    ed_theme_auto: 'Automatico (segue il tema)',
     ed_theme_day: 'Giorno',
     ed_theme_night: 'Notte',
   },
@@ -590,7 +590,7 @@ const HcI18n = {
     ed_layout_wall: 'Videowand',
     ed_illustration: 'Geanimeerde illustratie',
     ed_illustration_theme: 'Thema van de illustratie',
-    ed_theme_auto: 'Automatisch (zon of donker thema)',
+    ed_theme_auto: 'Automatisch (volgt het thema)',
     ed_theme_day: 'Dag',
     ed_theme_night: 'Nacht',
   },
@@ -664,7 +664,7 @@ const HcI18n = {
     ed_layout_wall: 'Videowall',
     ed_illustration: 'Ilustração animada',
     ed_illustration_theme: 'Tema da ilustração',
-    ed_theme_auto: 'Automático (sol ou tema escuro)',
+    ed_theme_auto: 'Automático (segue o tema)',
     ed_theme_day: 'Dia',
     ed_theme_night: 'Noite',
   },
@@ -738,7 +738,7 @@ const HcI18n = {
     ed_layout_wall: 'Ściana wideo',
     ed_illustration: 'Animowana ilustracja',
     ed_illustration_theme: 'Motyw ilustracji',
-    ed_theme_auto: 'Automatycznie (słońce lub ciemny motyw)',
+    ed_theme_auto: 'Automatycznie (według motywu)',
     ed_theme_day: 'Dzień',
     ed_theme_night: 'Noc',
   },
@@ -812,7 +812,7 @@ const HcI18n = {
     ed_layout_wall: 'Perete video',
     ed_illustration: 'Ilustrație animată',
     ed_illustration_theme: 'Tema ilustrației',
-    ed_theme_auto: 'Automat (soare sau temă întunecată)',
+    ed_theme_auto: 'Automat (urmează tema)',
     ed_theme_day: 'Zi',
     ed_theme_night: 'Noapte',
   },
@@ -886,7 +886,7 @@ const HcI18n = {
     ed_layout_wall: 'Videovæg',
     ed_illustration: 'Animeret illustration',
     ed_illustration_theme: 'Illustrationens tema',
-    ed_theme_auto: 'Automatisk (sol eller mørkt tema)',
+    ed_theme_auto: 'Automatisk (følger temaet)',
     ed_theme_day: 'Dag',
     ed_theme_night: 'Nat',
   },
@@ -960,7 +960,7 @@ const HcI18n = {
     ed_layout_wall: 'Videovägg',
     ed_illustration: 'Animerad illustration',
     ed_illustration_theme: 'Illustrationens tema',
-    ed_theme_auto: 'Automatiskt (sol eller mörkt tema)',
+    ed_theme_auto: 'Automatiskt (följer temat)',
     ed_theme_day: 'Dag',
     ed_theme_night: 'Natt',
   },
@@ -1034,7 +1034,7 @@ const HcI18n = {
     ed_layout_wall: 'Видеостена',
     ed_illustration: 'Анимирана илюстрация',
     ed_illustration_theme: 'Тема на илюстрацията',
-    ed_theme_auto: 'Автоматично (слънце или тъмна тема)',
+    ed_theme_auto: 'Автоматично (следва темата)',
     ed_theme_day: 'Ден',
     ed_theme_night: 'Нощ',
   },
@@ -1108,7 +1108,7 @@ const HcI18n = {
     ed_layout_wall: 'Видеостена',
     ed_illustration: 'Анимированная иллюстрация',
     ed_illustration_theme: 'Тема иллюстрации',
-    ed_theme_auto: 'Автоматически (солнце или тёмная тема)',
+    ed_theme_auto: 'Автоматически (по теме)',
     ed_theme_day: 'День',
     ed_theme_night: 'Ночь',
   },
@@ -1182,7 +1182,7 @@ const HcI18n = {
     ed_layout_wall: 'Відеостіна',
     ed_illustration: 'Анімована ілюстрація',
     ed_illustration_theme: 'Тема ілюстрації',
-    ed_theme_auto: 'Автоматично (сонце або темна тема)',
+    ed_theme_auto: 'Автоматично (за темою)',
     ed_theme_day: 'День',
     ed_theme_night: 'Ніч',
   },
@@ -1256,7 +1256,7 @@ const HcI18n = {
     ed_layout_wall: 'Videófal',
     ed_illustration: 'Animált illusztráció',
     ed_illustration_theme: 'Az illusztráció témája',
-    ed_theme_auto: 'Automatikus (nap vagy sötét téma)',
+    ed_theme_auto: 'Automatikus (a témát követi)',
     ed_theme_day: 'Nappal',
     ed_theme_night: 'Éjszaka',
   },
@@ -1330,7 +1330,7 @@ const HcI18n = {
     ed_layout_wall: 'Videostena',
     ed_illustration: 'Animovaná ilustrácia',
     ed_illustration_theme: 'Téma ilustrácie',
-    ed_theme_auto: 'Automaticky (slnko alebo tmavá téma)',
+    ed_theme_auto: 'Automaticky (podľa témy)',
     ed_theme_day: 'Deň',
     ed_theme_night: 'Noc',
   },
@@ -1404,7 +1404,7 @@ const HcI18n = {
     ed_layout_wall: 'Videostěna',
     ed_illustration: 'Animovaná ilustrace',
     ed_illustration_theme: 'Motiv ilustrace',
-    ed_theme_auto: 'Automaticky (slunce nebo tmavý motiv)',
+    ed_theme_auto: 'Automaticky (podle motivu)',
     ed_theme_day: 'Den',
     ed_theme_night: 'Noc',
   },
@@ -1478,7 +1478,7 @@ const HcI18n = {
     ed_layout_wall: 'Video stena',
     ed_illustration: 'Animirana ilustracija',
     ed_illustration_theme: 'Tema ilustracije',
-    ed_theme_auto: 'Samodejno (sonce ali temna tema)',
+    ed_theme_auto: 'Samodejno (sledi temi)',
     ed_theme_day: 'Dan',
     ed_theme_night: 'Noč',
   },
@@ -1552,7 +1552,7 @@ const HcI18n = {
     ed_layout_wall: 'Video siena',
     ed_illustration: 'Animēta ilustrācija',
     ed_illustration_theme: 'Ilustrācijas motīvs',
-    ed_theme_auto: 'Automātiski (saule vai tumšā tēma)',
+    ed_theme_auto: 'Automātiski (seko tēmai)',
     ed_theme_day: 'Diena',
     ed_theme_night: 'Nakts',
   },
@@ -1626,7 +1626,7 @@ const HcI18n = {
     ed_layout_wall: 'Τοίχος βίντεο',
     ed_illustration: 'Κινούμενη εικονογράφηση',
     ed_illustration_theme: 'Θέμα εικονογράφησης',
-    ed_theme_auto: 'Αυτόματο (ήλιος ή σκούρο θέμα)',
+    ed_theme_auto: 'Αυτόματο (ακολουθεί το θέμα)',
     ed_theme_day: 'Ημέρα',
     ed_theme_night: 'Νύχτα',
   },
@@ -1837,13 +1837,13 @@ const HC_QUALITY_EVENT = 'home-camera-card-quality';
 // the card's text sits there), over a 10 px parquet strip that runs the banner's whole width.
 // state: live (red recording light, field of view), motion (someone framed in the field of view), privacy (lens
 // shut, no field of view) or offline (camera greyed, no signal). `uid` keeps each card's gradient ids apart.
-// Night: forced by illustration_theme, else the sun below the horizon or Home Assistant's dark mode (the dark
-// theme shows the night picture even while the sun is up; an unavailable sun leaves the dark mode alone).
+// Night: forced by illustration_theme, else Home Assistant's dark mode alone (a light theme keeps the day picture
+// after sunset).
 function hcIsNight(hass, config) {
   const theme = config?.illustration_theme;
   if (theme === 'night') return true;
   if (theme === 'day') return false;
-  return hass?.states?.['sun.sun']?.state === 'below_horizon' || !!hass?.themes?.darkMode;
+  return !!hass?.themes?.darkMode;
 }
 
 function hcSceneSvg(state, uid) {
