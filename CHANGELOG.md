@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.6.3 - 2026-11-18
+
+### Fixes
+- Single camera hidden: the illustrated header now runs to the card's bottom edge, with no blank strip under it (full and mini card).
+
 ## 4.6.2 - 2026-11-18
 
 ### Fixes

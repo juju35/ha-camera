@@ -545,9 +545,11 @@ test("a single hidden camera: no quality switch and nothing under the header", a
       tiles: tiles().length,
       quality: !!el.shadowRoot.querySelector(".seg"),
       empty: view.childElementCount === 0 && getComputedStyle(view).display === "none",
+      // The banner runs to the card's bottom edge: no blank strip under it.
+      gap: Math.round(el.shadowRoot.querySelector("ha-card").getBoundingClientRect().bottom - el.shadowRoot.querySelector(".banner").getBoundingClientRect().bottom),
     };
   });
-  assert.deepEqual(r, { tiles: 0, quality: false, empty: true });
+  assert.deepEqual(r, { tiles: 0, quality: false, empty: true, gap: 0 });
 });
 
 test("an entry without a camera entity does not count: header, tile label and hidden panel all treat the card as single", async () => {
@@ -1065,9 +1067,13 @@ test("mini card: a single hidden camera shows nothing under the header", async (
   await mountMini({ cameras: ["camera.b_hd_stream"] });
   const r = await page.evaluate(() => {
     const view = $(".view");
-    return { thumbs: $$(".thumb").length, empty: view.childElementCount === 0 && getComputedStyle(view).display === "none" };
+    return {
+      thumbs: $$(".thumb").length,
+      empty: view.childElementCount === 0 && getComputedStyle(view).display === "none",
+      gap: Math.round($("ha-card").getBoundingClientRect().bottom - $(".banner").getBoundingClientRect().bottom),
+    };
   });
-  assert.deepEqual(r, { thumbs: 0, empty: true });
+  assert.deepEqual(r, { thumbs: 0, empty: true, gap: 0 });
 });
 
 test("mini card: the detail button opens the full card, a click outside folds it back", async () => {

@@ -1,4 +1,4 @@
-const HOME_CAMERA_CARD_VERSION = '4.6.2';
+const HOME_CAMERA_CARD_VERSION = '4.6.3';
 
 // ── i18n ─────────────────────────────────────────────────────────────────────
 const HcI18n = {
@@ -1860,6 +1860,8 @@ function hcSceneSvg(state, uid) {
 // The banner's colours and animations, day and night. Only added to the card when the illustration is shown.
 const HC_BANNER_STYLE =
   // 90 px, edge to edge at the top of the card: the wall, the camera picture on the right, the parquet strip.
+  // Nothing under the header (a lone hidden camera): the banner runs to the card's bottom edge.
+  '.head:has(+ .view:empty) .banner { margin-bottom: -12px; }' +
   '.banner { position: relative; height: 90px; margin: -12px -12px 0; overflow: hidden; container: hc-card / inline-size;' +
   ' background: #f2efe9; color: #1f2328; --hc-muted: #5d6670; }' +
   '.banner.night { background: #2a2b33; color: #fff; --hc-muted: rgba(255,255,255,0.78); }' +
