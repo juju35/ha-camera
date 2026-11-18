@@ -276,17 +276,17 @@ test("the top bar hidden for non-admins: a user gets the wall alone, an administ
   assert.deepEqual(r, { user: { bare: true, bar: false, fab: false }, admin: { bare: false, bar: true } });
 });
 
-test("the top bar hidden for everyone: an administrator gets the cog, which opens Settings with the bar back", async () => {
+test("the top bar hidden for everyone: the title bar goes on both tabs, the tabs stay", async () => {
   const r = await page.evaluate(async () => {
     const shown = (sel) => getComputedStyle($(sel)).display !== "none";
     await open({ admin: true, hide: "everyone", card: { cameras: ["camera.a"] } });
-    const wall = { bare: panel.hasAttribute("bare"), bar: shown(".toolbar"), fab: shown("[data-fab]") };
-    $("[data-fab]").click();
+    const wall = { bare: panel.hasAttribute("bare"), bar: shown(".toolbar"), tabs: shown(".tabs"), top: getComputedStyle($(".tabs")).top, fab: !!$("[data-fab]") };
+    $('.tab[data-tab="settings"]').click();
     await new Promise((r) => setTimeout(r, 20));
-    return { wall, settings: { bare: panel.hasAttribute("bare"), bar: shown(".tabs"), tab: !$("#tab-settings").hidden, fab: shown("[data-fab]") } };
+    return { wall, settings: { bare: panel.hasAttribute("bare"), bar: shown(".toolbar"), tabs: shown(".tabs"), tab: !$("#tab-settings").hidden } };
   });
-  assert.deepEqual(r.wall, { bare: true, bar: false, fab: true });
-  assert.deepEqual(r.settings, { bare: false, bar: true, tab: true, fab: false });
+  assert.deepEqual(r.wall, { bare: true, bar: false, tabs: true, top: "0px", fab: false });
+  assert.deepEqual(r.settings, { bare: true, bar: false, tabs: true, tab: true });
 });
 
 test("Settings saves the top bar choice", async () => {
@@ -302,18 +302,24 @@ test("Settings saves the top bar choice", async () => {
   assert.deepEqual(r, { before: "true", dirty: { checked: "true", save: false }, saved: "users" });
 });
 
-test("the top bar hidden: the menu button stays at the bottom left where Home Assistant shows it", async () => {
+test("the top bar hidden: the menu button stays where Home Assistant shows it", async () => {
   const r = await page.evaluate(async () => {
     const shown = (sel) => getComputedStyle($(sel)).display !== "none";
     await open({ admin: false, hide: "users", card: { cameras: ["camera.a"] } });
     const wide = { menu: panel.hasAttribute("menu"), bar: shown(".toolbar") };
     panel.narrow = true;
     const bar = getComputedStyle($(".toolbar"));
-    return {
-      wide,
-      narrow: { menu: panel.hasAttribute("menu"), bar: bar.display !== "none", position: bar.position, title: shown(".toolbar .grow"), button: shown("ha-menu-button") },
-    };
+    const user = { menu: panel.hasAttribute("menu"), bar: bar.display !== "none", position: bar.position, title: shown(".toolbar .grow"), button: shown(".toolbar ha-menu-button") };
+    await open({ admin: true, hide: "everyone", card: { cameras: ["camera.a"] } });
+    panel.narrow = true;
+    const admin = { bar: shown(".toolbar"), tabMenu: shown(".tabs .tabmenu") };
+    panel.narrow = false;
+    return { wide, user, admin, adminWide: { tabMenu: shown(".tabs .tabmenu") } };
   });
   assert.deepEqual(r.wide, { menu: false, bar: false });
-  assert.deepEqual(r.narrow, { menu: true, bar: true, position: "fixed", title: false, button: true });
+  // No tabs for a user: the menu button floats at the bottom left
+  assert.deepEqual(r.user, { menu: true, bar: true, position: "fixed", title: false, button: true });
+  // An administrator: the menu button at the start of the tabs
+  assert.deepEqual(r.admin, { bar: false, tabMenu: true });
+  assert.deepEqual(r.adminWide, { tabMenu: false });
 });

@@ -12,7 +12,7 @@
  *
  * https://github.com/juju35/ha-camera
  */
-var HOME_CAMERA_PANEL_VERSION = '4.7.0';
+var HOME_CAMERA_PANEL_VERSION = '4.7.1';
 
 var HomeCameraPanelI18n = {
   en: {
@@ -55,8 +55,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Shown',
     toolbar_users: 'Hidden for non-admins',
     toolbar_everyone: 'Hidden for everyone',
-    toolbar_helper: 'Hidden: the video wall takes the whole screen; the menu button stays at the bottom left, and administrators keep a cog at the bottom right to come back to Settings.',
-    open_settings: 'Open the settings',
+    toolbar_helper: 'Hidden: the title bar goes, the tabs stay; the menu button stays wherever Home Assistant shows it.',
   },
   fr: {
     cameras: 'Caméras',
@@ -98,8 +97,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Affichée',
     toolbar_users: 'Masquée pour les non-admins',
     toolbar_everyone: 'Masquée pour tous',
-    toolbar_helper: 'Masquée : le mur vidéo prend tout l’écran ; le bouton menu reste en bas à gauche, et les administrateurs gardent un engrenage en bas à droite pour revenir aux Réglages.',
-    open_settings: 'Ouvrir les réglages',
+    toolbar_helper: 'Masquée : la barre de titre disparaît, les onglets restent ; le bouton menu reste là où Home Assistant l’affiche.',
   },
   de: {
     cameras: 'Kameras',
@@ -141,8 +139,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Angezeigt',
     toolbar_users: 'Für Nicht-Admins ausgeblendet',
     toolbar_everyone: 'Für alle ausgeblendet',
-    toolbar_helper: 'Ausgeblendet: die Videowand füllt den ganzen Bildschirm; der Menüknopf bleibt unten links, und Administratoren behalten unten rechts ein Zahnrad zurück zu den Einstellungen.',
-    open_settings: 'Einstellungen öffnen',
+    toolbar_helper: 'Ausgeblendet: die Titelleiste verschwindet, die Tabs bleiben; der Menüknopf bleibt, wo Home Assistant ihn zeigt.',
   },
   es: {
     cameras: 'Cámaras',
@@ -184,8 +181,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Visible',
     toolbar_users: 'Oculta para no administradores',
     toolbar_everyone: 'Oculta para todos',
-    toolbar_helper: 'Oculta: el muro de vídeo ocupa toda la pantalla; el botón de menú queda abajo a la izquierda, y los administradores conservan un engranaje abajo a la derecha para volver a Ajustes.',
-    open_settings: 'Abrir los ajustes',
+    toolbar_helper: 'Oculta: la barra de título desaparece, las pestañas se quedan; el botón de menú sigue donde Home Assistant lo muestra.',
   },
   sr: {
     cameras: 'Камере',
@@ -227,8 +223,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Приказана',
     toolbar_users: 'Скривена за неадминистраторе',
     toolbar_everyone: 'Скривена за све',
-    toolbar_helper: 'Скривена: видео зид заузима цео екран; дугме менија остаје доле лево, а администратори задржавају зупчаник доле десно за повратак на Подешавања.',
-    open_settings: 'Отвори подешавања',
+    toolbar_helper: 'Скривена: трака наслова нестаје, картице остају; дугме менија остаје где га Home Assistant приказује.',
   },
   'sr-Latn': {
     cameras: 'Kamere',
@@ -270,8 +265,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Prikazana',
     toolbar_users: 'Skrivena za neadministratore',
     toolbar_everyone: 'Skrivena za sve',
-    toolbar_helper: 'Skrivena: video zid zauzima ceo ekran; dugme menija ostaje dole levo, a administratori zadržavaju zupčanik dole desno za povratak na Podešavanja.',
-    open_settings: 'Otvori podešavanja',
+    toolbar_helper: 'Skrivena: traka naslova nestaje, kartice ostaju; dugme menija ostaje gde ga Home Assistant prikazuje.',
   },
   it: {
     cameras: 'Telecamere',
@@ -313,8 +307,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Visibile',
     toolbar_users: 'Nascosta ai non amministratori',
     toolbar_everyone: 'Nascosta a tutti',
-    toolbar_helper: 'Nascosta: il muro video occupa tutto lo schermo; il pulsante del menu resta in basso a sinistra e gli amministratori mantengono un ingranaggio in basso a destra per tornare alle Impostazioni.',
-    open_settings: 'Apri le impostazioni',
+    toolbar_helper: 'Nascosta: la barra del titolo sparisce, le schede restano; il pulsante del menu resta dove Home Assistant lo mostra.',
   },
   nl: {
     cameras: "Camera's",
@@ -356,8 +349,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Getoond',
     toolbar_users: 'Verborgen voor niet-beheerders',
     toolbar_everyone: 'Verborgen voor iedereen',
-    toolbar_helper: 'Verborgen: de videomuur vult het hele scherm; de menuknop blijft linksonder en beheerders houden rechtsonder een tandwiel om terug te gaan naar Instellingen.',
-    open_settings: 'Instellingen openen',
+    toolbar_helper: 'Verborgen: de titelbalk verdwijnt, de tabbladen blijven; de menuknop blijft waar Home Assistant hem toont.',
   },
   pt: {
     cameras: 'Câmaras',
@@ -399,8 +391,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Visível',
     toolbar_users: 'Oculta para não administradores',
     toolbar_everyone: 'Oculta para todos',
-    toolbar_helper: 'Oculta: o mural de vídeo ocupa todo o ecrã; o botão de menu fica em baixo à esquerda e os administradores mantêm uma engrenagem em baixo à direita para voltar às Definições.',
-    open_settings: 'Abrir as definições',
+    toolbar_helper: 'Oculta: a barra de título desaparece, os separadores ficam; o botão de menu fica onde o Home Assistant o mostra.',
   },
   pl: {
     cameras: 'Kamery',
@@ -442,8 +433,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Widoczny',
     toolbar_users: 'Ukryty dla nie-administratorów',
     toolbar_everyone: 'Ukryty dla wszystkich',
-    toolbar_helper: 'Ukryty: ściana wideo zajmuje cały ekran; przycisk menu zostaje w lewym dolnym rogu, a administratorzy zachowują koło zębate w prawym dolnym rogu, by wrócić do Ustawień.',
-    open_settings: 'Otwórz ustawienia',
+    toolbar_helper: 'Ukryty: pasek tytułu znika, karty zostają; przycisk menu zostaje tam, gdzie pokazuje go Home Assistant.',
   },
   ro: {
     cameras: 'Camere',
@@ -485,8 +475,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Afișată',
     toolbar_users: 'Ascunsă pentru non-administratori',
     toolbar_everyone: 'Ascunsă pentru toți',
-    toolbar_helper: 'Ascunsă: peretele video ocupă tot ecranul; butonul de meniu rămâne jos în stânga, iar administratorii păstrează o roată dințată jos în dreapta pentru a reveni la Setări.',
-    open_settings: 'Deschide setările',
+    toolbar_helper: 'Ascunsă: bara de titlu dispare, filele rămân; butonul de meniu rămâne acolo unde îl afișează Home Assistant.',
   },
   da: {
     cameras: 'Kameraer',
@@ -528,8 +517,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Vist',
     toolbar_users: 'Skjult for ikke-administratorer',
     toolbar_everyone: 'Skjult for alle',
-    toolbar_helper: 'Skjult: videovæggen fylder hele skærmen; menuknappen bliver nederst til venstre, og administratorer beholder et tandhjul nederst til højre til at komme tilbage til Indstillinger.',
-    open_settings: 'Åbn indstillingerne',
+    toolbar_helper: 'Skjult: titellinjen forsvinder, fanerne bliver; menuknappen bliver, hvor Home Assistant viser den.',
   },
   sv: {
     cameras: 'Kameror',
@@ -571,8 +559,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Visas',
     toolbar_users: 'Dolt för icke-administratörer',
     toolbar_everyone: 'Dolt för alla',
-    toolbar_helper: 'Dolt: videoväggen fyller hela skärmen; menyknappen stannar nere till vänster, och administratörer behåller ett kugghjul nere till höger för att komma tillbaka till Inställningar.',
-    open_settings: 'Öppna inställningarna',
+    toolbar_helper: 'Dolt: namnlisten försvinner, flikarna stannar; menyknappen stannar där Home Assistant visar den.',
   },
   bg: {
     cameras: 'Камери',
@@ -614,8 +601,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Показана',
     toolbar_users: 'Скрита за неадминистратори',
     toolbar_everyone: 'Скрита за всички',
-    toolbar_helper: 'Скрита: видеостената заема целия екран; бутонът на менюто остава долу вляво, а администраторите запазват зъбно колело долу вдясно за връщане към Настройки.',
-    open_settings: 'Отвори настройките',
+    toolbar_helper: 'Скрита: лентата със заглавие изчезва, разделите остават; бутонът на менюто остава там, където Home Assistant го показва.',
   },
   ru: {
     cameras: 'Камеры',
@@ -657,8 +643,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Показана',
     toolbar_users: 'Скрыта для не-администраторов',
     toolbar_everyone: 'Скрыта для всех',
-    toolbar_helper: 'Скрыта: видеостена занимает весь экран; кнопка меню остаётся внизу слева, а у администраторов внизу справа есть шестерёнка для возврата в «Настройки».',
-    open_settings: 'Открыть настройки',
+    toolbar_helper: 'Скрыта: строка заголовка исчезает, вкладки остаются; кнопка меню остаётся там, где её показывает Home Assistant.',
   },
   uk: {
     cameras: 'Камери',
@@ -700,8 +685,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Показана',
     toolbar_users: 'Прихована для неадміністраторів',
     toolbar_everyone: 'Прихована для всіх',
-    toolbar_helper: 'Прихована: відеостіна займає весь екран; кнопка меню лишається внизу ліворуч, а адміністратори мають шестерню внизу праворуч для повернення до «Налаштувань».',
-    open_settings: 'Відкрити налаштування',
+    toolbar_helper: 'Прихована: рядок заголовка зникає, вкладки лишаються; кнопка меню лишається там, де її показує Home Assistant.',
   },
   hu: {
     cameras: 'Kamerák',
@@ -743,8 +727,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Látható',
     toolbar_users: 'Rejtett a nem rendszergazdák számára',
     toolbar_everyone: 'Rejtett mindenki számára',
-    toolbar_helper: 'Rejtett: a videofal kitölti a teljes képernyőt; a menügomb a bal alsó sarokban marad, a rendszergazdák pedig a jobb alsó sarokban egy fogaskereket kapnak a Beállításokhoz való visszatéréshez.',
-    open_settings: 'Beállítások megnyitása',
+    toolbar_helper: 'Rejtett: a címsor eltűnik, a lapok maradnak; a menügomb ott marad, ahol a Home Assistant mutatja.',
   },
   sk: {
     cameras: 'Kamery',
@@ -786,8 +769,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Zobrazená',
     toolbar_users: 'Skrytá pre nesprávcov',
     toolbar_everyone: 'Skrytá pre všetkých',
-    toolbar_helper: 'Skrytá: videostena zaberá celú obrazovku; tlačidlo ponuky zostáva vľavo dole a správcovia si ponechajú ozubené koleso vpravo dole na návrat do Nastavení.',
-    open_settings: 'Otvoriť nastavenia',
+    toolbar_helper: 'Skrytá: lišta s názvom zmizne, karty zostanú; tlačidlo ponuky zostane tam, kde ho Home Assistant zobrazuje.',
   },
   cs: {
     cameras: 'Kamery',
@@ -829,8 +811,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Zobrazená',
     toolbar_users: 'Skrytá pro nesprávce',
     toolbar_everyone: 'Skrytá pro všechny',
-    toolbar_helper: 'Skrytá: videostěna zabírá celou obrazovku; tlačítko nabídky zůstává vlevo dole a správci si ponechají ozubené kolo vpravo dole pro návrat do Nastavení.',
-    open_settings: 'Otevřít nastavení',
+    toolbar_helper: 'Skrytá: lišta s názvem zmizí, karty zůstanou; tlačítko nabídky zůstane tam, kde ho Home Assistant zobrazuje.',
   },
   sl: {
     cameras: 'Kamere',
@@ -872,8 +853,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Prikazana',
     toolbar_users: 'Skrita za neskrbnike',
     toolbar_everyone: 'Skrita za vse',
-    toolbar_helper: 'Skrita: video stena zavzame ves zaslon; gumb menija ostane spodaj levo, skrbniki pa obdržijo zobnik spodaj desno za vrnitev v Nastavitve.',
-    open_settings: 'Odpri nastavitve',
+    toolbar_helper: 'Skrita: naslovna vrstica izgine, zavihki ostanejo; gumb menija ostane tam, kjer ga prikaže Home Assistant.',
   },
   lv: {
     cameras: 'Kameras',
@@ -915,8 +895,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Rādīta',
     toolbar_users: 'Paslēpta ne-administratoriem',
     toolbar_everyone: 'Paslēpta visiem',
-    toolbar_helper: 'Paslēpta: video siena aizņem visu ekrānu; izvēlnes poga paliek apakšā pa kreisi, un administratori patur zobratu apakšā pa labi, lai atgrieztos Iestatījumos.',
-    open_settings: 'Atvērt iestatījumus',
+    toolbar_helper: 'Paslēpta: virsraksta josla pazūd, cilnes paliek; izvēlnes poga paliek tur, kur to rāda Home Assistant.',
   },
   el: {
     cameras: 'Κάμερες',
@@ -958,8 +937,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Εμφανίζεται',
     toolbar_users: 'Κρυφή για μη διαχειριστές',
     toolbar_everyone: 'Κρυφή για όλους',
-    toolbar_helper: 'Κρυφή: ο τοίχος βίντεο καλύπτει όλη την οθόνη· το κουμπί μενού μένει κάτω αριστερά και οι διαχειριστές διατηρούν ένα γρανάζι κάτω δεξιά για επιστροφή στις Ρυθμίσεις.',
-    open_settings: 'Άνοιγμα ρυθμίσεων',
+    toolbar_helper: 'Κρυφή: η γραμμή τίτλου φεύγει, οι καρτέλες μένουν· το κουμπί μενού μένει όπου το δείχνει το Home Assistant.',
   },
 };
 
@@ -1132,21 +1110,18 @@ class HomeCameraPanel extends HTMLElement {
     @media (prefers-reduced-motion: reduce) { .bscene * { animation:none !important; } }
     @container (max-width:360px) { .bscene { display:none; } .bhead { right:0; } }
     @media (max-width:600px) { .tags { display:none; } .editbox { margin-left:0; } }
-    /* Top bar hidden (Settings › Panel): the video wall alone. The menu button stays, as a round button at the bottom
-       left (only while Home Assistant shows it: narrow screen or sidebar hidden); administrators keep a round cog at
-       the bottom right */
-    :host([bare]) .tabs, :host([bare]:not([menu])) .toolbar { display:none; }
+    /* Top bar hidden (Settings › Panel): the title bar goes, the tabs stay at the top. The menu button stays where
+       Home Assistant shows it (narrow screen or sidebar hidden): at the start of the tabs, or, with no tabs (a user who
+       is not an administrator), as a round button at the bottom left */
+    .tabmenu { display:none; color:var(--app-header-text-color, #fff); align-self:center; margin-right:4px; }
+    :host([bare][menu]) .tabs .tabmenu { display:flex; }
+    :host([bare]) .tabs { top:0; }
+    :host([bare][tabs]) .toolbar, :host([bare]:not([menu])) .toolbar { display:none; }
     :host([bare]) .toolbar { position:fixed; top:auto; left:16px; bottom:16px; z-index:3; width:44px; height:44px; padding:0; gap:0;
                              justify-content:center; border-radius:50%; border-bottom:none; color:var(--primary-text-color);
                              background:color-mix(in srgb, var(--card-background-color, #fff) 82%, transparent);
                              -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); box-shadow:0 2px 8px rgba(0,0,0,.25); }
     :host([bare]) .toolbar > :not(ha-menu-button) { display:none; }
-    .fab { position:fixed; right:16px; bottom:16px; z-index:3; width:44px; height:44px; border-radius:50%; display:none; place-items:center;
-           color:var(--primary-text-color); background:color-mix(in srgb, var(--card-background-color, #fff) 82%, transparent);
-           -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); box-shadow:0 2px 8px rgba(0,0,0,.25); --mdc-icon-size:22px; }
-    :host([bare]) .fab { display:grid; }
-    .fab:hover { color:var(--primary-color); }
-    .fab:focus-visible { outline:2px solid var(--primary-color); outline-offset:2px; }
     .seg { display:inline-flex; flex-wrap:wrap; gap:4px; padding:3px; border-radius:20px; background:var(--hcp-sec); align-self:flex-start; }
     .seg button { border:0; background:none; cursor:pointer; font:inherit; font-size:13px; font-weight:500; padding:7px 14px; border-radius:17px; color:var(--secondary-text-color); }
     .seg button[aria-checked="true"] { background:var(--card-background-color, #fff); color:var(--primary-color); box-shadow:0 1px 2px rgba(0,0,0,.14); }
@@ -1174,6 +1149,7 @@ class HomeCameraPanel extends HTMLElement {
   set narrow(narrow) {
     this._narrow = narrow;
     if (this._menu) this._menu.narrow = narrow;
+    if (this._tabMenu) this._tabMenu.narrow = narrow;
     this._syncBare();
   }
 
@@ -1187,6 +1163,7 @@ class HomeCameraPanel extends HTMLElement {
     var adminBefore = this._admin();
     this._hass = hass;
     if (this._menu) this._menu.hass = hass;
+    if (this._tabMenu) this._tabMenu.hass = hass;
     if (this._card) this._card.hass = hass;
     if (this._editor) this._editor.hass = hass;
     if (this._camEditor) this._camEditor.hass = hass;
@@ -1326,15 +1303,15 @@ class HomeCameraPanel extends HTMLElement {
     if (tab === 'settings') this._renderSettings();
   }
 
-  // The top bar hidden as saved (never, for the users who are not administrators, or for everyone): only on the
-  // Cameras tab, Settings keeps it (its tabs lead back)
+  // The title bar hidden as saved (never, for the users who are not administrators, or for everyone); the tabs stay
   _bare() {
     var hide = this._data?.hide_toolbar;
-    return this._tab === 'cameras' && (hide === 'everyone' || (hide === 'users' && !this._admin()));
+    return hide === 'everyone' || (hide === 'users' && !this._admin());
   }
 
   _syncBare() {
     this.toggleAttribute?.('bare', this._bare());
+    this.toggleAttribute?.('tabs', this._tabs().length > 1);
     // Where Home Assistant shows the menu button: narrow screen, or the sidebar set to always hidden
     this.toggleAttribute?.('menu', !!this._narrow || this._hass?.dockedSidebar === 'always_hidden');
   }
@@ -1353,19 +1330,17 @@ class HomeCameraPanel extends HTMLElement {
         <span class="grow">${esc(title)}</span>
         ${this._admin() ? `<a href="/config/integrations/integration/home_camera" title="${esc(this._t('integration'))}"><ha-icon icon="mdi:cog"></ha-icon></a>` : ''}
       </div>
-      <div class="tabs" role="tablist"${tabs.length < 2 ? ' hidden' : ''}>${tabs.map((tab) => this._tabHtml(tab)).join('')}</div>
-      ${this._admin() ? `<a class="fab" href="#" data-fab title="${esc(this._t('open_settings'))}" aria-label="${esc(this._t('open_settings'))}"><ha-icon icon="mdi:cog"></ha-icon></a>` : ''}
+      <div class="tabs" role="tablist"${tabs.length < 2 ? ' hidden' : ''}><ha-menu-button class="tabmenu"></ha-menu-button>${tabs.map((tab) => this._tabHtml(tab)).join('')}</div>
       <main class="${this._tab}">
         <section class="column" id="tab-cameras" role="tabpanel" aria-labelledby="tabbtn-cameras"></section>
         <section class="column" id="tab-settings" role="tabpanel" aria-labelledby="tabbtn-settings"></section>
       </main>`;
-    root.querySelector('[data-fab]')?.addEventListener('click', (ev) => {
-      ev.preventDefault();
-      this._goTab('settings', true);
-    });
-    this._menu = root.querySelector('ha-menu-button');
+    this._menu = root.querySelector('.toolbar ha-menu-button');
     this._menu.hass = this._hass;
     this._menu.narrow = this._narrow;
+    this._tabMenu = root.querySelector('.tabmenu');
+    this._tabMenu.hass = this._hass;
+    this._tabMenu.narrow = this._narrow;
     root.querySelectorAll('.tab').forEach((button) => {
       button.addEventListener('click', () => this._goTab(button.dataset.tab));
       // Left and right arrows move between the tabs, as in a native tab bar
