@@ -71,7 +71,7 @@ window.open = async (opts, path = "") => {
   document.body.replaceChildren();
   sent.length = 0;
   const el = document.createElement("home-camera-panel");
-  el.panel = { url_path: "cameras", config: {} };
+  el.panel = { url_path: "cameras", config: opts.panelConfig || {} };
   el.route = { path };
   document.body.appendChild(el);
   el.hass = makeHass(opts);
@@ -322,4 +322,20 @@ test("the top bar hidden: the menu button stays where Home Assistant shows it", 
   // An administrator: the menu button at the start of the tabs
   assert.deepEqual(r.admin, { bar: false, tabMenu: true });
   assert.deepEqual(r.adminWide, { tabMenu: false });
+});
+
+test("the top bar hidden in the panel's registration: never shown while the settings load", async () => {
+  const r = await page.evaluate(async () => {
+    document.body.replaceChildren();
+    const el = document.createElement("home-camera-panel");
+    el.panel = { url_path: "cameras", config: { hide_toolbar: "everyone" } };
+    el.route = { path: "" };
+    document.body.appendChild(el);
+    // Settings that never arrive: what the page shows while loading
+    el.hass = { language: "en", user: { is_admin: true }, states: {}, connection: { subscribeMessage: () => new Promise(() => {}) } };
+    window.panel = el;
+    await new Promise((r) => setTimeout(r, 20));
+    return { bare: el.hasAttribute("bare"), bar: getComputedStyle($(".toolbar")).display, tabs: getComputedStyle($(".tabs")).display };
+  });
+  assert.deepEqual(r, { bare: true, bar: "none", tabs: "flex" });
 });
