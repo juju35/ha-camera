@@ -536,17 +536,18 @@ test("the HD / SD switch selects the option tapped, and a tap on the current one
   assert.equal(r.checked, "true");
 });
 
-test("every camera hidden: no quality switch, a panel saying how to bring one back", async () => {
+test("a single hidden camera: no quality switch and nothing under the header", async () => {
   const r = await page.evaluate(() => {
     mount(["camera.b_hd_stream"]);
     el.hass = makeHass({ ...baseStates(), "switch.b_privacy": st("switch.b_privacy", "on") });
+    const view = el.shadowRoot.querySelector(".view");
     return {
       tiles: tiles().length,
       quality: !!el.shadowRoot.querySelector(".seg"),
-      panel: el.shadowRoot.querySelector(".asleep")?.textContent,
+      empty: view.childElementCount === 0 && getComputedStyle(view).display === "none",
     };
   });
-  assert.deepEqual(r, { tiles: 0, quality: false, panel: "Enable the camera to see it here" });
+  assert.deepEqual(r, { tiles: 0, quality: false, empty: true });
 });
 
 test("an entry without a camera entity does not count: header, tile label and hidden panel all treat the card as single", async () => {
@@ -558,9 +559,9 @@ test("an entry without a camera entity does not count: header, tile label and hi
       label: tiles()[0].querySelector(".label .text").textContent,
     };
     el.hass = makeHass({ ...baseStates(), "switch.b_privacy": st("switch.b_privacy", "on") });
-    return { ...head, panel: el.shadowRoot.querySelector(".asleep")?.textContent };
+    return { ...head, panel: !!el.shadowRoot.querySelector(".asleep") };
   });
-  assert.deepEqual(r, { toggle: true, label: "Live", panel: "Enable the camera to see it here" });
+  assert.deepEqual(r, { toggle: true, label: "Live", panel: false });
 });
 
 test("several cameras all hidden still point to the badges", async () => {
@@ -1058,6 +1059,15 @@ test("mini card: a snapshot per camera, no player, the header icon at 40px and a
   assert.deepEqual(r.grid, { columns: 6, min_columns: 6, rows: "auto" });
   assert.equal(r.size, 3);
   assert.equal(r.registered, true);
+});
+
+test("mini card: a single hidden camera shows nothing under the header", async () => {
+  await mountMini({ cameras: ["camera.b_hd_stream"] });
+  const r = await page.evaluate(() => {
+    const view = $(".view");
+    return { thumbs: $$(".thumb").length, empty: view.childElementCount === 0 && getComputedStyle(view).display === "none" };
+  });
+  assert.deepEqual(r, { thumbs: 0, empty: true });
 });
 
 test("mini card: the detail button opens the full card, a click outside folds it back", async () => {

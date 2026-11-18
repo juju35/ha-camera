@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.6.2 - 2026-11-18
+
+### Fixes
+- Single camera hidden: nothing shows under the header any more, in the full card (no "Enable the camera to see it here" panel) and in the mini card (no locked thumbnail) — the header's toggle already says Enable.
+
 ## 4.6.1 - 2026-11-18
 
 ### Fixes
