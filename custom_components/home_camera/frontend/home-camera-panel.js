@@ -51,6 +51,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Motion',
     tag_privacy: 'Privacy',
     none_shown: 'No camera shown yet: add the ones found above.',
+    toolbar: 'Top bar',
+    toolbar_never: 'Shown',
+    toolbar_users: 'Hidden for non-admins',
+    toolbar_everyone: 'Hidden for everyone',
+    toolbar_helper: 'Hidden: the video wall takes the whole screen; administrators keep a cog button to come back to Settings.',
+    open_settings: 'Open the settings',
   },
   fr: {
     cameras: 'Caméras',
@@ -88,6 +94,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Mouvement',
     tag_privacy: 'Confidentialité',
     none_shown: 'Aucune caméra affichée : ajoutez celles trouvées ci-dessus.',
+    toolbar: 'Barre du haut',
+    toolbar_never: 'Affichée',
+    toolbar_users: 'Masquée pour les non-admins',
+    toolbar_everyone: 'Masquée pour tous',
+    toolbar_helper: 'Masquée : le mur vidéo prend tout l’écran ; les administrateurs gardent un bouton engrenage pour revenir aux Réglages.',
+    open_settings: 'Ouvrir les réglages',
   },
   de: {
     cameras: 'Kameras',
@@ -125,6 +137,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Bewegung',
     tag_privacy: 'Privatsphäre',
     none_shown: 'Noch keine Kamera angezeigt: füge die oben gefundenen hinzu.',
+    toolbar: 'Obere Leiste',
+    toolbar_never: 'Angezeigt',
+    toolbar_users: 'Für Nicht-Admins ausgeblendet',
+    toolbar_everyone: 'Für alle ausgeblendet',
+    toolbar_helper: 'Ausgeblendet: die Videowand füllt den ganzen Bildschirm; Administratoren behalten einen Zahnrad-Knopf zurück zu den Einstellungen.',
+    open_settings: 'Einstellungen öffnen',
   },
   es: {
     cameras: 'Cámaras',
@@ -162,6 +180,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Movimiento',
     tag_privacy: 'Privacidad',
     none_shown: 'Aún no se muestra ninguna cámara: añade las encontradas arriba.',
+    toolbar: 'Barra superior',
+    toolbar_never: 'Visible',
+    toolbar_users: 'Oculta para no administradores',
+    toolbar_everyone: 'Oculta para todos',
+    toolbar_helper: 'Oculta: el muro de vídeo ocupa toda la pantalla; los administradores conservan un botón de engranaje para volver a Ajustes.',
+    open_settings: 'Abrir los ajustes',
   },
   sr: {
     cameras: 'Камере',
@@ -199,6 +223,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Покрет',
     tag_privacy: 'Приватност',
     none_shown: 'Још нема приказаних камера: додајте пронађене изнад.',
+    toolbar: 'Горња трака',
+    toolbar_never: 'Приказана',
+    toolbar_users: 'Скривена за неадминистраторе',
+    toolbar_everyone: 'Скривена за све',
+    toolbar_helper: 'Скривена: видео зид заузима цео екран; администратори задржавају дугме зупчаника за повратак на Подешавања.',
+    open_settings: 'Отвори подешавања',
   },
   'sr-Latn': {
     cameras: 'Kamere',
@@ -236,6 +266,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Pokret',
     tag_privacy: 'Privatnost',
     none_shown: 'Još nema prikazanih kamera: dodajte pronađene iznad.',
+    toolbar: 'Gornja traka',
+    toolbar_never: 'Prikazana',
+    toolbar_users: 'Skrivena za neadministratore',
+    toolbar_everyone: 'Skrivena za sve',
+    toolbar_helper: 'Skrivena: video zid zauzima ceo ekran; administratori zadržavaju dugme zupčanika za povratak na Podešavanja.',
+    open_settings: 'Otvori podešavanja',
   },
   it: {
     cameras: 'Telecamere',
@@ -273,6 +309,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Movimento',
     tag_privacy: 'Privacy',
     none_shown: 'Ancora nessuna telecamera mostrata: aggiungi quelle trovate sopra.',
+    toolbar: 'Barra superiore',
+    toolbar_never: 'Visibile',
+    toolbar_users: 'Nascosta ai non amministratori',
+    toolbar_everyone: 'Nascosta a tutti',
+    toolbar_helper: 'Nascosta: il muro video occupa tutto lo schermo; gli amministratori mantengono un pulsante a ingranaggio per tornare alle Impostazioni.',
+    open_settings: 'Apri le impostazioni',
   },
   nl: {
     cameras: "Camera's",
@@ -310,6 +352,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Beweging',
     tag_privacy: 'Privacy',
     none_shown: "Nog geen camera's getoond: voeg de hierboven gevonden toe.",
+    toolbar: 'Bovenbalk',
+    toolbar_never: 'Getoond',
+    toolbar_users: 'Verborgen voor niet-beheerders',
+    toolbar_everyone: 'Verborgen voor iedereen',
+    toolbar_helper: 'Verborgen: de videomuur vult het hele scherm; beheerders houden een tandwielknop om terug te gaan naar Instellingen.',
+    open_settings: 'Instellingen openen',
   },
   pt: {
     cameras: 'Câmaras',
@@ -347,6 +395,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Movimento',
     tag_privacy: 'Privacidade',
     none_shown: 'Ainda sem câmaras apresentadas: adicione as encontradas acima.',
+    toolbar: 'Barra superior',
+    toolbar_never: 'Visível',
+    toolbar_users: 'Oculta para não administradores',
+    toolbar_everyone: 'Oculta para todos',
+    toolbar_helper: 'Oculta: o mural de vídeo ocupa todo o ecrã; os administradores mantêm um botão de engrenagem para voltar às Definições.',
+    open_settings: 'Abrir as definições',
   },
   pl: {
     cameras: 'Kamery',
@@ -384,6 +438,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Ruch',
     tag_privacy: 'Prywatność',
     none_shown: 'Brak wyświetlanych kamer: dodaj znalezione powyżej.',
+    toolbar: 'Górny pasek',
+    toolbar_never: 'Widoczny',
+    toolbar_users: 'Ukryty dla nie-administratorów',
+    toolbar_everyone: 'Ukryty dla wszystkich',
+    toolbar_helper: 'Ukryty: ściana wideo zajmuje cały ekran; administratorzy zachowują przycisk koła zębatego, by wrócić do Ustawień.',
+    open_settings: 'Otwórz ustawienia',
   },
   ro: {
     cameras: 'Camere',
@@ -421,6 +481,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Mișcare',
     tag_privacy: 'Confidențialitate',
     none_shown: 'Nicio cameră afișată încă: adăugați-le pe cele găsite mai sus.',
+    toolbar: 'Bara de sus',
+    toolbar_never: 'Afișată',
+    toolbar_users: 'Ascunsă pentru non-administratori',
+    toolbar_everyone: 'Ascunsă pentru toți',
+    toolbar_helper: 'Ascunsă: peretele video ocupă tot ecranul; administratorii păstrează un buton cu roată dințată pentru a reveni la Setări.',
+    open_settings: 'Deschide setările',
   },
   da: {
     cameras: 'Kameraer',
@@ -458,6 +524,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Bevægelse',
     tag_privacy: 'Privatliv',
     none_shown: 'Ingen kameraer vist endnu: tilføj dem, der er fundet ovenfor.',
+    toolbar: 'Topbjælke',
+    toolbar_never: 'Vist',
+    toolbar_users: 'Skjult for ikke-administratorer',
+    toolbar_everyone: 'Skjult for alle',
+    toolbar_helper: 'Skjult: videovæggen fylder hele skærmen; administratorer beholder en tandhjulsknap til at komme tilbage til Indstillinger.',
+    open_settings: 'Åbn indstillingerne',
   },
   sv: {
     cameras: 'Kameror',
@@ -495,6 +567,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Rörelse',
     tag_privacy: 'Integritet',
     none_shown: 'Inga kameror visas ännu: lägg till de som hittats ovan.',
+    toolbar: 'Översta fältet',
+    toolbar_never: 'Visas',
+    toolbar_users: 'Dolt för icke-administratörer',
+    toolbar_everyone: 'Dolt för alla',
+    toolbar_helper: 'Dolt: videoväggen fyller hela skärmen; administratörer behåller en kugghjulsknapp för att komma tillbaka till Inställningar.',
+    open_settings: 'Öppna inställningarna',
   },
   bg: {
     cameras: 'Камери',
@@ -532,6 +610,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Движение',
     tag_privacy: 'Поверителност',
     none_shown: 'Все още няма показани камери: добавете откритите по-горе.',
+    toolbar: 'Горна лента',
+    toolbar_never: 'Показана',
+    toolbar_users: 'Скрита за неадминистратори',
+    toolbar_everyone: 'Скрита за всички',
+    toolbar_helper: 'Скрита: видеостената заема целия екран; администраторите запазват бутон със зъбно колело за връщане към Настройки.',
+    open_settings: 'Отвори настройките',
   },
   ru: {
     cameras: 'Камеры',
@@ -569,6 +653,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Движение',
     tag_privacy: 'Приватность',
     none_shown: 'Камер пока нет: добавьте найденные выше.',
+    toolbar: 'Верхняя панель',
+    toolbar_never: 'Показана',
+    toolbar_users: 'Скрыта для не-администраторов',
+    toolbar_everyone: 'Скрыта для всех',
+    toolbar_helper: 'Скрыта: видеостена занимает весь экран; у администраторов остаётся кнопка-шестерёнка для возврата в «Настройки».',
+    open_settings: 'Открыть настройки',
   },
   uk: {
     cameras: 'Камери',
@@ -606,6 +696,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Рух',
     tag_privacy: 'Приватність',
     none_shown: 'Камер поки немає: додайте знайдені вище.',
+    toolbar: 'Верхня панель',
+    toolbar_never: 'Показана',
+    toolbar_users: 'Прихована для неадміністраторів',
+    toolbar_everyone: 'Прихована для всіх',
+    toolbar_helper: 'Прихована: відеостіна займає весь екран; адміністратори зберігають кнопку-шестерню для повернення до «Налаштувань».',
+    open_settings: 'Відкрити налаштування',
   },
   hu: {
     cameras: 'Kamerák',
@@ -643,6 +739,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Mozgás',
     tag_privacy: 'Adatvédelem',
     none_shown: 'Még nincs megjelenített kamera: add hozzá a fent találtakat.',
+    toolbar: 'Felső sáv',
+    toolbar_never: 'Látható',
+    toolbar_users: 'Rejtett a nem rendszergazdák számára',
+    toolbar_everyone: 'Rejtett mindenki számára',
+    toolbar_helper: 'Rejtett: a videofal kitölti a teljes képernyőt; a rendszergazdák megtartanak egy fogaskerék gombot a Beállításokhoz való visszatéréshez.',
+    open_settings: 'Beállítások megnyitása',
   },
   sk: {
     cameras: 'Kamery',
@@ -680,6 +782,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Pohyb',
     tag_privacy: 'Súkromie',
     none_shown: 'Zatiaľ sa nezobrazuje žiadna kamera: pridajte nájdené vyššie.',
+    toolbar: 'Horná lišta',
+    toolbar_never: 'Zobrazená',
+    toolbar_users: 'Skrytá pre nesprávcov',
+    toolbar_everyone: 'Skrytá pre všetkých',
+    toolbar_helper: 'Skrytá: videostena zaberá celú obrazovku; správcovia si ponechajú tlačidlo s ozubeným kolesom na návrat do Nastavení.',
+    open_settings: 'Otvoriť nastavenia',
   },
   cs: {
     cameras: 'Kamery',
@@ -717,6 +825,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Pohyb',
     tag_privacy: 'Soukromí',
     none_shown: 'Zatím se nezobrazuje žádná kamera: přidejte nalezené výše.',
+    toolbar: 'Horní lišta',
+    toolbar_never: 'Zobrazená',
+    toolbar_users: 'Skrytá pro nesprávce',
+    toolbar_everyone: 'Skrytá pro všechny',
+    toolbar_helper: 'Skrytá: videostěna zabírá celou obrazovku; správci si ponechají tlačítko s ozubeným kolem pro návrat do Nastavení.',
+    open_settings: 'Otevřít nastavení',
   },
   sl: {
     cameras: 'Kamere',
@@ -754,6 +868,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Gibanje',
     tag_privacy: 'Zasebnost',
     none_shown: 'Še ni prikazanih kamer: dodajte zgoraj najdene.',
+    toolbar: 'Zgornja vrstica',
+    toolbar_never: 'Prikazana',
+    toolbar_users: 'Skrita za neskrbnike',
+    toolbar_everyone: 'Skrita za vse',
+    toolbar_helper: 'Skrita: video stena zavzame ves zaslon; skrbniki obdržijo gumb z zobnikom za vrnitev v Nastavitve.',
+    open_settings: 'Odpri nastavitve',
   },
   lv: {
     cameras: 'Kameras',
@@ -791,6 +911,12 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Kustība',
     tag_privacy: 'Privātums',
     none_shown: 'Vēl nav rādītu kameru: pievienojiet iepriekš atrastās.',
+    toolbar: 'Augšējā josla',
+    toolbar_never: 'Rādīta',
+    toolbar_users: 'Paslēpta ne-administratoriem',
+    toolbar_everyone: 'Paslēpta visiem',
+    toolbar_helper: 'Paslēpta: video siena aizņem visu ekrānu; administratori patur zobrata pogu, lai atgrieztos Iestatījumos.',
+    open_settings: 'Atvērt iestatījumus',
   },
   el: {
     cameras: 'Κάμερες',
@@ -828,11 +954,18 @@ var HomeCameraPanelI18n = {
     tag_motion: 'Κίνηση',
     tag_privacy: 'Ιδιωτικότητα',
     none_shown: 'Δεν εμφανίζεται ακόμη καμία κάμερα: προσθέστε όσες βρέθηκαν παραπάνω.',
+    toolbar: 'Επάνω γραμμή',
+    toolbar_never: 'Εμφανίζεται',
+    toolbar_users: 'Κρυφή για μη διαχειριστές',
+    toolbar_everyone: 'Κρυφή για όλους',
+    toolbar_helper: 'Κρυφή: ο τοίχος βίντεο καλύπτει όλη την οθόνη· οι διαχειριστές διατηρούν ένα κουμπί γραναζιού για επιστροφή στις Ρυθμίσεις.',
+    open_settings: 'Άνοιγμα ρυθμίσεων',
   },
 };
 
 var HCP_TABS = ['cameras', 'settings'];
 var HCP_CARD = 'home-camera-card';
+var HCP_HIDE = ['never', 'users', 'everyone'];
 
 // Text into HTML: the five special characters as numeric references
 function hcpEsc(s) {
@@ -941,6 +1074,7 @@ class HomeCameraPanel extends HTMLElement {
     .lhead { display:flex; align-items:center; gap:8px; min-height:36px; padding-bottom:2px; }
     .lname { flex:1; min-width:0; margin:0; font-size:12px; font-weight:500; letter-spacing:.05em; text-transform:uppercase; color:var(--secondary-text-color); }
     .list .msg { margin:0 0 4px; }
+    .list .ctl + .ctl { margin-top:12px; }
     .rows { display:flex; flex-direction:column; gap:6px; }
     .item { display:flex; align-items:center; gap:10px; min-height:56px; padding:8px 10px 8px 8px; border-radius:12px; background:var(--hcp-sec);
             border:1px solid transparent; box-sizing:border-box; min-width:0; }
@@ -998,6 +1132,18 @@ class HomeCameraPanel extends HTMLElement {
     @media (prefers-reduced-motion: reduce) { .bscene * { animation:none !important; } }
     @container (max-width:360px) { .bscene { display:none; } .bhead { right:0; } }
     @media (max-width:600px) { .tags { display:none; } .editbox { margin-left:0; } }
+    /* Top bar hidden (Settings › Panel): the video wall alone; administrators keep a round cog at the bottom right */
+    :host([bare]) .toolbar, :host([bare]) .tabs { display:none; }
+    .fab { position:fixed; right:16px; bottom:16px; z-index:3; width:44px; height:44px; border-radius:50%; display:none; place-items:center;
+           color:var(--primary-text-color); background:color-mix(in srgb, var(--card-background-color, #fff) 82%, transparent);
+           -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); box-shadow:0 2px 8px rgba(0,0,0,.25); --mdc-icon-size:22px; }
+    :host([bare]) .fab { display:grid; }
+    .fab:hover { color:var(--primary-color); }
+    .fab:focus-visible { outline:2px solid var(--primary-color); outline-offset:2px; }
+    .seg { display:inline-flex; flex-wrap:wrap; gap:4px; padding:3px; border-radius:20px; background:var(--hcp-sec); align-self:flex-start; }
+    .seg button { border:0; background:none; cursor:pointer; font:inherit; font-size:13px; font-weight:500; padding:7px 14px; border-radius:17px; color:var(--secondary-text-color); }
+    .seg button[aria-checked="true"] { background:var(--card-background-color, #fff); color:var(--primary-color); box-shadow:0 1px 2px rgba(0,0,0,.14); }
+    .seg button:focus-visible { outline:2px solid var(--primary-color); outline-offset:1px; }
   `;
 
   constructor() {
@@ -1125,13 +1271,18 @@ class HomeCameraPanel extends HTMLElement {
     this._loadError = null;
     // Unsaved edits are kept; otherwise the form follows what was saved (here or elsewhere)
     if (!dirty) this._draft = null;
+    this._syncBare();
     this._renderCameras();
     this._renderSettings();
   }
 
   _dirty() {
     if (!this._draft || !this._data) return false;
-    return JSON.stringify(this._draft.card) !== JSON.stringify(this._data.card) || this._draft.title !== this._data.title;
+    return (
+      JSON.stringify(this._draft.card) !== JSON.stringify(this._data.card) ||
+      this._draft.title !== this._data.title ||
+      this._draft.hide !== (this._data.hide_toolbar || 'never')
+    );
   }
 
   _goTab(tab, focus) {
@@ -1162,7 +1313,19 @@ class HomeCameraPanel extends HTMLElement {
     });
     var main = root.querySelector?.('main');
     if (main) main.className = tab;
+    this._syncBare();
     if (tab === 'settings') this._renderSettings();
+  }
+
+  // The top bar hidden as saved (never, for the users who are not administrators, or for everyone): only on the
+  // Cameras tab, Settings keeps it (its tabs lead back)
+  _bare() {
+    var hide = this._data?.hide_toolbar;
+    return this._tab === 'cameras' && (hide === 'everyone' || (hide === 'users' && !this._admin()));
+  }
+
+  _syncBare() {
+    this.toggleAttribute?.('bare', this._bare());
   }
 
   _render() {
@@ -1180,10 +1343,15 @@ class HomeCameraPanel extends HTMLElement {
         ${this._admin() ? `<a href="/config/integrations/integration/home_camera" title="${esc(this._t('integration'))}"><ha-icon icon="mdi:cog"></ha-icon></a>` : ''}
       </div>
       <div class="tabs" role="tablist"${tabs.length < 2 ? ' hidden' : ''}>${tabs.map((tab) => this._tabHtml(tab)).join('')}</div>
+      ${this._admin() ? `<a class="fab" href="#" data-fab title="${esc(this._t('open_settings'))}" aria-label="${esc(this._t('open_settings'))}"><ha-icon icon="mdi:cog"></ha-icon></a>` : ''}
       <main class="${this._tab}">
         <section class="column" id="tab-cameras" role="tabpanel" aria-labelledby="tabbtn-cameras"></section>
         <section class="column" id="tab-settings" role="tabpanel" aria-labelledby="tabbtn-settings"></section>
       </main>`;
+    root.querySelector('[data-fab]')?.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      this._goTab('settings', true);
+    });
     this._menu = root.querySelector('ha-menu-button');
     this._menu.hass = this._hass;
     this._menu.narrow = this._narrow;
@@ -1273,7 +1441,11 @@ class HomeCameraPanel extends HTMLElement {
   // ── Settings tab (administrators) ──────────────────────────────────────────
   _formValues() {
     if (!this._draft && this._data) {
-      this._draft = { card: JSON.parse(JSON.stringify(this._data.card || {})), title: this._data.title || '' };
+      this._draft = {
+        card: JSON.parse(JSON.stringify(this._data.card || {})),
+        title: this._data.title || '',
+        hide: this._data.hide_toolbar || 'never',
+      };
     }
     return this._draft;
   }
@@ -1291,6 +1463,11 @@ class HomeCameraPanel extends HTMLElement {
           <label class="ctl"><span>${esc(this._t('sidebar_title'))}</span>
             <div class="box"><input data-title maxlength="50" autocomplete="off"></div>
             <small data-title-helper></small></label>
+          <div class="ctl"><span id="hcp-hide">${esc(this._t('toolbar'))}</span>
+            <div class="seg" role="radiogroup" aria-labelledby="hcp-hide" data-hide-group>${HCP_HIDE.map(
+              (h) => `<button role="radio" data-hide="${h}" aria-checked="false">${esc(this._t(`toolbar_${h}`))}</button>`,
+            ).join('')}</div>
+            <small>${esc(this._t('toolbar_helper'))}</small></div>
         </ha-card>
         <ha-card class="list" data-found hidden></ha-card>
         <ha-card class="list">
@@ -1313,6 +1490,14 @@ class HomeCameraPanel extends HTMLElement {
         this._status = null;
         this._renderStatus();
       });
+      section.querySelector('[data-hide-group]').addEventListener('click', (ev) => {
+        var button = ev.composedPath().find((n) => n.dataset?.hide);
+        if (!button) return;
+        this._formValues().hide = button.dataset.hide;
+        this._status = null;
+        this._renderHide();
+        this._renderStatus();
+      });
       section.querySelector('[data-save]').addEventListener('click', () => this._save());
       section.querySelector('[data-revert]').addEventListener('click', () => {
         this._draft = null;
@@ -1331,10 +1516,20 @@ class HomeCameraPanel extends HTMLElement {
     var input = section.querySelector('[data-title]');
     if (input.value !== values.title && this.shadowRoot.activeElement !== input) input.value = values.title;
     section.querySelector('[data-title-helper]').textContent = this._t('sidebar_title_helper', { d: this._defaultTitle() });
+    this._renderHide();
     this._renderFound();
     this._renderShown();
     await this._renderEditor(section.querySelector('[data-editor]'), values.card);
     this._renderStatus();
+  }
+
+  _renderHide() {
+    var hide = this._formValues()?.hide || 'never';
+    for (var b of this.shadowRoot.getElementById?.('tab-settings')?.querySelectorAll('[data-hide]') || []) {
+      var on = b.dataset.hide === hide;
+      b.setAttribute('aria-checked', String(on));
+      b.tabIndex = on ? 0 : -1;
+    }
   }
 
   // The header card of Settings: its banner (a camera on a desk, cogs turning, a plant), the title, a pill saying
@@ -1666,7 +1861,12 @@ class HomeCameraPanel extends HTMLElement {
     this._saving = true;
     this._renderStatus();
     try {
-      var data = await this._hass.callWS({ type: 'home_camera/update_settings', card: values.card, title: values.title.trim() });
+      var data = await this._hass.callWS({
+        type: 'home_camera/update_settings',
+        card: values.card,
+        title: values.title.trim(),
+        hide_toolbar: values.hide,
+      });
       this._draft = null;
       this._status = { tone: 'good', text: this._t('saved') };
       this._onSettings(data);

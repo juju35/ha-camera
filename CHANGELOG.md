@@ -7,6 +7,7 @@
   - Cameras tab: the card's illustrated header as a card of its own above the video wall (cameras live and hidden, status pill, HD / SD), the privacy badges as pills under it; a camera in motion has its badge and its tile outlined in amber.
   - Settings tab: a header card with its illustrated banner (a pill says whether the changes are saved, with the cameras shown and found), then lists under uppercase titles — Panel, Cameras found, Cameras shown, Display — with filled, rounded rows and round tinted icons, and a save bar that stays in view.
   - Cameras shown are the panel's own list: drag a camera's handle (or use the arrow keys on it) to reorder, the pencil opens its fields under its row, *Remove from the panel* takes it out.
+- Settings › Panel › **Top bar**: shown, hidden for non-admins, or hidden for everyone — the Cameras tab then shows the video wall alone; administrators keep a round cog at the bottom right to open Settings (where the bar comes back).
 - `layout: wall` on a dashboard gets the same header card instead of the thin status bar; its illustration options are now in the visual editor.
 
 ## 4.6.4 - 2026-11-18

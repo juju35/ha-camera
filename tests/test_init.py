@@ -48,7 +48,7 @@ async def test_config_flow_single_entry(hass):
     assert result["type"] is FlowResultType.FORM
     result = await hass.config_entries.flow.async_configure(result["flow_id"], {})
     assert result["type"] is FlowResultType.CREATE_ENTRY
-    assert result["options"] == {"card": {"cameras": []}, "title": ""}
+    assert result["options"] == {"card": {"cameras": []}, "title": "", "hide_toolbar": "never"}
     again = await hass.config_entries.flow.async_init(DOMAIN, context={"source": SOURCE_USER})
     assert again["type"] is FlowResultType.ABORT
     assert again["reason"] == "single_instance_allowed"
@@ -124,6 +124,7 @@ async def test_every_user_reads_the_settings_and_follows_their_changes(hass, ent
         "configured": True,
         "card": CARD,
         "title": "",
+        "hide_toolbar": "never",
         "sidebar_title": "Cameras",
         "default_title": "Cameras",
     }
@@ -159,13 +160,26 @@ async def test_save_card_and_title(hass, entry, hass_ws_client):
     assert event["id"] == sub["id"]
     assert result["result"]["card"] == {"columns": 3, "cameras": [{"camera": "camera.garden", "name": "Garden"}]}
     assert result["result"]["sidebar_title"] == "Surveillance"
-    assert entry.options == {"card": result["result"]["card"], "title": "Surveillance"}
+    assert entry.options == {"card": result["result"]["card"], "title": "Surveillance", "hide_toolbar": "never"}
+    assert result["result"]["hide_toolbar"] == "never"
     # The sidebar follows the new title
     assert hass.data[DATA_PANELS][PANEL_PATH].sidebar_title == "Surveillance"
     # Back to the default
     msg = await _ws(hass, client, {"type": f"{DOMAIN}/update_settings", "title": ""})
     await client.receive_json()
     assert hass.data[DATA_PANELS][PANEL_PATH].sidebar_title == "Cameras"
+
+
+async def test_save_hide_toolbar(hass, entry, hass_ws_client):
+    await _setup(hass, entry)
+    client = await hass_ws_client(hass)
+    msg = await _ws(hass, client, {"type": f"{DOMAIN}/update_settings", "hide_toolbar": "users"})
+    assert msg["success"]
+    assert msg["result"]["hide_toolbar"] == "users"
+    assert entry.options["hide_toolbar"] == "users"
+    msg = await _ws(hass, client, {"type": f"{DOMAIN}/update_settings", "hide_toolbar": "sometimes"})
+    assert not msg["success"]
+    assert entry.options["hide_toolbar"] == "users"
 
 
 @pytest.mark.parametrize(

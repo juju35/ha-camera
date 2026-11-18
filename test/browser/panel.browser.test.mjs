@@ -20,10 +20,10 @@ customElements.define("ha-form", class extends HTMLElement {
 });
 window.formChange = (value) => form.dispatchEvent(new CustomEvent("value-changed", { detail: { value } }));
 window.sent = [];
-window.makeHass = ({ admin, card, title = "" }) => {
+window.makeHass = ({ admin, card, title = "", hide = "never" }) => {
   const listeners = [];
   window.push = (data) => listeners.forEach((cb) => cb(data));
-  const settings = (c, t) => ({ configured: true, card: c, title: t, sidebar_title: t || "Cameras", default_title: "Cameras" });
+  const settings = (c, t, h = hide) => ({ configured: true, card: c, title: t, hide_toolbar: h, sidebar_title: t || "Cameras", default_title: "Cameras" });
   return {
     language: "en",
     user: { is_admin: admin },
@@ -40,7 +40,7 @@ window.makeHass = ({ admin, card, title = "" }) => {
     },
     callWS: async (msg) => {
       sent.push(msg);
-      if (msg.type === "home_camera/update_settings") return settings(msg.card, msg.title);
+      if (msg.type === "home_camera/update_settings") return settings(msg.card, msg.title, msg.hide_toolbar);
       if (msg.type === "home_camera/discover") {
         return {
           cameras: [
@@ -177,6 +177,7 @@ test("an administrator edits a camera and the title in Settings, then saves them
     type: "home_camera/update_settings",
     card: { cameras: [{ camera: "camera.a", name: "Garden" }] },
     title: "Surveillance",
+    hide_toolbar: "never",
   });
   assert.equal(r.msg, "Saved");
   assert.equal(r.toolbar, "Surveillance");
@@ -262,4 +263,41 @@ test("on the wall, the column count is empty by default and 2 is kept when chose
   assert.equal(r.before, undefined);
   assert.deepEqual(r.saved, { cameras: ["camera.a", "camera.b"], columns: 2 });
   assert.equal(r.grid, "repeat(2, minmax(0px, 1fr))");
+});
+
+test("the top bar hidden for non-admins: a user gets the wall alone, an administrator keeps the bar", async () => {
+  const r = await page.evaluate(async () => {
+    const shown = (sel) => getComputedStyle($(sel)).display !== "none";
+    await open({ admin: false, hide: "users", card: { cameras: ["camera.a"] } });
+    const user = { bare: panel.hasAttribute("bare"), bar: shown(".toolbar"), fab: !!$("[data-fab]") };
+    await open({ admin: true, hide: "users", card: { cameras: ["camera.a"] } });
+    return { user, admin: { bare: panel.hasAttribute("bare"), bar: shown(".toolbar") } };
+  });
+  assert.deepEqual(r, { user: { bare: true, bar: false, fab: false }, admin: { bare: false, bar: true } });
+});
+
+test("the top bar hidden for everyone: an administrator gets the cog, which opens Settings with the bar back", async () => {
+  const r = await page.evaluate(async () => {
+    const shown = (sel) => getComputedStyle($(sel)).display !== "none";
+    await open({ admin: true, hide: "everyone", card: { cameras: ["camera.a"] } });
+    const wall = { bare: panel.hasAttribute("bare"), bar: shown(".toolbar"), fab: shown("[data-fab]") };
+    $("[data-fab]").click();
+    await new Promise((r) => setTimeout(r, 20));
+    return { wall, settings: { bare: panel.hasAttribute("bare"), bar: shown(".tabs"), tab: !$("#tab-settings").hidden, fab: shown("[data-fab]") } };
+  });
+  assert.deepEqual(r.wall, { bare: true, bar: false, fab: true });
+  assert.deepEqual(r.settings, { bare: false, bar: true, tab: true, fab: false });
+});
+
+test("Settings saves the top bar choice", async () => {
+  const r = await page.evaluate(async () => {
+    await open({ admin: true, card: { cameras: ["camera.a"] } }, "settings");
+    const before = $('[data-hide="never"]').getAttribute("aria-checked");
+    $('[data-hide="users"]').click();
+    const dirty = { checked: $('[data-hide="users"]').getAttribute("aria-checked"), save: $("[data-save]").disabled };
+    $("[data-save]").click();
+    await new Promise((r) => setTimeout(r, 50));
+    return { before, dirty, saved: sent.find((m) => m.type === "home_camera/update_settings").hide_toolbar };
+  });
+  assert.deepEqual(r, { before: "true", dirty: { checked: "true", save: false }, saved: "users" });
 });

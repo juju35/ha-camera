@@ -5,7 +5,8 @@ shows the home camera card full page, as the cameras dashboard did. Administrato
 (the card's visual editor and the sidebar title). Commands:
 
 - ``home_camera/subscribe`` (every user): the settings at once, then again each time they change;
-- ``home_camera/update_settings`` (administrators): changes the card configuration and the sidebar title;
+- ``home_camera/update_settings`` (administrators): changes the card configuration, the sidebar title and whether
+  the panel's top bar is hidden (``hide_toolbar``: never, for the users who are not administrators, or for everyone);
 - ``home_camera/discover`` (administrators): every camera of Home Assistant, for the Settings tab to add the
   ones the panel does not show yet (``discovery.py``).
 """
@@ -25,9 +26,11 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect, async_dis
 from .const import (
     CARD_URL,
     CONF_CARD,
+    CONF_HIDE_TOOLBAR,
     CONF_TITLE,
     DEFAULTS,
     DOMAIN,
+    HIDE_TOOLBAR_CHOICES,
     MAX_CAMERAS,
     MAX_CARD_SIZE,
     MAX_TITLE_LENGTH,
@@ -69,6 +72,7 @@ def _payload(hass: HomeAssistant) -> dict[str, Any]:
         "configured": entry is not None,
         CONF_CARD: current[CONF_CARD],
         CONF_TITLE: current[CONF_TITLE],
+        CONF_HIDE_TOOLBAR: current[CONF_HIDE_TOOLBAR],
         "sidebar_title": sidebar_title(hass, current[CONF_TITLE]),
         "default_title": sidebar_title(hass, ""),
     }
@@ -136,6 +140,7 @@ async def _ws_subscribe(hass: HomeAssistant, connection: websocket_api.ActiveCon
         vol.Required("type"): f"{DOMAIN}/update_settings",
         vol.Optional(CONF_CARD): validate_card,
         vol.Optional(CONF_TITLE): vol.All(str, vol.Strip, vol.Length(max=MAX_TITLE_LENGTH)),
+        vol.Optional(CONF_HIDE_TOOLBAR): vol.In(HIDE_TOOLBAR_CHOICES),
     }
 )
 @websocket_api.require_admin

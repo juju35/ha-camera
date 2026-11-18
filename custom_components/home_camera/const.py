@@ -22,7 +22,10 @@ PANEL_ELEMENT = "home-camera-panel"
 # Options of the config entry, edited in the panel's Settings tab
 CONF_CARD = "card"  # the home-camera-card configuration the panel shows
 CONF_TITLE = "title"  # sidebar title, empty: "Cameras" in the server's language
-DEFAULTS = {CONF_CARD: {"cameras": []}, CONF_TITLE: ""}
+# The panel's top bar (title, tabs): shown, hidden for the users who are not administrators, or hidden for everyone
+CONF_HIDE_TOOLBAR = "hide_toolbar"
+HIDE_TOOLBAR_CHOICES = ("never", "users", "everyone")
+DEFAULTS = {CONF_CARD: {"cameras": []}, CONF_TITLE: "", CONF_HIDE_TOOLBAR: "never"}
 MAX_CAMERAS = 64
 MAX_TITLE_LENGTH = 50
 MAX_CARD_SIZE = 32_000  # bytes of the card configuration, as JSON
