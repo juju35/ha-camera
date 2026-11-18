@@ -65,6 +65,7 @@ async def test_panel_for_every_user_and_files_served(hass, entry, hass_client):
     assert custom["name"] == "home-camera-panel"
     assert custom["module_url"] == f"{PANEL_URL}?v={VERSION}"
     assert panel.config["card_url"] == f"{CARD_URL}?v={VERSION}"
+    assert panel.config["hide_toolbar"] == "never"
     client = await hass_client()
     for url, marker in (
         (PANEL_URL, f"HOME_CAMERA_PANEL_VERSION = '{VERSION}'"),
@@ -177,6 +178,8 @@ async def test_save_hide_toolbar(hass, entry, hass_ws_client):
     assert msg["success"]
     assert msg["result"]["hide_toolbar"] == "users"
     assert entry.options["hide_toolbar"] == "users"
+    # In the panel's registration too, read before its settings arrive
+    assert hass.data[DATA_PANELS][PANEL_PATH].config["hide_toolbar"] == "users"
     msg = await _ws(hass, client, {"type": f"{DOMAIN}/update_settings", "hide_toolbar": "sometimes"})
     assert not msg["success"]
     assert entry.options["hide_toolbar"] == "users"

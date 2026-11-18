@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.7.2 - 2026-11-19
+
+### Fixes
+- Top bar hidden (Settings › Panel): the title bar no longer shows for a moment while the panel loads — the choice now comes with the panel's registration, known before its settings arrive.
+
 ## 4.7.1 - 2026-11-19
 
 ### Fixes

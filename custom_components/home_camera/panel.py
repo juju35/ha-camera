@@ -88,7 +88,13 @@ async def async_register_panel(hass: HomeAssistant, entry: ConfigEntry) -> None:
         sidebar_icon=PANEL_ICON,
         module_url=f"{PANEL_URL}?v={VERSION}",
         require_admin=False,
-        config={"version": VERSION, "card_url": f"{CARD_URL}?v={VERSION}"},
+        # hide_toolbar here too: the panel knows it as soon as it is created, before its settings arrive (no top
+        # bar shown then hidden while the page loads)
+        config={
+            "version": VERSION,
+            "card_url": f"{CARD_URL}?v={VERSION}",
+            CONF_HIDE_TOOLBAR: settings(entry)[CONF_HIDE_TOOLBAR],
+        },
     )
 
 
@@ -153,8 +159,8 @@ async def _ws_update_settings(hass: HomeAssistant, connection: websocket_api.Act
     updated = {**current, **{key: msg[key] for key in DEFAULTS if key in msg}}
     if updated != current:
         hass.config_entries.async_update_entry(entry, options=updated)
-        if updated[CONF_TITLE] != current[CONF_TITLE]:
-            # The sidebar title is the panel's: registered again under the new one
+        if updated[CONF_TITLE] != current[CONF_TITLE] or updated[CONF_HIDE_TOOLBAR] != current[CONF_HIDE_TOOLBAR]:
+            # The sidebar title and the top bar choice are in the panel's registration: registered again with them
             frontend.async_remove_panel(hass, PANEL_PATH)
             await async_register_panel(hass, entry)
         async_dispatcher_send(hass, SIGNAL_UPDATED)

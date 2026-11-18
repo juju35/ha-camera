@@ -12,7 +12,7 @@
  *
  * https://github.com/juju35/ha-camera
  */
-var HOME_CAMERA_PANEL_VERSION = '4.7.1';
+var HOME_CAMERA_PANEL_VERSION = '4.7.2';
 
 var HomeCameraPanelI18n = {
   en: {
@@ -1155,6 +1155,7 @@ class HomeCameraPanel extends HTMLElement {
 
   set panel(panel) {
     this._panel = panel;
+    this._syncBare();
   }
 
   set hass(hass) {
@@ -1303,9 +1304,10 @@ class HomeCameraPanel extends HTMLElement {
     if (tab === 'settings') this._renderSettings();
   }
 
-  // The title bar hidden as saved (never, for the users who are not administrators, or for everyone); the tabs stay
+  // The title bar hidden as saved (never, for the users who are not administrators, or for everyone); the tabs stay.
+  // Until the settings arrive, the panel's registration says it: the bar is never shown then hidden while loading.
   _bare() {
-    var hide = this._data?.hide_toolbar;
+    var hide = this._data?.hide_toolbar ?? this._panel?.config?.hide_toolbar;
     return hide === 'everyone' || (hide === 'users' && !this._admin());
   }
 
