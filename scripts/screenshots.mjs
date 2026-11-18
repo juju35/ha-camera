@@ -273,12 +273,20 @@ for (const theme of ["light", "dark"]) {
       user: { is_admin: true },
       callService: async () => {},
       connection: { subscribeMessage: (cb) => { setTimeout(() => cb(settings)); return Promise.resolve(() => {}); } },
+      // Settings: one camera of Home Assistant not shown yet
+      callWS: async (msg) =>
+        msg.type === "home_camera/discover" ? { cameras: [{ camera: "camera.garage", name: "Garage", area: "Garage", sd: "camera.garage_sd" }] } : [],
     };
   }, { config, hass: { states, entities, language: "en", locale: { language: "en" }, themes: { darkMode: theme === "dark" } } });
   await page.waitForTimeout(500);
   await page.locator("home-camera-panel home-camera-card .tile").first().hover();
   await page.waitForTimeout(300);
   save(`panel${theme === "dark" ? "-dark" : ""}.png`, await page.screenshot({ animations: "disabled" }));
+  // The Settings tab: its header card, the cameras found, the cameras shown
+  await page.mouse.move(0, 0);
+  await page.locator("home-camera-panel .tab[data-tab=settings]").click();
+  await page.waitForTimeout(3500);
+  save(`panel-settings${theme === "dark" ? "-dark" : ""}.png`, await page.screenshot({ animations: "disabled" }));
   await page.close();
 }
 

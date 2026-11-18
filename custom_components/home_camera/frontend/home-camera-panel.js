@@ -1,17 +1,18 @@
 /*
  * Home Camera sidebar panel — every home camera on one page, for every user (not only administrators).
  *
- * Two tabs under the toolbar, as in Smart Comfort: Cameras (the cameras full page, as a video wall edge to edge,
- * with no card around them) and, for administrators only, Settings (the sidebar title, the cameras of Home
- * Assistant not shown yet, from home_camera/discover, and the card's own visual editor, with a copy of a camera card found
- * on a dashboard). The settings come from home_camera/subscribe,
+ * Two tabs under the toolbar, as in Smart Comfort: Cameras (the cameras full page: the card's illustrated header as a
+ * card, then the video wall edge to edge) and, for administrators only, Settings (a header card with its illustrated
+ * banner, the sidebar title, the cameras of Home Assistant not shown yet, from home_camera/discover, the cameras shown
+ * as the panel's own list — reordered by drag or arrow keys, each edited with the card editor's camera fields — and
+ * the card's display options, with a copy of a camera card found on a dashboard). The settings come from home_camera/subscribe,
  * open to every user and pushed again whenever they change; home_camera/update_settings (administrators)
  * saves them. The tab is in the address (/cameras/settings). The panel draws its toolbar, tabs and forms itself;
  * the camera grid is the card's (streams, privacy, HD / SD, PTZ, fullscreen).
  *
  * https://github.com/juju35/ha-camera
  */
-var HOME_CAMERA_PANEL_VERSION = '4.6.4';
+var HOME_CAMERA_PANEL_VERSION = '4.7.0';
 
 var HomeCameraPanelI18n = {
   en: {
@@ -41,6 +42,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Add all',
     added: 'Cameras added: {n}. Save to keep them.',
     card_error: 'The camera card could not be loaded: clear the browser cache and reload the page.',
+    panel_heading: 'Panel',
+    display_heading: 'Display',
+    up_to_date: 'Up to date',
+    edit: 'Edit {c}',
+    remove: 'Remove from the panel',
+    move: 'Move {c} (drag, or the arrow keys)',
+    tag_motion: 'Motion',
+    tag_privacy: 'Privacy',
+    none_shown: 'No camera shown yet: add the ones found above.',
   },
   fr: {
     cameras: 'Caméras',
@@ -69,6 +79,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Tout ajouter',
     added: 'Caméras ajoutées : {n}. Enregistrez pour les garder.',
     card_error: 'La carte caméras n’a pas pu être chargée : videz le cache du navigateur et rechargez la page.',
+    panel_heading: 'Panneau',
+    display_heading: 'Affichage',
+    up_to_date: 'À jour',
+    edit: 'Modifier {c}',
+    remove: 'Retirer du panneau',
+    move: 'Déplacer {c} (glisser, ou les flèches du clavier)',
+    tag_motion: 'Mouvement',
+    tag_privacy: 'Confidentialité',
+    none_shown: 'Aucune caméra affichée : ajoutez celles trouvées ci-dessus.',
   },
   de: {
     cameras: 'Kameras',
@@ -97,6 +116,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Alle hinzufügen',
     added: 'Kameras hinzugefügt: {n}. Speichern, um sie zu behalten.',
     card_error: 'Die Kamerakarte konnte nicht geladen werden: Browser-Cache leeren und Seite neu laden.',
+    panel_heading: 'Panel',
+    display_heading: 'Anzeige',
+    up_to_date: 'Aktuell',
+    edit: '{c} bearbeiten',
+    remove: 'Aus dem Panel entfernen',
+    move: '{c} verschieben (ziehen oder Pfeiltasten)',
+    tag_motion: 'Bewegung',
+    tag_privacy: 'Privatsphäre',
+    none_shown: 'Noch keine Kamera angezeigt: füge die oben gefundenen hinzu.',
   },
   es: {
     cameras: 'Cámaras',
@@ -125,6 +153,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Añadir todas',
     added: 'Cámaras añadidas: {n}. Guarda para conservarlas.',
     card_error: 'No se pudo cargar la tarjeta de cámaras: vacía la caché del navegador y recarga la página.',
+    panel_heading: 'Panel',
+    display_heading: 'Visualización',
+    up_to_date: 'Al día',
+    edit: 'Editar {c}',
+    remove: 'Quitar del panel',
+    move: 'Mover {c} (arrastrar o teclas de flecha)',
+    tag_motion: 'Movimiento',
+    tag_privacy: 'Privacidad',
+    none_shown: 'Aún no se muestra ninguna cámara: añade las encontradas arriba.',
   },
   sr: {
     cameras: 'Камере',
@@ -153,6 +190,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Додај све',
     added: 'Додате камере: {n}. Сачувајте да бисте их задржали.',
     card_error: 'Картица камера није учитана: обришите кеш прегледача и поново учитајте страницу.',
+    panel_heading: 'Панел',
+    display_heading: 'Приказ',
+    up_to_date: 'Ажурно',
+    edit: 'Измени {c}',
+    remove: 'Уклони из панела',
+    move: 'Помери {c} (превуци или стрелице)',
+    tag_motion: 'Покрет',
+    tag_privacy: 'Приватност',
+    none_shown: 'Још нема приказаних камера: додајте пронађене изнад.',
   },
   'sr-Latn': {
     cameras: 'Kamere',
@@ -181,6 +227,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Dodaj sve',
     added: 'Dodate kamere: {n}. Sačuvajte da biste ih zadržali.',
     card_error: 'Kartica kamera nije učitana: obrišite keš pregledača i ponovo učitajte stranicu.',
+    panel_heading: 'Panel',
+    display_heading: 'Prikaz',
+    up_to_date: 'Ažurno',
+    edit: 'Izmeni {c}',
+    remove: 'Ukloni iz panela',
+    move: 'Pomeri {c} (prevuci ili strelice)',
+    tag_motion: 'Pokret',
+    tag_privacy: 'Privatnost',
+    none_shown: 'Još nema prikazanih kamera: dodajte pronađene iznad.',
   },
   it: {
     cameras: 'Telecamere',
@@ -209,6 +264,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Aggiungi tutte',
     added: 'Telecamere aggiunte: {n}. Salva per mantenerle.',
     card_error: 'Impossibile caricare la scheda telecamere: svuota la cache del browser e ricarica la pagina.',
+    panel_heading: 'Pannello',
+    display_heading: 'Visualizzazione',
+    up_to_date: 'Aggiornato',
+    edit: 'Modifica {c}',
+    remove: 'Rimuovi dal pannello',
+    move: 'Sposta {c} (trascina o tasti freccia)',
+    tag_motion: 'Movimento',
+    tag_privacy: 'Privacy',
+    none_shown: 'Ancora nessuna telecamera mostrata: aggiungi quelle trovate sopra.',
   },
   nl: {
     cameras: "Camera's",
@@ -237,6 +301,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Alles toevoegen',
     added: 'Camera\'s toegevoegd: {n}. Sla op om ze te bewaren.',
     card_error: 'De camerakaart kon niet worden geladen: wis de browsercache en laad de pagina opnieuw.',
+    panel_heading: 'Paneel',
+    display_heading: 'Weergave',
+    up_to_date: 'Bijgewerkt',
+    edit: '{c} bewerken',
+    remove: 'Uit het paneel verwijderen',
+    move: '{c} verplaatsen (slepen of pijltjestoetsen)',
+    tag_motion: 'Beweging',
+    tag_privacy: 'Privacy',
+    none_shown: "Nog geen camera's getoond: voeg de hierboven gevonden toe.",
   },
   pt: {
     cameras: 'Câmaras',
@@ -265,6 +338,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Adicionar todas',
     added: 'Câmaras adicionadas: {n}. Guarde para as manter.',
     card_error: 'Não foi possível carregar o cartão de câmaras: limpe a cache do navegador e recarregue a página.',
+    panel_heading: 'Painel',
+    display_heading: 'Apresentação',
+    up_to_date: 'Atualizado',
+    edit: 'Editar {c}',
+    remove: 'Remover do painel',
+    move: 'Mover {c} (arrastar ou teclas de seta)',
+    tag_motion: 'Movimento',
+    tag_privacy: 'Privacidade',
+    none_shown: 'Ainda sem câmaras apresentadas: adicione as encontradas acima.',
   },
   pl: {
     cameras: 'Kamery',
@@ -293,6 +375,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Dodaj wszystkie',
     added: 'Dodane kamery: {n}. Zapisz, aby je zachować.',
     card_error: 'Nie udało się wczytać karty kamer: wyczyść pamięć podręczną przeglądarki i odśwież stronę.',
+    panel_heading: 'Panel',
+    display_heading: 'Wyświetlanie',
+    up_to_date: 'Aktualne',
+    edit: 'Edytuj {c}',
+    remove: 'Usuń z panelu',
+    move: 'Przenieś {c} (przeciągnij lub strzałki)',
+    tag_motion: 'Ruch',
+    tag_privacy: 'Prywatność',
+    none_shown: 'Brak wyświetlanych kamer: dodaj znalezione powyżej.',
   },
   ro: {
     cameras: 'Camere',
@@ -321,6 +412,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Adaugă toate',
     added: 'Camere adăugate: {n}. Salvați pentru a le păstra.',
     card_error: 'Cardul camerelor nu a putut fi încărcat: goliți memoria cache a browserului și reîncărcați pagina.',
+    panel_heading: 'Panou',
+    display_heading: 'Afișare',
+    up_to_date: 'La zi',
+    edit: 'Editează {c}',
+    remove: 'Elimină din panou',
+    move: 'Mută {c} (trage sau tastele săgeți)',
+    tag_motion: 'Mișcare',
+    tag_privacy: 'Confidențialitate',
+    none_shown: 'Nicio cameră afișată încă: adăugați-le pe cele găsite mai sus.',
   },
   da: {
     cameras: 'Kameraer',
@@ -349,6 +449,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Tilføj alle',
     added: 'Kameraer tilføjet: {n}. Gem for at beholde dem.',
     card_error: 'Kamerakortet kunne ikke indlæses: ryd browserens cache, og genindlæs siden.',
+    panel_heading: 'Panel',
+    display_heading: 'Visning',
+    up_to_date: 'Opdateret',
+    edit: 'Rediger {c}',
+    remove: 'Fjern fra panelet',
+    move: 'Flyt {c} (træk eller piletaster)',
+    tag_motion: 'Bevægelse',
+    tag_privacy: 'Privatliv',
+    none_shown: 'Ingen kameraer vist endnu: tilføj dem, der er fundet ovenfor.',
   },
   sv: {
     cameras: 'Kameror',
@@ -377,6 +486,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Lägg till alla',
     added: 'Kameror tillagda: {n}. Spara för att behålla dem.',
     card_error: 'Kamerakortet kunde inte läsas in: rensa webbläsarens cache och ladda om sidan.',
+    panel_heading: 'Panel',
+    display_heading: 'Visning',
+    up_to_date: 'Uppdaterad',
+    edit: 'Redigera {c}',
+    remove: 'Ta bort från panelen',
+    move: 'Flytta {c} (dra eller piltangenter)',
+    tag_motion: 'Rörelse',
+    tag_privacy: 'Integritet',
+    none_shown: 'Inga kameror visas ännu: lägg till de som hittats ovan.',
   },
   bg: {
     cameras: 'Камери',
@@ -405,6 +523,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Добави всички',
     added: 'Добавени камери: {n}. Запазете, за да ги задържите.',
     card_error: 'Картата с камери не можа да се зареди: изчистете кеша на браузъра и презаредете страницата.',
+    panel_heading: 'Панел',
+    display_heading: 'Изглед',
+    up_to_date: 'Актуално',
+    edit: 'Редактирай {c}',
+    remove: 'Премахни от панела',
+    move: 'Премести {c} (плъзни или стрелки)',
+    tag_motion: 'Движение',
+    tag_privacy: 'Поверителност',
+    none_shown: 'Все още няма показани камери: добавете откритите по-горе.',
   },
   ru: {
     cameras: 'Камеры',
@@ -433,6 +560,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Добавить все',
     added: 'Добавлено камер: {n}. Сохраните, чтобы оставить их.',
     card_error: 'Не удалось загрузить карточку камер: очистите кэш браузера и перезагрузите страницу.',
+    panel_heading: 'Панель',
+    display_heading: 'Отображение',
+    up_to_date: 'Актуально',
+    edit: 'Изменить {c}',
+    remove: 'Убрать с панели',
+    move: 'Переместить {c} (перетаскиванием или стрелками)',
+    tag_motion: 'Движение',
+    tag_privacy: 'Приватность',
+    none_shown: 'Камер пока нет: добавьте найденные выше.',
   },
   uk: {
     cameras: 'Камери',
@@ -461,6 +597,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Додати всі',
     added: 'Додано камер: {n}. Збережіть, щоб залишити їх.',
     card_error: 'Не вдалося завантажити картку камер: очистьте кеш браузера та перезавантажте сторінку.',
+    panel_heading: 'Панель',
+    display_heading: 'Відображення',
+    up_to_date: 'Актуально',
+    edit: 'Змінити {c}',
+    remove: 'Прибрати з панелі',
+    move: 'Перемістити {c} (перетягуванням або стрілками)',
+    tag_motion: 'Рух',
+    tag_privacy: 'Приватність',
+    none_shown: 'Камер поки немає: додайте знайдені вище.',
   },
   hu: {
     cameras: 'Kamerák',
@@ -489,6 +634,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Összes hozzáadása',
     added: 'Hozzáadott kamerák: {n}. Mentsd, hogy megmaradjanak.',
     card_error: 'A kamerakártya nem tölthető be: ürítsd a böngésző gyorsítótárát, és töltsd újra az oldalt.',
+    panel_heading: 'Panel',
+    display_heading: 'Megjelenítés',
+    up_to_date: 'Naprakész',
+    edit: '{c} szerkesztése',
+    remove: 'Eltávolítás a panelről',
+    move: '{c} áthelyezése (húzással vagy nyílbillentyűkkel)',
+    tag_motion: 'Mozgás',
+    tag_privacy: 'Adatvédelem',
+    none_shown: 'Még nincs megjelenített kamera: add hozzá a fent találtakat.',
   },
   sk: {
     cameras: 'Kamery',
@@ -517,6 +671,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Pridať všetky',
     added: 'Pridané kamery: {n}. Uložte ich, aby zostali.',
     card_error: 'Kartu kamier sa nepodarilo načítať: vymažte vyrovnávaciu pamäť prehliadača a obnovte stránku.',
+    panel_heading: 'Panel',
+    display_heading: 'Zobrazenie',
+    up_to_date: 'Aktuálne',
+    edit: 'Upraviť {c}',
+    remove: 'Odstrániť z panela',
+    move: 'Presunúť {c} (potiahnutím alebo šípkami)',
+    tag_motion: 'Pohyb',
+    tag_privacy: 'Súkromie',
+    none_shown: 'Zatiaľ sa nezobrazuje žiadna kamera: pridajte nájdené vyššie.',
   },
   cs: {
     cameras: 'Kamery',
@@ -545,6 +708,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Přidat vše',
     added: 'Přidané kamery: {n}. Uložte je, aby zůstaly.',
     card_error: 'Kartu kamer se nepodařilo načíst: vymažte mezipaměť prohlížeče a obnovte stránku.',
+    panel_heading: 'Panel',
+    display_heading: 'Zobrazení',
+    up_to_date: 'Aktuální',
+    edit: 'Upravit {c}',
+    remove: 'Odebrat z panelu',
+    move: 'Přesunout {c} (přetažením nebo šipkami)',
+    tag_motion: 'Pohyb',
+    tag_privacy: 'Soukromí',
+    none_shown: 'Zatím se nezobrazuje žádná kamera: přidejte nalezené výše.',
   },
   sl: {
     cameras: 'Kamere',
@@ -573,6 +745,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Dodaj vse',
     added: 'Dodane kamere: {n}. Shranite, da jih obdržite.',
     card_error: 'Kartice kamer ni bilo mogoče naložiti: počistite predpomnilnik brskalnika in znova naložite stran.',
+    panel_heading: 'Plošča',
+    display_heading: 'Prikaz',
+    up_to_date: 'Posodobljeno',
+    edit: 'Uredi {c}',
+    remove: 'Odstrani s plošče',
+    move: 'Premakni {c} (povleci ali puščice)',
+    tag_motion: 'Gibanje',
+    tag_privacy: 'Zasebnost',
+    none_shown: 'Še ni prikazanih kamer: dodajte zgoraj najdene.',
   },
   lv: {
     cameras: 'Kameras',
@@ -601,6 +782,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Pievienot visas',
     added: 'Pievienotas kameras: {n}. Saglabājiet, lai tās paturētu.',
     card_error: 'Neizdevās ielādēt kameru kartīti: notīriet pārlūka kešatmiņu un pārlādējiet lapu.',
+    panel_heading: 'Panelis',
+    display_heading: 'Attēlojums',
+    up_to_date: 'Aktuāls',
+    edit: 'Rediģēt {c}',
+    remove: 'Noņemt no paneļa',
+    move: 'Pārvietot {c} (velkot vai ar bultiņām)',
+    tag_motion: 'Kustība',
+    tag_privacy: 'Privātums',
+    none_shown: 'Vēl nav rādītu kameru: pievienojiet iepriekš atrastās.',
   },
   el: {
     cameras: 'Κάμερες',
@@ -629,6 +819,15 @@ var HomeCameraPanelI18n = {
     add_all: 'Προσθήκη όλων',
     added: 'Κάμερες που προστέθηκαν: {n}. Αποθηκεύστε για να τις κρατήσετε.',
     card_error: 'Η κάρτα καμερών δεν φορτώθηκε: καθαρίστε την κρυφή μνήμη του προγράμματος περιήγησης και φορτώστε ξανά τη σελίδα.',
+    panel_heading: 'Πίνακας',
+    display_heading: 'Εμφάνιση',
+    up_to_date: 'Ενημερωμένο',
+    edit: 'Επεξεργασία {c}',
+    remove: 'Αφαίρεση από τον πίνακα',
+    move: 'Μετακίνηση {c} (σύρσιμο ή βέλη)',
+    tag_motion: 'Κίνηση',
+    tag_privacy: 'Ιδιωτικότητα',
+    none_shown: 'Δεν εμφανίζεται ακόμη καμία κάμερα: προσθέστε όσες βρέθηκαν παραπάνω.',
   },
 };
 
@@ -702,9 +901,8 @@ class HomeCameraPanel extends HTMLElement {
     .tab:hover, .tab:focus-visible { opacity:1; outline:none; }
     .tab.active { opacity:1; border-bottom-color:var(--app-header-text-color, #fff); }
     main { margin:0 auto; padding:16px; box-sizing:border-box; }
-    /* The cameras as a video wall, edge to edge; the settings at reading width */
-    main.cameras { padding:8px 12px 12px; }
-    main.settings { max-width:900px; }
+    /* The cameras as a video wall, edge to edge under its header card; the settings at reading width */
+    main.settings { max-width:940px; }
     section[hidden] { display:none; }
     .column { display:flex; flex-direction:column; gap:12px; min-width:0; }
     .note { padding:16px; color:var(--secondary-text-color); display:flex; flex-direction:column; gap:10px; align-items:flex-start; }
@@ -733,11 +931,73 @@ class HomeCameraPanel extends HTMLElement {
     ha-card { display:block; }
     ha-card[hidden] { display:none; }
     .bar.head h2 { margin:0; }
-    .found { display:flex; align-items:center; gap:12px; padding:6px 0; border-top:1px solid var(--divider-color, rgba(127,127,127,.2)); }
-    .found > ha-icon { color:var(--primary-color); --mdc-icon-size:22px; flex:none; }
-    .found .who { flex:1; min-width:0; }
-    .found .n { font-size:14px; font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-    .found .s { font-size:12px; color:var(--secondary-text-color); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    /* The charter of the ha-* cards and panels: a header card with its illustrated banner, then lists under an
+       uppercase title whose rows are filled and rounded, each with a round tinted icon; pill buttons */
+    :host { --hcp-sec: color-mix(in srgb, var(--primary-text-color) 6%, var(--card-background-color, #fff)); }
+    .act { min-height:36px; box-sizing:border-box; padding:0 14px; border-radius:18px; }
+    .act.quiet { background:var(--hcp-sec); }
+    ha-card.list { padding:12px 16px 14px; display:flex; flex-direction:column; gap:6px; }
+    ha-card.list[hidden] { display:none; }
+    .lhead { display:flex; align-items:center; gap:8px; min-height:36px; padding-bottom:2px; }
+    .lname { flex:1; min-width:0; margin:0; font-size:12px; font-weight:500; letter-spacing:.05em; text-transform:uppercase; color:var(--secondary-text-color); }
+    .list .msg { margin:0 0 4px; }
+    .rows { display:flex; flex-direction:column; gap:6px; }
+    .item { display:flex; align-items:center; gap:10px; min-height:56px; padding:8px 10px 8px 8px; border-radius:12px; background:var(--hcp-sec);
+            border:1px solid transparent; box-sizing:border-box; min-width:0; }
+    .item.found { background:color-mix(in srgb, var(--primary-color) 9%, var(--hcp-sec)); border-color:color-mix(in srgb, var(--primary-color) 22%, transparent); }
+    .item.open { border-color:color-mix(in srgb, var(--primary-color) 45%, transparent); }
+    .item.over { border-color:var(--primary-color); border-style:dashed; }
+    .item .act.quiet, .item .round { background:var(--card-background-color, #fff); }
+    .ic { width:40px; height:40px; flex:none; border-radius:50%; display:grid; place-items:center; --mdc-icon-size:22px;
+          color:var(--primary-text-color); background:color-mix(in srgb, var(--secondary-text-color) 14%, transparent); }
+    .ic.info { color:color-mix(in srgb, var(--primary-color) 70%, var(--primary-text-color)); background:color-mix(in srgb, var(--primary-color) 16%, transparent); }
+    .ic.good { color:color-mix(in srgb, var(--success-color, #43a047) 70%, var(--primary-text-color)); background:color-mix(in srgb, var(--success-color, #43a047) 16%, transparent); }
+    .ic.bad { color:color-mix(in srgb, var(--error-color, #db4437) 70%, var(--primary-text-color)); background:color-mix(in srgb, var(--error-color, #db4437) 16%, transparent); }
+    .who { flex:1; min-width:0; display:flex; flex-direction:column; gap:2px; }
+    .who .n { font-size:14px; font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .who .s { font-size:12px; color:var(--secondary-text-color); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .tags { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:6px; flex:none; max-width:45%; }
+    .tag { padding:2px 9px; border-radius:11px; font-size:11.5px; font-weight:500; line-height:16px; white-space:nowrap;
+           background:var(--card-background-color, #fff); color:var(--primary-text-color); }
+    .tag.good { background:color-mix(in srgb, var(--success-color, #43a047) 16%, transparent); color:color-mix(in srgb, var(--success-color, #43a047) 55%, var(--primary-text-color)); }
+    .round { width:40px; height:40px; flex:none; border-radius:50%; border:0; display:grid; place-items:center; cursor:pointer; color:var(--primary-text-color); --mdc-icon-size:18px; }
+    .round:hover { color:var(--primary-color); }
+    .round[aria-expanded="true"] { color:var(--primary-color); background:color-mix(in srgb, var(--primary-color) 14%, transparent); }
+    .drag { width:24px; height:40px; flex:none; border:0; padding:0; background:none; display:grid; place-items:center; cursor:grab; color:var(--secondary-text-color); --mdc-icon-size:20px; border-radius:6px; }
+    .drag:focus-visible, .round:focus-visible, .act:focus-visible { outline:2px solid var(--primary-color); outline-offset:1px; }
+    .editbox { margin:0 0 4px 34px; padding:4px 4px 0; display:flex; flex-direction:column; gap:8px; }
+    .act.danger { color:var(--error-color, #db4437); }
+    .savebar { padding:10px 12px; position:sticky; bottom:12px; z-index:1; }
+    .savebar .msg { text-align:right; }
+    /* The header card: the 90 px illustrated banner of the ha-* cards, edge to edge */
+    ha-card.top { overflow:hidden; }
+    .banner { position:relative; height:90px; overflow:hidden; background:#f2efe9; color:#1f2328; --hcp-muted:#5d6670; container-type:inline-size; }
+    .banner.night { background:#2a2b33; color:#fff; --hcp-muted:rgba(255,255,255,.78); }
+    .bscene { position:absolute; right:16px; bottom:10px; height:80px; width:min(200px, 40%); }
+    .bground { position:absolute; left:0; right:0; bottom:0; height:10px; background:repeating-linear-gradient(90deg, #c99a6b 0 38px, #b98a5c 38px 40px); box-shadow:inset 0 2px 0 #a97c50; }
+    .night .bground { background:repeating-linear-gradient(90deg, #4a3a2c 0 38px, #3e3024 38px 40px); box-shadow:inset 0 2px 0 #5a4634; }
+    .bhead { position:absolute; left:0; top:0; bottom:10px; right:calc(min(200px, 40%) + 20px); padding:0 12px; display:flex; align-items:center; gap:10px; min-width:0; }
+    .bicon { width:40px; height:40px; flex:none; border-radius:50%; display:grid; place-items:center; --mdc-icon-size:24px; --c:#7a8594; color:var(--c);
+             background:rgba(255,255,255,.62); box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--c) 22%, transparent); }
+    .bicon.warn { --c:var(--warning-color, #ffa600); }
+    .night .bicon { background:rgba(255,255,255,.12); color:color-mix(in srgb, var(--c) 72%, #fff); box-shadow:inset 0 0 0 1px rgba(255,255,255,.14); }
+    .btitles { flex:1; min-width:0; display:flex; flex-direction:column; gap:2px; }
+    .brow { display:flex; align-items:center; flex-wrap:wrap; gap:4px 8px; min-width:0; }
+    .bname { font-size:16px; font-weight:500; line-height:1.25; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .bsub { font-size:13px; line-height:18px; color:var(--hcp-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .stpill { display:inline-flex; align-items:center; gap:4px; padding:1px 8px; border-radius:12px; font-size:11px; font-weight:500; line-height:16px; white-space:nowrap;
+              --c:var(--success-color, #43a047); background:color-mix(in srgb, var(--c) 18%, rgba(255,255,255,.78)); color:color-mix(in srgb, var(--c) 45%, #0d2a45); }
+    .stpill.warn { --c:var(--warning-color, #ffa600); }
+    .stpill .sdot { width:7px; height:7px; border-radius:50%; background:var(--c); }
+    .night .stpill { background:color-mix(in srgb, var(--c) 30%, rgba(8,18,38,.55)); color:color-mix(in srgb, var(--c) 35%, #fff); }
+    .bscene .rot { transform-box:fill-box; transform-origin:center; animation:hcp-rot 9s linear infinite; }
+    .bscene .rot.rev { animation-duration:6s; animation-direction:reverse; }
+    .bscene .leaf { transform-box:fill-box; transform-origin:50% 100%; animation:hcp-sway 4s ease-in-out infinite; }
+    @keyframes hcp-rot { to { transform:rotate(360deg); } }
+    @keyframes hcp-sway { 0%, 100% { transform:rotate(-4deg); } 50% { transform:rotate(4deg); } }
+    @media (prefers-reduced-motion: reduce) { .bscene * { animation:none !important; } }
+    @container (max-width:360px) { .bscene { display:none; } .bhead { right:0; } }
+    @media (max-width:600px) { .tags { display:none; } .editbox { margin-left:0; } }
   `;
 
   constructor() {
@@ -775,7 +1035,9 @@ class HomeCameraPanel extends HTMLElement {
     if (this._menu) this._menu.hass = hass;
     if (this._card) this._card.hass = hass;
     if (this._editor) this._editor.hass = hass;
+    if (this._camEditor) this._camEditor.hass = hass;
     if (first) this._start();
+    else if (this._tab === 'settings') this._renderBanner();
     else if (this._lang() !== langBefore || this._admin() !== adminBefore) this._render();
   }
 
@@ -940,6 +1202,7 @@ class HomeCameraPanel extends HTMLElement {
     this._card = null;
     this._shownCard = null;
     this._editor = null;
+    this._camEditor = null;
     this._showTab(this._tab);
     this._renderCameras();
   }
@@ -1022,22 +1285,28 @@ class HomeCameraPanel extends HTMLElement {
     var esc = hcpEsc;
     if (!section.querySelector('.settings-form')) {
       section.innerHTML = `
-        <ha-card class="settings-form"><div class="block">
+        <ha-card class="top settings-form"><div class="banner" data-banner></div></ha-card>
+        <ha-card class="list">
+          <div class="lhead"><h2 class="lname">${esc(this._t('panel_heading'))}</h2></div>
           <label class="ctl"><span>${esc(this._t('sidebar_title'))}</span>
             <div class="box"><input data-title maxlength="50" autocomplete="off"></div>
             <small data-title-helper></small></label>
-        </div></ha-card>
-        <ha-card data-found hidden></ha-card>
-        <ha-card><div class="block">
-          <h2>${esc(this._t('cameras_heading'))}</h2>
+        </ha-card>
+        <ha-card class="list" data-found hidden></ha-card>
+        <ha-card class="list">
+          <div class="lhead"><h2 class="lname" data-shown-head></h2>
+            <button class="act quiet" data-import><ha-icon icon="mdi:content-copy"></ha-icon>${esc(this._t('import'))}</button></div>
+          <div class="rows" data-shown></div>
+        </ha-card>
+        <ha-card class="list">
+          <div class="lhead"><h2 class="lname">${esc(this._t('display_heading'))}</h2></div>
           <div data-editor></div>
-        </div></ha-card>
-        <div class="bar">
+        </ha-card>
+        <ha-card class="bar savebar">
           <button class="act" data-save><ha-icon icon="mdi:content-save"></ha-icon>${esc(this._t('save'))}</button>
           <button class="act quiet" data-revert>${esc(this._t('revert'))}</button>
-          <button class="act quiet" data-import><ha-icon icon="mdi:content-copy"></ha-icon>${esc(this._t('import'))}</button>
           <span class="grow msg" data-msg aria-live="polite"></span>
-        </div>`;
+        </ha-card>`;
       var field = section.querySelector('[data-title]');
       field.addEventListener('input', () => {
         this._formValues().title = field.value;
@@ -1048,6 +1317,7 @@ class HomeCameraPanel extends HTMLElement {
       section.querySelector('[data-revert]').addEventListener('click', () => {
         this._draft = null;
         this._status = null;
+        this._editing = null;
         this._renderSettings();
       });
       section.querySelector('[data-import]').addEventListener('click', () => this._import());
@@ -1055,14 +1325,215 @@ class HomeCameraPanel extends HTMLElement {
         var button = ev.composedPath().find((n) => n.dataset?.add !== undefined);
         if (button) this._addFound(button.dataset.add ? [button.dataset.add] : null);
       });
+      this._listenShown(section.querySelector('[data-shown]'));
       this._discover();
     }
     var input = section.querySelector('[data-title]');
     if (input.value !== values.title && this.shadowRoot.activeElement !== input) input.value = values.title;
     section.querySelector('[data-title-helper]').textContent = this._t('sidebar_title_helper', { d: this._defaultTitle() });
     this._renderFound();
+    this._renderShown();
     await this._renderEditor(section.querySelector('[data-editor]'), values.card);
     this._renderStatus();
+  }
+
+  // The header card of Settings: its banner (a camera on a desk, cogs turning, a plant), the title, a pill saying
+  // whether the changes are saved, and how many cameras are shown and found. Drawn again only when it changed.
+  _renderBanner() {
+    var host = this.shadowRoot.getElementById?.('tab-settings')?.querySelector('[data-banner]');
+    if (!host || !this._data) return;
+    var esc = hcpEsc;
+    var dirty = this._dirty();
+    var night = !!this._hass?.themes?.darkMode;
+    var shown = (this._formValues()?.card?.cameras || []).length;
+    var sub = `${this._t('cameras_heading')}: ${shown}`;
+    if (this._found) sub += ` · ${this._t('found_heading')}: ${this._newFound().length}`;
+    var sig = JSON.stringify([this._lang(), dirty, night, sub]);
+    if (sig === this._bannerSig && host.firstChild) return;
+    this._bannerSig = sig;
+    host.className = `banner${night ? ' night' : ''}`;
+    var wood = night ? '#5a4634' : '#a97c50';
+    var woodd = night ? '#46362a' : '#8f6743';
+    var ink = night ? '#c4ccd6' : '#5f6b78';
+    var hole = night ? '#2a2b33' : '#f2efe9';
+    host.innerHTML = `
+      <svg class="bscene" viewBox="0 0 200 80" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false">
+        <rect x="20" y="44" width="124" height="5" rx="1" fill="${wood}"/><rect x="26" y="49" width="5" height="31" fill="${woodd}"/><rect x="133" y="49" width="5" height="31" fill="${woodd}"/>
+        <rect x="34" y="25" width="40" height="17" rx="5" fill="${night ? '#d8dce2' : '#fff'}" stroke="${night ? '#aab1bb' : '#c9ced6'}" stroke-width="1.2"/>
+        <circle cx="42" cy="33.5" r="5" fill="#2a3038"/><circle cx="40.8" cy="32.3" r="1.2" fill="#6f86a6"/><rect x="51" y="42" width="8" height="2.5" fill="#9aa3ae"/>
+        <g transform="translate(100 26)"><g class="rot"><circle r="10" fill="none" stroke="${ink}" stroke-width="5" stroke-dasharray="3.9 3.9"/><circle r="6.5" fill="${ink}"/><circle r="2.6" fill="${hole}"/></g></g>
+        <g transform="translate(122 15)"><g class="rot rev"><circle r="5.6" fill="none" stroke="#2f80ed" stroke-width="3.2" stroke-dasharray="2.4 2.4"/><circle r="3.7" fill="#2f80ed"/><circle r="1.5" fill="${hole}"/></g></g>
+        <rect x="168" y="60" width="14" height="20" rx="2" fill="${night ? '#7a4f34' : '#d08a5a'}"/>
+        <path class="leaf" d="M175 60 C168 49 165 40 168 31 C173 40 175 49 175 60 Z M175 60 C180 48 186 42 191 40 C188 49 183 56 175 60 Z" fill="${night ? '#3f6e46' : '#6aa56a'}"/>
+      </svg>
+      <div class="bground" aria-hidden="true"></div>
+      <div class="bhead">
+        <span class="bicon${dirty ? ' warn' : ''}"><ha-icon icon="mdi:cog"></ha-icon></span>
+        <div class="btitles">
+          <div class="brow"><span class="bname">${esc(this._t('settings'))}</span>
+            <span class="stpill${dirty ? ' warn' : ''}" role="status"><span class="sdot"></span>${esc(this._t(dirty ? 'unsaved' : 'up_to_date'))}</span></div>
+          <div class="bsub">${esc(sub)}</div>
+        </div>
+      </div>`;
+  }
+
+  // ── The cameras shown, listed by the panel: drag (or arrow keys on the handle) to reorder, the pencil opens the
+  // camera's fields under its row (the card editor's own, one camera at a time) ──
+  _cams() {
+    return this._formValues()?.card?.cameras || [];
+  }
+
+  _camEntry(cam) {
+    return typeof cam === 'string' ? { camera: cam } : Object.assign({}, cam);
+  }
+
+  _rowInner(cam, i) {
+    var esc = hcpEsc;
+    var c = this._camEntry(cam);
+    var st = this._hass?.states?.[c.camera];
+    var name = c.name || st?.attributes?.friendly_name || c.camera || '';
+    var off = !st || st.state === 'unavailable';
+    var tags = [];
+    if (c.motion) tags.push(`<span class="tag good">${esc(this._t('tag_motion'))}</span>`);
+    if (c.ptz) tags.push('<span class="tag">PTZ</span>');
+    if (c.privacy || c.power) tags.push(`<span class="tag">${esc(this._t('tag_privacy'))}</span>`);
+    var open = this._editing === i;
+    return `<button class="drag" draggable="true" data-move="${i}" aria-label="${esc(this._t('move', { c: name }))}" title="${esc(this._t('move', { c: name }))}"><ha-icon icon="mdi:drag-vertical"></ha-icon></button>
+      <span class="ic ${off ? 'bad' : 'good'}"><ha-icon icon="${off ? 'mdi:cctv-off' : 'mdi:cctv'}"></ha-icon></span>
+      <div class="who"><div class="n">${esc(name)}</div><div class="s">${esc([c.camera, c.sd ? `SD ${c.sd}` : ''].filter(Boolean).join(' · '))}</div></div>
+      ${tags.length ? `<span class="tags">${tags.join('')}</span>` : ''}
+      <button class="round" data-edit="${i}" aria-expanded="${open}" aria-label="${esc(this._t('edit', { c: name }))}" title="${esc(this._t('edit', { c: name }))}"><ha-icon icon="mdi:pencil"></ha-icon></button>`;
+  }
+
+  _renderShown() {
+    var section = this.shadowRoot.getElementById?.('tab-settings');
+    var host = section?.querySelector('[data-shown]');
+    if (!host) return;
+    var cams = this._cams();
+    section.querySelector('[data-shown-head]').textContent = `${this._t('cameras_heading')} · ${cams.length}`;
+    if (this._editing != null && !cams[this._editing]) this._editing = null;
+    if (!cams.length) {
+      host.innerHTML = `<div class="msg">${hcpEsc(this._t('none_shown'))}</div>`;
+      return;
+    }
+    host.innerHTML = cams
+      .map(
+        (cam, i) =>
+          `<div class="item${this._editing === i ? ' open' : ''}" data-row="${i}">${this._rowInner(cam, i)}</div>` +
+          (this._editing === i
+            ? `<div class="editbox"><div data-cam-editor></div><div class="bar"><button class="act quiet danger" data-remove="${i}"><ha-icon icon="mdi:delete-outline"></ha-icon>${hcpEsc(this._t('remove'))}</button></div></div>`
+            : ''),
+      )
+      .join('');
+    if (this._editing != null) this._renderCamEditor(host.querySelector('[data-cam-editor]'), this._editing);
+  }
+
+  async _renderCamEditor(host, i) {
+    await this._ensureForm();
+    if (!host?.isConnected || !customElements.get('home-camera-card-editor')) return;
+    if (!this._camEditor) {
+      this._camEditor = document.createElement('home-camera-card-editor');
+      this._camEditor.section = 'camera';
+      this._camEditor.addEventListener('config-changed', (ev) => {
+        ev.stopPropagation();
+        var at = this._editing;
+        if (at == null) return;
+        var v = ev.detail.config || {};
+        this._camEditorConfig = JSON.stringify(v);
+        var values = this._formValues();
+        var list = this._cams().slice();
+        list[at] = Object.keys(v).length === 1 && v.camera ? v.camera : v;
+        values.card = Object.assign({}, values.card, { cameras: list });
+        this._status = null;
+        // Only the row's text: the fields under it keep the typing and the focus
+        var row = this.shadowRoot.getElementById('tab-settings')?.querySelector(`[data-row="${at}"]`);
+        if (row) row.innerHTML = this._rowInner(list[at], at);
+        this._renderStatus();
+      });
+      this._camEditorConfig = null;
+    }
+    this._camEditor.hass = this._hass;
+    host.replaceChildren(this._camEditor);
+    var cam = this._camEntry(this._cams()[i]);
+    var json = JSON.stringify([i, cam]);
+    if (json !== this._camEditorGiven || this._camEditorConfig !== JSON.stringify(cam)) {
+      this._camEditorGiven = json;
+      this._camEditorConfig = JSON.stringify(cam);
+      this._camEditor.setConfig(cam);
+    }
+  }
+
+  _moveCam(from, to) {
+    var list = this._cams().slice();
+    if (from === to || from < 0 || to < 0 || from >= list.length || to >= list.length) return false;
+    list.splice(to, 0, list.splice(from, 1)[0]);
+    var values = this._formValues();
+    values.card = Object.assign({}, values.card, { cameras: list });
+    this._editing = null;
+    this._status = null;
+    this._renderShown();
+    this._renderStatus();
+    return true;
+  }
+
+  _listenShown(host) {
+    host.addEventListener('click', (ev) => {
+      var path = ev.composedPath();
+      var edit = path.find((n) => n.dataset?.edit !== undefined);
+      if (edit) {
+        var i = Number(edit.dataset.edit);
+        this._editing = this._editing === i ? null : i;
+        this._renderShown();
+        this.shadowRoot.getElementById('tab-settings')?.querySelector(`[data-edit="${i}"]`)?.focus({ preventScroll: true });
+        return;
+      }
+      var remove = path.find((n) => n.dataset?.remove !== undefined);
+      if (remove) {
+        var values = this._formValues();
+        var list = this._cams().slice();
+        list.splice(Number(remove.dataset.remove), 1);
+        values.card = Object.assign({}, values.card, { cameras: list });
+        this._editing = null;
+        this._status = null;
+        this._renderSettings();
+      }
+    });
+    // Arrow keys on a handle move its camera up or down, the focus following it
+    host.addEventListener('keydown', (ev) => {
+      var handle = ev.composedPath().find((n) => n.dataset?.move !== undefined);
+      var step = ev.key === 'ArrowUp' ? -1 : ev.key === 'ArrowDown' ? 1 : 0;
+      if (!handle || !step) return;
+      ev.preventDefault();
+      var from = Number(handle.dataset.move);
+      if (this._moveCam(from, from + step)) host.querySelector(`[data-move="${from + step}"]`)?.focus({ preventScroll: true });
+    });
+    var rowOf = (ev) => ev.composedPath().find((n) => n.dataset?.row !== undefined);
+    host.addEventListener('dragstart', (ev) => {
+      var handle = ev.composedPath().find((n) => n.dataset?.move !== undefined);
+      if (!handle) return;
+      this._dragFrom = Number(handle.dataset.move);
+      ev.dataTransfer?.setData('text/plain', String(this._dragFrom));
+      if (ev.dataTransfer) ev.dataTransfer.effectAllowed = 'move';
+    });
+    host.addEventListener('dragover', (ev) => {
+      var row = rowOf(ev);
+      if (!row || this._dragFrom == null) return;
+      ev.preventDefault();
+      for (var n of host.querySelectorAll('.over')) if (n !== row) n.classList.remove('over');
+      row.classList.add('over');
+    });
+    host.addEventListener('drop', (ev) => {
+      var row = rowOf(ev);
+      if (!row || this._dragFrom == null) return;
+      ev.preventDefault();
+      var from = this._dragFrom;
+      this._dragFrom = null;
+      this._moveCam(from, Number(row.dataset.row));
+    });
+    host.addEventListener('dragend', () => {
+      this._dragFrom = null;
+      for (var n of host.querySelectorAll('.over')) n.classList.remove('over');
+    });
   }
 
   // ── Camera discovery (home_camera/discover): the cameras of Home Assistant the panel does not show yet ──
@@ -1095,20 +1566,19 @@ class HomeCameraPanel extends HTMLElement {
     host.hidden = false;
     var rows = found
       .map(
-        (cam) => `<div class="found">
-          <ha-icon icon="mdi:cctv"></ha-icon>
+        (cam) => `<div class="item found">
+          <span class="ic info"><ha-icon icon="mdi:cctv"></ha-icon></span>
           <div class="who"><div class="n">${esc(cam.name)}</div><div class="s">${esc([cam.area, cam.camera, cam.sd ? 'HD + SD' : ''].filter(Boolean).join(' · '))}</div></div>
           <button class="act quiet" data-add="${esc(cam.camera)}"><ha-icon icon="mdi:plus"></ha-icon>${esc(this._t('add'))}</button>
         </div>`,
       )
       .join('');
-    host.innerHTML = `<div class="block">
-      <div class="bar head"><h2 class="grow">${esc(this._t('found_heading'))}</h2>${
-        found.length > 1 ? `<button class="act" data-add=""><ha-icon icon="mdi:plus-box-multiple"></ha-icon>${esc(this._t('add_all'))}</button>` : ''
-      }</div>
+    host.innerHTML = `<div class="lhead"><h2 class="lname">${esc(this._t('found_heading'))}${found.length ? ` · ${found.length}` : ''}</h2>${
+      found.length > 1 ? `<button class="act" data-add=""><ha-icon icon="mdi:plus-box-multiple"></ha-icon>${esc(this._t('add_all'))}</button>` : ''
+    }</div>
       <div class="msg">${esc(this._t(found.length ? 'found_hint' : 'found_none'))}</div>
-      ${rows}
-    </div>`;
+      <div class="rows">${rows}</div>`;
+    this._renderBanner();
   }
 
   // Adds the given found cameras (all the new ones when `ids` is null) to the edited list, named after their device,
@@ -1136,12 +1606,17 @@ class HomeCameraPanel extends HTMLElement {
     if (!customElements.get('home-camera-card-editor')) return;
     if (!this._editor?.isConnected) {
       this._editor = document.createElement('home-camera-card-editor');
-      // Always the wall here: no layout choice
+      // Always the wall here: no layout choice; the cameras are the panel's own list
       this._editor.panel = true;
+      this._editor.section = 'options';
       this._editor.addEventListener('config-changed', (ev) => {
         ev.stopPropagation();
-        this._formValues().card = hcpCardConfig(ev.detail.config);
-        this._editorConfig = JSON.stringify(this._formValues().card);
+        var values = this._formValues();
+        var options = hcpCardConfig(ev.detail.config);
+        delete options.cameras;
+        var cams = values.card?.cameras;
+        values.card = Object.assign(cams ? { cameras: cams } : {}, options);
+        this._editorConfig = JSON.stringify(options);
         this._status = null;
         this._renderStatus();
       });
@@ -1150,11 +1625,13 @@ class HomeCameraPanel extends HTMLElement {
     }
     this._editor.hass = this._hass;
     // Given again only when it changed from outside (saved elsewhere, reverted, copied): never under the typing
-    var json = JSON.stringify(card);
+    var options = hcpCardConfig(card || {});
+    delete options.cameras;
+    var json = JSON.stringify(options);
     if (json !== this._editorConfig) {
       this._editorConfig = json;
       // As the wall: the editor offers no column count by default and keeps any count chosen
-      this._editor.setConfig(Object.assign({ type: `custom:${HCP_CARD}` }, card, { layout: 'wall' }));
+      this._editor.setConfig(Object.assign({ type: `custom:${HCP_CARD}` }, options, { layout: 'wall' }));
     }
   }
 
@@ -1178,6 +1655,7 @@ class HomeCameraPanel extends HTMLElement {
     var dirty = this._dirty();
     var status = this._status || (dirty ? { tone: '', text: this._t('unsaved') } : null);
     msg.className = `grow msg${status?.tone ? ` ${status.tone}` : ''}`;
+    this._renderBanner();
     msg.textContent = status?.text || '';
     section.querySelector('[data-save]').disabled = !dirty || this._saving;
     section.querySelector('[data-revert]').disabled = !dirty || this._saving;

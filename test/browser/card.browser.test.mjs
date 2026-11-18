@@ -1295,7 +1295,7 @@ test("the card's own fullscreen gives the page its previous overflow back on the
   assert.deepEqual(r, { during: ["hidden", "hidden"], after: ["auto", "scroll"] });
 });
 
-test("layout: wall puts the grid edge to edge under a status bar, as many columns as fit", async () => {
+test("layout: wall puts the illustrated header in a card of its own, the grid edge to edge under it, as many columns as fit", async () => {
   const r = await page.evaluate(() => {
     document.body.replaceChildren();
     const el = document.createElement("home-camera-card");
@@ -1303,13 +1303,15 @@ test("layout: wall puts the grid edge to edge under a status bar, as many column
     document.body.appendChild(el);
     el.hass = makeHass(baseStates());
     const grid = el.shadowRoot.querySelector(".grid");
+    const head = el.shadowRoot.querySelector(".head");
     const wall = {
       attr: el.hasAttribute("wall"),
       bar: !!el.shadowRoot.querySelector(".wallbar"),
-      header: !!el.shadowRoot.querySelector(".header"),
+      banner: !!head.querySelector(".banner .header"),
+      headCard: getComputedStyle(head).borderTopLeftRadius,
       columns: grid.style.gridTemplateColumns,
-      badges: el.shadowRoot.querySelectorAll(".wallbar .chip").length,
-      quality: !!el.shadowRoot.querySelector(".wallbar .seg"),
+      badges: head.querySelectorAll(":scope > .badges .chip").length,
+      quality: !!head.querySelector(".banner .seg"),
     };
     el.setConfig({ cameras: CAMS, layout: "wall", columns: 2 });
     const set = el.shadowRoot.querySelector(".grid").style.gridTemplateColumns;
@@ -1318,14 +1320,36 @@ test("layout: wall puts the grid edge to edge under a status bar, as many column
   });
   assert.deepEqual(r.wall, {
     attr: true,
-    bar: true,
-    header: false,
+    bar: false,
+    banner: true,
+    headCard: "12px",
     columns: "repeat(auto-fit, minmax(min(100%, 360px), 1fr))",
     badges: 1,
     quality: true,
   });
   assert.equal(r.set, "repeat(2, minmax(0px, 1fr))");
   assert.deepEqual(r.back, { attr: false, header: true });
+});
+
+test("on the wall, a camera in motion has its badge and its tile in amber", async () => {
+  const r = await page.evaluate(() => {
+    document.body.replaceChildren();
+    const el = document.createElement("home-camera-card");
+    const cams = [{ camera: "camera.a", name: "A", privacy: "switch.a", motion: "binary_sensor.a_motion" }, { camera: "camera.b", name: "B" }];
+    el.setConfig({ cameras: cams, layout: "wall" });
+    document.body.appendChild(el);
+    const states = {
+      "camera.a": { entity_id: "camera.a", state: "idle", attributes: {} },
+      "camera.b": { entity_id: "camera.b", state: "idle", attributes: {} },
+      "switch.a": { entity_id: "switch.a", state: "off", attributes: {} },
+      "binary_sensor.a_motion": { entity_id: "binary_sensor.a_motion", state: "on", attributes: {} },
+    };
+    el.hass = makeHass(states);
+    const chip = el.shadowRoot.querySelector(".head > .badges .chip");
+    const tile = el.shadowRoot.querySelector(".tile");
+    return { chip: chip.classList.contains("motion"), tile: tile.classList.contains("motion"), outline: getComputedStyle(tile).outlineStyle };
+  });
+  assert.deepEqual(r, { chip: true, tile: true, outline: "solid" });
 });
 
 test("Tapo Cameras (ha-tapo): privacy_mode switch, and HD / SD through the camera's stream quality select", async () => {
