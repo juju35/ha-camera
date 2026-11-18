@@ -55,7 +55,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Shown',
     toolbar_users: 'Hidden for non-admins',
     toolbar_everyone: 'Hidden for everyone',
-    toolbar_helper: 'Hidden: the video wall takes the whole screen; administrators keep a cog button to come back to Settings.',
+    toolbar_helper: 'Hidden: the video wall takes the whole screen; the menu button stays at the bottom left, and administrators keep a cog at the bottom right to come back to Settings.',
     open_settings: 'Open the settings',
   },
   fr: {
@@ -98,7 +98,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Affichée',
     toolbar_users: 'Masquée pour les non-admins',
     toolbar_everyone: 'Masquée pour tous',
-    toolbar_helper: 'Masquée : le mur vidéo prend tout l’écran ; les administrateurs gardent un bouton engrenage pour revenir aux Réglages.',
+    toolbar_helper: 'Masquée : le mur vidéo prend tout l’écran ; le bouton menu reste en bas à gauche, et les administrateurs gardent un engrenage en bas à droite pour revenir aux Réglages.',
     open_settings: 'Ouvrir les réglages',
   },
   de: {
@@ -141,7 +141,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Angezeigt',
     toolbar_users: 'Für Nicht-Admins ausgeblendet',
     toolbar_everyone: 'Für alle ausgeblendet',
-    toolbar_helper: 'Ausgeblendet: die Videowand füllt den ganzen Bildschirm; Administratoren behalten einen Zahnrad-Knopf zurück zu den Einstellungen.',
+    toolbar_helper: 'Ausgeblendet: die Videowand füllt den ganzen Bildschirm; der Menüknopf bleibt unten links, und Administratoren behalten unten rechts ein Zahnrad zurück zu den Einstellungen.',
     open_settings: 'Einstellungen öffnen',
   },
   es: {
@@ -184,7 +184,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Visible',
     toolbar_users: 'Oculta para no administradores',
     toolbar_everyone: 'Oculta para todos',
-    toolbar_helper: 'Oculta: el muro de vídeo ocupa toda la pantalla; los administradores conservan un botón de engranaje para volver a Ajustes.',
+    toolbar_helper: 'Oculta: el muro de vídeo ocupa toda la pantalla; el botón de menú queda abajo a la izquierda, y los administradores conservan un engranaje abajo a la derecha para volver a Ajustes.',
     open_settings: 'Abrir los ajustes',
   },
   sr: {
@@ -227,7 +227,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Приказана',
     toolbar_users: 'Скривена за неадминистраторе',
     toolbar_everyone: 'Скривена за све',
-    toolbar_helper: 'Скривена: видео зид заузима цео екран; администратори задржавају дугме зупчаника за повратак на Подешавања.',
+    toolbar_helper: 'Скривена: видео зид заузима цео екран; дугме менија остаје доле лево, а администратори задржавају зупчаник доле десно за повратак на Подешавања.',
     open_settings: 'Отвори подешавања',
   },
   'sr-Latn': {
@@ -270,7 +270,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Prikazana',
     toolbar_users: 'Skrivena za neadministratore',
     toolbar_everyone: 'Skrivena za sve',
-    toolbar_helper: 'Skrivena: video zid zauzima ceo ekran; administratori zadržavaju dugme zupčanika za povratak na Podešavanja.',
+    toolbar_helper: 'Skrivena: video zid zauzima ceo ekran; dugme menija ostaje dole levo, a administratori zadržavaju zupčanik dole desno za povratak na Podešavanja.',
     open_settings: 'Otvori podešavanja',
   },
   it: {
@@ -313,7 +313,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Visibile',
     toolbar_users: 'Nascosta ai non amministratori',
     toolbar_everyone: 'Nascosta a tutti',
-    toolbar_helper: 'Nascosta: il muro video occupa tutto lo schermo; gli amministratori mantengono un pulsante a ingranaggio per tornare alle Impostazioni.',
+    toolbar_helper: 'Nascosta: il muro video occupa tutto lo schermo; il pulsante del menu resta in basso a sinistra e gli amministratori mantengono un ingranaggio in basso a destra per tornare alle Impostazioni.',
     open_settings: 'Apri le impostazioni',
   },
   nl: {
@@ -356,7 +356,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Getoond',
     toolbar_users: 'Verborgen voor niet-beheerders',
     toolbar_everyone: 'Verborgen voor iedereen',
-    toolbar_helper: 'Verborgen: de videomuur vult het hele scherm; beheerders houden een tandwielknop om terug te gaan naar Instellingen.',
+    toolbar_helper: 'Verborgen: de videomuur vult het hele scherm; de menuknop blijft linksonder en beheerders houden rechtsonder een tandwiel om terug te gaan naar Instellingen.',
     open_settings: 'Instellingen openen',
   },
   pt: {
@@ -399,7 +399,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Visível',
     toolbar_users: 'Oculta para não administradores',
     toolbar_everyone: 'Oculta para todos',
-    toolbar_helper: 'Oculta: o mural de vídeo ocupa todo o ecrã; os administradores mantêm um botão de engrenagem para voltar às Definições.',
+    toolbar_helper: 'Oculta: o mural de vídeo ocupa todo o ecrã; o botão de menu fica em baixo à esquerda e os administradores mantêm uma engrenagem em baixo à direita para voltar às Definições.',
     open_settings: 'Abrir as definições',
   },
   pl: {
@@ -442,7 +442,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Widoczny',
     toolbar_users: 'Ukryty dla nie-administratorów',
     toolbar_everyone: 'Ukryty dla wszystkich',
-    toolbar_helper: 'Ukryty: ściana wideo zajmuje cały ekran; administratorzy zachowują przycisk koła zębatego, by wrócić do Ustawień.',
+    toolbar_helper: 'Ukryty: ściana wideo zajmuje cały ekran; przycisk menu zostaje w lewym dolnym rogu, a administratorzy zachowują koło zębate w prawym dolnym rogu, by wrócić do Ustawień.',
     open_settings: 'Otwórz ustawienia',
   },
   ro: {
@@ -485,7 +485,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Afișată',
     toolbar_users: 'Ascunsă pentru non-administratori',
     toolbar_everyone: 'Ascunsă pentru toți',
-    toolbar_helper: 'Ascunsă: peretele video ocupă tot ecranul; administratorii păstrează un buton cu roată dințată pentru a reveni la Setări.',
+    toolbar_helper: 'Ascunsă: peretele video ocupă tot ecranul; butonul de meniu rămâne jos în stânga, iar administratorii păstrează o roată dințată jos în dreapta pentru a reveni la Setări.',
     open_settings: 'Deschide setările',
   },
   da: {
@@ -528,7 +528,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Vist',
     toolbar_users: 'Skjult for ikke-administratorer',
     toolbar_everyone: 'Skjult for alle',
-    toolbar_helper: 'Skjult: videovæggen fylder hele skærmen; administratorer beholder en tandhjulsknap til at komme tilbage til Indstillinger.',
+    toolbar_helper: 'Skjult: videovæggen fylder hele skærmen; menuknappen bliver nederst til venstre, og administratorer beholder et tandhjul nederst til højre til at komme tilbage til Indstillinger.',
     open_settings: 'Åbn indstillingerne',
   },
   sv: {
@@ -571,7 +571,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Visas',
     toolbar_users: 'Dolt för icke-administratörer',
     toolbar_everyone: 'Dolt för alla',
-    toolbar_helper: 'Dolt: videoväggen fyller hela skärmen; administratörer behåller en kugghjulsknapp för att komma tillbaka till Inställningar.',
+    toolbar_helper: 'Dolt: videoväggen fyller hela skärmen; menyknappen stannar nere till vänster, och administratörer behåller ett kugghjul nere till höger för att komma tillbaka till Inställningar.',
     open_settings: 'Öppna inställningarna',
   },
   bg: {
@@ -614,7 +614,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Показана',
     toolbar_users: 'Скрита за неадминистратори',
     toolbar_everyone: 'Скрита за всички',
-    toolbar_helper: 'Скрита: видеостената заема целия екран; администраторите запазват бутон със зъбно колело за връщане към Настройки.',
+    toolbar_helper: 'Скрита: видеостената заема целия екран; бутонът на менюто остава долу вляво, а администраторите запазват зъбно колело долу вдясно за връщане към Настройки.',
     open_settings: 'Отвори настройките',
   },
   ru: {
@@ -657,7 +657,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Показана',
     toolbar_users: 'Скрыта для не-администраторов',
     toolbar_everyone: 'Скрыта для всех',
-    toolbar_helper: 'Скрыта: видеостена занимает весь экран; у администраторов остаётся кнопка-шестерёнка для возврата в «Настройки».',
+    toolbar_helper: 'Скрыта: видеостена занимает весь экран; кнопка меню остаётся внизу слева, а у администраторов внизу справа есть шестерёнка для возврата в «Настройки».',
     open_settings: 'Открыть настройки',
   },
   uk: {
@@ -700,7 +700,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Показана',
     toolbar_users: 'Прихована для неадміністраторів',
     toolbar_everyone: 'Прихована для всіх',
-    toolbar_helper: 'Прихована: відеостіна займає весь екран; адміністратори зберігають кнопку-шестерню для повернення до «Налаштувань».',
+    toolbar_helper: 'Прихована: відеостіна займає весь екран; кнопка меню лишається внизу ліворуч, а адміністратори мають шестерню внизу праворуч для повернення до «Налаштувань».',
     open_settings: 'Відкрити налаштування',
   },
   hu: {
@@ -743,7 +743,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Látható',
     toolbar_users: 'Rejtett a nem rendszergazdák számára',
     toolbar_everyone: 'Rejtett mindenki számára',
-    toolbar_helper: 'Rejtett: a videofal kitölti a teljes képernyőt; a rendszergazdák megtartanak egy fogaskerék gombot a Beállításokhoz való visszatéréshez.',
+    toolbar_helper: 'Rejtett: a videofal kitölti a teljes képernyőt; a menügomb a bal alsó sarokban marad, a rendszergazdák pedig a jobb alsó sarokban egy fogaskereket kapnak a Beállításokhoz való visszatéréshez.',
     open_settings: 'Beállítások megnyitása',
   },
   sk: {
@@ -786,7 +786,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Zobrazená',
     toolbar_users: 'Skrytá pre nesprávcov',
     toolbar_everyone: 'Skrytá pre všetkých',
-    toolbar_helper: 'Skrytá: videostena zaberá celú obrazovku; správcovia si ponechajú tlačidlo s ozubeným kolesom na návrat do Nastavení.',
+    toolbar_helper: 'Skrytá: videostena zaberá celú obrazovku; tlačidlo ponuky zostáva vľavo dole a správcovia si ponechajú ozubené koleso vpravo dole na návrat do Nastavení.',
     open_settings: 'Otvoriť nastavenia',
   },
   cs: {
@@ -829,7 +829,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Zobrazená',
     toolbar_users: 'Skrytá pro nesprávce',
     toolbar_everyone: 'Skrytá pro všechny',
-    toolbar_helper: 'Skrytá: videostěna zabírá celou obrazovku; správci si ponechají tlačítko s ozubeným kolem pro návrat do Nastavení.',
+    toolbar_helper: 'Skrytá: videostěna zabírá celou obrazovku; tlačítko nabídky zůstává vlevo dole a správci si ponechají ozubené kolo vpravo dole pro návrat do Nastavení.',
     open_settings: 'Otevřít nastavení',
   },
   sl: {
@@ -872,7 +872,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Prikazana',
     toolbar_users: 'Skrita za neskrbnike',
     toolbar_everyone: 'Skrita za vse',
-    toolbar_helper: 'Skrita: video stena zavzame ves zaslon; skrbniki obdržijo gumb z zobnikom za vrnitev v Nastavitve.',
+    toolbar_helper: 'Skrita: video stena zavzame ves zaslon; gumb menija ostane spodaj levo, skrbniki pa obdržijo zobnik spodaj desno za vrnitev v Nastavitve.',
     open_settings: 'Odpri nastavitve',
   },
   lv: {
@@ -915,7 +915,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Rādīta',
     toolbar_users: 'Paslēpta ne-administratoriem',
     toolbar_everyone: 'Paslēpta visiem',
-    toolbar_helper: 'Paslēpta: video siena aizņem visu ekrānu; administratori patur zobrata pogu, lai atgrieztos Iestatījumos.',
+    toolbar_helper: 'Paslēpta: video siena aizņem visu ekrānu; izvēlnes poga paliek apakšā pa kreisi, un administratori patur zobratu apakšā pa labi, lai atgrieztos Iestatījumos.',
     open_settings: 'Atvērt iestatījumus',
   },
   el: {
@@ -958,7 +958,7 @@ var HomeCameraPanelI18n = {
     toolbar_never: 'Εμφανίζεται',
     toolbar_users: 'Κρυφή για μη διαχειριστές',
     toolbar_everyone: 'Κρυφή για όλους',
-    toolbar_helper: 'Κρυφή: ο τοίχος βίντεο καλύπτει όλη την οθόνη· οι διαχειριστές διατηρούν ένα κουμπί γραναζιού για επιστροφή στις Ρυθμίσεις.',
+    toolbar_helper: 'Κρυφή: ο τοίχος βίντεο καλύπτει όλη την οθόνη· το κουμπί μενού μένει κάτω αριστερά και οι διαχειριστές διατηρούν ένα γρανάζι κάτω δεξιά για επιστροφή στις Ρυθμίσεις.',
     open_settings: 'Άνοιγμα ρυθμίσεων',
   },
 };
@@ -1132,8 +1132,15 @@ class HomeCameraPanel extends HTMLElement {
     @media (prefers-reduced-motion: reduce) { .bscene * { animation:none !important; } }
     @container (max-width:360px) { .bscene { display:none; } .bhead { right:0; } }
     @media (max-width:600px) { .tags { display:none; } .editbox { margin-left:0; } }
-    /* Top bar hidden (Settings › Panel): the video wall alone; administrators keep a round cog at the bottom right */
-    :host([bare]) .toolbar, :host([bare]) .tabs { display:none; }
+    /* Top bar hidden (Settings › Panel): the video wall alone. The menu button stays, as a round button at the bottom
+       left (only while Home Assistant shows it: narrow screen or sidebar hidden); administrators keep a round cog at
+       the bottom right */
+    :host([bare]) .tabs, :host([bare]:not([menu])) .toolbar { display:none; }
+    :host([bare]) .toolbar { position:fixed; top:auto; left:16px; bottom:16px; z-index:3; width:44px; height:44px; padding:0; gap:0;
+                             justify-content:center; border-radius:50%; border-bottom:none; color:var(--primary-text-color);
+                             background:color-mix(in srgb, var(--card-background-color, #fff) 82%, transparent);
+                             -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); box-shadow:0 2px 8px rgba(0,0,0,.25); }
+    :host([bare]) .toolbar > :not(ha-menu-button) { display:none; }
     .fab { position:fixed; right:16px; bottom:16px; z-index:3; width:44px; height:44px; border-radius:50%; display:none; place-items:center;
            color:var(--primary-text-color); background:color-mix(in srgb, var(--card-background-color, #fff) 82%, transparent);
            -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); box-shadow:0 2px 8px rgba(0,0,0,.25); --mdc-icon-size:22px; }
@@ -1167,6 +1174,7 @@ class HomeCameraPanel extends HTMLElement {
   set narrow(narrow) {
     this._narrow = narrow;
     if (this._menu) this._menu.narrow = narrow;
+    this._syncBare();
   }
 
   set panel(panel) {
@@ -1183,8 +1191,9 @@ class HomeCameraPanel extends HTMLElement {
     if (this._editor) this._editor.hass = hass;
     if (this._camEditor) this._camEditor.hass = hass;
     if (first) this._start();
-    else if (this._tab === 'settings') this._renderBanner();
     else if (this._lang() !== langBefore || this._admin() !== adminBefore) this._render();
+    else if (this._tab === 'settings') this._renderBanner();
+    this._syncBare();
   }
 
   // Home Assistant may set panel, narrow, route and hass before the element is defined: they land as plain
@@ -1326,6 +1335,8 @@ class HomeCameraPanel extends HTMLElement {
 
   _syncBare() {
     this.toggleAttribute?.('bare', this._bare());
+    // Where Home Assistant shows the menu button: narrow screen, or the sidebar set to always hidden
+    this.toggleAttribute?.('menu', !!this._narrow || this._hass?.dockedSidebar === 'always_hidden');
   }
 
   _render() {

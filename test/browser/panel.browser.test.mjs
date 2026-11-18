@@ -301,3 +301,19 @@ test("Settings saves the top bar choice", async () => {
   });
   assert.deepEqual(r, { before: "true", dirty: { checked: "true", save: false }, saved: "users" });
 });
+
+test("the top bar hidden: the menu button stays at the bottom left where Home Assistant shows it", async () => {
+  const r = await page.evaluate(async () => {
+    const shown = (sel) => getComputedStyle($(sel)).display !== "none";
+    await open({ admin: false, hide: "users", card: { cameras: ["camera.a"] } });
+    const wide = { menu: panel.hasAttribute("menu"), bar: shown(".toolbar") };
+    panel.narrow = true;
+    const bar = getComputedStyle($(".toolbar"));
+    return {
+      wide,
+      narrow: { menu: panel.hasAttribute("menu"), bar: bar.display !== "none", position: bar.position, title: shown(".toolbar .grow"), button: shown("ha-menu-button") },
+    };
+  });
+  assert.deepEqual(r.wide, { menu: false, bar: false });
+  assert.deepEqual(r.narrow, { menu: true, bar: true, position: "fixed", title: false, button: true });
+});
