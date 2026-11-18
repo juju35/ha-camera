@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.6.4 - 2026-11-18
+
+### Fixes
+- Single camera: its image now fills the card edge to edge — no margin on the sides or at the bottom, and right under the illustrated header's ground strip (full card, and the mini card's expanded view).
+
 ## 4.6.3 - 2026-11-18
 
 ### Fixes
