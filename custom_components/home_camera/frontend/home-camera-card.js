@@ -1,4 +1,4 @@
-const HOME_CAMERA_CARD_VERSION = '4.6.1';
+const HOME_CAMERA_CARD_VERSION = '4.6.2';
 
 // ── i18n ─────────────────────────────────────────────────────────────────────
 const HcI18n = {
@@ -13,7 +13,6 @@ const HcI18n = {
     no_cameras: 'Aucune caméra configurée',
     hint_all: 'Touchez une pastille pour afficher une caméra',
     live: 'En direct',
-    hint_one: 'Activez la caméra pour la voir ici',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Basculer entre HD et SD',
@@ -87,7 +86,6 @@ const HcI18n = {
     no_cameras: 'No camera configured',
     hint_all: 'Tap a badge to show a camera',
     live: 'Live',
-    hint_one: 'Enable the camera to see it here',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Switch between HD and SD',
@@ -161,7 +159,6 @@ const HcI18n = {
     no_cameras: 'Keine Kamera konfiguriert',
     hint_all: 'Tippe auf ein Badge, um eine Kamera anzuzeigen',
     live: 'Live',
-    hint_one: 'Aktiviere die Kamera, um sie hier zu sehen',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Zwischen HD und SD wechseln',
@@ -235,7 +232,6 @@ const HcI18n = {
     no_cameras: 'No hay ninguna cámara configurada',
     hint_all: 'Toca una insignia para mostrar una cámara',
     live: 'En directo',
-    hint_one: 'Activa la cámara para verla aquí',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Cambiar entre HD y SD',
@@ -309,7 +305,6 @@ const HcI18n = {
     no_cameras: 'Нема подешених камера',
     hint_all: 'Додирните значку да прикажете камеру',
     live: 'Уживо',
-    hint_one: 'Омогућите камеру да бисте је видели овде',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Пребацивање између HD и SD квалитета',
@@ -383,7 +378,6 @@ const HcI18n = {
     no_cameras: 'Nema podešenih kamera',
     hint_all: 'Dodirnite značku da prikažete kameru',
     live: 'Uživo',
-    hint_one: 'Omogućite kameru da biste je videli ovde',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Prebacivanje između HD i SD kvaliteta',
@@ -457,7 +451,6 @@ const HcI18n = {
     no_cameras: 'Nessuna telecamera configurata',
     hint_all: 'Tocca un badge per mostrare una telecamera',
     live: 'In diretta',
-    hint_one: 'Attiva la telecamera per vederla qui',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Passa da HD a SD e viceversa',
@@ -531,7 +524,6 @@ const HcI18n = {
     no_cameras: 'Geen camera geconfigureerd',
     hint_all: 'Tik op een badge om een camera te tonen',
     live: 'Live',
-    hint_one: 'Schakel de camera in om hem hier te zien',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Wisselen tussen HD en SD',
@@ -605,7 +597,6 @@ const HcI18n = {
     no_cameras: 'Nenhuma câmara configurada',
     hint_all: 'Toque num emblema para mostrar uma câmara',
     live: 'Em direto',
-    hint_one: 'Ative a câmara para a ver aqui',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Alternar entre HD e SD',
@@ -679,7 +670,6 @@ const HcI18n = {
     no_cameras: 'Nie skonfigurowano żadnej kamery',
     hint_all: 'Dotknij plakietki, aby pokazać kamerę',
     live: 'Na żywo',
-    hint_one: 'Włącz kamerę, aby ją tu zobaczyć',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Przełącz między HD a SD',
@@ -753,7 +743,6 @@ const HcI18n = {
     no_cameras: 'Nicio cameră configurată',
     hint_all: 'Atingeți o insignă pentru a afișa o cameră',
     live: 'În direct',
-    hint_one: 'Activați camera pentru a o vedea aici',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Comutați între HD și SD',
@@ -827,7 +816,6 @@ const HcI18n = {
     no_cameras: 'Intet kamera konfigureret',
     hint_all: 'Tryk på et badge for at vise et kamera',
     live: 'Live',
-    hint_one: 'Aktivér kameraet for at se det her',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Skift mellem HD og SD',
@@ -901,7 +889,6 @@ const HcI18n = {
     no_cameras: 'Ingen kamera konfigurerad',
     hint_all: 'Tryck på en bricka för att visa en kamera',
     live: 'Live',
-    hint_one: 'Aktivera kameran för att se den här',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Växla mellan HD och SD',
@@ -975,7 +962,6 @@ const HcI18n = {
     no_cameras: 'Няма настроени камери',
     hint_all: 'Докоснете значка, за да покажете камера',
     live: 'На живо',
-    hint_one: 'Активирайте камерата, за да я видите тук',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Превключване между HD и SD',
@@ -1049,7 +1035,6 @@ const HcI18n = {
     no_cameras: 'Камеры не настроены',
     hint_all: 'Нажмите на значок, чтобы показать камеру',
     live: 'В эфире',
-    hint_one: 'Включите камеру, чтобы увидеть её здесь',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Переключение между HD и SD',
@@ -1123,7 +1108,6 @@ const HcI18n = {
     no_cameras: 'Камери не налаштовано',
     hint_all: 'Торкніться значка, щоб показати камеру',
     live: 'В ефірі',
-    hint_one: 'Увімкніть камеру, щоб побачити її тут',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Перемикання між HD і SD',
@@ -1197,7 +1181,6 @@ const HcI18n = {
     no_cameras: 'Nincs beállított kamera',
     hint_all: 'Koppintson egy jelvényre egy kamera megjelenítéséhez',
     live: 'Élő',
-    hint_one: 'Kapcsolja be a kamerát, hogy itt lássa',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Váltás HD és SD között',
@@ -1271,7 +1254,6 @@ const HcI18n = {
     no_cameras: 'Nie je nastavená žiadna kamera',
     hint_all: 'Ťuknutím na odznak zobrazíte kameru',
     live: 'Naživo',
-    hint_one: 'Zapnite kameru, aby ste ju tu videli',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Prepnúť medzi HD a SD',
@@ -1345,7 +1327,6 @@ const HcI18n = {
     no_cameras: 'Není nastavena žádná kamera',
     hint_all: 'Klepnutím na odznak zobrazíte kameru',
     live: 'Živě',
-    hint_one: 'Zapněte kameru, abyste ji zde viděli',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Přepnout mezi HD a SD',
@@ -1419,7 +1400,6 @@ const HcI18n = {
     no_cameras: 'Nobena kamera ni nastavljena',
     hint_all: 'Tapnite značko, da prikažete kamero',
     live: 'V živo',
-    hint_one: 'Omogočite kamero, da jo vidite tukaj',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Preklopi med HD in SD',
@@ -1493,7 +1473,6 @@ const HcI18n = {
     no_cameras: 'Nav konfigurēta neviena kamera',
     hint_all: 'Pieskarieties žetonam, lai parādītu kameru',
     live: 'Tiešraide',
-    hint_one: 'Iespējojiet kameru, lai to redzētu šeit',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Pārslēgt starp HD un SD',
@@ -1567,7 +1546,6 @@ const HcI18n = {
     no_cameras: 'Δεν έχει ρυθμιστεί καμία κάμερα',
     hint_all: 'Πατήστε ένα σήμα για να εμφανίσετε μια κάμερα',
     live: 'Ζωντανά',
-    hint_one: 'Ενεργοποιήστε την κάμερα για να τη δείτε εδώ',
     hd: 'HD',
     sd: 'SD',
     quality_hint: 'Εναλλαγή μεταξύ HD και SD',
@@ -2590,6 +2568,12 @@ class HomeCameraCard extends HTMLElement {
       this._syncSnapshots();
       return;
     }
+    // A lone hidden camera: the header says so, no locked thumbnail under it.
+    if (cams.length === 1 && this._hidden(cams[0])) {
+      view.replaceChildren();
+      this._syncSnapshots();
+      return;
+    }
     const thumbs = cams.map((cam) => {
       const state = this._thumbState(cam);
       const mark =
@@ -2827,11 +2811,12 @@ class HomeCameraCard extends HTMLElement {
     if (!visible.length) {
       this._dropTiles();
       const n = count;
-      // Every camera hidden: what brings one back, where the grid would be.
-      if (n && this._config.show_badges) {
+      // Every camera hidden: what brings one back, where the grid would be. A lone camera needs no hint:
+      // the header's toggle already says Enable, so nothing shows under it.
+      if (n > 1 && this._config.show_badges) {
         view.innerHTML =
           `<div class="asleep"><ha-icon icon="mdi:eye-lock"></ha-icon>` +
-          `<span>${hcEsc(this._t(n === 1 ? 'hint_one' : 'hint_all'))}</span></div>`;
+          `<span>${hcEsc(this._t('hint_all'))}</span></div>`;
       } else {
         view.innerHTML = n
           ? ''
