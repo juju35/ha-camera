@@ -20,10 +20,10 @@ customElements.define("ha-form", class extends HTMLElement {
 });
 window.formChange = (value) => form.dispatchEvent(new CustomEvent("value-changed", { detail: { value } }));
 window.sent = [];
-window.makeHass = ({ admin, card, title = "" }) => {
+window.makeHass = ({ admin, card, title = "", hide = "never" }) => {
   const listeners = [];
   window.push = (data) => listeners.forEach((cb) => cb(data));
-  const settings = (c, t) => ({ configured: true, card: c, title: t, sidebar_title: t || "Cameras", default_title: "Cameras" });
+  const settings = (c, t, h = hide) => ({ configured: true, card: c, title: t, hide_toolbar: h, sidebar_title: t || "Cameras", default_title: "Cameras" });
   return {
     language: "en",
     user: { is_admin: admin },
@@ -40,7 +40,7 @@ window.makeHass = ({ admin, card, title = "" }) => {
     },
     callWS: async (msg) => {
       sent.push(msg);
-      if (msg.type === "home_camera/update_settings") return settings(msg.card, msg.title);
+      if (msg.type === "home_camera/update_settings") return settings(msg.card, msg.title, msg.hide_toolbar);
       if (msg.type === "home_camera/discover") {
         return {
           cameras: [
@@ -80,6 +80,9 @@ window.open = async (opts, path = "") => {
   return el;
 };
 window.$ = (sel) => panel.shadowRoot.querySelector(sel);
+// The cameras as the Settings tab edits them (camera ids), and the rows of its list
+window.camIds = () => (panel._formValues().card.cameras || []).map((c) => (typeof c === "string" ? c : c.camera));
+window.rows = () => [...panel.shadowRoot.querySelectorAll("[data-shown] [data-row] .who .n")].map((n) => n.textContent);
 window.tabs = () => [...panel.shadowRoot.querySelectorAll(".tab")].map((t) => t.dataset.tab);
 `;
 
@@ -150,28 +153,50 @@ test("new settings pushed by the server redraw the card, the same ones never do"
   assert.deepEqual(r, { kept: true, same: true, tiles: 2 });
 });
 
-test("an administrator edits the cameras and the title in Settings, then saves them", async () => {
+test("an administrator edits a camera and the title in Settings, then saves them", async () => {
   const r = await page.evaluate(async () => {
     await open({ admin: true, card: { cameras: ["camera.a"] } }, "settings");
-    const before = { save: $("[data-save]").disabled, data: form.data.cameras };
-    formChange({ cameras: [{ camera: "camera.a" }, { camera: "camera.b", name: "Garden" }] });
+    const before = { save: $("[data-save]").disabled, rows: rows(), pill: $(".banner .stpill").textContent.trim() };
+    $('[data-edit="0"]').click();
+    await new Promise((r) => setTimeout(r, 20));
+    const editor = $("[data-cam-editor] home-camera-card-editor");
+    const opened = { section: editor?.section, data: form.data, expanded: $('[data-edit="0"]').getAttribute("aria-expanded") };
+    formChange({ camera: "camera.a", name: "Garden" });
     const input = $("[data-title]");
     input.value = "Surveillance";
     input.dispatchEvent(new Event("input"));
-    const dirty = { save: $("[data-save]").disabled, msg: $("[data-msg]").textContent };
+    const dirty = { save: $("[data-save]").disabled, msg: $("[data-msg]").textContent, rows: rows(), pill: $(".banner .stpill").textContent.trim(), same: $("[data-cam-editor] home-camera-card-editor") === editor };
     $("[data-save]").click();
     await new Promise((r) => setTimeout(r, 50));
-    return { before, dirty, saved: sent.find((m) => m.type === "home_camera/update_settings"), msg: $("[data-msg]").textContent, toolbar: $(".toolbar .grow").textContent };
+    return { before, opened, dirty, saved: sent.find((m) => m.type === "home_camera/update_settings"), msg: $("[data-msg]").textContent, toolbar: $(".toolbar .grow").textContent };
   });
-  assert.deepEqual(r.before, { save: true, data: [{ camera: "camera.a" }] });
-  assert.deepEqual(r.dirty, { save: false, msg: "Unsaved changes" });
+  assert.deepEqual(r.before, { save: true, rows: ["camera.a"], pill: "Up to date" });
+  assert.deepEqual(r.opened, { section: "camera", data: { camera: "camera.a" }, expanded: "true" });
+  assert.deepEqual(r.dirty, { save: false, msg: "Unsaved changes", rows: ["Garden"], pill: "Unsaved changes", same: true });
   assert.deepEqual(r.saved, {
     type: "home_camera/update_settings",
-    card: { cameras: ["camera.a", { camera: "camera.b", name: "Garden" }] },
+    card: { cameras: [{ camera: "camera.a", name: "Garden" }] },
     title: "Surveillance",
+    hide_toolbar: "never",
   });
   assert.equal(r.msg, "Saved");
   assert.equal(r.toolbar, "Surveillance");
+});
+
+test("the cameras shown are reordered with the arrow keys on their handle, and removed from their fields", async () => {
+  const r = await page.evaluate(async () => {
+    await open({ admin: true, card: { cameras: ["camera.a", "camera.b"] } }, "settings");
+    $('[data-move="0"]').dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true, composed: true }));
+    const moved = { ids: camIds(), focus: panel.shadowRoot.activeElement?.dataset.move, save: $("[data-save]").disabled };
+    $('[data-edit="0"]').click();
+    await new Promise((r) => setTimeout(r, 20));
+    $('[data-remove="0"]').click();
+    await new Promise((r) => setTimeout(r, 20));
+    return { moved, removed: camIds(), head: $("[data-shown-head]").textContent };
+  });
+  assert.deepEqual(r.moved, { ids: ["camera.b", "camera.a"], focus: "1", save: false });
+  assert.deepEqual(r.removed, ["camera.a"]);
+  assert.equal(r.head, "Cameras shown · 1");
 });
 
 test("Copy from a dashboard takes the first camera card, without its type or layout", async () => {
@@ -179,10 +204,11 @@ test("Copy from a dashboard takes the first camera card, without its type or lay
     await open({ admin: true, card: { cameras: [] } }, "settings");
     $("[data-import]").click();
     await new Promise((r) => setTimeout(r, 50));
-    return { msg: $("[data-msg]").textContent, data: form.data.cameras, save: $("[data-save]").disabled };
+    return { msg: $("[data-msg]").textContent, data: camIds(), rows: rows(), save: $("[data-save]").disabled };
   });
   assert.match(r.msg, /copied from “Cameras”/);
-  assert.deepEqual(r.data, [{ camera: "camera.b" }]);
+  assert.deepEqual(r.data, ["camera.b"]);
+  assert.deepEqual(r.rows, ["camera.b"]);
   assert.equal(r.save, false);
 });
 
@@ -194,10 +220,10 @@ test("Settings lists the cameras found that the panel does not show yet, and add
     const first = { names: names(), sub: $(".found .s").textContent, addAll: !!$('[data-add=""]') };
     $('[data-add="camera.d"]').click();
     await new Promise((r) => setTimeout(r));
-    const one = { names: names(), cameras: form.data.cameras.map((c) => c.camera), save: $("[data-save]").disabled };
+    const one = { names: names(), cameras: camIds(), save: $("[data-save]").disabled };
     $('[data-add="camera.b_hd_stream"]').click();
     await new Promise((r) => setTimeout(r));
-    return { first, one, all: { names: names(), msg: $("[data-msg]").textContent, none: $("[data-found] .msg").textContent }, cameras: form.data.cameras };
+    return { first, one, all: { names: names(), msg: $("[data-msg]").textContent, none: $("[data-found] .msg").textContent }, cameras: panel._formValues().card.cameras };
   });
   assert.deepEqual(r.first, { names: ["Kids", "Terrace"], sub: "Bedroom · camera.b_hd_stream · HD + SD", addAll: true });
   assert.deepEqual(r.one, { names: ["Kids"], cameras: ["camera.a", "camera.x", "camera.d"], save: false });
@@ -217,7 +243,7 @@ test("Add all takes every camera found at once", async () => {
     await open({ admin: true, card: { cameras: [] } }, "settings");
     $('[data-add=""]').click();
     await new Promise((r) => setTimeout(r));
-    return { cameras: form.data.cameras.map((c) => c.camera), msg: $("[data-msg]").textContent };
+    return { cameras: camIds(), msg: $("[data-msg]").textContent };
   });
   assert.deepEqual(r.cameras, ["camera.a", "camera.b_hd_stream", "camera.c_hd_stream", "camera.d"]);
   assert.equal(r.msg, "Cameras added: 4. Save to keep them.");
@@ -237,4 +263,57 @@ test("on the wall, the column count is empty by default and 2 is kept when chose
   assert.equal(r.before, undefined);
   assert.deepEqual(r.saved, { cameras: ["camera.a", "camera.b"], columns: 2 });
   assert.equal(r.grid, "repeat(2, minmax(0px, 1fr))");
+});
+
+test("the top bar hidden for non-admins: a user gets the wall alone, an administrator keeps the bar", async () => {
+  const r = await page.evaluate(async () => {
+    const shown = (sel) => getComputedStyle($(sel)).display !== "none";
+    await open({ admin: false, hide: "users", card: { cameras: ["camera.a"] } });
+    const user = { bare: panel.hasAttribute("bare"), bar: shown(".toolbar"), fab: !!$("[data-fab]") };
+    await open({ admin: true, hide: "users", card: { cameras: ["camera.a"] } });
+    return { user, admin: { bare: panel.hasAttribute("bare"), bar: shown(".toolbar") } };
+  });
+  assert.deepEqual(r, { user: { bare: true, bar: false, fab: false }, admin: { bare: false, bar: true } });
+});
+
+test("the top bar hidden for everyone: an administrator gets the cog, which opens Settings with the bar back", async () => {
+  const r = await page.evaluate(async () => {
+    const shown = (sel) => getComputedStyle($(sel)).display !== "none";
+    await open({ admin: true, hide: "everyone", card: { cameras: ["camera.a"] } });
+    const wall = { bare: panel.hasAttribute("bare"), bar: shown(".toolbar"), fab: shown("[data-fab]") };
+    $("[data-fab]").click();
+    await new Promise((r) => setTimeout(r, 20));
+    return { wall, settings: { bare: panel.hasAttribute("bare"), bar: shown(".tabs"), tab: !$("#tab-settings").hidden, fab: shown("[data-fab]") } };
+  });
+  assert.deepEqual(r.wall, { bare: true, bar: false, fab: true });
+  assert.deepEqual(r.settings, { bare: false, bar: true, tab: true, fab: false });
+});
+
+test("Settings saves the top bar choice", async () => {
+  const r = await page.evaluate(async () => {
+    await open({ admin: true, card: { cameras: ["camera.a"] } }, "settings");
+    const before = $('[data-hide="never"]').getAttribute("aria-checked");
+    $('[data-hide="users"]').click();
+    const dirty = { checked: $('[data-hide="users"]').getAttribute("aria-checked"), save: $("[data-save]").disabled };
+    $("[data-save]").click();
+    await new Promise((r) => setTimeout(r, 50));
+    return { before, dirty, saved: sent.find((m) => m.type === "home_camera/update_settings").hide_toolbar };
+  });
+  assert.deepEqual(r, { before: "true", dirty: { checked: "true", save: false }, saved: "users" });
+});
+
+test("the top bar hidden: the menu button stays at the bottom left where Home Assistant shows it", async () => {
+  const r = await page.evaluate(async () => {
+    const shown = (sel) => getComputedStyle($(sel)).display !== "none";
+    await open({ admin: false, hide: "users", card: { cameras: ["camera.a"] } });
+    const wide = { menu: panel.hasAttribute("menu"), bar: shown(".toolbar") };
+    panel.narrow = true;
+    const bar = getComputedStyle($(".toolbar"));
+    return {
+      wide,
+      narrow: { menu: panel.hasAttribute("menu"), bar: bar.display !== "none", position: bar.position, title: shown(".toolbar .grow"), button: shown("ha-menu-button") },
+    };
+  });
+  assert.deepEqual(r.wide, { menu: false, bar: false });
+  assert.deepEqual(r.narrow, { menu: true, bar: true, position: "fixed", title: false, button: true });
 });

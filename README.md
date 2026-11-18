@@ -21,6 +21,8 @@ List the cameras, the cards find their privacy switch, SD stream and PTZ buttons
 | **Cameras panel** | **Cameras panel, dark** |
 |---|---|
 | <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/panel.png" alt="Cameras sidebar panel with the camera grid full page" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/panel-dark.png" alt="Cameras sidebar panel with the camera grid full page, dark theme" width="400"> |
+| **Panel settings** | **Panel settings, dark** |
+| <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/panel-settings.png" alt="Settings tab of the Cameras panel: header card, cameras found, cameras shown" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/panel-settings-dark.png" alt="Settings tab of the Cameras panel, dark theme" width="400"> |
 | **Light** | **Dark** |
 | <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/card.png" alt="Camera card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/card-dark.png" alt="Camera card, dark theme" width="400"> |
 | **Pan & tilt** | **Pan & tilt, dark** |
@@ -38,8 +40,8 @@ List the cameras, the cards find their privacy switch, SD stream and PTZ buttons
 
 ### Cameras panel
 
-- **Cameras** in the sidebar for **every user** — family members without administrator rights included: a **video wall** edge to edge, with no card around it — a thin status bar (cameras live and hidden, privacy badges, HD / SD) over as many columns as the screen takes — and everything the card does (live streams, privacy badges, HD / SD, PTZ, fullscreen)
-- **Settings** tab, for administrators only: the cameras and their options with the card's own visual editor, and the sidebar title (left empty: *Cameras* in the server's language)
+- **Cameras** in the sidebar for **every user** — family members without administrator rights included: the card's **illustrated header** as a card of its own (cameras live and hidden, status pill, HD / SD, the privacy badges as pills, amber for a camera in motion), then a **video wall** edge to edge — as many columns as the screen takes, a camera in motion outlined in amber — and everything the card does (live streams, privacy badges, HD / SD, PTZ, fullscreen)
+- **Settings** tab, for administrators only: a header card with its illustrated banner (saved or not), the sidebar title (left empty: *Cameras* in the server's language), the **top bar** (shown, hidden for non-admins, or hidden for everyone: the wall alone, the menu button kept at the bottom left, administrators keeping a cog button at the bottom right to come back to Settings), the **cameras shown** as a list — drag a camera's handle (or use the arrow keys on it) to reorder, the pencil opens its fields — and the card's display options
 - **Camera discovery**: a new entry starts with every camera of Home Assistant, and Settings lists the ones not shown yet, to **Add** one by one or **Add all**, each with the privacy switch, pan and tilt buttons and motion sensors found on its device; a Tapo camera's two entities (`*_hd_stream`, `*_sd_stream`) count as one camera, whose SD stream the HD / SD switch picks
 - **Copy from a dashboard**: takes the first camera card found on your dashboards, to move a cameras dashboard to the panel in one click
 - Saved settings reach every open panel at once, on every device; the tab is in the address (`/cameras/settings`)
@@ -114,7 +116,7 @@ The integration adds the **Cameras** panel to the sidebar and the cards to the d
 
 ### Cameras panel
 
-Open **Cameras** in the sidebar, then its **Settings** tab (administrators): the panel already shows every camera found when the integration was added; **Cameras found** lists the ones added to Home Assistant since (**Add**, **Add all**), the **Cameras** list edits them all — or **Copy from a dashboard** — then **Save**. The panel takes the same options as the card below; every user then sees the cameras in the panel.
+Open **Cameras** in the sidebar, then its **Settings** tab (administrators): the panel already shows every camera found when the integration was added; **Cameras found** lists the ones added to Home Assistant since (**Add**, **Add all**), **Cameras shown** lists them — drag to reorder, the pencil edits one — or **Copy from a dashboard**, then **Save**. The panel takes the same options as the card below; every user then sees the cameras in the panel.
 
 ### Visual editor
 
@@ -181,7 +183,7 @@ The mini card takes the same options as the full card except `layout`, plus `zoo
 | `quality_entity` | ❌ | — | `input_select` (or `select`) holding the quality; without it the card keeps its own choice in the browser |
 | `hd_option` | ❌ | `HD` | Option of `quality_entity` meaning HD |
 | `sd_option` | ❌ | `SD` | Option of `quality_entity` meaning SD |
-| `layout` | ❌ | — | Full card only (also in its visual editor; the mini card ignores it). `wall`: the video wall of the Cameras panel — no card around the grid, a status bar instead of the header, as many columns as fit (unless `columns` is set) |
+| `layout` | ❌ | — | Full card only (also in its visual editor; the mini card ignores it). `wall`: the video wall of the Cameras panel — the header as a card of its own above the grid, no card around the grid, a camera in motion outlined in amber, as many columns as fit (unless `columns` is set) |
 | `columns` | ❌ | `2` | Columns of the grid |
 | `aspect_ratio` | ❌ | `16:9` | Shape of the tiles (`16:9`, `4:3`, `1:1`…); the image fills the tile |
 | `show_summary` | ❌ | `true` | Summary line under the title |

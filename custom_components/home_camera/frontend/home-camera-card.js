@@ -1,4 +1,4 @@
-const HOME_CAMERA_CARD_VERSION = '4.6.4';
+const HOME_CAMERA_CARD_VERSION = '4.7.0';
 
 // ── i18n ─────────────────────────────────────────────────────────────────────
 const HcI18n = {
@@ -2710,7 +2710,9 @@ class HomeCameraCard extends HTMLElement {
           const l = lock(cam);
           const target = this._target(cam);
           const label = single ? this._t(this._hidden(cam) ? 'enable' : 'disable') : cam.short;
-          const attrs = `data-toggle="${hcEsc(target)}"${l.cls === 'dis' ? ' aria-disabled="true"' : ''}`;
+          // On the wall, the badge of a camera in motion turns amber (toggled in place by _syncMotion)
+          const motion = this._wall && cam.motion.length ? ` data-motion="${hcEsc(cam.motion.join(' '))}"` : '';
+          const attrs = `data-toggle="${hcEsc(target)}"${l.cls === 'dis' ? ' aria-disabled="true"' : ''}${motion}`;
           return this._chip(l.cls, attrs, badgeIcon(l), label, l.title);
         })
         .join('');
@@ -2755,14 +2757,8 @@ class HomeCameraCard extends HTMLElement {
     // control held it, and give it back to its replacement.
     const focused = this.shadowRoot.activeElement;
     const kind = head.contains(focused) && (focused.dataset?.quality ? 'quality' : focused.dataset?.toggle ? 'toggle' : null);
-    if (this._wall) {
-      // Video wall: one thin bar, the status on the left, the privacy badges, HD / SD on the right.
-      head.innerHTML =
-        `<div class="wallbar">${summary ? `<div class="summary">${hcEsc(summary)}</div>` : ''}` +
-        `<div class="chips badges">${badges}</div><div class="chips">${right}</div></div>`;
-    } else {
-      this._renderHeader(head, { title, right, side, sub, badges, state });
-    }
+    // Video wall too: the illustrated header, as a card of its own above the wall (see the styles)
+    this._renderHeader(head, { title, right, side, sub, badges, state });
     if (kind) {
       for (const el of head.querySelectorAll(`[data-${kind}]`)) {
         if (el.dataset[kind] !== focused.dataset[kind]) continue;
@@ -3285,16 +3281,25 @@ class HomeCameraCard extends HTMLElement {
       // The one moving thing: the live dot on the images breathes, like a recording light.
       '@keyframes hc-live { 50% { opacity: 0.35; } }' +
       '.view:empty { display: none; }' +
-      // Video wall: no card, the grid edge to edge under a thin status bar.
-      ':host([wall]) ha-card { background: none; border: none; box-shadow: none; border-radius: 0; padding: 0; gap: 8px; overflow: visible; }' +
-      '.wallbar { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; min-height: 28px; }' +
-      '.wallbar .summary { margin: 0; font-size: 13px; }' +
-      '.wallbar .chips.badges { margin: 0; flex: 1 1 auto; }' +
-      // On the page background, the badges and the HD / SD track take the card colour to stand out from it
-      ':host([wall]) :is(.chip:not(.private), .seg) { background: var(--card-background-color, #fff); }' +
-      ':host([wall]) .opt.on { background: var(--secondary-background-color, rgba(128,128,128,0.12)); box-shadow: none; }' +
-      ':host([wall]) .grid { gap: 6px; }' +
-      ':host([wall]) .tile { border-radius: 10px; }' +
+      // Video wall: no card around the grid, edge to edge; the header is a card of its own above it (the
+      // illustrated banner, then the privacy badges as pills), as the headers of the ha-* panels.
+      ':host([wall]) ha-card { background: none; border: none; box-shadow: none; border-radius: 0; padding: 0; gap: 12px; overflow: visible; }' +
+      ':host([wall]) .head { padding: 12px; overflow: hidden; background: var(--ha-card-background, var(--card-background-color, #fff));' +
+      ' border-radius: var(--ha-card-border-radius, 12px); box-shadow: var(--ha-card-box-shadow, none);' +
+      ' border: var(--ha-card-border-width, 1px) solid var(--ha-card-border-color, var(--divider-color, #e0e0e0)); }' +
+      // Nothing under the banner: the header card ends on its parquet strip.
+      ':host([wall]) .head:not(:has(> .badges)) .banner { margin-bottom: -12px; }' +
+      ':host([wall]) .head > .chips.badges { margin-top: 12px; gap: 8px; }' +
+      ':host([wall]) .head > .badges .chip { font-size: 13px; line-height: 20px; padding: 7px 14px 7px 12px; border-radius: 17px; gap: 8px; }' +
+      ':host([wall]) .head > .badges .chip ha-icon { --mdc-icon-size: 16px; }' +
+      ':host([wall]) .head > .badges .chip .dot { width: 8px; height: 8px; }' +
+      // A camera in motion: its badge and its tile in amber.
+      ':host([wall]) .chip.motion:not(.private):not(.dis) { background: color-mix(in srgb, var(--warning-color, #ffa600) 16%, transparent);' +
+      ' color: color-mix(in srgb, var(--warning-color, #ffa600) 45%, var(--primary-text-color, #212121));' +
+      ' box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--warning-color, #ffa600) 35%, transparent); }' +
+      ':host([wall]) .grid { gap: 8px; }' +
+      ':host([wall]) .tile { border-radius: 12px; }' +
+      ':host([wall]) .tile.motion { outline: 2px solid var(--warning-color, #ffa600); outline-offset: -2px; }' +
       '.grid { display: grid; gap: 8px; }' +
       // A lone camera: the image bleeds to the card's sides and bottom (the card's corners round it), right
       // under the illustrated header's ground strip; no hairline ring on the card's edge.
@@ -3548,6 +3553,18 @@ class HomeCameraCardEditor extends HTMLElement {
       motion: { selector: { entity: { domain: 'binary_sensor' } } },
     };
     for (const k of HC_CAMERA_FIELDS) fields[k].label = t(`cf_${k}`);
+    // section 'camera' (the Cameras panel's Settings): one camera's fields, two by two
+    if (this.section === 'camera') {
+      const pairs = [];
+      for (let i = 0; i < HC_CAMERA_FIELDS.length; i += 2) {
+        pairs.push({
+          type: 'grid',
+          name: '',
+          schema: HC_CAMERA_FIELDS.slice(i, i + 2).map((k) => ({ name: k, selector: fields[k].selector, required: fields[k].required })),
+        });
+      }
+      return pairs;
+    }
     return [
       {
         type: 'grid',
@@ -3602,27 +3619,23 @@ class HomeCameraCardEditor extends HTMLElement {
           { name: 'show_motion', selector: { boolean: {} } },
         ],
       },
-      // The illustrated header (not on the video wall, which has a status bar instead).
-      ...(this._wall()
-        ? []
-        : [
-            {
-              type: 'grid',
-              name: '',
-              schema: [
-                { name: 'illustration', selector: { boolean: {} } },
-                {
-                  name: 'illustration_theme',
-                  selector: {
-                    select: {
-                      mode: 'dropdown',
-                      options: ['auto', 'day', 'night'].map((v) => ({ value: v, label: t(`ed_theme_${v}`) })),
-                    },
-                  },
-                },
-              ],
+      // The illustrated header (on the video wall too, as its header card).
+      {
+        type: 'grid',
+        name: '',
+        schema: [
+          { name: 'illustration', selector: { boolean: {} } },
+          {
+            name: 'illustration_theme',
+            selector: {
+              select: {
+                mode: 'dropdown',
+                options: ['auto', 'day', 'night'].map((v) => ({ value: v, label: t(`ed_theme_${v}`) })),
+              },
             },
-          ]),
+          },
+        ],
+      },
       // Mini card: its detail button (on unless `zoom: false`).
       ...(this.constructor.mini ? [{ name: 'zoom', selector: { boolean: {} } }] : []),
       {
@@ -3657,7 +3670,10 @@ class HomeCameraCardEditor extends HTMLElement {
           },
         },
       },
-      { name: 'cameras', selector: { object: { multiple: true, label_field: 'name', fields: fields } } },
+      // section 'options' (the Cameras panel's Settings): the cameras are listed by the panel itself
+      ...(this.section === 'options'
+        ? []
+        : [{ name: 'cameras', selector: { object: { multiple: true, label_field: 'name', fields: fields } } }]),
     ];
   }
 
@@ -3671,6 +3687,12 @@ class HomeCameraCardEditor extends HTMLElement {
     const lang = this._lang();
     this._form.hass = this._hass;
     this._form.schema = this._schema();
+    if (this.section === 'camera') {
+      this._form.computeLabel = (s) => hcT(lang, `cf_${s.name}`);
+      this._form.computeHelper = () => undefined;
+      this._form.data = Object.assign({}, this._config);
+      return;
+    }
     this._form.computeLabel = (s) => hcT(lang, `ed_${s.name}`);
     this._form.computeHelper = (s) => {
       const key = s.name === 'columns' && this._wall() ? 'ed_columns_wall_helper' : `ed_${s.name}_helper`;
@@ -3695,6 +3717,12 @@ class HomeCameraCardEditor extends HTMLElement {
     };
     // Keep the YAML short: drop options left empty or at their default.
     clean(value);
+    // One camera: its fields as they are, without the card's defaults
+    if (this.section === 'camera') {
+      this._config = value;
+      this.dispatchEvent(new CustomEvent('config-changed', { detail: { config: value }, bubbles: true, composed: true }));
+      return;
+    }
     // On the wall, any column count is a choice (the default is none): 2 is kept like the others
     for (const key of Object.keys(HC_DEFAULTS)) {
       if (key === 'columns' && this._wall()) continue;
