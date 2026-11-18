@@ -1,4 +1,4 @@
-const HOME_CAMERA_CARD_VERSION = '4.6.3';
+const HOME_CAMERA_CARD_VERSION = '4.6.4';
 
 // ── i18n ─────────────────────────────────────────────────────────────────────
 const HcI18n = {
@@ -2483,6 +2483,10 @@ class HomeCameraCard extends HTMLElement {
     const visible = cams.filter((cam) => !this._hidden(cam));
     const compact = this._compact();
     this.shadowRoot.querySelector('ha-card')?.classList.toggle('mini', compact);
+    // A lone camera on screen: its image runs edge to edge, under the header and down to the card's edges.
+    this.shadowRoot
+      .querySelector('ha-card')
+      ?.classList.toggle('solo', !compact && !this._wall && cams.length === 1 && visible.length === 1);
 
     const banner = this._config.illustration !== false;
     const headSig = JSON.stringify([
@@ -3292,6 +3296,12 @@ class HomeCameraCard extends HTMLElement {
       ':host([wall]) .grid { gap: 6px; }' +
       ':host([wall]) .tile { border-radius: 10px; }' +
       '.grid { display: grid; gap: 8px; }' +
+      // A lone camera: the image bleeds to the card's sides and bottom (the card's corners round it), right
+      // under the illustrated header's ground strip; no hairline ring on the card's edge.
+      'ha-card.solo .view { margin: 0 -12px -12px; }' +
+      'ha-card.solo .head:has(.banner) + .view { margin-top: -8px; }' +
+      'ha-card.solo .tile { border-radius: 0; }' +
+      'ha-card.solo .tile::after { display: none; }' +
       // container-type: size gives the tile no width of its own: in a parent sized by its content (inline-block,
       // an auto grid column) the card would fold to its padding. contain-intrinsic-width stands in for the image
       // there, and changes nothing where the card is given its width (the Sections view, a stack).

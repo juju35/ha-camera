@@ -536,6 +536,21 @@ test("the HD / SD switch selects the option tapped, and a tap on the current one
   assert.equal(r.checked, "true");
 });
 
+test("a single camera fills the card: no margin around the image, right under the header", async () => {
+  const r = await page.evaluate(() => {
+    mount(["camera.a_hd_stream"]);
+    const card = el.shadowRoot.querySelector("ha-card").getBoundingClientRect();
+    const banner = el.shadowRoot.querySelector(".banner").getBoundingClientRect();
+    const tile = tiles()[0].getBoundingClientRect();
+    const solo = [card.left - tile.left, card.right - tile.right, card.bottom - tile.bottom, tile.top - banner.bottom].map(Math.round);
+    mount(["camera.a_hd_stream", "camera.c"]);
+    const t = tiles()[0].getBoundingClientRect();
+    const c = el.shadowRoot.querySelector("ha-card").getBoundingClientRect();
+    return { solo, several: Math.round(t.left - c.left) };
+  });
+  assert.deepEqual(r, { solo: [0, 0, 0, 0], several: 12 });
+});
+
 test("a single hidden camera: no quality switch and nothing under the header", async () => {
   const r = await page.evaluate(() => {
     mount(["camera.b_hd_stream"]);
