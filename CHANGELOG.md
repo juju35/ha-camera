@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.7.1 - 2026-11-19
+
+### Fixes
+- Top bar hidden (Settings › Panel): only the title bar goes now — the Cameras / Settings tabs stay at the top, on both tabs. The menu button stays where Home Assistant shows it: at the start of the tabs, or as a round button at the bottom left for a user without tabs. The floating cog is gone (the Settings tab is there).
+
 ## 4.7.0 - 2026-11-18
 
 ### Features
