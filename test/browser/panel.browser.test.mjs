@@ -156,7 +156,7 @@ test("new settings pushed by the server redraw the card, the same ones never do"
 test("an administrator edits a camera and the title in Settings, then saves them", async () => {
   const r = await page.evaluate(async () => {
     await open({ admin: true, card: { cameras: ["camera.a"] } }, "settings");
-    const before = { save: $("[data-save]").disabled, rows: rows(), pill: $(".banner .stpill").textContent.trim() };
+    const before = { save: $("[data-save]").disabled, rows: rows(), pill: $("[data-banner] .stpill").textContent.trim() };
     $('[data-edit="0"]').click();
     await new Promise((r) => setTimeout(r, 20));
     const editor = $("[data-cam-editor] home-camera-card-editor");
@@ -165,7 +165,7 @@ test("an administrator edits a camera and the title in Settings, then saves them
     const input = $("[data-title]");
     input.value = "Surveillance";
     input.dispatchEvent(new Event("input"));
-    const dirty = { save: $("[data-save]").disabled, msg: $("[data-msg]").textContent, rows: rows(), pill: $(".banner .stpill").textContent.trim(), same: $("[data-cam-editor] home-camera-card-editor") === editor };
+    const dirty = { save: $("[data-save]").disabled, msg: $("[data-msg]").textContent, rows: rows(), pill: $("[data-banner] .stpill").textContent.trim(), same: $("[data-cam-editor] home-camera-card-editor") === editor };
     $("[data-save]").click();
     await new Promise((r) => setTimeout(r, 50));
     return { before, opened, dirty, saved: sent.find((m) => m.type === "home_camera/update_settings"), msg: $("[data-msg]").textContent, toolbar: $(".toolbar .grow").textContent };
@@ -338,4 +338,38 @@ test("the top bar hidden in the panel's registration: never shown while the sett
     return { bare: el.hasAttribute("bare"), bar: getComputedStyle($(".toolbar")).display, tabs: getComputedStyle($(".tabs")).display };
   });
   assert.deepEqual(r, { bare: true, bar: "none", tabs: "flex" });
+});
+
+test("the top bar shows the state of the cameras, the overview filters the wall by motion and privacy", async () => {
+  const r = await page.evaluate(async () => {
+    await open({ admin: true, card: { cameras: ["camera.a", { camera: "camera.b", motion: ["binary_sensor.b_motion"] }, { camera: "camera.c", privacy: "switch.c_privacy" }] } });
+    const hass = panel._hass;
+    panel.hass = {
+      ...hass,
+      states: {
+        ...hass.states,
+        "camera.c": { entity_id: "camera.c", state: "idle", attributes: {} },
+        "binary_sensor.b_motion": { entity_id: "binary_sensor.b_motion", state: "on", attributes: {} },
+        "switch.c_privacy": { entity_id: "switch.c_privacy", state: "on", attributes: {} },
+      },
+    };
+    await new Promise((res) => setTimeout(res, 50));
+    const chips = [...panel.shadowRoot.querySelectorAll(".ov .fchip")].map((b) => b.textContent.trim());
+    const top = { pill: $(".toolbar .stpill")?.textContent.trim(), sub: $(".toolbar .bsub").textContent, tab: $("#tabbtn-cameras .cnt")?.textContent };
+    const card = () => $("#tab-cameras home-camera-card");
+    const all = card()._config.cameras.length;
+    $('.ov [data-filter="motion"]').click();
+    await new Promise((res) => setTimeout(res, 20));
+    const motion = card()._config.cameras.map((c) => (typeof c === "string" ? c : c.camera));
+    $('.ov .fchip[data-filter="private"]').click();
+    await new Promise((res) => setTimeout(res, 20));
+    const priv = card()._config.cameras.map((c) => (typeof c === "string" ? c : c.camera));
+    return { chips, top, all, motion, priv, header: card()._config.show_header };
+  });
+  assert.deepEqual(r.chips, ["All: 3", "Motion: 1", "Private: 1"]);
+  assert.deepEqual(r.top, { pill: "Motion detected", sub: "2 cameras live · 1 hidden", tab: "1" });
+  assert.equal(r.all, 3);
+  assert.deepEqual(r.motion, ["camera.b"]);
+  assert.deepEqual(r.priv, ["camera.c"]);
+  assert.equal(r.header, false, "the card's own header is left to the top bar");
 });

@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.8.0 - 2026-11-19
+
+### Features
+- **Cameras panel laid out like the ENT ONE panel**: the card's illustrated header is the panel's top bar, across the page — the camera drawn in the panel's state, the title with its status pill, the cameras live and hidden, HD / SD and the integration as round glass buttons (the blue toolbar is gone). The tabs sit under it on the page background, sticky, the active one underlined; Cameras shows how many cameras are in motion. *Top bar hidden* hides this banner, the tabs and the menu button staying.
+- **Cameras tab**: a filter by state (All, Motion, Private) and four tiles (motion, live, privacy, offline) over the wall; Motion and Privacy filter the wall.
+- **Settings**: its header card keeps the icon, title, pill and counts, without the picture (now in the top bar).
+- Card: `show_header: false` (YAML) leaves out the header and keeps the privacy badges — used by the panel.
+
 ## 4.7.2 - 2026-11-19
 
 ### Fixes
