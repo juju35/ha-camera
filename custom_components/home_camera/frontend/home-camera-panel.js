@@ -12,7 +12,7 @@
  *
  * https://github.com/juju35/ha-camera
  */
-var HOME_CAMERA_PANEL_VERSION = '4.8.0';
+var HOME_CAMERA_PANEL_VERSION = '4.8.1';
 
 var HomeCameraPanelI18n = {
   en: {
@@ -67,14 +67,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Switch between HD and SD",
-    f_all: "All: {n}",
-    f_motion: "Motion: {n}",
-    f_private: "Private: {n}",
-    t_motion: "Motion",
-    t_live: "Live",
-    t_privacy: "Privacy",
-    t_offline: "Offline",
-    t_none: "None",
   },
   fr: {
     cameras: 'Caméras',
@@ -128,14 +120,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Basculer entre HD et SD",
-    f_all: "Toutes : {n}",
-    f_motion: "Mouvement : {n}",
-    f_private: "Privées : {n}",
-    t_motion: "Mouvement",
-    t_live: "En direct",
-    t_privacy: "Confidentialité",
-    t_offline: "Hors ligne",
-    t_none: "Aucune",
   },
   de: {
     cameras: 'Kameras',
@@ -189,14 +173,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Zwischen HD und SD wechseln",
-    f_all: "Alle: {n}",
-    f_motion: "Bewegung: {n}",
-    f_private: "Privat: {n}",
-    t_motion: "Bewegung",
-    t_live: "Live",
-    t_privacy: "Privatsphäre",
-    t_offline: "Offline",
-    t_none: "Keine",
   },
   es: {
     cameras: 'Cámaras',
@@ -250,14 +226,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Cambiar entre HD y SD",
-    f_all: "Todas: {n}",
-    f_motion: "Movimiento: {n}",
-    f_private: "Privadas: {n}",
-    t_motion: "Movimiento",
-    t_live: "En directo",
-    t_privacy: "Privacidad",
-    t_offline: "Sin conexión",
-    t_none: "Ninguna",
   },
   sr: {
     cameras: 'Камере',
@@ -311,14 +279,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Пребацивање између HD и SD квалитета",
-    f_all: "Све: {n}",
-    f_motion: "Покрет: {n}",
-    f_private: "Приватне: {n}",
-    t_motion: "Покрет",
-    t_live: "Уживо",
-    t_privacy: "Приватност",
-    t_offline: "Ван мреже",
-    t_none: "Нема",
   },
   'sr-Latn': {
     cameras: 'Kamere',
@@ -372,14 +332,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Prebacivanje između HD i SD kvaliteta",
-    f_all: "Sve: {n}",
-    f_motion: "Pokret: {n}",
-    f_private: "Privatne: {n}",
-    t_motion: "Pokret",
-    t_live: "Uživo",
-    t_privacy: "Privatnost",
-    t_offline: "Van mreže",
-    t_none: "Nema",
   },
   it: {
     cameras: 'Telecamere',
@@ -433,14 +385,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Passa da HD a SD e viceversa",
-    f_all: "Tutte: {n}",
-    f_motion: "Movimento: {n}",
-    f_private: "Private: {n}",
-    t_motion: "Movimento",
-    t_live: "In diretta",
-    t_privacy: "Privacy",
-    t_offline: "Offline",
-    t_none: "Nessuna",
   },
   nl: {
     cameras: "Camera's",
@@ -494,14 +438,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Wisselen tussen HD en SD",
-    f_all: "Alle: {n}",
-    f_motion: "Beweging: {n}",
-    f_private: "Privé: {n}",
-    t_motion: "Beweging",
-    t_live: "Live",
-    t_privacy: "Privacy",
-    t_offline: "Offline",
-    t_none: "Geen",
   },
   pt: {
     cameras: 'Câmaras',
@@ -555,14 +491,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Alternar entre HD e SD",
-    f_all: "Todas: {n}",
-    f_motion: "Movimento: {n}",
-    f_private: "Privadas: {n}",
-    t_motion: "Movimento",
-    t_live: "Em direto",
-    t_privacy: "Privacidade",
-    t_offline: "Offline",
-    t_none: "Nenhuma",
   },
   pl: {
     cameras: 'Kamery',
@@ -616,14 +544,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Przełącz między HD a SD",
-    f_all: "Wszystkie: {n}",
-    f_motion: "Ruch: {n}",
-    f_private: "Prywatne: {n}",
-    t_motion: "Ruch",
-    t_live: "Na żywo",
-    t_privacy: "Prywatność",
-    t_offline: "Offline",
-    t_none: "Brak",
   },
   ro: {
     cameras: 'Camere',
@@ -677,14 +597,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Comutați între HD și SD",
-    f_all: "Toate: {n}",
-    f_motion: "Mișcare: {n}",
-    f_private: "Private: {n}",
-    t_motion: "Mișcare",
-    t_live: "În direct",
-    t_privacy: "Confidențialitate",
-    t_offline: "Offline",
-    t_none: "Niciuna",
   },
   da: {
     cameras: 'Kameraer',
@@ -738,14 +650,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Skift mellem HD og SD",
-    f_all: "Alle: {n}",
-    f_motion: "Bevægelse: {n}",
-    f_private: "Private: {n}",
-    t_motion: "Bevægelse",
-    t_live: "Live",
-    t_privacy: "Privatliv",
-    t_offline: "Offline",
-    t_none: "Ingen",
   },
   sv: {
     cameras: 'Kameror',
@@ -799,14 +703,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Växla mellan HD och SD",
-    f_all: "Alla: {n}",
-    f_motion: "Rörelse: {n}",
-    f_private: "Privata: {n}",
-    t_motion: "Rörelse",
-    t_live: "Live",
-    t_privacy: "Integritet",
-    t_offline: "Offline",
-    t_none: "Ingen",
   },
   bg: {
     cameras: 'Камери',
@@ -860,14 +756,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Превключване между HD и SD",
-    f_all: "Всички: {n}",
-    f_motion: "Движение: {n}",
-    f_private: "Лични: {n}",
-    t_motion: "Движение",
-    t_live: "На живо",
-    t_privacy: "Поверителност",
-    t_offline: "Офлайн",
-    t_none: "Няма",
   },
   ru: {
     cameras: 'Камеры',
@@ -921,14 +809,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Переключение между HD и SD",
-    f_all: "Все: {n}",
-    f_motion: "Движение: {n}",
-    f_private: "Скрытые: {n}",
-    t_motion: "Движение",
-    t_live: "В эфире",
-    t_privacy: "Конфиденциальность",
-    t_offline: "Не в сети",
-    t_none: "Нет",
   },
   uk: {
     cameras: 'Камери',
@@ -982,14 +862,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Перемикання між HD і SD",
-    f_all: "Усі: {n}",
-    f_motion: "Рух: {n}",
-    f_private: "Приховані: {n}",
-    t_motion: "Рух",
-    t_live: "Наживо",
-    t_privacy: "Конфіденційність",
-    t_offline: "Не в мережі",
-    t_none: "Немає",
   },
   hu: {
     cameras: 'Kamerák',
@@ -1043,14 +915,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Váltás HD és SD között",
-    f_all: "Mind: {n}",
-    f_motion: "Mozgás: {n}",
-    f_private: "Privát: {n}",
-    t_motion: "Mozgás",
-    t_live: "Élő",
-    t_privacy: "Adatvédelem",
-    t_offline: "Offline",
-    t_none: "Nincs",
   },
   sk: {
     cameras: 'Kamery',
@@ -1104,14 +968,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Prepnúť medzi HD a SD",
-    f_all: "Všetky: {n}",
-    f_motion: "Pohyb: {n}",
-    f_private: "Súkromné: {n}",
-    t_motion: "Pohyb",
-    t_live: "Naživo",
-    t_privacy: "Súkromie",
-    t_offline: "Offline",
-    t_none: "Žiadna",
   },
   cs: {
     cameras: 'Kamery',
@@ -1165,14 +1021,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Přepnout mezi HD a SD",
-    f_all: "Všechny: {n}",
-    f_motion: "Pohyb: {n}",
-    f_private: "Soukromé: {n}",
-    t_motion: "Pohyb",
-    t_live: "Živě",
-    t_privacy: "Soukromí",
-    t_offline: "Offline",
-    t_none: "Žádná",
   },
   sl: {
     cameras: 'Kamere',
@@ -1226,14 +1074,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Preklopi med HD in SD",
-    f_all: "Vse: {n}",
-    f_motion: "Gibanje: {n}",
-    f_private: "Zasebne: {n}",
-    t_motion: "Gibanje",
-    t_live: "V živo",
-    t_privacy: "Zasebnost",
-    t_offline: "Brez povezave",
-    t_none: "Nobena",
   },
   lv: {
     cameras: 'Kameras',
@@ -1287,14 +1127,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Pārslēgt starp HD un SD",
-    f_all: "Visas: {n}",
-    f_motion: "Kustība: {n}",
-    f_private: "Privātas: {n}",
-    t_motion: "Kustība",
-    t_live: "Tiešraidē",
-    t_privacy: "Privātums",
-    t_offline: "Bezsaistē",
-    t_none: "Nav",
   },
   el: {
     cameras: 'Κάμερες',
@@ -1348,14 +1180,6 @@ var HomeCameraPanelI18n = {
     hd: "HD",
     sd: "SD",
     quality_hint: "Εναλλαγή μεταξύ HD και SD",
-    f_all: "Όλες: {n}",
-    f_motion: "Κίνηση: {n}",
-    f_private: "Ιδιωτικές: {n}",
-    t_motion: "Κίνηση",
-    t_live: "Ζωντανά",
-    t_privacy: "Ιδιωτικότητα",
-    t_offline: "Εκτός σύνδεσης",
-    t_none: "Καμία",
   },
 };
 
@@ -1449,31 +1273,6 @@ class HomeCameraPanel extends HTMLElement {
     .tab.active { color:var(--primary-text-color); border-bottom-color:var(--warning-color, #ffa600); }
     .tab .cnt { display:inline-block; min-width:18px; padding:1px 5px; margin-left:5px; border-radius:9px; font-size:11px; text-align:center; box-sizing:border-box;
                 color:color-mix(in srgb, var(--warning-color, #ffa600) 60%, var(--primary-text-color)); background:color-mix(in srgb, var(--warning-color, #ffa600) 18%, transparent); }
-    /* Over the wall: a filter by state and four tiles of the chart (as on the ENT ONE panel) */
-    .ov { display:flex; flex-direction:column; gap:12px; }
-    .ov:empty { display:none; }
-    .filters { display:flex; flex-wrap:wrap; gap:8px; }
-    .fchip { all:unset; cursor:pointer; display:inline-flex; align-items:center; gap:6px; min-height:30px; padding:0 12px; border-radius:16px; font-size:13px; box-sizing:border-box;
-             color:var(--secondary-text-color); background:var(--card-background-color, #fff); border:1px solid var(--divider-color, #e0e0e0); --mdc-icon-size:16px; }
-    .fchip.on { color:var(--primary-text-color); border:1.5px solid var(--warning-color, #ffa600); }
-    .fchip:focus-visible { outline:2px solid var(--primary-color); }
-    .fchip .dot { width:7px; height:7px; border-radius:50%; background:var(--warning-color, #ffa600); }
-    .otiles { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:12px; }
-    .otile { all:unset; box-sizing:border-box; display:flex; align-items:center; gap:12px; min-width:0; padding:12px 14px; border-radius:12px; cursor:pointer;
-             background:var(--card-background-color, #fff); border:1px solid var(--divider-color, #e0e0e0); --c:#8a96a3; }
-    .otile[disabled] { cursor:default; }
-    .otile:not([disabled]):hover { border-color:color-mix(in srgb, var(--c) 55%, var(--divider-color, #e0e0e0)); }
-    .otile:focus-visible { outline:2px solid var(--primary-color); }
-    .otile.warn { --c:var(--warning-color, #ffa600); } .otile.live { --c:#e5484d; } .otile.good { --c:var(--success-color, #43a047); } .otile.bad { --c:var(--error-color, #db4437); }
-    .pastille { position:relative; flex:none; width:40px; height:40px; border-radius:50%; display:grid; place-items:center; --mdc-icon-size:22px;
-                color:var(--c); background:color-mix(in srgb, var(--c) 16%, transparent); }
-    .pbadge { position:absolute; top:-3px; right:-5px; min-width:18px; height:18px; padding:0 4px; box-sizing:border-box; border-radius:9px; font-size:11px; font-weight:600;
-              line-height:18px; text-align:center; color:#fff; background:var(--c); box-shadow:0 0 0 2px var(--card-background-color, #fff); }
-    .tl { display:flex; flex-direction:column; min-width:0; }
-    .tn { font-size:14px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .ts { font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:color-mix(in srgb, var(--c) 65%, var(--primary-text-color)); }
-    .otile.rest .ts { color:var(--secondary-text-color); }
-    @media (max-width:900px) { .otiles { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
     /* Settings: its header card without a picture (the picture is the top bar now) */
     .thead { display:flex; align-items:center; gap:10px; padding:12px 16px; min-width:0; }
     .thead .bicon { background:color-mix(in srgb, var(--c) 14%, transparent); box-shadow:none; }
@@ -1641,7 +1440,7 @@ class HomeCameraPanel extends HTMLElement {
     if (first) this._start();
     else if (this._lang() !== langBefore || this._admin() !== adminBefore) this._render();
     else if (this._tab === 'settings') this._renderBanner();
-    // A motion, a privacy switch, a camera going offline: the top bar, the tiles and the wall's filter follow
+    // A motion, a privacy switch, a camera going offline: the top bar and the tab's count follow
     if (!first && this._data) {
       var camSig = JSON.stringify((this._camStates() || []).map((c) => [c.hidden, c.up, c.motion]));
       if (camSig !== this._camSig) {
@@ -1920,53 +1719,8 @@ class HomeCameraPanel extends HTMLElement {
     }
   }
 
-  // Over the wall: All / Motion / Private (a chip only for a state someone is in) and four tiles — motion, live,
-  // privacy, offline. Motion and Private filter the wall too.
-  _overviewHtml(cams) {
-    var esc = hcpEsc;
-    if (!cams || cams.length < 2) return '';
-    var motion = cams.filter((c) => c.motion);
-    var priv = cams.filter((c) => c.hidden);
-    var live = cams.filter((c) => !c.hidden && c.up);
-    var off = cams.filter((c) => !c.hidden && !c.up);
-    if (this._filter === 'motion' && !motion.length) this._filter = '';
-    if (this._filter === 'private' && !priv.length) this._filter = '';
-    var chip = (key, label, icon) => {
-      var on = (this._filter || '') === key;
-      return `<button class="fchip${on ? ' on' : ''}" data-filter="${key}" aria-pressed="${on}">${icon || ''}${esc(label)}</button>`;
-    };
-    var chips = [chip('', this._t('f_all', { n: cams.length }))];
-    if (motion.length) chips.push(chip('motion', this._t('f_motion', { n: motion.length }), '<i class="dot"></i>'));
-    if (priv.length) chips.push(chip('private', this._t('f_private', { n: priv.length }), '<ha-icon icon="mdi:eye-lock"></ha-icon>'));
-    var name = (list) => list.map((c) => c.cam.short || c.cam.name).join(', ');
-    var tile = (tone, icon, title, state, count, filter) =>
-      `<button class="otile ${count ? tone : 'rest'}"${filter && count ? ` data-filter="${filter}"` : ' disabled'}><span class="pastille"><ha-icon icon="${icon}"></ha-icon>${count && filter ? `<span class="pbadge">${count}</span>` : ''}</span>` +
-      `<span class="tl"><span class="tn">${esc(title)}</span><span class="ts">${esc(state)}</span></span></button>`;
-    var tiles = [
-      tile('warn', 'mdi:motion-sensor', this._t('t_motion'), motion.length ? name(motion) : this._t('t_none'), motion.length, 'motion'),
-      tile('live', 'mdi:record-rec', this._t('t_live'), `${live.length} / ${cams.length}`, live.length, ''),
-      tile('good', 'mdi:eye-lock', this._t('t_privacy'), priv.length ? name(priv) : this._t('t_none'), priv.length, 'private'),
-      tile('bad', 'mdi:video-off-outline', this._t('t_offline'), off.length ? name(off) : this._t('t_none'), off.length, ''),
-    ];
-    return `<div class="filters">${chips.join('')}</div><div class="otiles">${tiles.join('')}</div>`;
-  }
-
-  // The overview over the wall and the motion count of the Cameras tab, drawn again only when they changed
-  _renderOverview(cams) {
-    var ov = this.shadowRoot?.getElementById?.('ov');
-    var html = this._overviewHtml(cams);
-    if (ov && html !== this._ovHtml) {
-      this._ovHtml = html;
-      ov.innerHTML = html;
-      for (var b of ov.querySelectorAll('[data-filter]')) {
-        b.addEventListener('click', (ev) => {
-          var key = ev.currentTarget.dataset.filter;
-          this._filter = this._filter === key ? '' : key;
-          this._ovHtml = null;
-          this._renderCameras();
-        });
-      }
-    }
+  // The motion count of the Cameras tab, drawn again only when it changed
+  _renderTabCount(cams) {
     var tab = this.shadowRoot?.getElementById?.('tabbtn-cameras');
     var n = (cams || []).filter((c) => c.motion).length;
     if (tab) {
@@ -1986,18 +1740,15 @@ class HomeCameraPanel extends HTMLElement {
     if (!tabSection) return;
     var toolbarTitle = this.shadowRoot.querySelector('.toolbar .grow');
     if (toolbarTitle && this._data?.sidebar_title) toolbarTitle.textContent = this._data.sidebar_title;
-    // The overview (filter and tiles) over the wall; the wall itself is the card
-    if (!tabSection.querySelector('#wall')) {
-      tabSection.innerHTML = '<div class="ov" id="ov"></div><div id="wall"></div>';
-      this._ovHtml = null;
-    }
+    // The wall is the card, on its own under the tabs
+    if (!tabSection.querySelector('#wall')) tabSection.innerHTML = '<div id="wall"></div>';
     var section = tabSection.querySelector('#wall');
     var cams = this._camStates();
     this._renderTop();
     var note = (html, error) => {
       this._card = null;
       this._shownCard = null;
-      this._renderOverview(null);
+      this._renderTabCount(null);
       section.innerHTML = `<ha-card><div class="note${error ? ' error' : ''}">${html}</div></ha-card>`;
     };
     if (this._loadError && !this._data) {
@@ -2028,11 +1779,9 @@ class HomeCameraPanel extends HTMLElement {
       } else note(`<span>${hcpEsc(this._t('empty_user'))}</span>`);
       return;
     }
-    this._renderOverview(cams);
-    // The filter keeps the wall's cameras in that state (Motion, Private); the card's own header is left out
-    // (its title, status and HD / SD are in the top bar), its privacy badges stay
-    var keep = cams && this._filter ? new Set(cams.filter((c) => (this._filter === 'motion' ? c.motion : c.hidden)).map((c) => c.raw)) : null;
-    card = Object.assign({}, card, { show_header: false, cameras: keep ? card.cameras.filter((raw) => keep.has(raw)) : card.cameras });
+    this._renderTabCount(cams);
+    // The card's own header is left out (its title, status and HD / SD are in the top bar), its privacy badges stay
+    card = Object.assign({}, card, { show_header: false });
     // Drawn again only when the configuration changed: a new card would reconnect every stream
     var json = JSON.stringify(card);
     if (this._card && json === this._shownCard) return;
