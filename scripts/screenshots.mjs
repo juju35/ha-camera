@@ -242,8 +242,8 @@ for (const s of SHOTS) {
   await page.close();
 }
 
-// The Cameras sidebar panel, 1100 x 760, as an administrator (both tabs) sees it: the header bar and the tabs
-// in the theme's header colours, the card full page under them. A stand-in menu button draws the sidebar toggle.
+// The Cameras sidebar panel, 1100 x 760, as an administrator (both tabs) sees it: the illustrated top bar, the tabs
+// under it, the filter and tiles, then the wall. A stand-in menu button draws the sidebar toggle.
 const HEADER = { light: { bg: "#03a9f4", text: "#ffffff" }, dark: { bg: "#101e24", text: "#e1e1e1" } };
 for (const theme of ["light", "dark"]) {
   const page = await browser.newPage({ deviceScaleFactor: 1.5, viewport: { width: 1100, height: 760 } });

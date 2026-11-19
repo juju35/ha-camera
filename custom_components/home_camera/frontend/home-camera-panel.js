@@ -12,7 +12,7 @@
  *
  * https://github.com/juju35/ha-camera
  */
-var HOME_CAMERA_PANEL_VERSION = '4.7.2';
+var HOME_CAMERA_PANEL_VERSION = '4.8.0';
 
 var HomeCameraPanelI18n = {
   en: {
@@ -56,6 +56,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Hidden for non-admins',
     toolbar_everyone: 'Hidden for everyone',
     toolbar_helper: 'Hidden: the title bar goes, the tabs stay; the menu button stays wherever Home Assistant shows it.',
+    live_one: "{n} camera live",
+    live_many: "{n} cameras live",
+    hidden_one: "{n} hidden",
+    hidden_many: "{n} hidden",
+    st_live: "Live",
+    st_motion: "Motion detected",
+    st_privacy: "Private",
+    st_offline: "Unavailable",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Switch between HD and SD",
+    f_all: "All: {n}",
+    f_motion: "Motion: {n}",
+    f_private: "Private: {n}",
+    t_motion: "Motion",
+    t_live: "Live",
+    t_privacy: "Privacy",
+    t_offline: "Offline",
+    t_none: "None",
   },
   fr: {
     cameras: 'Caméras',
@@ -98,6 +117,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Masquée pour les non-admins',
     toolbar_everyone: 'Masquée pour tous',
     toolbar_helper: 'Masquée : la barre de titre disparaît, les onglets restent ; le bouton menu reste là où Home Assistant l’affiche.',
+    live_one: "{n} caméra en direct",
+    live_many: "{n} caméras en direct",
+    hidden_one: "{n} masquée",
+    hidden_many: "{n} masquées",
+    st_live: "En direct",
+    st_motion: "Mouvement détecté",
+    st_privacy: "Privé",
+    st_offline: "Indisponible",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Basculer entre HD et SD",
+    f_all: "Toutes : {n}",
+    f_motion: "Mouvement : {n}",
+    f_private: "Privées : {n}",
+    t_motion: "Mouvement",
+    t_live: "En direct",
+    t_privacy: "Confidentialité",
+    t_offline: "Hors ligne",
+    t_none: "Aucune",
   },
   de: {
     cameras: 'Kameras',
@@ -140,6 +178,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Für Nicht-Admins ausgeblendet',
     toolbar_everyone: 'Für alle ausgeblendet',
     toolbar_helper: 'Ausgeblendet: die Titelleiste verschwindet, die Tabs bleiben; der Menüknopf bleibt, wo Home Assistant ihn zeigt.',
+    live_one: "{n} Kamera live",
+    live_many: "{n} Kameras live",
+    hidden_one: "{n} ausgeblendet",
+    hidden_many: "{n} ausgeblendet",
+    st_live: "Live",
+    st_motion: "Bewegung erkannt",
+    st_privacy: "Privat",
+    st_offline: "Nicht verfügbar",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Zwischen HD und SD wechseln",
+    f_all: "Alle: {n}",
+    f_motion: "Bewegung: {n}",
+    f_private: "Privat: {n}",
+    t_motion: "Bewegung",
+    t_live: "Live",
+    t_privacy: "Privatsphäre",
+    t_offline: "Offline",
+    t_none: "Keine",
   },
   es: {
     cameras: 'Cámaras',
@@ -182,6 +239,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Oculta para no administradores',
     toolbar_everyone: 'Oculta para todos',
     toolbar_helper: 'Oculta: la barra de título desaparece, las pestañas se quedan; el botón de menú sigue donde Home Assistant lo muestra.',
+    live_one: "{n} cámara en directo",
+    live_many: "{n} cámaras en directo",
+    hidden_one: "{n} oculta",
+    hidden_many: "{n} ocultas",
+    st_live: "En directo",
+    st_motion: "Movimiento detectado",
+    st_privacy: "Privado",
+    st_offline: "No disponible",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Cambiar entre HD y SD",
+    f_all: "Todas: {n}",
+    f_motion: "Movimiento: {n}",
+    f_private: "Privadas: {n}",
+    t_motion: "Movimiento",
+    t_live: "En directo",
+    t_privacy: "Privacidad",
+    t_offline: "Sin conexión",
+    t_none: "Ninguna",
   },
   sr: {
     cameras: 'Камере',
@@ -224,6 +300,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Скривена за неадминистраторе',
     toolbar_everyone: 'Скривена за све',
     toolbar_helper: 'Скривена: трака наслова нестаје, картице остају; дугме менија остаје где га Home Assistant приказује.',
+    live_one: "{n} камера уживо",
+    live_many: "Камере уживо: {n}",
+    hidden_one: "{n} скривена",
+    hidden_many: "Скривене: {n}",
+    st_live: "Уживо",
+    st_motion: "Откривен покрет",
+    st_privacy: "Приватно",
+    st_offline: "Недоступно",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Пребацивање између HD и SD квалитета",
+    f_all: "Све: {n}",
+    f_motion: "Покрет: {n}",
+    f_private: "Приватне: {n}",
+    t_motion: "Покрет",
+    t_live: "Уживо",
+    t_privacy: "Приватност",
+    t_offline: "Ван мреже",
+    t_none: "Нема",
   },
   'sr-Latn': {
     cameras: 'Kamere',
@@ -266,6 +361,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Skrivena za neadministratore',
     toolbar_everyone: 'Skrivena za sve',
     toolbar_helper: 'Skrivena: traka naslova nestaje, kartice ostaju; dugme menija ostaje gde ga Home Assistant prikazuje.',
+    live_one: "{n} kamera uživo",
+    live_many: "Kamere uživo: {n}",
+    hidden_one: "{n} skrivena",
+    hidden_many: "Skrivene: {n}",
+    st_live: "Uživo",
+    st_motion: "Otkriven pokret",
+    st_privacy: "Privatno",
+    st_offline: "Nedostupno",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Prebacivanje između HD i SD kvaliteta",
+    f_all: "Sve: {n}",
+    f_motion: "Pokret: {n}",
+    f_private: "Privatne: {n}",
+    t_motion: "Pokret",
+    t_live: "Uživo",
+    t_privacy: "Privatnost",
+    t_offline: "Van mreže",
+    t_none: "Nema",
   },
   it: {
     cameras: 'Telecamere',
@@ -308,6 +422,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Nascosta ai non amministratori',
     toolbar_everyone: 'Nascosta a tutti',
     toolbar_helper: 'Nascosta: la barra del titolo sparisce, le schede restano; il pulsante del menu resta dove Home Assistant lo mostra.',
+    live_one: "{n} telecamera in diretta",
+    live_many: "{n} telecamere in diretta",
+    hidden_one: "{n} nascosta",
+    hidden_many: "{n} nascoste",
+    st_live: "In diretta",
+    st_motion: "Movimento rilevato",
+    st_privacy: "Privato",
+    st_offline: "Non disponibile",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Passa da HD a SD e viceversa",
+    f_all: "Tutte: {n}",
+    f_motion: "Movimento: {n}",
+    f_private: "Private: {n}",
+    t_motion: "Movimento",
+    t_live: "In diretta",
+    t_privacy: "Privacy",
+    t_offline: "Offline",
+    t_none: "Nessuna",
   },
   nl: {
     cameras: "Camera's",
@@ -350,6 +483,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Verborgen voor niet-beheerders',
     toolbar_everyone: 'Verborgen voor iedereen',
     toolbar_helper: 'Verborgen: de titelbalk verdwijnt, de tabbladen blijven; de menuknop blijft waar Home Assistant hem toont.',
+    live_one: "{n} camera live",
+    live_many: "{n} camera's live",
+    hidden_one: "{n} verborgen",
+    hidden_many: "{n} verborgen",
+    st_live: "Live",
+    st_motion: "Beweging gedetecteerd",
+    st_privacy: "Privé",
+    st_offline: "Niet beschikbaar",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Wisselen tussen HD en SD",
+    f_all: "Alle: {n}",
+    f_motion: "Beweging: {n}",
+    f_private: "Privé: {n}",
+    t_motion: "Beweging",
+    t_live: "Live",
+    t_privacy: "Privacy",
+    t_offline: "Offline",
+    t_none: "Geen",
   },
   pt: {
     cameras: 'Câmaras',
@@ -392,6 +544,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Oculta para não administradores',
     toolbar_everyone: 'Oculta para todos',
     toolbar_helper: 'Oculta: a barra de título desaparece, os separadores ficam; o botão de menu fica onde o Home Assistant o mostra.',
+    live_one: "{n} câmara em direto",
+    live_many: "{n} câmaras em direto",
+    hidden_one: "{n} oculta",
+    hidden_many: "{n} ocultas",
+    st_live: "Em direto",
+    st_motion: "Movimento detetado",
+    st_privacy: "Privado",
+    st_offline: "Indisponível",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Alternar entre HD e SD",
+    f_all: "Todas: {n}",
+    f_motion: "Movimento: {n}",
+    f_private: "Privadas: {n}",
+    t_motion: "Movimento",
+    t_live: "Em direto",
+    t_privacy: "Privacidade",
+    t_offline: "Offline",
+    t_none: "Nenhuma",
   },
   pl: {
     cameras: 'Kamery',
@@ -434,6 +605,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Ukryty dla nie-administratorów',
     toolbar_everyone: 'Ukryty dla wszystkich',
     toolbar_helper: 'Ukryty: pasek tytułu znika, karty zostają; przycisk menu zostaje tam, gdzie pokazuje go Home Assistant.',
+    live_one: "{n} kamera na żywo",
+    live_many: "Kamery na żywo: {n}",
+    hidden_one: "{n} ukryta",
+    hidden_many: "Ukryte: {n}",
+    st_live: "Na żywo",
+    st_motion: "Wykryto ruch",
+    st_privacy: "Prywatne",
+    st_offline: "Niedostępna",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Przełącz między HD a SD",
+    f_all: "Wszystkie: {n}",
+    f_motion: "Ruch: {n}",
+    f_private: "Prywatne: {n}",
+    t_motion: "Ruch",
+    t_live: "Na żywo",
+    t_privacy: "Prywatność",
+    t_offline: "Offline",
+    t_none: "Brak",
   },
   ro: {
     cameras: 'Camere',
@@ -476,6 +666,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Ascunsă pentru non-administratori',
     toolbar_everyone: 'Ascunsă pentru toți',
     toolbar_helper: 'Ascunsă: bara de titlu dispare, filele rămân; butonul de meniu rămâne acolo unde îl afișează Home Assistant.',
+    live_one: "{n} cameră în direct",
+    live_many: "Camere în direct: {n}",
+    hidden_one: "{n} ascunsă",
+    hidden_many: "Ascunse: {n}",
+    st_live: "În direct",
+    st_motion: "Mișcare detectată",
+    st_privacy: "Privat",
+    st_offline: "Indisponibilă",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Comutați între HD și SD",
+    f_all: "Toate: {n}",
+    f_motion: "Mișcare: {n}",
+    f_private: "Private: {n}",
+    t_motion: "Mișcare",
+    t_live: "În direct",
+    t_privacy: "Confidențialitate",
+    t_offline: "Offline",
+    t_none: "Niciuna",
   },
   da: {
     cameras: 'Kameraer',
@@ -518,6 +727,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Skjult for ikke-administratorer',
     toolbar_everyone: 'Skjult for alle',
     toolbar_helper: 'Skjult: titellinjen forsvinder, fanerne bliver; menuknappen bliver, hvor Home Assistant viser den.',
+    live_one: "{n} kamera live",
+    live_many: "{n} kameraer live",
+    hidden_one: "{n} skjult",
+    hidden_many: "{n} skjulte",
+    st_live: "Live",
+    st_motion: "Bevægelse registreret",
+    st_privacy: "Privat",
+    st_offline: "Utilgængelig",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Skift mellem HD og SD",
+    f_all: "Alle: {n}",
+    f_motion: "Bevægelse: {n}",
+    f_private: "Private: {n}",
+    t_motion: "Bevægelse",
+    t_live: "Live",
+    t_privacy: "Privatliv",
+    t_offline: "Offline",
+    t_none: "Ingen",
   },
   sv: {
     cameras: 'Kameror',
@@ -560,6 +788,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Dolt för icke-administratörer',
     toolbar_everyone: 'Dolt för alla',
     toolbar_helper: 'Dolt: namnlisten försvinner, flikarna stannar; menyknappen stannar där Home Assistant visar den.',
+    live_one: "{n} kamera live",
+    live_many: "{n} kameror live",
+    hidden_one: "{n} dold",
+    hidden_many: "{n} dolda",
+    st_live: "Live",
+    st_motion: "Rörelse upptäckt",
+    st_privacy: "Privat",
+    st_offline: "Inte tillgänglig",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Växla mellan HD och SD",
+    f_all: "Alla: {n}",
+    f_motion: "Rörelse: {n}",
+    f_private: "Privata: {n}",
+    t_motion: "Rörelse",
+    t_live: "Live",
+    t_privacy: "Integritet",
+    t_offline: "Offline",
+    t_none: "Ingen",
   },
   bg: {
     cameras: 'Камери',
@@ -602,6 +849,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Скрита за неадминистратори',
     toolbar_everyone: 'Скрита за всички',
     toolbar_helper: 'Скрита: лентата със заглавие изчезва, разделите остават; бутонът на менюто остава там, където Home Assistant го показва.',
+    live_one: "{n} камера на живо",
+    live_many: "{n} камери на живо",
+    hidden_one: "{n} скрита",
+    hidden_many: "{n} скрити",
+    st_live: "На живо",
+    st_motion: "Открито движение",
+    st_privacy: "Поверително",
+    st_offline: "Недостъпна",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Превключване между HD и SD",
+    f_all: "Всички: {n}",
+    f_motion: "Движение: {n}",
+    f_private: "Лични: {n}",
+    t_motion: "Движение",
+    t_live: "На живо",
+    t_privacy: "Поверителност",
+    t_offline: "Офлайн",
+    t_none: "Няма",
   },
   ru: {
     cameras: 'Камеры',
@@ -644,6 +910,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Скрыта для не-администраторов',
     toolbar_everyone: 'Скрыта для всех',
     toolbar_helper: 'Скрыта: строка заголовка исчезает, вкладки остаются; кнопка меню остаётся там, где её показывает Home Assistant.',
+    live_one: "{n} камера в эфире",
+    live_many: "Камеры в эфире: {n}",
+    hidden_one: "{n} скрыта",
+    hidden_many: "Скрыты: {n}",
+    st_live: "В эфире",
+    st_motion: "Обнаружено движение",
+    st_privacy: "Приватно",
+    st_offline: "Недоступна",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Переключение между HD и SD",
+    f_all: "Все: {n}",
+    f_motion: "Движение: {n}",
+    f_private: "Скрытые: {n}",
+    t_motion: "Движение",
+    t_live: "В эфире",
+    t_privacy: "Конфиденциальность",
+    t_offline: "Не в сети",
+    t_none: "Нет",
   },
   uk: {
     cameras: 'Камери',
@@ -686,6 +971,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Прихована для неадміністраторів',
     toolbar_everyone: 'Прихована для всіх',
     toolbar_helper: 'Прихована: рядок заголовка зникає, вкладки лишаються; кнопка меню лишається там, де її показує Home Assistant.',
+    live_one: "{n} камера в ефірі",
+    live_many: "Камери в ефірі: {n}",
+    hidden_one: "{n} прихована",
+    hidden_many: "Приховані: {n}",
+    st_live: "В ефірі",
+    st_motion: "Виявлено рух",
+    st_privacy: "Приватно",
+    st_offline: "Недоступна",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Перемикання між HD і SD",
+    f_all: "Усі: {n}",
+    f_motion: "Рух: {n}",
+    f_private: "Приховані: {n}",
+    t_motion: "Рух",
+    t_live: "Наживо",
+    t_privacy: "Конфіденційність",
+    t_offline: "Не в мережі",
+    t_none: "Немає",
   },
   hu: {
     cameras: 'Kamerák',
@@ -728,6 +1032,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Rejtett a nem rendszergazdák számára',
     toolbar_everyone: 'Rejtett mindenki számára',
     toolbar_helper: 'Rejtett: a címsor eltűnik, a lapok maradnak; a menügomb ott marad, ahol a Home Assistant mutatja.',
+    live_one: "{n} kamera élőben",
+    live_many: "{n} kamera élőben",
+    hidden_one: "{n} rejtett",
+    hidden_many: "{n} rejtett",
+    st_live: "Élő",
+    st_motion: "Mozgás észlelve",
+    st_privacy: "Privát",
+    st_offline: "Nem elérhető",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Váltás HD és SD között",
+    f_all: "Mind: {n}",
+    f_motion: "Mozgás: {n}",
+    f_private: "Privát: {n}",
+    t_motion: "Mozgás",
+    t_live: "Élő",
+    t_privacy: "Adatvédelem",
+    t_offline: "Offline",
+    t_none: "Nincs",
   },
   sk: {
     cameras: 'Kamery',
@@ -770,6 +1093,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Skrytá pre nesprávcov',
     toolbar_everyone: 'Skrytá pre všetkých',
     toolbar_helper: 'Skrytá: lišta s názvom zmizne, karty zostanú; tlačidlo ponuky zostane tam, kde ho Home Assistant zobrazuje.',
+    live_one: "{n} kamera naživo",
+    live_many: "Kamery naživo: {n}",
+    hidden_one: "{n} skrytá",
+    hidden_many: "Skryté: {n}",
+    st_live: "Naživo",
+    st_motion: "Zistený pohyb",
+    st_privacy: "Súkromné",
+    st_offline: "Nedostupná",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Prepnúť medzi HD a SD",
+    f_all: "Všetky: {n}",
+    f_motion: "Pohyb: {n}",
+    f_private: "Súkromné: {n}",
+    t_motion: "Pohyb",
+    t_live: "Naživo",
+    t_privacy: "Súkromie",
+    t_offline: "Offline",
+    t_none: "Žiadna",
   },
   cs: {
     cameras: 'Kamery',
@@ -812,6 +1154,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Skrytá pro nesprávce',
     toolbar_everyone: 'Skrytá pro všechny',
     toolbar_helper: 'Skrytá: lišta s názvem zmizí, karty zůstanou; tlačítko nabídky zůstane tam, kde ho Home Assistant zobrazuje.',
+    live_one: "{n} kamera živě",
+    live_many: "Kamery živě: {n}",
+    hidden_one: "{n} skrytá",
+    hidden_many: "Skryté: {n}",
+    st_live: "Živě",
+    st_motion: "Zjištěn pohyb",
+    st_privacy: "Soukromé",
+    st_offline: "Nedostupná",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Přepnout mezi HD a SD",
+    f_all: "Všechny: {n}",
+    f_motion: "Pohyb: {n}",
+    f_private: "Soukromé: {n}",
+    t_motion: "Pohyb",
+    t_live: "Živě",
+    t_privacy: "Soukromí",
+    t_offline: "Offline",
+    t_none: "Žádná",
   },
   sl: {
     cameras: 'Kamere',
@@ -854,6 +1215,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Skrita za neskrbnike',
     toolbar_everyone: 'Skrita za vse',
     toolbar_helper: 'Skrita: naslovna vrstica izgine, zavihki ostanejo; gumb menija ostane tam, kjer ga prikaže Home Assistant.',
+    live_one: "{n} kamera v živo",
+    live_many: "Kamere v živo: {n}",
+    hidden_one: "{n} skrita",
+    hidden_many: "Skrite: {n}",
+    st_live: "V živo",
+    st_motion: "Zaznano gibanje",
+    st_privacy: "Zasebno",
+    st_offline: "Ni na voljo",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Preklopi med HD in SD",
+    f_all: "Vse: {n}",
+    f_motion: "Gibanje: {n}",
+    f_private: "Zasebne: {n}",
+    t_motion: "Gibanje",
+    t_live: "V živo",
+    t_privacy: "Zasebnost",
+    t_offline: "Brez povezave",
+    t_none: "Nobena",
   },
   lv: {
     cameras: 'Kameras',
@@ -896,6 +1276,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Paslēpta ne-administratoriem',
     toolbar_everyone: 'Paslēpta visiem',
     toolbar_helper: 'Paslēpta: virsraksta josla pazūd, cilnes paliek; izvēlnes poga paliek tur, kur to rāda Home Assistant.',
+    live_one: "{n} kamera tiešraidē",
+    live_many: "Kameras tiešraidē: {n}",
+    hidden_one: "{n} paslēpta",
+    hidden_many: "Paslēptas: {n}",
+    st_live: "Tiešraide",
+    st_motion: "Konstatēta kustība",
+    st_privacy: "Privāti",
+    st_offline: "Nav pieejama",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Pārslēgt starp HD un SD",
+    f_all: "Visas: {n}",
+    f_motion: "Kustība: {n}",
+    f_private: "Privātas: {n}",
+    t_motion: "Kustība",
+    t_live: "Tiešraidē",
+    t_privacy: "Privātums",
+    t_offline: "Bezsaistē",
+    t_none: "Nav",
   },
   el: {
     cameras: 'Κάμερες',
@@ -938,6 +1337,25 @@ var HomeCameraPanelI18n = {
     toolbar_users: 'Κρυφή για μη διαχειριστές',
     toolbar_everyone: 'Κρυφή για όλους',
     toolbar_helper: 'Κρυφή: η γραμμή τίτλου φεύγει, οι καρτέλες μένουν· το κουμπί μενού μένει όπου το δείχνει το Home Assistant.',
+    live_one: "{n} κάμερα ζωντανά",
+    live_many: "{n} κάμερες ζωντανά",
+    hidden_one: "{n} κρυφή",
+    hidden_many: "{n} κρυφές",
+    st_live: "Ζωντανά",
+    st_motion: "Εντοπίστηκε κίνηση",
+    st_privacy: "Ιδιωτικό",
+    st_offline: "Μη διαθέσιμη",
+    hd: "HD",
+    sd: "SD",
+    quality_hint: "Εναλλαγή μεταξύ HD και SD",
+    f_all: "Όλες: {n}",
+    f_motion: "Κίνηση: {n}",
+    f_private: "Ιδιωτικές: {n}",
+    t_motion: "Κίνηση",
+    t_live: "Ζωντανά",
+    t_privacy: "Ιδιωτικότητα",
+    t_offline: "Εκτός σύνδεσης",
+    t_none: "Καμία",
   },
 };
 
@@ -997,20 +1415,70 @@ class HomeCameraPanel extends HTMLElement {
 
   static STYLE = `
     :host { display:block; min-height:100%; background:var(--primary-background-color); color:var(--primary-text-color); }
-    .toolbar { height:var(--header-height, 56px); display:flex; align-items:center; gap:8px; padding:0 12px; box-sizing:border-box;
-               background:var(--app-header-background-color, var(--primary-color)); color:var(--app-header-text-color, #fff);
-               border-bottom:var(--app-header-border-bottom, none); font-size:20px; position:sticky; top:0; z-index:2; }
-    .toolbar .grow { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-    .toolbar a { color:inherit; display:flex; padding:8px; border-radius:50%; --mdc-icon-size:22px; }
-    .toolbar a:hover { background:rgba(255,255,255,.12); }
-    /* Tabs under the toolbar, as in Smart Comfort: text, the active one underlined, sticky with the toolbar */
-    .tabs { display:flex; gap:4px; padding:0 12px; overflow-x:auto; background:var(--app-header-background-color, var(--primary-color));
-            position:sticky; top:var(--header-height, 56px); z-index:2; }
+    /* The top bar: the card's illustrated header across the page (a camera on a wall, a parquet strip, day and
+       night), as on the ENT ONE panel — title and status, how many cameras are live, HD / SD and the integration */
+    .toolbar { position:relative; height:90px; overflow:hidden; background:#f2efe9; color:#1f2328; --hcp-muted:#5d6670; }
+    .toolbar.night { background:#2a2b33; color:#fff; --hcp-muted:rgba(255,255,255,.78); }
+    .toolbar .hc-scene { right:var(--tb-acts, 150px); width:min(200px, 34%); }
+    .toolbar .bhead { right:calc(min(200px, 34%) + var(--tb-acts, 150px)); padding:0 8px; }
+    .toolbar .bhead ha-menu-button { flex:none; color:inherit; }
+    .toolbar .bname { font-size:20px; }
+    .toolbar .bicon.motion, .toolbar .stpill.motion { --c:var(--warning-color, #ffa600); }
+    .toolbar .bicon.live, .toolbar .stpill.live { --c:#e5484d; }
+    .toolbar .bicon.privacy, .toolbar .stpill.privacy { --c:#7a8594; }
+    .toolbar .bicon.offline, .toolbar .stpill.offline { --c:var(--error-color, #db4437); }
+    .tacts { position:absolute; z-index:2; top:calc((100% - 10px) / 2 - 17px); right:12px; display:flex; align-items:center; gap:6px; }
+    .tacts a, .tacts .qseg { color:#33506b; background:rgba(255,255,255,.55); box-shadow:inset 0 0 0 1px rgba(255,255,255,.7); }
+    .tacts a { width:34px; height:34px; border-radius:50%; display:grid; place-items:center; --mdc-icon-size:20px; }
+    .tacts a:hover { background:rgba(255,255,255,.82); }
+    .night .tacts a, .night .tacts .qseg { color:#fff; background:rgba(255,255,255,.12); box-shadow:inset 0 0 0 1px rgba(255,255,255,.2); }
+    .qseg { display:inline-flex; padding:3px; border-radius:17px; gap:2px; }
+    .qseg button { border:0; background:none; cursor:pointer; font:inherit; font-size:12px; font-weight:600; padding:4px 10px; border-radius:14px; color:inherit; opacity:.7; }
+    .qseg button[aria-checked="true"] { background:#fff; color:var(--primary-color, #03a9f4); opacity:1; }
+    .night .qseg button[aria-checked="true"] { background:rgba(255,255,255,.2); color:#fff; }
+    .qseg button:focus-visible, .tacts a:focus-visible { outline:2px solid var(--primary-color); outline-offset:1px; }
+    @media (max-width:600px) { .toolbar .hc-scene { display:none; } .toolbar .bhead { right:var(--tb-acts, 150px); } .toolbar .bicon { display:none; } }
+    /* Tabs under the top bar, on the page background: text, the active one underlined, sticky at the top */
+    .tabs { display:flex; align-items:center; gap:4px; padding:0 12px; overflow-x:auto; background:var(--primary-background-color);
+            border-bottom:1px solid var(--divider-color, rgba(0,0,0,.12)); position:sticky; top:0; z-index:2; }
     .tabs[hidden] { display:none; }
-    .tab { background:none; border:none; border-bottom:2px solid transparent; color:var(--app-header-text-color, #fff); opacity:.75;
-           padding:12px 14px; font:inherit; font-size:14px; cursor:pointer; white-space:nowrap; }
-    .tab:hover, .tab:focus-visible { opacity:1; outline:none; }
-    .tab.active { opacity:1; border-bottom-color:var(--app-header-text-color, #fff); }
+    .tab { background:none; border:none; border-bottom:2px solid transparent; color:var(--secondary-text-color); padding:12px 12px 10px; font:inherit;
+           font-size:14px; font-weight:500; cursor:pointer; white-space:nowrap; }
+    .tab:hover { color:var(--primary-text-color); }
+    .tab:focus-visible { outline:2px solid var(--primary-color); outline-offset:-2px; }
+    .tab.active { color:var(--primary-text-color); border-bottom-color:var(--warning-color, #ffa600); }
+    .tab .cnt { display:inline-block; min-width:18px; padding:1px 5px; margin-left:5px; border-radius:9px; font-size:11px; text-align:center; box-sizing:border-box;
+                color:color-mix(in srgb, var(--warning-color, #ffa600) 60%, var(--primary-text-color)); background:color-mix(in srgb, var(--warning-color, #ffa600) 18%, transparent); }
+    /* Over the wall: a filter by state and four tiles of the chart (as on the ENT ONE panel) */
+    .ov { display:flex; flex-direction:column; gap:12px; }
+    .ov:empty { display:none; }
+    .filters { display:flex; flex-wrap:wrap; gap:8px; }
+    .fchip { all:unset; cursor:pointer; display:inline-flex; align-items:center; gap:6px; min-height:30px; padding:0 12px; border-radius:16px; font-size:13px; box-sizing:border-box;
+             color:var(--secondary-text-color); background:var(--card-background-color, #fff); border:1px solid var(--divider-color, #e0e0e0); --mdc-icon-size:16px; }
+    .fchip.on { color:var(--primary-text-color); border:1.5px solid var(--warning-color, #ffa600); }
+    .fchip:focus-visible { outline:2px solid var(--primary-color); }
+    .fchip .dot { width:7px; height:7px; border-radius:50%; background:var(--warning-color, #ffa600); }
+    .otiles { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:12px; }
+    .otile { all:unset; box-sizing:border-box; display:flex; align-items:center; gap:12px; min-width:0; padding:12px 14px; border-radius:12px; cursor:pointer;
+             background:var(--card-background-color, #fff); border:1px solid var(--divider-color, #e0e0e0); --c:#8a96a3; }
+    .otile[disabled] { cursor:default; }
+    .otile:not([disabled]):hover { border-color:color-mix(in srgb, var(--c) 55%, var(--divider-color, #e0e0e0)); }
+    .otile:focus-visible { outline:2px solid var(--primary-color); }
+    .otile.warn { --c:var(--warning-color, #ffa600); } .otile.live { --c:#e5484d; } .otile.good { --c:var(--success-color, #43a047); } .otile.bad { --c:var(--error-color, #db4437); }
+    .pastille { position:relative; flex:none; width:40px; height:40px; border-radius:50%; display:grid; place-items:center; --mdc-icon-size:22px;
+                color:var(--c); background:color-mix(in srgb, var(--c) 16%, transparent); }
+    .pbadge { position:absolute; top:-3px; right:-5px; min-width:18px; height:18px; padding:0 4px; box-sizing:border-box; border-radius:9px; font-size:11px; font-weight:600;
+              line-height:18px; text-align:center; color:#fff; background:var(--c); box-shadow:0 0 0 2px var(--card-background-color, #fff); }
+    .tl { display:flex; flex-direction:column; min-width:0; }
+    .tn { font-size:14px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .ts { font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:color-mix(in srgb, var(--c) 65%, var(--primary-text-color)); }
+    .otile.rest .ts { color:var(--secondary-text-color); }
+    @media (max-width:900px) { .otiles { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
+    /* Settings: its header card without a picture (the picture is the top bar now) */
+    .thead { display:flex; align-items:center; gap:10px; padding:12px 16px; min-width:0; }
+    .thead .bicon { background:color-mix(in srgb, var(--c) 14%, transparent); box-shadow:none; }
+    .thead .bsub { color:var(--secondary-text-color); }
+    .thead .stpill { background:color-mix(in srgb, var(--c) 15%, transparent); color:color-mix(in srgb, var(--c) 55%, var(--primary-text-color)); }
     main { margin:0 auto; padding:16px; box-sizing:border-box; }
     /* The cameras as a video wall, edge to edge under its header card; the settings at reading width */
     main.settings { max-width:940px; }
@@ -1113,15 +1581,17 @@ class HomeCameraPanel extends HTMLElement {
     /* Top bar hidden (Settings › Panel): the title bar goes, the tabs stay at the top. The menu button stays where
        Home Assistant shows it (narrow screen or sidebar hidden): at the start of the tabs, or, with no tabs (a user who
        is not an administrator), as a round button at the bottom left */
-    .tabmenu { display:none; color:var(--app-header-text-color, #fff); align-self:center; margin-right:4px; }
+    .tabmenu { display:none; color:var(--primary-text-color); align-self:center; margin-right:4px; }
     :host([bare][menu]) .tabs .tabmenu { display:flex; }
     :host([bare]) .tabs { top:0; }
     :host([bare][tabs]) .toolbar, :host([bare]:not([menu])) .toolbar { display:none; }
-    :host([bare]) .toolbar { position:fixed; top:auto; left:16px; bottom:16px; z-index:3; width:44px; height:44px; padding:0; gap:0;
+    :host([bare]) .toolbar { display:flex; align-items:center; overflow:visible; position:fixed; top:auto; left:16px; bottom:16px; z-index:3; width:44px; height:44px; padding:0; gap:0;
                              justify-content:center; border-radius:50%; border-bottom:none; color:var(--primary-text-color);
                              background:color-mix(in srgb, var(--card-background-color, #fff) 82%, transparent);
                              -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); box-shadow:0 2px 8px rgba(0,0,0,.25); }
-    :host([bare]) .toolbar > :not(ha-menu-button) { display:none; }
+    :host([bare]) .toolbar > :not(.bhead), :host([bare]) .toolbar .bhead > :not(ha-menu-button) { display:none; }
+    :host([bare]) .toolbar .bhead { position:static; padding:0; display:contents; }
+    :host([bare]) .toolbar .grow { display:none; }
     .seg { display:inline-flex; flex-wrap:wrap; gap:4px; padding:3px; border-radius:20px; background:var(--hcp-sec); align-self:flex-start; }
     .seg button { border:0; background:none; cursor:pointer; font:inherit; font-size:13px; font-weight:500; padding:7px 14px; border-radius:17px; color:var(--secondary-text-color); }
     .seg button[aria-checked="true"] { background:var(--card-background-color, #fff); color:var(--primary-color); box-shadow:0 1px 2px rgba(0,0,0,.14); }
@@ -1171,6 +1641,14 @@ class HomeCameraPanel extends HTMLElement {
     if (first) this._start();
     else if (this._lang() !== langBefore || this._admin() !== adminBefore) this._render();
     else if (this._tab === 'settings') this._renderBanner();
+    // A motion, a privacy switch, a camera going offline: the top bar, the tiles and the wall's filter follow
+    if (!first && this._data) {
+      var camSig = JSON.stringify((this._camStates() || []).map((c) => [c.hidden, c.up, c.motion]));
+      if (camSig !== this._camSig) {
+        this._camSig = camSig;
+        this._renderCameras();
+      } else this._renderTop();
+    }
     this._syncBare();
   }
 
@@ -1187,10 +1665,17 @@ class HomeCameraPanel extends HTMLElement {
 
   connectedCallback() {
     this._upgradeProperties();
+    // HD / SD switched on a card of this page: the top bar's switch follows
+    this._onQuality = this._onQuality || (() => {
+      this._topSig = null;
+      this._renderTop();
+    });
+    window.addEventListener('home-camera-card-quality', this._onQuality);
     if (this._hass && !this._unsub) this._subscribe();
   }
 
   disconnectedCallback() {
+    window.removeEventListener('home-camera-card-quality', this._onQuality);
     if (this._unsub) {
       this._unsub.then((off) => off()).catch(() => {});
       this._unsub = null;
@@ -1327,10 +1812,11 @@ class HomeCameraPanel extends HTMLElement {
     var title = this._data?.sidebar_title || this._panel?.title || this._t('cameras');
     root.innerHTML = `
       <style>${HomeCameraPanel.STYLE}</style>
-      <div class="toolbar">
-        <ha-menu-button></ha-menu-button>
-        <span class="grow">${esc(title)}</span>
-        ${this._admin() ? `<a href="/config/integrations/integration/home_camera" title="${esc(this._t('integration'))}"><ha-icon icon="mdi:cog"></ha-icon></a>` : ''}
+      <div class="toolbar${this._hass?.themes?.darkMode ? ' night' : ''}">
+        <div class="tbscene"></div>
+        <div class="bhead"><ha-menu-button></ha-menu-button><span class="bicon"><ha-icon icon="mdi:cctv"></ha-icon></span>
+          <div class="btitles"><div class="brow"><span class="grow bname">${esc(title)}</span><span class="tpill"></span></div><div class="bsub"></div></div></div>
+        <div class="tacts"><span class="tq"></span>${this._admin() ? `<a href="/config/integrations/integration/home_camera" title="${esc(this._t('integration'))}" aria-label="${esc(this._t('integration'))}"><ha-icon icon="mdi:cog"></ha-icon></a>` : ''}</div>
       </div>
       <div class="tabs" role="tablist"${tabs.length < 2 ? ' hidden' : ''}><ha-menu-button class="tabmenu"></ha-menu-button>${tabs.map((tab) => this._tabHtml(tab)).join('')}</div>
       <main class="${this._tab}">
@@ -1338,6 +1824,7 @@ class HomeCameraPanel extends HTMLElement {
         <section class="column" id="tab-settings" role="tabpanel" aria-labelledby="tabbtn-settings"></section>
       </main>`;
     this._menu = root.querySelector('.toolbar ha-menu-button');
+    this._topSig = null;
     this._menu.hass = this._hass;
     this._menu.narrow = this._narrow;
     this._tabMenu = root.querySelector('.tabmenu');
@@ -1363,6 +1850,131 @@ class HomeCameraPanel extends HTMLElement {
     this._renderCameras();
   }
 
+  // The cameras of the panel as the card sees them (window.HomeCameraKit, from the card file), each with what it
+  // is doing now: hidden (privacy on or power off), up (its camera entity answers), motion (a motion sensor on)
+  _camStates() {
+    var kit = window.HomeCameraKit;
+    var hass = this._hass;
+    var raws = this._data?.card?.cameras || [];
+    if (!kit || !hass) return null;
+    var st = (id) => hass.states?.[id]?.state;
+    var showMotion = this._data?.card?.show_motion !== false;
+    return raws
+      .map((raw, i) => ({ raw, cam: kit.camera(hass, raw, i) }))
+      .filter((x) => x.cam.camera)
+      .map(({ raw, cam }) => {
+        var hidden = (cam.privacy && st(cam.privacy) === 'on') || (cam.power && st(cam.power) === 'off');
+        var up = !['unavailable', 'unknown', undefined].includes(st(cam.camera));
+        var motion = showMotion && !hidden && up && cam.motion.some((id) => st(id) === 'on');
+        return { raw, cam, hidden: !!hidden, up, motion };
+      });
+  }
+
+  // The top bar: the card's picture in the panel's state, the title with its status pill, how many cameras are
+  // live and hidden, and the HD / SD switch of the wall (drawn again only when one of them changed)
+  _renderTop() {
+    var bar = this.shadowRoot?.querySelector?.('.toolbar');
+    if (!bar) return;
+    var esc = hcpEsc;
+    var kit = window.HomeCameraKit;
+    var cams = this._camStates() || [];
+    var visible = cams.filter((c) => !c.hidden);
+    var state = !cams.length ? 'offline' : !visible.length ? 'privacy' : !visible.some((c) => c.up) ? 'offline' : visible.some((c) => c.motion) ? 'motion' : 'live';
+    var night = kit ? kit.isNight(this._hass, this._data?.card || {}) : !!this._hass?.themes?.darkMode;
+    var hd = this._card?._hd ? this._card._hd() : true;
+    var hidden = cams.length - visible.length;
+    var sub = cams.length ? this._t(visible.length === 1 ? 'live_one' : 'live_many', { n: visible.length }) : '';
+    if (hidden) sub += ` · ${this._t(hidden === 1 ? 'hidden_one' : 'hidden_many', { n: hidden })}`;
+    var sig = JSON.stringify([this._lang(), !!kit, state, night, hd, sub, !!this._card]);
+    if (sig === this._topSig) return;
+    this._topSig = sig;
+    bar.classList.toggle('night', night);
+    var scene = bar.querySelector('.tbscene');
+    // The picture's colours and animations come with the card (its banner styles, added once)
+    if (kit && !this.shadowRoot.getElementById('hc-kit')) {
+      var css = document.createElement('style');
+      css.id = 'hc-kit';
+      css.textContent = kit.bannerStyle;
+      this.shadowRoot.appendChild(css);
+    }
+    if (kit && scene) scene.innerHTML = kit.sceneSvg(state, 'panel');
+    var icon = bar.querySelector('.bicon');
+    if (icon) icon.className = `bicon ${state}`;
+    var pill = bar.querySelector('.tpill');
+    var label = this._t(`st_${state}`);
+    if (pill) pill.innerHTML = cams.length ? `<span class="stpill ${state}" role="status"><span class="sdot"></span>${esc(label)}</span>` : '';
+    var line = bar.querySelector('.bsub');
+    if (line) line.textContent = sub;
+    var q = bar.querySelector('.tq');
+    if (q) {
+      var opt = (key, on) => `<button role="radio" aria-checked="${on}" data-quality="${key}">${esc(this._t(key))}</button>`;
+      q.innerHTML = this._card && visible.length ? `<span class="qseg" role="radiogroup" title="${esc(this._t('quality_hint'))}">${opt('hd', hd)}${opt('sd', !hd)}</span>` : '';
+      for (var b of q.querySelectorAll('[data-quality]')) {
+        b.addEventListener('click', (ev) => {
+          if ((ev.currentTarget.dataset.quality === 'hd') === this._card?._hd?.()) return;
+          this._card?._toggleQuality?.();
+          this._topSig = null;
+          setTimeout(() => this._renderTop(), 50);
+        });
+      }
+    }
+  }
+
+  // Over the wall: All / Motion / Private (a chip only for a state someone is in) and four tiles — motion, live,
+  // privacy, offline. Motion and Private filter the wall too.
+  _overviewHtml(cams) {
+    var esc = hcpEsc;
+    if (!cams || cams.length < 2) return '';
+    var motion = cams.filter((c) => c.motion);
+    var priv = cams.filter((c) => c.hidden);
+    var live = cams.filter((c) => !c.hidden && c.up);
+    var off = cams.filter((c) => !c.hidden && !c.up);
+    if (this._filter === 'motion' && !motion.length) this._filter = '';
+    if (this._filter === 'private' && !priv.length) this._filter = '';
+    var chip = (key, label, icon) => {
+      var on = (this._filter || '') === key;
+      return `<button class="fchip${on ? ' on' : ''}" data-filter="${key}" aria-pressed="${on}">${icon || ''}${esc(label)}</button>`;
+    };
+    var chips = [chip('', this._t('f_all', { n: cams.length }))];
+    if (motion.length) chips.push(chip('motion', this._t('f_motion', { n: motion.length }), '<i class="dot"></i>'));
+    if (priv.length) chips.push(chip('private', this._t('f_private', { n: priv.length }), '<ha-icon icon="mdi:eye-lock"></ha-icon>'));
+    var name = (list) => list.map((c) => c.cam.short || c.cam.name).join(', ');
+    var tile = (tone, icon, title, state, count, filter) =>
+      `<button class="otile ${count ? tone : 'rest'}"${filter && count ? ` data-filter="${filter}"` : ' disabled'}><span class="pastille"><ha-icon icon="${icon}"></ha-icon>${count && filter ? `<span class="pbadge">${count}</span>` : ''}</span>` +
+      `<span class="tl"><span class="tn">${esc(title)}</span><span class="ts">${esc(state)}</span></span></button>`;
+    var tiles = [
+      tile('warn', 'mdi:motion-sensor', this._t('t_motion'), motion.length ? name(motion) : this._t('t_none'), motion.length, 'motion'),
+      tile('live', 'mdi:record-rec', this._t('t_live'), `${live.length} / ${cams.length}`, live.length, ''),
+      tile('good', 'mdi:eye-lock', this._t('t_privacy'), priv.length ? name(priv) : this._t('t_none'), priv.length, 'private'),
+      tile('bad', 'mdi:video-off-outline', this._t('t_offline'), off.length ? name(off) : this._t('t_none'), off.length, ''),
+    ];
+    return `<div class="filters">${chips.join('')}</div><div class="otiles">${tiles.join('')}</div>`;
+  }
+
+  // The overview over the wall and the motion count of the Cameras tab, drawn again only when they changed
+  _renderOverview(cams) {
+    var ov = this.shadowRoot?.getElementById?.('ov');
+    var html = this._overviewHtml(cams);
+    if (ov && html !== this._ovHtml) {
+      this._ovHtml = html;
+      ov.innerHTML = html;
+      for (var b of ov.querySelectorAll('[data-filter]')) {
+        b.addEventListener('click', (ev) => {
+          var key = ev.currentTarget.dataset.filter;
+          this._filter = this._filter === key ? '' : key;
+          this._ovHtml = null;
+          this._renderCameras();
+        });
+      }
+    }
+    var tab = this.shadowRoot?.getElementById?.('tabbtn-cameras');
+    var n = (cams || []).filter((c) => c.motion).length;
+    if (tab) {
+      var label = `${hcpEsc(this._t('cameras'))}${n ? `<span class="cnt">${n}</span>` : ''}`;
+      if (tab.innerHTML !== label) tab.innerHTML = label;
+    }
+  }
+
   _tabHtml(tab) {
     var selected = tab === this._tab;
     return `<button class="tab${selected ? ' active' : ''}" role="tab" id="tabbtn-${tab}" data-tab="${tab}" aria-selected="${selected}" aria-controls="tab-${tab}" tabindex="${selected ? 0 : -1}">${hcpEsc(this._t(tab))}</button>`;
@@ -1370,13 +1982,22 @@ class HomeCameraPanel extends HTMLElement {
 
   // ── Cameras tab ────────────────────────────────────────────────────────────
   _renderCameras() {
-    var section = this.shadowRoot.getElementById?.('tab-cameras');
-    if (!section) return;
+    var tabSection = this.shadowRoot.getElementById?.('tab-cameras');
+    if (!tabSection) return;
     var toolbarTitle = this.shadowRoot.querySelector('.toolbar .grow');
     if (toolbarTitle && this._data?.sidebar_title) toolbarTitle.textContent = this._data.sidebar_title;
+    // The overview (filter and tiles) over the wall; the wall itself is the card
+    if (!tabSection.querySelector('#wall')) {
+      tabSection.innerHTML = '<div class="ov" id="ov"></div><div id="wall"></div>';
+      this._ovHtml = null;
+    }
+    var section = tabSection.querySelector('#wall');
+    var cams = this._camStates();
+    this._renderTop();
     var note = (html, error) => {
       this._card = null;
       this._shownCard = null;
+      this._renderOverview(null);
       section.innerHTML = `<ha-card><div class="note${error ? ' error' : ''}">${html}</div></ha-card>`;
     };
     if (this._loadError && !this._data) {
@@ -1407,6 +2028,11 @@ class HomeCameraPanel extends HTMLElement {
       } else note(`<span>${hcpEsc(this._t('empty_user'))}</span>`);
       return;
     }
+    this._renderOverview(cams);
+    // The filter keeps the wall's cameras in that state (Motion, Private); the card's own header is left out
+    // (its title, status and HD / SD are in the top bar), its privacy badges stay
+    var keep = cams && this._filter ? new Set(cams.filter((c) => (this._filter === 'motion' ? c.motion : c.hidden)).map((c) => c.raw)) : null;
+    card = Object.assign({}, card, { show_header: false, cameras: keep ? card.cameras.filter((raw) => keep.has(raw)) : card.cameras });
     // Drawn again only when the configuration changed: a new card would reconnect every stream
     var json = JSON.stringify(card);
     if (this._card && json === this._shownCard) return;
@@ -1424,6 +2050,8 @@ class HomeCameraPanel extends HTMLElement {
     this._shownCard = json;
     this._card.hass = this._hass;
     if (!this._card.isConnected) section.appendChild(this._card);
+    this._topSig = null;
+    this._renderTop();
   }
 
   // ── Settings tab (administrators) ──────────────────────────────────────────
@@ -1534,30 +2162,15 @@ class HomeCameraPanel extends HTMLElement {
     var sig = JSON.stringify([this._lang(), dirty, night, sub]);
     if (sig === this._bannerSig && host.firstChild) return;
     this._bannerSig = sig;
-    host.className = `banner${night ? ' night' : ''}`;
-    var wood = night ? '#5a4634' : '#a97c50';
-    var woodd = night ? '#46362a' : '#8f6743';
-    var ink = night ? '#c4ccd6' : '#5f6b78';
-    var hole = night ? '#2a2b33' : '#f2efe9';
+    // The picture is the panel's top bar: this header keeps the icon, the title, its pill and the counts
+    host.className = 'thead';
     host.innerHTML = `
-      <svg class="bscene" viewBox="0 0 200 80" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false">
-        <rect x="20" y="44" width="124" height="5" rx="1" fill="${wood}"/><rect x="26" y="49" width="5" height="31" fill="${woodd}"/><rect x="133" y="49" width="5" height="31" fill="${woodd}"/>
-        <rect x="34" y="25" width="40" height="17" rx="5" fill="${night ? '#d8dce2' : '#fff'}" stroke="${night ? '#aab1bb' : '#c9ced6'}" stroke-width="1.2"/>
-        <circle cx="42" cy="33.5" r="5" fill="#2a3038"/><circle cx="40.8" cy="32.3" r="1.2" fill="#6f86a6"/><rect x="51" y="42" width="8" height="2.5" fill="#9aa3ae"/>
-        <g transform="translate(100 26)"><g class="rot"><circle r="10" fill="none" stroke="${ink}" stroke-width="5" stroke-dasharray="3.9 3.9"/><circle r="6.5" fill="${ink}"/><circle r="2.6" fill="${hole}"/></g></g>
-        <g transform="translate(122 15)"><g class="rot rev"><circle r="5.6" fill="none" stroke="#2f80ed" stroke-width="3.2" stroke-dasharray="2.4 2.4"/><circle r="3.7" fill="#2f80ed"/><circle r="1.5" fill="${hole}"/></g></g>
-        <rect x="168" y="60" width="14" height="20" rx="2" fill="${night ? '#7a4f34' : '#d08a5a'}"/>
-        <path class="leaf" d="M175 60 C168 49 165 40 168 31 C173 40 175 49 175 60 Z M175 60 C180 48 186 42 191 40 C188 49 183 56 175 60 Z" fill="${night ? '#3f6e46' : '#6aa56a'}"/>
-      </svg>
-      <div class="bground" aria-hidden="true"></div>
-      <div class="bhead">
         <span class="bicon${dirty ? ' warn' : ''}"><ha-icon icon="mdi:cog"></ha-icon></span>
         <div class="btitles">
           <div class="brow"><span class="bname">${esc(this._t('settings'))}</span>
             <span class="stpill${dirty ? ' warn' : ''}" role="status"><span class="sdot"></span>${esc(this._t(dirty ? 'unsaved' : 'up_to_date'))}</span></div>
           <div class="bsub">${esc(sub)}</div>
-        </div>
-      </div>`;
+        </div>`;
   }
 
   // ── The cameras shown, listed by the panel: drag (or arrow keys on the handle) to reorder, the pencil opens the

@@ -1,4 +1,4 @@
-const HOME_CAMERA_CARD_VERSION = '4.7.2';
+const HOME_CAMERA_CARD_VERSION = '4.8.0';
 
 // ── i18n ─────────────────────────────────────────────────────────────────────
 const HcI18n = {
@@ -2782,6 +2782,12 @@ class HomeCameraCard extends HTMLElement {
   // (default), the icon and the titles sit on a wall, left of a camera drawn in the header's state.
   _renderHeader(head, { title, right, side, sub, badges, state }) {
     const c = this._config;
+    // show_header: false (the Cameras panel, whose top bar carries the title, status and HD / SD): the privacy
+    // badges alone
+    if (c.show_header === false) {
+      head.innerHTML = badges ? `<div class="chips badges">${badges}</div>` : '';
+      return;
+    }
     const zoom = this._zoomButton();
     // The status pill right after the title, in the icon's colour: live, motion, private (every camera hidden) or
     // unavailable.
@@ -3843,6 +3849,8 @@ if (!customElements.get('home-camera-mini-card-editor')) {
 
 if (!customElements.get('home-camera-card')) {
   customElements.define('home-camera-card', HomeCameraCard);
+  // What the Cameras panel draws its top bar with: the header's picture and its styles, and the camera entries
+  window.HomeCameraKit = { sceneSvg: hcSceneSvg, isNight: hcIsNight, camera: hcCamera, bannerStyle: HC_BANNER_STYLE, qualityEvent: HC_QUALITY_EVENT };
   window.customCards = window.customCards || [];
   window.customCards.push({
     type: 'home-camera-card',

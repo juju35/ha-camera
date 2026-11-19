@@ -1,7 +1,7 @@
 """Constants for the Home Camera integration."""
 
 DOMAIN = "home_camera"
-VERSION = "4.7.2"
+VERSION = "4.8.0"
 
 # Files served by the integration (their own base, so the panel's route never shadows them)
 URL_BASE = f"/{DOMAIN}"
