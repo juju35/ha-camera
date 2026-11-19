@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.8.2 - 2026-11-19
+
+### Fixes
+- Settings → Panel: the top bar option is worded as in the other ha-* panels, **Hide the top bar** with **No**, **For everyone** and **For non-admins** (in this order, in every language); the saved choice is kept.
+
 ## 4.8.1 - 2026-11-19
 
 ### Fixes
