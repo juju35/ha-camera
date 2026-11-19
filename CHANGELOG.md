@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.8.1 - 2026-11-19
+
+### Fixes
+- Cameras tab: the state filter (All, Motion, Private) and the four tiles (motion, live, privacy, offline) over the wall are gone — the top bar already says it; the video wall comes right under the tabs. Cameras still shows how many cameras are in motion.
+
 ## 4.8.0 - 2026-11-19
 
 ### Features
