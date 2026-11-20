@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.8.3 - 2026-11-20
+
+### Fixes
+- Card: a motion or a privacy switch no longer rebuilds the header — its picture, icon and pill are updated in place, so the card keeps its height and the page no longer moves by itself on state updates.
+
 ## 4.8.2 - 2026-11-19
 
 ### Fixes
