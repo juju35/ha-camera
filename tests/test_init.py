@@ -2,8 +2,10 @@
 
 import shutil
 from pathlib import Path
+from unittest.mock import patch
 
 import pytest
+import voluptuous as vol
 from homeassistant.components.frontend import DATA_PANELS
 from homeassistant.config_entries import SOURCE_USER, ConfigEntryState
 from homeassistant.data_entry_flow import FlowResultType
@@ -112,6 +114,11 @@ async def test_yaml_dashboards_load_the_card_on_every_page(hass, entry, stub_fro
     await hass.config_entries.async_setup(entry.entry_id)
     await hass.async_block_till_done()
     stub_frontend.assert_called_once_with(hass, f"{CARD_URL}?v={VERSION}")
+    # Unloaded: the card is no longer added to every page.
+    with patch("custom_components.home_camera.remove_extra_js_url") as remove_js:
+        await hass.config_entries.async_unload(entry.entry_id)
+        await hass.async_block_till_done()
+    remove_js.assert_called_once_with(hass, f"{CARD_URL}?v={VERSION}")
 
 
 async def test_every_user_reads_the_settings_and_follows_their_changes(hass, entry, hass_ws_client, hass_admin_user):
@@ -224,3 +231,26 @@ async def test_repair_while_the_old_dashboard_entry_is_installed(hass, entry, fo
 async def test_no_repair_without_the_old_dashboard_entry(hass, entry):
     await _setup(hass, entry)
     assert not [i for i in ir.async_get(hass).issues.values() if i.domain == DOMAIN]
+
+
+async def test_a_failing_resource_collection_falls_back_to_every_page(hass, entry, stub_frontend):
+    """The dashboard resources cannot be written: the integration still loads, the card on every page instead."""
+    assert await async_setup_component(hass, "lovelace", {})
+    with patch.object(type(hass.data["lovelace"].resources), "async_create_item", side_effect=RuntimeError("boom")):
+        await hass.config_entries.async_setup(entry.entry_id)
+        await hass.async_block_till_done()
+    assert entry.state is ConfigEntryState.LOADED
+    stub_frontend.assert_called_once_with(hass, f"{CARD_URL}?v={VERSION}")
+
+
+async def test_settings_without_an_entry_and_a_card_that_is_not_json(hass, entry, hass_ws_client):
+    from custom_components.home_camera.panel import validate_card
+
+    await _setup(hass, entry)
+    client = await hass_ws_client(hass)
+    await hass.config_entries.async_remove(entry.entry_id)
+    await hass.async_block_till_done()
+    msg = await _ws(hass, client, {"type": f"{DOMAIN}/update_settings", "title": "Surveillance"})
+    assert not msg["success"] and msg["error"]["code"] == "not_found"
+    with pytest.raises(vol.Invalid):
+        validate_card({"cameras": [], "x": {1, 2}})
