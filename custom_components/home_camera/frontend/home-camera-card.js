@@ -1,4 +1,4 @@
-const HOME_CAMERA_CARD_VERSION = '4.8.2';
+const HOME_CAMERA_CARD_VERSION = '4.8.3';
 
 // ── i18n ─────────────────────────────────────────────────────────────────────
 const HcI18n = {
@@ -1630,6 +1630,39 @@ const hcTextWidth = (el) => {
   return range.getBoundingClientRect().width || el.scrollWidth;
 };
 
+// In-place update of a part of the shadow DOM: the nodes that stay keep their place, so a new state (motion, a
+// privacy switch) never rebuilds the header's picture, its icons or its pill — the card keeps its height and the
+// running animations go on. Nodes are matched by position and tag; attributes and text are patched.
+const hcPatchAttrs = (cur, next) => {
+  for (const { name } of [...cur.attributes]) if (!next.hasAttribute(name)) cur.removeAttribute(name);
+  for (const { name, value } of next.attributes) if (cur.getAttribute(name) !== value) cur.setAttribute(name, value);
+};
+const hcPatchChildren = (cur, next) => {
+  const fresh = [...next.childNodes];
+  fresh.forEach((n, i) => {
+    const o = cur.childNodes[i];
+    if (!o || o.nodeType !== n.nodeType || o.nodeName !== n.nodeName) {
+      if (o) cur.replaceChild(n, o);
+      else cur.appendChild(n);
+      return;
+    }
+    if (n.nodeType === 1) {
+      hcPatchAttrs(o, n);
+      hcPatchChildren(o, n);
+    } else if (o.nodeValue !== n.nodeValue) o.nodeValue = n.nodeValue;
+  });
+  while (cur.childNodes.length > fresh.length) cur.removeChild(cur.lastChild);
+};
+const hcMorph = (root, html) => {
+  if (typeof document === 'undefined' || !document.createElement('template').content || !root.childNodes) {
+    root.innerHTML = html;
+    return;
+  }
+  const tpl = document.createElement('template');
+  tpl.innerHTML = html;
+  hcPatchChildren(root, tpl.content);
+};
+
 function hcEsc(s) {
   return String(s == null ? '' : s).replace(
     /[&<>"']/g,
@@ -2193,6 +2226,11 @@ class HcCameraStream extends HTMLElement {
 if (!customElements.get('hc-camera-stream')) customElements.define('hc-camera-stream', HcCameraStream);
 
 class HomeCameraCard extends HTMLElement {
+  // What the card is drawn in: Home Assistant's <ha-card> on a dashboard; the panel's wall has a plain element.
+  static get shell() {
+    return 'ha-card';
+  }
+
   static getConfigElement() {
     return document.createElement('home-camera-card-editor');
   }
@@ -2218,7 +2256,8 @@ class HomeCameraCard extends HTMLElement {
     this.toggleAttribute?.('wall', this._wall);
     if (!this.shadowRoot) {
       this.attachShadow({ mode: 'open' });
-      this.shadowRoot.innerHTML = `${this._styles()}<ha-card><div class="head"></div><div class="view"></div></ha-card>`;
+      const inner = '<div class="head"></div><div class="view"></div>';
+      this.shadowRoot.innerHTML = `${this._styles()}${this.constructor.shell === 'ha-card' ? `<ha-card>${inner}</ha-card>` : `<div class="shell">${inner}</div>`}`;
       this.shadowRoot.addEventListener('click', (ev) => this._onClick(ev));
       this.shadowRoot.addEventListener('keydown', (ev) => this._onKey(ev));
       this.shadowRoot.addEventListener('pointerdown', (ev) => this._onPointerDown(ev));
@@ -2235,6 +2274,16 @@ class HomeCameraCard extends HTMLElement {
   // alone (.dot-only, its label in its tooltip and for screen readers). Measured after each render and on each new
   // width, whatever the language: no fixed width threshold.
   _fitPill() {
+    // Home Assistant's <ha-card> (a Lit element) shows its content only from its first update, a microtask after it
+    // is connected: measured before, everything is 0 px wide and the pill lands on the wrong line. Fitted then.
+    const haCard = this.shadowRoot?.querySelector?.('ha-card');
+    if (haCard && haCard.hasUpdated === false) {
+      this._pillWait ??= (haCard.updateComplete?.then ? haCard.updateComplete : new Promise((r) => requestAnimationFrame(r))).then(() => {
+        this._pillWait = null;
+        this._fitPill();
+      });
+      return;
+    }
     if (!this.isConnected) return;
     for (const t of this.shadowRoot?.querySelectorAll?.('.head .titles') || []) {
       const row = t.querySelector('.name-row');
@@ -2482,11 +2531,9 @@ class HomeCameraCard extends HTMLElement {
     const hd = this._hd();
     const visible = cams.filter((cam) => !this._hidden(cam));
     const compact = this._compact();
-    this.shadowRoot.querySelector('ha-card')?.classList.toggle('mini', compact);
+    this._shellEl()?.classList.toggle('mini', compact);
     // A lone camera on screen: its image runs edge to edge, under the header and down to the card's edges.
-    this.shadowRoot
-      .querySelector('ha-card')
-      ?.classList.toggle('solo', !compact && !this._wall && cams.length === 1 && visible.length === 1);
+    this._shellEl()?.classList.toggle('solo', !compact && !this._wall && cams.length === 1 && visible.length === 1);
 
     const banner = this._config.illustration !== false;
     const headSig = JSON.stringify([
@@ -2785,7 +2832,7 @@ class HomeCameraCard extends HTMLElement {
     // show_header: false (the Cameras panel, whose top bar carries the title, status and HD / SD): the privacy
     // badges alone
     if (c.show_header === false) {
-      head.innerHTML = badges ? `<div class="chips badges">${badges}</div>` : '';
+      hcMorph(head, badges ? `<div class="chips badges">${badges}</div>` : '');
       return;
     }
     const zoom = this._zoomButton();
@@ -2803,7 +2850,7 @@ class HomeCameraCard extends HTMLElement {
         ? `${row}${zoom}</div>`
         : `<div class="banner${hcIsNight(this._hass, c) ? ' night' : ''}${zoom ? ' zoomable' : ''}">` +
           `${hcSceneSvg(state, this._uid)}${row}</div>${zoom}</div>`;
-    head.innerHTML = top + (badges ? `<div class="chips badges">${badges}</div>` : '');
+    hcMorph(head, top + (badges ? `<div class="chips badges">${badges}</div>` : ''));
     this._fitPill();
   }
 
@@ -3199,7 +3246,19 @@ class HomeCameraCard extends HTMLElement {
     this._onClick(ev);
   }
 
+  _shellEl() {
+    return this.shadowRoot?.querySelector(this.constructor.shell === 'ha-card' ? 'ha-card' : '.shell');
+  }
+
+  // The stylesheet, written for <ha-card>; in a plain shell (the panel's wall) the same rules apply to .shell, which
+  // also gets what <ha-card> brings by itself (its text colour, a positioned box).
   _styles() {
+    const css = this._cardStyles();
+    if (this.constructor.shell === 'ha-card') return css;
+    return css.replace(/(^|[^-\w])ha-card(?![-\w])/g, '$1.shell').replace('</style>', '.shell { position: relative; color: var(--primary-text-color); }</style>');
+  }
+
+  _cardStyles() {
     return (
       '<style>' +
       // --hc-glass: the smoked glass of everything laid over the images (labels, buttons, arrows).
@@ -3839,6 +3898,19 @@ class HomeCameraMiniCard extends HomeCameraCard {
     if (!ev.detail) this.shadowRoot.querySelector('.zoom')?.focus({ preventScroll: true });
   }
 }
+
+// The Cameras panel's video wall: the card's camera grid drawn bare, in a plain element (no <ha-card>, no header).
+// An element of the panel's own, like hc-camera-stream: not a dashboard card (not listed in the card picker).
+class HcCameraWall extends HomeCameraCard {
+  static get shell() {
+    return 'div';
+  }
+
+  setConfig(config) {
+    super.setConfig(Object.assign({}, config, { layout: 'wall', show_header: false }));
+  }
+}
+if (!customElements.get('hc-camera-wall')) customElements.define('hc-camera-wall', HcCameraWall);
 
 if (!customElements.get('home-camera-card-editor')) {
   customElements.define('home-camera-card-editor', HomeCameraCardEditor);

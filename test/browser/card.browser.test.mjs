@@ -1566,3 +1566,55 @@ test("the status pill sits beside a whole title or under the summary, its label 
     if (m.onRow && !m.dotOnly) assert.ok(m.nameWhole, `${m.what}: title cut beside the pill`);
   }
 });
+
+test("state updates: nothing changes for other entities, a motion patches the header in place at a steady height", async () => {
+  const r = await page.evaluate(async () => {
+    document.body.replaceChildren();
+    const el = document.createElement("home-camera-card");
+    el.setConfig({ cameras: [{ camera: "camera.a_hd_stream", motion: "binary_sensor.a_motion" }, "camera.b_hd_stream"] });
+    document.body.appendChild(el);
+    let states = { ...baseStates(), "binary_sensor.a_motion": st("binary_sensor.a_motion", "off") };
+    el.hass = makeHass(states);
+    await frames();
+    const svg = el.shadowRoot.querySelector(".head svg.hc-scene");
+    const icon = el.shadowRoot.querySelector(".head .hicon");
+    const h0 = el.getBoundingClientRect().height;
+    const heights = [];
+    const muts = { other: 0, own: 0, removed: 0 };
+    let bucket = "other";
+    const mo = new MutationObserver((list) => {
+      for (const m of list) {
+        muts[bucket]++;
+        if (m.type === "childList")
+          for (const n of m.removedNodes) if (n.nodeType === 1 && /^(svg|DIV|SPAN)$/.test(n.nodeName) && !n.closest?.(".hc-walker") && !n.classList?.contains("hc-walker") && !n.classList?.contains("hc-fov")) muts.removed++;
+      }
+    });
+    mo.observe(el.shadowRoot, { subtree: true, childList: true, attributes: true, characterData: true });
+    for (let i = 0; i < 10; i++) {
+      bucket = "other";
+      states = { ...states, "sensor.power": { entity_id: "sensor.power", state: String(i), attributes: {} } };
+      el.hass = makeHass(states);
+      await frames();
+      bucket = "own";
+      states = { ...states, "binary_sensor.a_motion": st("binary_sensor.a_motion", i % 2 ? "off" : "on") };
+      el.hass = makeHass(states);
+      await frames();
+      heights.push(el.getBoundingClientRect().height);
+    }
+    mo.disconnect();
+    return {
+      other: muts.other,
+      own: muts.own > 0,
+      removed: muts.removed,
+      sameSvg: el.shadowRoot.querySelector(".head svg.hc-scene") === svg,
+      sameIcon: el.shadowRoot.querySelector(".head .hicon") === icon,
+      heights: [...new Set(heights.map((h) => h - h0))],
+    };
+  });
+  assert.equal(r.other, 0, "an update of another entity changed the card");
+  assert.equal(r.own, true);
+  assert.equal(r.removed, 0, "header nodes were replaced");
+  assert.equal(r.sameSvg, true, "the header picture was rebuilt");
+  assert.equal(r.sameIcon, true, "the header icon was rebuilt");
+  assert.deepEqual(r.heights, [0]);
+});

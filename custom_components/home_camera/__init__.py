@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from homeassistant.components import frontend
-from homeassistant.components.frontend import add_extra_js_url
+from homeassistant.components.frontend import add_extra_js_url, remove_extra_js_url
 from homeassistant.components.http import StaticPathConfig
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import EVENT_HOMEASSISTANT_STARTED
@@ -30,6 +30,8 @@ from .const import (
 from .panel import async_register_commands, async_register_panel
 
 _LOGGER = logging.getLogger(__name__)
+# The card URL added to every page when the dashboard resources are in YAML mode.
+DATA_EXTRA_JS = f"{DOMAIN}_extra_js"
 
 CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
@@ -57,8 +59,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     async def _load_card(_: Event | None = None) -> None:
         if not await _async_register_resource(hass):
-            # Dashboard resources in YAML mode: the card is loaded on every page instead
-            add_extra_js_url(hass, f"{CARD_URL}?v={VERSION}")
+            # Dashboard resources in YAML mode: the card is loaded on every page instead (until the entry unloads)
+            url = f"{CARD_URL}?v={VERSION}"
+            add_extra_js_url(hass, url)
+            hass.data[DATA_EXTRA_JS] = url
 
     if hass.state is CoreState.running:
         await _load_card()
@@ -68,8 +72,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Remove the panel; the cards stay loaded until the entry is removed."""
+    """Remove the panel, and the card loaded on every page in YAML mode (a storage resource stays until removal)."""
     frontend.async_remove_panel(hass, PANEL_PATH)
+    if (url := hass.data.pop(DATA_EXTRA_JS, None)) is not None:
+        remove_extra_js_url(hass, url)
     return True
 
 

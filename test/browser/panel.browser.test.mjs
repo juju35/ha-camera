@@ -105,7 +105,7 @@ after(async () => {
 test("every user gets the cameras full page, without the Settings tab", async () => {
   const r = await page.evaluate(async () => {
     await open({ admin: false, card: { cameras: ["camera.a", "camera.b"] } });
-    const card = $("#tab-cameras home-camera-card");
+    const card = $("#tab-cameras hc-camera-wall");
     return {
       subscribed: sent.some((m) => m.type === "home_camera/subscribe"),
       tabs: tabs(),
@@ -113,9 +113,13 @@ test("every user gets the cameras full page, without the Settings tab", async ()
       settingsLink: !!$(".toolbar a"),
       tiles: card?.shadowRoot.querySelectorAll(".tile").length,
       wall: card?.hasAttribute("wall"),
+      // The panel draws its own wall: no dashboard card in the page, no <ha-card> around the grid.
+      cards: $("#tab-cameras").querySelectorAll("home-camera-card, home-camera-mini-card").length,
+      haCard: !!card?.shadowRoot.querySelector("ha-card"),
+      head: card?.shadowRoot.querySelector(".head")?.childElementCount ?? 0,
     };
   });
-  assert.deepEqual(r, { subscribed: true, tabs: ["cameras"], tabsHidden: true, settingsLink: false, tiles: 2, wall: true });
+  assert.deepEqual(r, { subscribed: true, tabs: ["cameras"], tabsHidden: true, settingsLink: false, tiles: 2, wall: true, cards: 0, haCard: false, head: 0 });
 });
 
 test("a user cannot open Settings from the address", async () => {
@@ -142,13 +146,13 @@ test("no camera yet: a user is told an administrator chooses them, an administra
 test("new settings pushed by the server redraw the card, the same ones never do", async () => {
   const r = await page.evaluate(async () => {
     await open({ admin: false, card: { cameras: ["camera.a"] } });
-    const card = $("#tab-cameras home-camera-card");
+    const card = $("#tab-cameras hc-camera-wall");
     const tile = card.shadowRoot.querySelector(".tile");
     const settings = (c) => ({ configured: true, card: c, title: "", sidebar_title: "Cameras", default_title: "Cameras" });
     push(settings({ cameras: ["camera.a"] }));
     const kept = card.shadowRoot.querySelector(".tile") === tile;
     push(settings({ cameras: ["camera.a", "camera.b"] }));
-    return { kept, same: $("#tab-cameras home-camera-card") === card, tiles: card.shadowRoot.querySelectorAll(".tile").length };
+    return { kept, same: $("#tab-cameras hc-camera-wall") === card, tiles: card.shadowRoot.querySelectorAll(".tile").length };
   });
   assert.deepEqual(r, { kept: true, same: true, tiles: 2 });
 });
@@ -257,7 +261,7 @@ test("on the wall, the column count is empty by default and 2 is kept when chose
     $("[data-save]").click();
     await new Promise((r) => setTimeout(r, 50));
     const saved = sent.find((m) => m.type === "home_camera/update_settings").card;
-    const grid = $("#tab-cameras home-camera-card").shadowRoot.querySelector(".grid").style.gridTemplateColumns;
+    const grid = $("#tab-cameras hc-camera-wall").shadowRoot.querySelector(".grid").style.gridTemplateColumns;
     return { before, saved, grid };
   });
   assert.equal(r.before, undefined);
@@ -355,7 +359,7 @@ test("the top bar shows the state of the cameras, the wall comes right under the
     };
     await new Promise((res) => setTimeout(res, 50));
     const top = { pill: $(".toolbar .stpill")?.textContent.trim(), sub: $(".toolbar .bsub").textContent, tab: $("#tabbtn-cameras .cnt")?.textContent };
-    const card = $("#tab-cameras home-camera-card");
+    const card = $("#tab-cameras hc-camera-wall");
     return { top, overview: [...panel.shadowRoot.querySelectorAll("#tab-cameras > :not(#wall)")].length, all: card._config.cameras.length, header: card._config.show_header };
   });
   assert.deepEqual(r.top, { pill: "Motion detected", sub: "2 cameras live · 1 hidden", tab: "1" });

@@ -39,6 +39,6 @@ export function loadCard(file, names, globals = {}) {
   // The current global Date, so node:test mock timers apply to the card too.
   Object.defineProperty(sandbox, "Date", { get: () => globalThis.Date });
   vm.createContext(sandbox);
-  vm.runInContext(`${src}\n;globalThis.__exports = { ${names.join(", ")} };`, sandbox, { filename: file });
+  vm.runInContext(`${src}\n;globalThis.__exports = { ${names.join(", ")} };`, sandbox, { filename: fileURLToPath(new URL(`../custom_components/home_camera/frontend/${file}`, import.meta.url)) });
   return { ...sandbox.__exports, customElements: registry };
 }
