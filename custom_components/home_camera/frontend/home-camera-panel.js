@@ -1185,6 +1185,8 @@ var HomeCameraPanelI18n = {
 
 var HCP_TABS = ['cameras', 'settings'];
 var HCP_CARD = 'home-camera-card';
+// The video wall the panel draws its cameras with: an element of the card file, not a dashboard card.
+var HCP_WALL = 'hc-camera-wall';
 var HCP_HIDE = ['never', 'everyone', 'users'];
 
 // Text into HTML: the five special characters as numeric references
@@ -1508,13 +1510,14 @@ class HomeCameraPanel extends HTMLElement {
     this._subscribe();
   }
 
-  // The card is a dashboard resource, loaded on dashboards only: the panel loads it itself (same file, cached).
+  // The card file is a dashboard resource, loaded on dashboards only: the panel loads it itself (same file, cached)
+  // for its video wall element and the camera editor.
   async _loadCard() {
-    if (customElements.get(HCP_CARD)) return;
+    if (customElements.get(HCP_WALL)) return;
     var url = this._panel?.config?.card_url || '/home_camera/home-camera-card.js';
     try {
       await import(url);
-      await customElements.whenDefined(HCP_CARD);
+      await customElements.whenDefined(HCP_WALL);
     } catch (err) {
       console.error('Home Camera panel: could not load the card', err);
       this._cardError = true;
@@ -1740,7 +1743,7 @@ class HomeCameraPanel extends HTMLElement {
     if (!tabSection) return;
     var toolbarTitle = this.shadowRoot.querySelector('.toolbar .grow');
     if (toolbarTitle && this._data?.sidebar_title) toolbarTitle.textContent = this._data.sidebar_title;
-    // The wall is the card, on its own under the tabs
+    // The video wall, on its own under the tabs
     if (!tabSection.querySelector('#wall')) tabSection.innerHTML = '<div id="wall"></div>';
     var section = tabSection.querySelector('#wall');
     var cams = this._camStates();
@@ -1763,7 +1766,7 @@ class HomeCameraPanel extends HTMLElement {
       note(`<span>${hcpEsc(this._t('card_error'))}</span>`, true);
       return;
     }
-    if (!this._data || !customElements.get(HCP_CARD)) {
+    if (!this._data || !customElements.get(HCP_WALL)) {
       if (!section.querySelector('ha-circular-progress')) {
         section.innerHTML = '<div class="note"><ha-circular-progress indeterminate size="small"></ha-circular-progress></div>';
       }
@@ -1787,11 +1790,11 @@ class HomeCameraPanel extends HTMLElement {
     if (this._card && json === this._shownCard) return;
     if (!this._card) {
       section.replaceChildren();
-      this._card = document.createElement(HCP_CARD);
+      this._card = document.createElement(HCP_WALL);
     }
     try {
-      // Always the video wall here: no card around the cameras (the configuration keeps its own layout for dashboards)
-      this._card.setConfig(Object.assign({ type: `custom:${HCP_CARD}` }, card, { layout: 'wall' }));
+      // The wall element draws the grid alone (no card, no header); the configuration keeps its own layout for dashboards
+      this._card.setConfig(card);
     } catch (err) {
       note(`<span>${hcpEsc(String(err?.message || err))}</span>`, true);
       return;

@@ -2226,6 +2226,11 @@ class HcCameraStream extends HTMLElement {
 if (!customElements.get('hc-camera-stream')) customElements.define('hc-camera-stream', HcCameraStream);
 
 class HomeCameraCard extends HTMLElement {
+  // What the card is drawn in: Home Assistant's <ha-card> on a dashboard; the panel's wall has a plain element.
+  static get shell() {
+    return 'ha-card';
+  }
+
   static getConfigElement() {
     return document.createElement('home-camera-card-editor');
   }
@@ -2251,7 +2256,8 @@ class HomeCameraCard extends HTMLElement {
     this.toggleAttribute?.('wall', this._wall);
     if (!this.shadowRoot) {
       this.attachShadow({ mode: 'open' });
-      this.shadowRoot.innerHTML = `${this._styles()}<ha-card><div class="head"></div><div class="view"></div></ha-card>`;
+      const inner = '<div class="head"></div><div class="view"></div>';
+      this.shadowRoot.innerHTML = `${this._styles()}${this.constructor.shell === 'ha-card' ? `<ha-card>${inner}</ha-card>` : `<div class="shell">${inner}</div>`}`;
       this.shadowRoot.addEventListener('click', (ev) => this._onClick(ev));
       this.shadowRoot.addEventListener('keydown', (ev) => this._onKey(ev));
       this.shadowRoot.addEventListener('pointerdown', (ev) => this._onPointerDown(ev));
@@ -2525,11 +2531,9 @@ class HomeCameraCard extends HTMLElement {
     const hd = this._hd();
     const visible = cams.filter((cam) => !this._hidden(cam));
     const compact = this._compact();
-    this.shadowRoot.querySelector('ha-card')?.classList.toggle('mini', compact);
+    this._shellEl()?.classList.toggle('mini', compact);
     // A lone camera on screen: its image runs edge to edge, under the header and down to the card's edges.
-    this.shadowRoot
-      .querySelector('ha-card')
-      ?.classList.toggle('solo', !compact && !this._wall && cams.length === 1 && visible.length === 1);
+    this._shellEl()?.classList.toggle('solo', !compact && !this._wall && cams.length === 1 && visible.length === 1);
 
     const banner = this._config.illustration !== false;
     const headSig = JSON.stringify([
@@ -3242,7 +3246,19 @@ class HomeCameraCard extends HTMLElement {
     this._onClick(ev);
   }
 
+  _shellEl() {
+    return this.shadowRoot?.querySelector(this.constructor.shell === 'ha-card' ? 'ha-card' : '.shell');
+  }
+
+  // The stylesheet, written for <ha-card>; in a plain shell (the panel's wall) the same rules apply to .shell, which
+  // also gets what <ha-card> brings by itself (its text colour, a positioned box).
   _styles() {
+    const css = this._cardStyles();
+    if (this.constructor.shell === 'ha-card') return css;
+    return css.replace(/(^|[^-\w])ha-card(?![-\w])/g, '$1.shell').replace('</style>', '.shell { position: relative; color: var(--primary-text-color); }</style>');
+  }
+
+  _cardStyles() {
     return (
       '<style>' +
       // --hc-glass: the smoked glass of everything laid over the images (labels, buttons, arrows).
@@ -3882,6 +3898,19 @@ class HomeCameraMiniCard extends HomeCameraCard {
     if (!ev.detail) this.shadowRoot.querySelector('.zoom')?.focus({ preventScroll: true });
   }
 }
+
+// The Cameras panel's video wall: the card's camera grid drawn bare, in a plain element (no <ha-card>, no header).
+// An element of the panel's own, like hc-camera-stream: not a dashboard card (not listed in the card picker).
+class HcCameraWall extends HomeCameraCard {
+  static get shell() {
+    return 'div';
+  }
+
+  setConfig(config) {
+    super.setConfig(Object.assign({}, config, { layout: 'wall', show_header: false }));
+  }
+}
+if (!customElements.get('hc-camera-wall')) customElements.define('hc-camera-wall', HcCameraWall);
 
 if (!customElements.get('home-camera-card-editor')) {
   customElements.define('home-camera-card-editor', HomeCameraCardEditor);

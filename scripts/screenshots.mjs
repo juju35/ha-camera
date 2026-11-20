@@ -279,7 +279,7 @@ for (const theme of ["light", "dark"]) {
     };
   }, { config, hass: { states, entities, language: "en", locale: { language: "en" }, themes: { darkMode: theme === "dark" } } });
   await page.waitForTimeout(500);
-  await page.locator("home-camera-panel home-camera-card .tile").first().hover();
+  await page.locator("home-camera-panel hc-camera-wall .tile").first().hover();
   await page.waitForTimeout(300);
   save(`panel${theme === "dark" ? "-dark" : ""}.png`, await page.screenshot({ animations: "disabled" }));
   // The Settings tab: its header card, the cameras found, the cameras shown
