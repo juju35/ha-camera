@@ -1630,6 +1630,39 @@ const hcTextWidth = (el) => {
   return range.getBoundingClientRect().width || el.scrollWidth;
 };
 
+// In-place update of a part of the shadow DOM: the nodes that stay keep their place, so a new state (motion, a
+// privacy switch) never rebuilds the header's picture, its icons or its pill — the card keeps its height and the
+// running animations go on. Nodes are matched by position and tag; attributes and text are patched.
+const hcPatchAttrs = (cur, next) => {
+  for (const { name } of [...cur.attributes]) if (!next.hasAttribute(name)) cur.removeAttribute(name);
+  for (const { name, value } of next.attributes) if (cur.getAttribute(name) !== value) cur.setAttribute(name, value);
+};
+const hcPatchChildren = (cur, next) => {
+  const fresh = [...next.childNodes];
+  fresh.forEach((n, i) => {
+    const o = cur.childNodes[i];
+    if (!o || o.nodeType !== n.nodeType || o.nodeName !== n.nodeName) {
+      if (o) cur.replaceChild(n, o);
+      else cur.appendChild(n);
+      return;
+    }
+    if (n.nodeType === 1) {
+      hcPatchAttrs(o, n);
+      hcPatchChildren(o, n);
+    } else if (o.nodeValue !== n.nodeValue) o.nodeValue = n.nodeValue;
+  });
+  while (cur.childNodes.length > fresh.length) cur.removeChild(cur.lastChild);
+};
+const hcMorph = (root, html) => {
+  if (typeof document === 'undefined' || !document.createElement('template').content || !root.childNodes) {
+    root.innerHTML = html;
+    return;
+  }
+  const tpl = document.createElement('template');
+  tpl.innerHTML = html;
+  hcPatchChildren(root, tpl.content);
+};
+
 function hcEsc(s) {
   return String(s == null ? '' : s).replace(
     /[&<>"']/g,
@@ -2785,7 +2818,7 @@ class HomeCameraCard extends HTMLElement {
     // show_header: false (the Cameras panel, whose top bar carries the title, status and HD / SD): the privacy
     // badges alone
     if (c.show_header === false) {
-      head.innerHTML = badges ? `<div class="chips badges">${badges}</div>` : '';
+      hcMorph(head, badges ? `<div class="chips badges">${badges}</div>` : '');
       return;
     }
     const zoom = this._zoomButton();
@@ -2803,7 +2836,7 @@ class HomeCameraCard extends HTMLElement {
         ? `${row}${zoom}</div>`
         : `<div class="banner${hcIsNight(this._hass, c) ? ' night' : ''}${zoom ? ' zoomable' : ''}">` +
           `${hcSceneSvg(state, this._uid)}${row}</div>${zoom}</div>`;
-    head.innerHTML = top + (badges ? `<div class="chips badges">${badges}</div>` : '');
+    hcMorph(head, top + (badges ? `<div class="chips badges">${badges}</div>` : ''));
     this._fitPill();
   }
 
