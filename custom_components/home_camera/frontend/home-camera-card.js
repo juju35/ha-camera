@@ -1,4 +1,4 @@
-const HOME_CAMERA_CARD_VERSION = '4.9.1';
+const HOME_CAMERA_CARD_VERSION = '4.9.2';
 
 // ── i18n ─────────────────────────────────────────────────────────────────────
 const HcI18n = {
