@@ -12,7 +12,7 @@
  *
  * https://github.com/juju35/ha-camera
  */
-var HOME_CAMERA_PANEL_VERSION = '4.9.1';
+var HOME_CAMERA_PANEL_VERSION = '4.9.2';
 
 var HomeCameraPanelI18n = {
   en: {
@@ -1632,7 +1632,7 @@ class HomeCameraPanel extends HTMLElement {
     .qseg button[aria-checked="true"] { background:#fff; color:var(--primary-color, #03a9f4); opacity:1; }
     .night .qseg button[aria-checked="true"] { background:rgba(255,255,255,.2); color:#fff; }
     .qseg button:focus-visible, .tacts a:focus-visible { outline:2px solid var(--primary-color); outline-offset:1px; }
-    @media (max-width:600px) { .toolbar .hc-scene { display:none; } .toolbar .bhead { right:var(--tb-acts, 150px); } .toolbar .bicon { display:none; } }
+    @media (max-width:600px) { .toolbar .hc-scene { display:none; } .toolbar .bhead { right:var(--tb-acts, 150px); } }
     /* Tabs under the top bar, on the page background: text, the active one underlined, sticky at the top */
     .tabs { display:flex; align-items:center; gap:4px; padding:0 12px; overflow-x:auto; background:var(--primary-background-color);
             border-bottom:1px solid var(--divider-color, rgba(0,0,0,.12)); position:sticky; top:0; z-index:2; }
