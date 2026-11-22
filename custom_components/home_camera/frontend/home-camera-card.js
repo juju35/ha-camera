@@ -1,4 +1,72 @@
-const HOME_CAMERA_CARD_VERSION = '4.9.3';
+// ── Card picker: light previews ──────────────────────────────────────────────
+// Home Assistant's card picker builds a live preview of every card registered with `preview: true`, all at once and
+// with no lazy loading. A preview here is drawn only once it scrolls into view: the picker calls getStubConfig() right
+// before it creates the preview, which marks the next instance of that card; once connected under <hui-card-picker>,
+// that instance holds Home Assistant's state (no render, no history, no animation) until it is visible. Anywhere else
+// (a dashboard, the card editor) the card behaves as before. Editors and other elements are defined unchanged.
+function pickerDefine(tag, Card, options) {
+  const isCard = !tag.endsWith("-editor") && (typeof Card.getStubConfig === "function" || typeof Card.getConfigElement === "function");
+  if (!isCard || typeof IntersectionObserver !== "function") return customElements.define(tag, Card, options);
+  let marks = [];
+  const lazy = class extends Card {
+    static getStubConfig(...args) {
+      marks.push(Date.now());
+      return Card.getStubConfig ? Card.getStubConfig(...args) : {};
+    }
+
+    constructor() {
+      super();
+      const now = Date.now();
+      marks = marks.filter((t) => now - t < 5000);
+      if (marks.length) {
+        marks.shift();
+        this._plHold = true;
+      }
+    }
+
+    set hass(hass) {
+      if (this._plHold) this._plHass = hass;
+      else super.hass = hass;
+    }
+
+    get hass() {
+      return this._plHold ? this._plHass : super.hass;
+    }
+
+    connectedCallback() {
+      if (!this._plHold) return super.connectedCallback?.();
+      if (this.getRootNode()?.host?.localName !== "hui-card-picker") return this._plRelease();
+      if (this._plIo) return;
+      // A custom element is inline until its styles arrive: a block of a card's height keeps the cells apart, so
+      // that only the previews actually on screen intersect.
+      this.style.display = "block";
+      this.style.minHeight = "120px";
+      this._plIo = new IntersectionObserver((entries) => entries.some((e) => e.isIntersecting) && this._plRelease(), {
+        rootMargin: "200px",
+      });
+      this._plIo.observe(this);
+    }
+
+    disconnectedCallback() {
+      if (this._plHold) return;
+      super.disconnectedCallback?.();
+    }
+
+    _plRelease() {
+      this._plIo?.disconnect();
+      this._plIo = null;
+      this._plHold = false;
+      this.style.display = "";
+      this.style.minHeight = "";
+      if (this._plHass !== undefined) super.hass = this._plHass;
+      this._plHass = undefined;
+      if (this.isConnected) super.connectedCallback?.();
+    }
+  };
+  return customElements.define(tag, lazy, options);
+}
+
+const HOME_CAMERA_CARD_VERSION = '4.9.4';
 
 // ── i18n ─────────────────────────────────────────────────────────────────────
 const HcI18n = {
@@ -2081,7 +2149,7 @@ class HcCameraStill extends HTMLElement {
     next.src = url;
   }
 }
-if (!customElements.get('hc-camera-still')) customElements.define('hc-camera-still', HcCameraStill);
+if (!customElements.get('hc-camera-still')) pickerDefine('hc-camera-still', HcCameraStill);
 
 class HcCameraStream extends HTMLElement {
   // The card gives hass only to a player that declares it; passed on to the inner one if it asks.
@@ -2223,7 +2291,7 @@ class HcCameraStream extends HTMLElement {
     this.append(player);
   }
 }
-if (!customElements.get('hc-camera-stream')) customElements.define('hc-camera-stream', HcCameraStream);
+if (!customElements.get('hc-camera-stream')) pickerDefine('hc-camera-stream', HcCameraStream);
 
 class HomeCameraCard extends HTMLElement {
   // What the card is drawn in: Home Assistant's <ha-card> on a dashboard; the panel's wall has a plain element.
@@ -3910,17 +3978,17 @@ class HcCameraWall extends HomeCameraCard {
     super.setConfig(Object.assign({}, config, { layout: 'wall', show_header: false }));
   }
 }
-if (!customElements.get('hc-camera-wall')) customElements.define('hc-camera-wall', HcCameraWall);
+if (!customElements.get('hc-camera-wall')) pickerDefine('hc-camera-wall', HcCameraWall);
 
 if (!customElements.get('home-camera-card-editor')) {
-  customElements.define('home-camera-card-editor', HomeCameraCardEditor);
+  pickerDefine('home-camera-card-editor', HomeCameraCardEditor);
 }
 if (!customElements.get('home-camera-mini-card-editor')) {
-  customElements.define('home-camera-mini-card-editor', HomeCameraMiniCardEditor);
+  pickerDefine('home-camera-mini-card-editor', HomeCameraMiniCardEditor);
 }
 
 if (!customElements.get('home-camera-card')) {
-  customElements.define('home-camera-card', HomeCameraCard);
+  pickerDefine('home-camera-card', HomeCameraCard);
   // What the Cameras panel draws its top bar with: the header's picture and its styles, and the camera entries
   window.HomeCameraKit = { sceneSvg: hcSceneSvg, isNight: hcIsNight, camera: hcCamera, bannerStyle: HC_BANNER_STYLE, qualityEvent: HC_QUALITY_EVENT };
   window.customCards = window.customCards || [];
@@ -3928,18 +3996,18 @@ if (!customElements.get('home-camera-card')) {
     type: 'home-camera-card',
     name: 'Home Camera Card',
     description: 'Every home camera in one grid, with privacy toggles, HD/SD switching and PTZ',
-    preview: false,
+    preview: true,
     documentationURL: 'https://github.com/juju35/ha-camera',
   });
 }
 if (!customElements.get('home-camera-mini-card')) {
-  customElements.define('home-camera-mini-card', HomeCameraMiniCard);
+  pickerDefine('home-camera-mini-card', HomeCameraMiniCard);
   window.customCards = window.customCards || [];
   window.customCards.push({
     type: 'home-camera-mini-card',
     name: 'Home Camera Mini Card',
     description: 'A snapshot of each home camera with its status, and a button to show the full camera card',
-    preview: false,
+    preview: true,
     documentationURL: 'https://github.com/juju35/ha-camera',
   });
 }
