@@ -29,6 +29,10 @@ List the cameras, the cards find their privacy switch, SD stream and PTZ buttons
 | <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/panel.png" alt="Cameras sidebar panel with the camera grid full page" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/panel-dark.png" alt="Cameras sidebar panel with the camera grid full page, dark theme" width="400"> |
 | **Panel settings** | **Panel settings, dark** |
 | <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/panel-settings.png" alt="Settings tab of the Cameras panel: header card, cameras found, cameras shown" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/panel-settings-dark.png" alt="Settings tab of the Cameras panel, dark theme" width="400"> |
+| **Panel events (Frigate)** | **Panel events, dark** |
+| <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/panel-events.png" alt="Events tab of the Cameras panel: the day's Frigate events as a timeline by hour, filters by camera and object, the player of the selected event" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/panel-events-dark.png" alt="Events tab of the Cameras panel: the day's Frigate events as a timeline by hour, filters by camera and object, the player of the selected event, dark theme" width="400"> |
+| **Panel events on a phone** | **Panel events on a phone, dark** |
+| <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/panel-events-mobile.png" alt="Events tab of the Cameras panel on a phone: the player on top of the timeline" width="260"> | <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/panel-events-mobile-dark.png" alt="Events tab of the Cameras panel on a phone: the player on top of the timeline, dark theme" width="260"> |
 | **Light** | **Dark** |
 | <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/card.png" alt="Camera card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/card-dark.png" alt="Camera card, dark theme" width="400"> |
 | **Pan & tilt** | **Pan & tilt, dark** |
@@ -41,6 +45,10 @@ List the cameras, the cards find their privacy switch, SD stream and PTZ buttons
 | <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/card-mini.png" alt="Camera mini card with a snapshot per camera" width="300"> | <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/card-mini-dark.png" alt="Camera mini card with a snapshot per camera, dark theme" width="300"> |
 | **Fullscreen, pan & tilt** | **Fullscreen, pan & tilt, dark** |
 | <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/card-fullscreen-light.png" alt="Fullscreen camera with the round pan and tilt pad" width="700"> | <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/card-fullscreen.png" alt="Fullscreen camera with the round pan and tilt pad, dark theme" width="700"> |
+| **Frigate cameras** | **Frigate cameras, dark** |
+| <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/card-frigate.png" alt="Camera card with Frigate cameras: detection and recording buttons, Open in Frigate, today's events folded under the grid" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/card-frigate-dark.png" alt="Camera card with Frigate cameras: detection and recording buttons, Open in Frigate, today's events folded under the grid, dark theme" width="400"> |
+| **Frigate events** | **Frigate events, dark** |
+| <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/card-frigate-events.png" alt="Camera card with the Frigate events unfolded: object, camera, time, duration and score, filtered by object" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-camera/main/screenshots/card-frigate-events-dark.png" alt="Camera card with the Frigate events unfolded: object, camera, time, duration and score, filtered by object, dark theme" width="400"> |
 
 ## Features
 
