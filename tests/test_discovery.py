@@ -342,3 +342,9 @@ async def test_cameras_of_one_device_that_are_not_streams_stay_apart(hass):
     # An NVR's channels: nothing in their ids says they are streams of one camera
     _device(hass, "synology_dsm", "nvr", "NVR", [("garage", 2), ("drive", 2)])
     assert sorted(cam["camera"] for cam in discover(hass)) == ["camera.nvr_drive", "camera.nvr_garage"]
+
+
+async def test_nvr_channels_with_stream_words_stay_apart(hass):
+    # "main" and "low" in their names, but not the same camera
+    _device(hass, "synology_dsm", "nvr", "NVR", [("main_gate", 2), ("back_low_wall", 2)])
+    assert sorted(cam["camera"] for cam in discover(hass)) == ["camera.nvr_back_low_wall", "camera.nvr_main_gate"]

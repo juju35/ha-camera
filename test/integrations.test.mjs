@@ -58,3 +58,12 @@ test("a camera that can be turned off is its own privacy control, hidden while o
   assert.equal(onvif.ptz.up, "camera.porch");
   assert.equal(onvif.privacy, null);
 });
+
+test("an NVR's channels whose names hold stream words are not taken for streams of one camera", () => {
+  const ids = ["camera.nvr_main_gate", "camera.nvr_back_low_wall"];
+  const hass = {
+    entities: Object.fromEntries(ids.map((id) => [id, { entity_id: id, device_id: "nvr" }])),
+    states: Object.fromEntries(ids.map((id) => [id, { state: "idle", attributes: { supported_features: 2 } }])),
+  };
+  assert.equal(hcCamera(hass, "camera.nvr_main_gate", 0).sd, null);
+});

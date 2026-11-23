@@ -3494,13 +3494,25 @@ function hcStreamRank(id) {
   }
   return null;
 }
+// A stream camera's entity id without its stream words: the streams of one camera share it (garden_clear,
+// garden_fluent), an NVR's channels do not (main_gate, back_low_wall)
+const hcStreamBase = (id) =>
+  String(id)
+    .split('.')
+    .pop()
+    .split('_')
+    .filter((w) => !HC_STREAM_RANKS[w] && !w.startsWith('profile') && !/^\d+$/.test(w))
+    .join('_');
 // The lightest stream of a camera's device, when the camera is its most detailed one (snapshot cameras aside)
 function hcDeviceSd(hass, id) {
   const reg = hass?.entities;
   const device = reg?.[id]?.device_id;
   const rank = hcStreamRank(id);
   if (!device || rank === null) return null;
-  const others = hcDeviceEntities(reg, device).filter((e) => e !== id && e.startsWith('camera.') && !e.includes('snapshot') && hass.states?.[e]);
+  const base = hcStreamBase(id);
+  const others = hcDeviceEntities(reg, device).filter(
+    (e) => e !== id && e.startsWith('camera.') && !e.includes('snapshot') && hass.states?.[e] && hcStreamBase(e) === base,
+  );
   let best = null;
   for (const e of others) {
     const r = hcStreamRank(e);
@@ -4566,7 +4578,11 @@ class HomeCameraCard extends HTMLElement {
       this._onQuality = (ev) => {
         if (!ev.key || ev.key === HC_QUALITY_KEY) this._update();
       };
-      this._onVisibility = () => this._syncLive();
+      // The page hidden while an arrow is held (phone locked, other tab): its release will never come
+      this._onVisibility = () => {
+        if (document.visibilityState === 'hidden') this._stopRepeat();
+        this._syncLive();
+      };
       // Escape leaves the card's own fullscreen (the browser handles its native one).
       this._onEscape = (ev) => {
         if (ev.key === 'Escape' && this._pseudo) this._setPseudo(this._pseudo, false);
@@ -5246,7 +5262,7 @@ class HomeCameraCard extends HTMLElement {
               `data-action="move" data-dir="${d}" data-entity="${hcEsc(cam.ptz[d])}"` +
                 (cam.ptz.service ? ` data-service="${cam.ptz.service}"` : '') +
                 (cam.ptz.stop ? ` data-stop="${hcEsc(cam.ptz.stop)}"` : '') +
-                (cam.ptz.service || cam.ptz.stop ? ' data-cont="1"' : ''),
+                (cam.ptz.service === 'frigate' || cam.ptz.stop ? ' data-cont="1"' : ''),
               HC_PTZ_ICONS[d],
               this._t(`move_${d}`),
             ),
@@ -5450,22 +5466,22 @@ class HomeCameraCard extends HTMLElement {
     }
     if (b.dataset.service === 'onvif') {
       const axis = b.dataset.dir === 'left' || b.dataset.dir === 'right' ? 'pan' : 'tilt';
+      // A short continuous move, repeated while the arrow is held: a lost release never leaves the camera turning
       this._call('onvif', 'ptz', {
         entity_id: b.dataset.entity,
         [axis]: b.dataset.dir.toUpperCase(),
         move_mode: 'ContinuousMove',
         speed: 0.5,
-        continuous_duration: 30,
+        continuous_duration: 0.6,
       }).catch(() => {});
       return;
     }
     this._call('button', 'press', { entity_id: b.dataset.entity }).catch(() => {});
   }
 
-  // The end of a continuous move: Frigate's stop, ONVIF's Stop, or the stop button (Reolink)
+  // The end of a continuous move: Frigate's stop, or the stop button (Reolink)
   _ptzStop(b) {
     if (b.dataset.service === 'frigate') this._call('frigate', 'ptz', { entity_id: b.dataset.entity, action: 'stop' }).catch(() => {});
-    else if (b.dataset.service === 'onvif') this._call('onvif', 'ptz', { entity_id: b.dataset.entity, move_mode: 'Stop' }).catch(() => {});
     else if (b.dataset.stop) this._call('button', 'press', { entity_id: b.dataset.stop }).catch(() => {});
   }
 
@@ -5727,7 +5743,7 @@ class HomeCameraCard extends HTMLElement {
     this._stopRepeat();
     this._move(b);
     this._repeatBtn = b;
-    // Continuous moves (Frigate, ONVIF, a stop button): one move from the press, a stop at the release, no repeat
+    // Continuous moves (Frigate, a stop button): one move from the press, a stop at the release, no repeat
     if (!b.dataset.cont) this._repeat = setTimeout(() => {
       this._repeat = setInterval(() => {
         // The arrow was re-rendered or its tile removed while held: its pointerup will never come.
@@ -6035,6 +6051,7 @@ class HomeCameraCard extends HTMLElement {
       ' -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); cursor: pointer; }' +
       '.presetsel option { color: #000; }' +
       '.tile.ptz-open .presetsel, :is(.tile:fullscreen, .tile.pseudo).has-ptz .presetsel { display: block; }' +
+      '.tile.clip .presetsel { display: none !important; }' +
       // Frigate: detection and recording switches in the bottom right corner (hidden with the pan & tilt pad there and
       // in fullscreen); the name stops before them.
       '.frs { position: absolute; right: 8px; bottom: 8px; z-index: 1; display: flex; gap: 6px; }' +

@@ -132,6 +132,14 @@ def stream_rank(entity_id: str) -> int | None:
     return None
 
 
+def stream_base(entity_id: str) -> str:
+    """A stream camera's entity id without its stream words: the streams of one camera share it (garden_clear and
+    garden_fluent: garden), the channels of an NVR do not (main_gate, back_low_wall)."""
+    words = entity_id.split(".", 1)[-1].split("_")
+    kept = [w for w in words if w not in STREAM_RANKS and not w.startswith("profile") and not w.isdigit()]
+    return "_".join(kept)
+
+
 def _pair_streams(found: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """One entry per device whose cameras are streams of one camera: the most detailed one, with the lightest as SD."""
     by_device: dict[str, list[dict[str, Any]]] = {}
@@ -146,7 +154,7 @@ def _pair_streams(found: list[dict[str, Any]]) -> list[dict[str, Any]]:
         if streams and len(streams) < len(cams):
             drop.update(c["camera"] for c in cams if SNAPSHOT in c["camera"])
         ranked = [(rank, c) for c in streams if (rank := stream_rank(c["camera"])) is not None]
-        if len(ranked) < 2 or len(ranked) != len(streams):
+        if len(ranked) < 2 or len(ranked) != len(streams) or len({stream_base(c["camera"]) for _, c in ranked}) > 1:
             continue  # cameras of their own (an NVR's channels), or streams the ids do not tell apart
         ranked.sort(key=lambda rc: -rc[0])
         best, lightest = ranked[0][1], ranked[-1][1]

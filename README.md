@@ -87,7 +87,7 @@ List the cameras, the cards find their privacy switch, SD stream and PTZ buttons
 - Live grid with low latency: a camera that offers WebRTC (go2rtc) plays it alone, one RTSP session per camera; Home Assistant's own player (HLS or MJPEG) for the others — no other card to install
 - **Tap a camera to put it fullscreen**, with a round pan & tilt pad at the bottom right; tap again or press Escape to come back (on iPhone, the card covers the screen itself)
 - *Details* button on every tile for Home Assistant's camera dialog; **sound** button on streams that carry sound, for one camera at a time (the grid starts muted)
-- **PTZ**: a button on the tile shows a round pad of four arrows in the corner of the image, light enough to see through; hold an arrow to keep moving, or use the arrow keys; arrows whose button is unavailable are greyed out. Step buttons (Tapo `move_*`, EZVIZ) repeat while held; continuous ones move from the press until the release: Reolink's `ptz_*` buttons and their `ptz_stop`, ONVIF's `onvif.ptz` (`ptz: onvif`), Frigate's `frigate.ptz` (`ptz: frigate`)
+- **PTZ**: a button on the tile shows a round pad of four arrows in the corner of the image, light enough to see through; hold an arrow to keep moving, or use the arrow keys; arrows whose button is unavailable are greyed out. Step buttons (Tapo `move_*`, EZVIZ) repeat while held; continuous ones move from the press until the release: Reolink's `ptz_*` buttons and their `ptz_stop`, Frigate's `frigate.ptz` (`ptz: frigate`); ONVIF's `onvif.ptz` (`ptz: onvif`) sends short moves repeated while the arrow is held, so a lost release never leaves the camera turning
 - **Preset positions**: with the arrows, a list of the camera's saved positions (Reolink's `select.*_ptz_preset`, or the `preset` option)
 - **Privacy without a switch**: a camera that can be turned off (Arlo, Netatmo) is its own privacy control — its badge turns it off and on, and it is hidden while off
 - Spinner until each camera's first frame; privacy badges spin until their switch answers
@@ -114,7 +114,7 @@ Any `camera` entity works. These integrations also bring their controls without 
 | Tapo: Cameras Control (`tapo_control`) | `*_hd_stream` and `*_sd_stream` | `switch.*_privacy` | the `*_sd_stream` camera | `button.*_move_*` | detection `binary_sensor`s |
 | [Reolink](https://www.home-assistant.io/integrations/reolink/) (`reolink`) | Fluent, Balanced, Clear (snapshot cameras left out) | `privacy_mode` switch | the lightest stream of the device (Fluent) | `ptz_*` buttons, continuous until `ptz_stop`; `ptz_preset` select | motion, person, vehicle… `binary_sensor`s |
 | [UniFi Protect](https://www.home-assistant.io/integrations/unifiprotect/) (`unifiprotect`) | High, Medium, Low resolution channels | `privacy_mode` switch | the lightest channel of the device | — | motion and smart detection `binary_sensor`s |
-| [ONVIF](https://www.home-assistant.io/integrations/onvif/) (`onvif`) | a profile per stream (mainstream, substream…) | — | the lightest profile of the device | `ptz: onvif` (`onvif.ptz`, continuous) | ONVIF event `binary_sensor`s |
+| [ONVIF](https://www.home-assistant.io/integrations/onvif/) (`onvif`) | a profile per stream (mainstream, substream…) | — | the lightest profile of the device | `ptz: onvif` (`onvif.ptz`, short moves while held) | ONVIF event `binary_sensor`s |
 | [EZVIZ](https://www.home-assistant.io/integrations/ezviz/) (`ezviz`) | one per camera | `privacy` switch | — | `ptz_*` buttons, when the integration gives them | motion `binary_sensor` |
 | [Arlo](https://github.com/twrecked/hass-aarlo) (`aarlo`) | one per camera | the camera itself (turned off) | — | — | motion `binary_sensor` |
 | [Netatmo](https://www.home-assistant.io/integrations/netatmo/) (`netatmo`) | one per camera | the camera itself (monitoring off) | — | — | — |
@@ -122,7 +122,7 @@ Any `camera` entity works. These integrations also bring their controls without 
 
 With Frigate, the integration must reach Frigate itself, not the Frigate Proxy app; the proxy's sidebar panel is only where **Open in Frigate** goes. Frigate's sub-stream must exist in its go2rtc configuration (`living_room_sub` for the `living_room` camera, or set `frigate.sd_stream`).
 
-Streams that are disabled in Home Assistant (Reolink's Clear and Balanced, UniFi Protect's Medium and Low, by default) are not used: enable the one you want as the SD (or HD) stream in the device's entities. Cameras of one device that the entity ids do not tell apart as streams (an NVR's channels) stay separate cameras.
+Streams that are disabled in Home Assistant (Reolink's Clear and Balanced, UniFi Protect's Medium and Low, by default) are not used: enable the one you want as the SD (or HD) stream in the device's entities. Cameras of one device that the entity ids do not tell apart as streams of one camera (an NVR's channels, whose names differ beyond their stream words) stay separate cameras.
 
 Tapo Cameras names its entities in your language (`button.living_room_left`, `button.salon_gauche`…): the card finds them by their translation key on the camera's device, whatever their entity ids. With Tapo Cameras, the HD / SD switch changes the stream of the camera itself, so every viewer gets the new quality; with a shared `quality_entity`, the switch sets it too.
 
