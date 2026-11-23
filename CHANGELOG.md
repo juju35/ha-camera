@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.11.0 - 2026-11-23
+
+### Features
+- Frigate events under the grid of both cards: folded into one row (today's count, the last event, its thumbnails) or unfolded into the latest events with a filter by object; a tap plays the event's clip in its camera's tile, **Live** goes back. Options `frigate.events`, `events_expanded`, `events_limit`, `events_labels`.
+- Cameras panel: an **Events** tab for every user when it shows Frigate cameras — the day's events as a timeline by hour, filters by camera and object, previous and next day, a player (clip, live, download), and today's count on the tab.
+- Frigate's detection and recording switches on the tiles (`frigate.badges`).
+
+### Performance
+- Only the clip chosen is downloaded: the newest event, selected when the Events tab opens, waits for its play button; one clip at a time in a card, released when it stops. Thumbnails are signed and loaded only once on screen. Events are asked again every 30 seconds at most and when a motion ends, never while the card is off screen, the page hidden or the Events tab not shown; the timeline's clip pauses and its live stream closes then.
+
 ## 4.10.0 - 2026-11-23
 
 ### Features
