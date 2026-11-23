@@ -303,6 +303,15 @@ While a tile is waiting for its first frame, a spinner turns over the stream.
 
 The still states (the grid; pan & tilt; a single camera; every camera hidden; the mini card; fullscreen), each in light and dark, are shown at the [top of this page](#ha-camera).
 
+## Known limitations
+
+- **Privacy without a switch**: a camera that can be turned off and has no privacy switch (Arlo, Netatmo…) becomes its own privacy control, so a card that already shows such a camera gets a privacy badge for it; `privacy: false` on the camera removes it.
+- **HD / SD pairing** of a device's stream cameras relies on their entity ids (`*_clear` / `*_fluent`, `*_high_…` / `*_low_…`, ONVIF profiles): renamed entities are not paired any more — set `sd` on the camera. Streams disabled in Home Assistant are not used.
+- **Frigate events**: today follows the browser's time zone, not Home Assistant's; a card asks for 50 events and its count reads "50+" beyond; an event still in progress has no clip yet (Frigate writes it at the end). Events come from Frigate only: Reolink and UniFi Protect recordings stay in Home Assistant's media browser.
+- **Frigate** needs the integration pointed at Frigate itself (not the Frigate Proxy app) and, for SD, the sub-stream in Frigate's go2rtc configuration. Frigate's PTZ presets are not listed.
+- **ONVIF PTZ** (`ptz: onvif`) sends short moves repeated while the arrow is held, so the camera moves in small steps on slow connections.
+- **Refresh**: events are asked again with Home Assistant's updates (at most every 30 seconds), so a very quiet instance can wait a little longer for new ones.
+
 ## How it works
 
 The card draws its own header, badges and tiles. A camera that offers WebRTC (go2rtc) plays it with Home Assistant's `ha-web-rtc-player` alone: Home Assistant's `ha-camera-stream` starts HLS and WebRTC side by side, two RTSP sessions per camera, which cameras that allow few of them (Tapo…) answer by dropping one, and the image lags. The other cameras, the ones without a live stream and a WebRTC session that brings no video use `ha-camera-stream`, the player of the built-in camera cards and dialog (HLS or MJPEG). go2rtc and the camera's own settings apply as everywhere else in Home Assistant. Tiles are kept between updates and only added or removed when a camera is shown or hidden, so the other streams keep playing. When the quality is SD, every camera that has an SD stream uses it.
