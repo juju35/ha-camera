@@ -151,6 +151,47 @@ add("camera.terrace", "streaming", "terrace", { friendly_name: "Terrace", suppor
 add("switch.terrace_camera_plug", "on", "plug");
 add("input_select.camera_quality", "HD", null, { options: ["HD", "SD"] });
 
+// Frigate: the same rooms seen by Frigate (their privacy switch from the Tapo cameras of the same name), its
+// detection and recording switches, and a morning of events at a fixed time (the shots never move with the clock).
+const FRIGATE_NOW = Date.UTC(2026, 10, 23, 10, 45) / 1000;
+for (const [key, name] of [["living_room", "Living room"], ["kids_room", "Kids' room"], ["office", "Office"]]) {
+  states[`camera.${key}`] = { entity_id: `camera.${key}`, state: "streaming", attributes: { friendly_name: name, supported_features: 2, camera_name: key, client_id: "frigate" } };
+  entities[`camera.${key}`] = { entity_id: `camera.${key}`, device_id: `frigate_${key}`, platform: "frigate" };
+  add(`switch.${key}_detect`, "on", `frigate_${key}`);
+  add(`switch.${key}_recordings`, key === "office" ? "off" : "on", `frigate_${key}`);
+}
+add("binary_sensor.living_room_person_occupancy", "on", "frigate_living_room", { device_class: "occupancy" });
+const FRIGATE_EVENTS = [
+  ["e1", "living_room", "person", 4 * 60, 18, 0.92],
+  ["e2", "living_room", "cat", 47 * 60, 6, 0.81],
+  ["e3", "kids_room", "person", 80 * 60, 42, 0.95],
+  ["e4", "living_room", "person", 2.1 * 3600, 31, 0.88],
+  ["e5", "office", "person", 2.6 * 3600, 72, 0.9],
+  ["e6", "kids_room", "cat", 3.6 * 3600, 9, 0.77],
+].map(([id, camera, label, ago, len, score]) => ({
+  id, camera, label, start_time: FRIGATE_NOW - ago, end_time: FRIGATE_NOW - ago + len, has_clip: true, data: { top_score: score },
+}));
+const frigateConfig = {
+  cameras: [
+    { camera: "camera.living_room", name: "Living room", controls_from: "camera.living_room_hd_stream" },
+    { camera: "camera.kids_room", name: "Kids' room", short_name: "Kids", controls_from: "camera.kids_room_hd_stream" },
+    { camera: "camera.office", name: "Office", controls_from: "camera.office_hd_stream" },
+    { camera: "camera.bedroom_parents_hd_stream", name: "Parents' bedroom", short_name: "Parents" },
+  ],
+};
+// The Frigate integration's WebSocket commands, and Home Assistant's signed paths (a thumbnail: the room's scene)
+const frigateMock = `
+window.frigateWS = (events) => async (msg) => {
+  if (msg.type === "frigate/events/get") return events.filter((e) => msg.cameras.includes(e.camera) && (!msg.after || e.start_time >= msg.after) && (!msg.before || e.start_time < msg.before));
+  if (msg.type === "auth/sign_path") {
+    const m = /thumbnail\\/(e\\d)/.exec(msg.path);
+    const ev = m && events.find((e) => e.id === m[1]);
+    return { path: ev ? window.snapshot("camera." + ev.camera).replace(/#snap$/, "") : msg.path + "?authSig=mock" };
+  }
+  if (msg.type === "home_camera/discover") return { cameras: [] };
+  return [];
+};`;
+
 const config = {
   quality_entity: "input_select.camera_quality",
   cameras: [
@@ -179,37 +220,49 @@ const SHOTS = [
   // Fullscreen on the first camera, with its pan & tilt arrows: a 1280 x 720 screen in the frame.
   { file: "card-fullscreen", theme: "dark", lang: "en", fullscreen: 0, width: 1280 },
   { file: "card-fullscreen-light", theme: "light", lang: "en", fullscreen: 0, width: 1280 },
+  // Frigate: the Frigate cameras with their detection and recording switches (and Open in Frigate on the hovered
+  // tile), today's events folded under the grid, then unfolded.
+  { file: "card-frigate", theme: "light", lang: "en", hover: 0, config: frigateConfig, frigate: true },
+  { file: "card-frigate-dark", theme: "dark", lang: "en", hover: 0, config: frigateConfig, frigate: true },
+  { file: "card-frigate-events", theme: "light", lang: "en", config: frigateConfig, frigate: true, events: true },
+  { file: "card-frigate-events-dark", theme: "dark", lang: "en", config: frigateConfig, frigate: true, events: true },
 ];
 
 // Mount the card for one shot on a fresh page and return it (shared by the stills and the GIF).
 async function openCard(browser, s) {
   const width = s.width || 460;
   // The fullscreen shot stays at 1.5x: a 1280 px screen needs no more to be sharp in the README.
-  const page = await browser.newPage({ deviceScaleFactor: s.fullscreen !== undefined ? 1.5 : 2, viewport: { width: Math.max(1000, width + 32), height: 2000 } });
+  const page = await browser.newPage({ deviceScaleFactor: s.fullscreen !== undefined ? 1.5 : 2, viewport: { width: Math.max(1000, width + 32), height: 2000 }, ...(s.frigate ? { timezoneId: "UTC" } : {}) });
   page.on("pageerror", (err) => console.error(`pageerror (${s.file}): ${err.message}`));
   page.on("console", (msg) => msg.type() === "error" && console.error(`console (${s.file}): ${msg.text()}`));
   // A frozen clock, installed and paused before the content so no timer escapes it, holds every tile in
   // its loading state: the stand-in's setTimeout("load") never fires, so the hc-spin spinner keeps
   // running. install() alone only fakes the clock, which keeps ticking in real time: the timer fired and
   // the tiles loaded before the first frame. CSS animations run on the document timeline, not this clock.
+  if (s.frigate) await page.clock.setFixedTime(FRIGATE_NOW * 1000);
   if (s.freezeClock) {
     await page.clock.install({ time: 0 });
     await page.clock.pauseAt(1000);
   }
   await page.setContent(pageHtml(s.theme, width));
   await page.addScriptTag({ content: haElements });
+  if (s.frigate) await page.addScriptTag({ content: frigateMock });
   await page.addScriptTag({ content: cardJs });
   const shotStates = s.hidden
     ? Object.fromEntries(Object.entries(states).map(([k, v]) => [k, k.endsWith("_privacy") ? { ...v, state: "on" } : k.endsWith("_plug") ? { ...v, state: "off" } : v]))
     : states;
-  await page.evaluate(({ config, hass, type }) => {
+  await page.evaluate(({ config, hass, type, events }) => {
     // Snapshots for the mini card's thumbnails.
     window.withSnapshots(hass.states);
     const el = document.createElement(type);
     el.setConfig({ type: `custom:${type}`, ...config });
-    el.hass = { ...hass, callService: async () => {} };
+    el.hass = {
+      ...hass,
+      callService: async () => {},
+      ...(events ? { callWS: window.frigateWS(events), hassUrl: (p) => p, panels: { "ccab4aaf_frigate-proxy": {} } } : {}),
+    };
     document.getElementById("root").appendChild(el);
-  }, { config: s.config || config, type: s.mini ? "home-camera-mini-card" : "home-camera-card", hass: { states: shotStates, entities, language: s.lang, locale: { language: s.lang }, themes: { darkMode: s.theme === "dark" } } });
+  }, { events: s.frigate ? FRIGATE_EVENTS : null, config: s.config || config, type: s.mini ? "home-camera-mini-card" : "home-camera-card", hass: { states: shotStates, entities, language: s.lang, locale: { language: s.lang }, themes: { darkMode: s.theme === "dark" } } });
   return page;
 }
 
@@ -221,6 +274,9 @@ for (const s of SHOTS) {
   await page.waitForTimeout(100);
   const tile = (i) => page.locator("home-camera-card .tile").nth(i);
   if (s.ptz) await tile(0).locator(".btn.ptz").click();
+  // Frigate: the events arrive (WebSocket mock), then the list is unfolded
+  if (s.frigate) await page.waitForTimeout(300);
+  if (s.events) await page.locator("home-camera-card .events [data-ev=toggle]").first().click();
   if (s.hover !== undefined) await tile(s.hover).hover();
   // The card's own fullscreen (what a headless browser can show): same look as the browser's.
   if (s.fullscreen !== undefined) {
@@ -245,14 +301,17 @@ for (const s of SHOTS) {
 // The Cameras sidebar panel, 1100 x 760, as an administrator (both tabs) sees it: the illustrated top bar, the tabs
 // under it, the filter and tiles, then the wall. A stand-in menu button draws the sidebar toggle.
 const HEADER = { light: { bg: "#03a9f4", text: "#ffffff" }, dark: { bg: "#101e24", text: "#e1e1e1" } };
-for (const theme of ["light", "dark"]) {
-  const page = await browser.newPage({ deviceScaleFactor: 1.5, viewport: { width: 1100, height: 760 } });
-  page.on("pageerror", (err) => console.error(`pageerror (panel ${theme}): ${err.message}`));
+// The panel on a fresh page, at `route`; with `events`, the Frigate mock and a fixed clock in UTC.
+async function openPanel(theme, { config, route = "", events = null }) {
+  const page = await browser.newPage({ deviceScaleFactor: 1.5, viewport: { width: 1100, height: 760 }, ...(events ? { timezoneId: "UTC" } : {}) });
+  page.on("pageerror", (err) => console.error(`pageerror (panel ${route || "cameras"} ${theme}): ${err.message}`));
+  if (events) await page.clock.setFixedTime(FRIGATE_NOW * 1000);
   await page.setContent(`<!doctype html><html><head><meta charset="utf-8"><style>
     :root { ${Object.entries({ ...THEMES[theme], ...COMMON, "--app-header-background-color": HEADER[theme].bg, "--app-header-text-color": HEADER[theme].text }).map(([k, v]) => `${k}:${v};`).join("")} }
     body { margin: 0; background: var(--primary-background-color); color: var(--primary-text-color); font-family: Roboto, "Segoe UI", Helvetica, Arial, sans-serif; }
   </style></head><body></body></html>`);
   await page.addScriptTag({ content: haElements });
+  if (events) await page.addScriptTag({ content: frigateMock });
   await page.addScriptTag({
     content: `customElements.define("ha-menu-button", class extends HTMLElement {
       connectedCallback() { this.innerHTML = '<ha-icon icon="mdi:menu" style="display:flex;padding:8px"></ha-icon>'; }
@@ -260,24 +319,31 @@ for (const theme of ["light", "dark"]) {
   });
   await page.addScriptTag({ content: cardJs });
   await page.addScriptTag({ content: panelJs });
-  await page.evaluate(({ config, hass }) => {
+  await page.evaluate(({ config, hass, route, events }) => {
     window.withSnapshots(hass.states);
     const settings = { configured: true, card: config, title: "", sidebar_title: "Cameras", default_title: "Cameras" };
     const el = document.createElement("home-camera-panel");
     el.panel = { url_path: "cameras", config: {} };
-    el.route = { path: "" };
+    el.route = { path: route };
     el.narrow = false;
     document.body.appendChild(el);
     el.hass = {
       ...hass,
       user: { is_admin: true },
       callService: async () => {},
+      hassUrl: (p) => p,
       connection: { subscribeMessage: (cb) => { setTimeout(() => cb(settings)); return Promise.resolve(() => {}); } },
-      // Settings: one camera of Home Assistant not shown yet
-      callWS: async (msg) =>
-        msg.type === "home_camera/discover" ? { cameras: [{ camera: "camera.garage", name: "Garage", area: "Garage", sd: "camera.garage_sd" }] } : [],
+      // Settings: one camera of Home Assistant not shown yet; Events: the Frigate mock
+      callWS: events
+        ? window.frigateWS(events)
+        : async (msg) =>
+            msg.type === "home_camera/discover" ? { cameras: [{ camera: "camera.garage", name: "Garage", area: "Garage", sd: "camera.garage_sd" }] } : [],
     };
-  }, { config, hass: { states, entities, language: "en", locale: { language: "en" }, themes: { darkMode: theme === "dark" } } });
+  }, { config, route, events, hass: { states, entities, language: "en", locale: { language: "en" }, themes: { darkMode: theme === "dark" } } });
+  return page;
+}
+for (const theme of ["light", "dark"]) {
+  const page = await openPanel(theme, { config });
   await page.waitForTimeout(500);
   await page.locator("home-camera-panel hc-camera-wall .tile").first().hover();
   await page.waitForTimeout(300);
@@ -287,6 +353,18 @@ for (const theme of ["light", "dark"]) {
   await page.locator("home-camera-panel .tab[data-tab=settings]").click();
   await page.waitForTimeout(3500);
   save(`panel-settings${theme === "dark" ? "-dark" : ""}.png`, await page.screenshot({ animations: "disabled" }));
+  await page.close();
+}
+
+// The Events tab of the panel, with Frigate cameras: the day's timeline by hour, the filters and the player of the
+// newest event (wide), then the same on a phone (the player on top).
+for (const theme of ["light", "dark"]) {
+  const page = await openPanel(theme, { config: frigateConfig, route: "/events", events: FRIGATE_EVENTS });
+  await page.waitForTimeout(1500);
+  save(`panel-events${theme === "dark" ? "-dark" : ""}.png`, await page.screenshot({ animations: "disabled" }));
+  await page.setViewportSize({ width: 420, height: 900 });
+  await page.waitForTimeout(600);
+  save(`panel-events-mobile${theme === "dark" ? "-dark" : ""}.png`, await page.screenshot({ animations: "disabled" }));
   await page.close();
 }
 
