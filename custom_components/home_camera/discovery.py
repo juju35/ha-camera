@@ -11,6 +11,14 @@ sensors — matched by their translation key (Tapo Cameras names its entities in
 ``button.salon_gauche`` is ``move_left``) or by the end of their entity id (Tapo: Cameras Control), so they show in
 the panel's editor instead of being guessed by the card.
 
+Streams of one device: integrations that give a camera entity per stream (Reolink: Fluent, Balanced, Clear; UniFi
+Protect: High, Medium, Low; ONVIF: a profile per stream, mainstream / substream) are listed once, the most detailed
+stream as the camera and the lightest as its SD stream. Snapshot cameras (Reolink) are left out next to a stream.
+
+Pan and tilt: ``move_<direction>`` buttons (Tapo) or ``ptz_<direction>`` buttons (Reolink, EZVIZ); with a
+``ptz_stop`` button the camera moves until it is pressed (``ptz["stop"]``). Privacy: a privacy switch, else, for a
+camera that can be turned off (Arlo, Netatmo), the camera itself (its on / off).
+
 Frigate: its cameras (the Frigate integration) carry no privacy switch nor PTZ buttons, which stay on the camera's
 own integration (Tapo…). A Frigate camera is paired with that native camera — the only one of its area, else the one
 of its area with the same name — and ``duplicates`` says which of the two is listed: ``frigate`` (the default: the
@@ -33,6 +41,15 @@ CAMERA = "camera"
 HD, SD = "_hd_stream", "_sd_stream"
 PRIVACY_KEYS = ("privacy_mode", "privacy")
 PTZ_DIRECTIONS = ("left", "right", "up", "down")
+PTZ_PREFIXES = ("move", "ptz")
+CAMERA_ON_OFF = 1  # CameraEntityFeature.ON_OFF
+# Words of a stream camera's entity id and their detail: the most detailed one is the camera, the lightest its SD
+STREAM_RANKS = {
+    "clear": 3, "high": 3, "main": 3, "mainstream": 3, "hd": 3,
+    "balanced": 2, "medium": 2,
+    "fluent": 1, "low": 1, "sub": 1, "substream": 1, "sd": 1,
+}  # fmt: skip
+SNAPSHOT = "snapshot"
 # Detections shown as the camera's motion badge: by translation key when the integration gives them (Tapo Cameras:
 # motion and person, not vehicles or pets), else by device class
 MOTION_KEYS = ("motion", "person")
@@ -81,12 +98,72 @@ def discover(hass: HomeAssistant, duplicates: str = "frigate") -> list[dict[str,
         }
         if frigate:
             cam["frigate"] = True
+        elif cam["privacy"] is None and _supports_on_off(hass, eid):
+            cam["privacy"] = eid  # turned off to hide it (Arlo, Netatmo)
         cam["_device"] = entry.device_id if entry else None
         found.append(cam)
+    found = _pair_streams(found)
     found = _pair_frigate(hass, entities, found, duplicates if duplicates in DUPLICATES else "frigate")
     for cam in found:
         cam.pop("_device", None)
     return sorted(found, key=lambda cam: (cam["area"] is None, (cam["area"] or "").casefold(), cam["name"].casefold()))
+
+
+def _supports_on_off(hass: HomeAssistant, entity_id: str) -> bool:
+    state = hass.states.get(entity_id)
+    return bool(state and int(state.attributes.get("supported_features") or 0) & CAMERA_ON_OFF)
+
+
+def stream_rank(entity_id: str) -> int | None:
+    """How detailed a stream camera is, from its entity id (3: main, 2: medium, 1: sub), None when it does not say.
+
+    ONVIF profiles: the lower the profile number, the more detailed (profile 0 or 1 is the main stream).
+    """
+    words = entity_id.split(".", 1)[-1].split("_")
+    ranks = [STREAM_RANKS[w] for w in words if w in STREAM_RANKS]
+    if ranks:
+        return max(ranks)
+    for i, w in enumerate(words):
+        if not w.startswith("profile"):
+            continue
+        number = w.removeprefix("profile") or (words[i + 1] if i + 1 < len(words) else "")
+        if number.isdigit():
+            return max(1, 3 - int(number))
+    return None
+
+
+def stream_base(entity_id: str) -> str:
+    """A stream camera's entity id without its stream words: the streams of one camera share it (garden_clear and
+    garden_fluent: garden), the channels of an NVR do not (main_gate, back_low_wall)."""
+    words = entity_id.split(".", 1)[-1].split("_")
+    kept = [w for w in words if w not in STREAM_RANKS and not w.startswith("profile") and not w.isdigit()]
+    return "_".join(kept)
+
+
+def _pair_streams(found: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """One entry per device whose cameras are streams of one camera: the most detailed one, with the lightest as SD."""
+    by_device: dict[str, list[dict[str, Any]]] = {}
+    for cam in found:
+        if cam["_device"] and not cam.get("frigate"):
+            by_device.setdefault(cam["_device"], []).append(cam)
+    drop: set[str] = set()
+    for cams in by_device.values():
+        if len(cams) < 2:
+            continue
+        streams = [c for c in cams if SNAPSHOT not in c["camera"]]
+        if streams and len(streams) < len(cams):
+            drop.update(c["camera"] for c in cams if SNAPSHOT in c["camera"])
+        ranked = [(rank, c) for c in streams if (rank := stream_rank(c["camera"])) is not None]
+        if len(ranked) < 2 or len(ranked) != len(streams) or len({stream_base(c["camera"]) for _, c in ranked}) > 1:
+            continue  # cameras of their own (an NVR's channels), or streams the ids do not tell apart
+        ranked.sort(key=lambda rc: -rc[0])
+        best, lightest = ranked[0][1], ranked[-1][1]
+        if ranked[0][0] == ranked[-1][0]:
+            continue
+        if not best["sd"]:
+            best["sd"] = lightest["camera"]
+        drop.update(c["camera"] for _, c in ranked[1:])
+    return [cam for cam in found if cam["camera"] not in drop]
 
 
 def _key(name: str) -> str:
@@ -146,7 +223,13 @@ def _controls(hass: HomeAssistant, entities: er.EntityRegistry, device_id: str |
         return match.entity_id if match else None
 
     privacy = next((found for key in PRIVACY_KEYS if (found := find("switch", key))), None)
-    ptz = {d: found for d in PTZ_DIRECTIONS if (found := find("button", f"move_{d}"))}
+    ptz: dict[str, str] = {}
+    for prefix in PTZ_PREFIXES:
+        ptz = {d: found for d in PTZ_DIRECTIONS if (found := find("button", f"{prefix}_{d}"))}
+        if ptz:
+            if stop := find("button", f"{prefix}_stop"):
+                ptz["stop"] = stop
+            break
     sensors = [e for e in siblings if e.domain == "binary_sensor"]
     motion = [e.entity_id for e in sensors if e.translation_key in MOTION_KEYS]
     if not motion:

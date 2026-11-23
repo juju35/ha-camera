@@ -66,7 +66,7 @@ function pickerDefine(tag, Card, options) {
   return customElements.define(tag, lazy, options);
 }
 
-const HOME_CAMERA_CARD_VERSION = '4.11.0';
+const HOME_CAMERA_CARD_VERSION = '4.12.0';
 
 // ── i18n ─────────────────────────────────────────────────────────────────────
 const HcI18n = {
@@ -212,6 +212,8 @@ const HcI18n = {
     ed_events_expanded: 'Événements dépliés',
     ed_events_limit: 'Événements listés',
     ed_badges: 'Boutons détection et enregistrement',
+    ptz_preset: 'Position enregistrée',
+    cf_preset: 'Position enregistrée',
   },
   en: {
     title: 'Cameras',
@@ -355,6 +357,8 @@ const HcI18n = {
     ed_events_expanded: 'Events unfolded',
     ed_events_limit: 'Events listed',
     ed_badges: 'Detection and recording buttons',
+    ptz_preset: 'Preset position',
+    cf_preset: 'Preset position',
   },
   de: {
     title: 'Kameras',
@@ -498,6 +502,8 @@ const HcI18n = {
     ed_events_expanded: 'Ereignisse ausgeklappt',
     ed_events_limit: 'Angezeigte Ereignisse',
     ed_badges: 'Tasten für Erkennung und Aufnahme',
+    ptz_preset: 'Gespeicherte Position',
+    cf_preset: 'Gespeicherte Position',
   },
   es: {
     title: 'Cámaras',
@@ -641,6 +647,8 @@ const HcI18n = {
     ed_events_expanded: 'Eventos desplegados',
     ed_events_limit: 'Eventos mostrados',
     ed_badges: 'Botones de detección y grabación',
+    ptz_preset: 'Posición guardada',
+    cf_preset: 'Posición guardada',
   },
   sr: {
     title: 'Камере',
@@ -784,6 +792,8 @@ const HcI18n = {
     ed_events_expanded: 'Догађаји отворени',
     ed_events_limit: 'Приказани догађаји',
     ed_badges: 'Дугмад за детекцију и снимање',
+    ptz_preset: 'Сачувана позиција',
+    cf_preset: 'Сачувана позиција',
   },
   'sr-Latn': {
     title: 'Kamere',
@@ -927,6 +937,8 @@ const HcI18n = {
     ed_events_expanded: 'Događaji otvoreni',
     ed_events_limit: 'Prikazani događaji',
     ed_badges: 'Dugmad za detekciju i snimanje',
+    ptz_preset: 'Sačuvana pozicija',
+    cf_preset: 'Sačuvana pozicija',
   },
   it: {
     title: 'Telecamere',
@@ -1070,6 +1082,8 @@ const HcI18n = {
     ed_events_expanded: 'Eventi espansi',
     ed_events_limit: 'Eventi elencati',
     ed_badges: 'Pulsanti rilevamento e registrazione',
+    ptz_preset: 'Posizione salvata',
+    cf_preset: 'Posizione salvata',
   },
   nl: {
     title: 'Camera\'s',
@@ -1213,6 +1227,8 @@ const HcI18n = {
     ed_events_expanded: 'Gebeurtenissen uitgeklapt',
     ed_events_limit: 'Getoonde gebeurtenissen',
     ed_badges: 'Knoppen voor detectie en opname',
+    ptz_preset: 'Opgeslagen positie',
+    cf_preset: 'Opgeslagen positie',
   },
   pt: {
     title: 'Câmaras',
@@ -1356,6 +1372,8 @@ const HcI18n = {
     ed_events_expanded: 'Eventos expandidos',
     ed_events_limit: 'Eventos listados',
     ed_badges: 'Botões de deteção e gravação',
+    ptz_preset: 'Posição guardada',
+    cf_preset: 'Posição guardada',
   },
   pl: {
     title: 'Kamery',
@@ -1499,6 +1517,8 @@ const HcI18n = {
     ed_events_expanded: 'Zdarzenia rozwinięte',
     ed_events_limit: 'Wyświetlane zdarzenia',
     ed_badges: 'Przyciski wykrywania i nagrywania',
+    ptz_preset: 'Zapisana pozycja',
+    cf_preset: 'Zapisana pozycja',
   },
   ro: {
     title: 'Camere',
@@ -1642,6 +1662,8 @@ const HcI18n = {
     ed_events_expanded: 'Evenimente desfășurate',
     ed_events_limit: 'Evenimente afișate',
     ed_badges: 'Butoane de detecție și înregistrare',
+    ptz_preset: 'Poziție salvată',
+    cf_preset: 'Poziție salvată',
   },
   da: {
     title: 'Kameraer',
@@ -1785,6 +1807,8 @@ const HcI18n = {
     ed_events_expanded: 'Hændelser foldet ud',
     ed_events_limit: 'Viste hændelser',
     ed_badges: 'Knapper til registrering og optagelse',
+    ptz_preset: 'Gemt position',
+    cf_preset: 'Gemt position',
   },
   sv: {
     title: 'Kameror',
@@ -1928,6 +1952,8 @@ const HcI18n = {
     ed_events_expanded: 'Händelser utfällda',
     ed_events_limit: 'Visade händelser',
     ed_badges: 'Knappar för detektering och inspelning',
+    ptz_preset: 'Sparad position',
+    cf_preset: 'Sparad position',
   },
   bg: {
     title: 'Камери',
@@ -2071,6 +2097,8 @@ const HcI18n = {
     ed_events_expanded: 'Разгънати събития',
     ed_events_limit: 'Показани събития',
     ed_badges: 'Бутони за разпознаване и запис',
+    ptz_preset: 'Запазена позиция',
+    cf_preset: 'Запазена позиция',
   },
   ru: {
     title: 'Камеры',
@@ -2214,6 +2242,8 @@ const HcI18n = {
     ed_events_expanded: 'События развёрнуты',
     ed_events_limit: 'Показываемые события',
     ed_badges: 'Кнопки обнаружения и записи',
+    ptz_preset: 'Сохранённая позиция',
+    cf_preset: 'Сохранённая позиция',
   },
   uk: {
     title: 'Камери',
@@ -2357,6 +2387,8 @@ const HcI18n = {
     ed_events_expanded: 'Події розгорнуто',
     ed_events_limit: 'Показані події',
     ed_badges: 'Кнопки виявлення й запису',
+    ptz_preset: 'Збережена позиція',
+    cf_preset: 'Збережена позиція',
   },
   hu: {
     title: 'Kamerák',
@@ -2500,6 +2532,8 @@ const HcI18n = {
     ed_events_expanded: 'Események kinyitva',
     ed_events_limit: 'Megjelenített események',
     ed_badges: 'Észlelés és felvétel gombok',
+    ptz_preset: 'Mentett pozíció',
+    cf_preset: 'Mentett pozíció',
   },
   sk: {
     title: 'Kamery',
@@ -2643,6 +2677,8 @@ const HcI18n = {
     ed_events_expanded: 'Udalosti rozbalené',
     ed_events_limit: 'Zobrazené udalosti',
     ed_badges: 'Tlačidlá detekcie a nahrávania',
+    ptz_preset: 'Uložená poloha',
+    cf_preset: 'Uložená poloha',
   },
   cs: {
     title: 'Kamery',
@@ -2786,6 +2822,8 @@ const HcI18n = {
     ed_events_expanded: 'Události rozbalené',
     ed_events_limit: 'Zobrazené události',
     ed_badges: 'Tlačítka detekce a nahrávání',
+    ptz_preset: 'Uložená poloha',
+    cf_preset: 'Uložená poloha',
   },
   sl: {
     title: 'Kamere',
@@ -2929,6 +2967,8 @@ const HcI18n = {
     ed_events_expanded: 'Dogodki razprti',
     ed_events_limit: 'Prikazani dogodki',
     ed_badges: 'Gumba za zaznavanje in snemanje',
+    ptz_preset: 'Shranjen položaj',
+    cf_preset: 'Shranjen položaj',
   },
   lv: {
     title: 'Kameras',
@@ -3072,6 +3112,8 @@ const HcI18n = {
     ed_events_expanded: 'Notikumi izvērsti',
     ed_events_limit: 'Rādītie notikumi',
     ed_badges: 'Noteikšanas un ierakstīšanas pogas',
+    ptz_preset: 'Saglabāta pozīcija',
+    cf_preset: 'Saglabāta pozīcija',
   },
   el: {
     title: 'Κάμερες',
@@ -3215,6 +3257,8 @@ const HcI18n = {
     ed_events_expanded: 'Συμβάντα ανεπτυγμένα',
     ed_events_limit: 'Εμφανιζόμενα συμβάντα',
     ed_badges: 'Κουμπιά ανίχνευσης και εγγραφής',
+    ptz_preset: 'Αποθηκευμένη θέση',
+    cf_preset: 'Αποθηκευμένη θέση',
   },
 };
 
@@ -3385,14 +3429,27 @@ function hcPtz(hass, cam, cameraId, frigateId) {
     for (const d of HC_PTZ_DIRS) out[d] = frigateId;
     return out;
   }
+  // ONVIF: its onvif.ptz action on the camera itself, moving from the press until the release
+  if (ptz === 'onvif') {
+    const out = { service: 'onvif' };
+    for (const d of HC_PTZ_DIRS) out[d] = cameraId;
+    return out;
+  }
   if (!ptz || ptz === 'auto' || ptz === 'buttons') {
-    // Each direction on its own: translated entity ids share no prefix (Tapo Cameras: *_gauche, *_monter…)
-    const found = {};
-    for (const d of HC_PTZ_DIRS) {
-      const id = hcSibling(hass, cameraId, 'button', `_move_${d}`);
-      if (id) found[d] = id;
+    // Each direction on its own: translated entity ids share no prefix (Tapo Cameras: *_gauche, *_monter…).
+    // move_* (Tapo), else ptz_* (Reolink, EZVIZ); a ptz_stop button makes the moves continuous until it is pressed.
+    for (const prefix of ['move', 'ptz']) {
+      const found = {};
+      for (const d of HC_PTZ_DIRS) {
+        const id = hcSibling(hass, cameraId, 'button', `_${prefix}_${d}`);
+        if (id) found[d] = id;
+      }
+      if (!(found.left || found.right || found.up || found.down)) continue;
+      const stop = hcSibling(hass, cameraId, 'button', `_${prefix}_stop`);
+      if (stop) found.stop = stop;
+      return found;
     }
-    return found.left || found.right || found.up || found.down ? found : null;
+    return null;
   }
   if (typeof ptz === 'string') {
     const out = {};
@@ -3421,6 +3478,61 @@ function hcMotion(hass, cam, cameraId) {
     (id) => HC_MOTION_CLASSES.includes(hass.states?.[id]?.attributes?.device_class) || /(motion|occupancy|person)/.test(id),
   );
 }
+
+// Streams of one device (Reolink: Fluent, Balanced, Clear; UniFi Protect: High, Medium, Low; ONVIF: profiles):
+// how detailed a stream camera is, from the words of its entity id (3: main, 2: medium, 1: sub), null when it does
+// not say. ONVIF profiles: the lower the number, the more detailed. Same rule as the server's discovery.
+const HC_STREAM_RANKS = { clear: 3, high: 3, main: 3, mainstream: 3, hd: 3, balanced: 2, medium: 2, fluent: 1, low: 1, sub: 1, substream: 1, sd: 1 };
+function hcStreamRank(id) {
+  const words = String(id).split('.').pop().split('_');
+  const ranks = words.map((w) => HC_STREAM_RANKS[w]).filter(Boolean);
+  if (ranks.length) return Math.max(...ranks);
+  for (let i = 0; i < words.length; i++) {
+    if (!words[i].startsWith('profile')) continue;
+    const n = words[i].slice(7) || words[i + 1] || '';
+    if (/^\d+$/.test(n)) return Math.max(1, 3 - Number(n));
+  }
+  return null;
+}
+// A stream camera's entity id without its stream words: the streams of one camera share it (garden_clear,
+// garden_fluent), an NVR's channels do not (main_gate, back_low_wall)
+const hcStreamBase = (id) =>
+  String(id)
+    .split('.')
+    .pop()
+    .split('_')
+    .filter((w) => !HC_STREAM_RANKS[w] && !w.startsWith('profile') && !/^\d+$/.test(w))
+    .join('_');
+// The lightest stream of a camera's device, when the camera is its most detailed one (snapshot cameras aside)
+function hcDeviceSd(hass, id) {
+  const reg = hass?.entities;
+  const device = reg?.[id]?.device_id;
+  const rank = hcStreamRank(id);
+  if (!device || rank === null) return null;
+  const base = hcStreamBase(id);
+  const others = hcDeviceEntities(reg, device).filter(
+    (e) => e !== id && e.startsWith('camera.') && !e.includes('snapshot') && hass.states?.[e] && hcStreamBase(e) === base,
+  );
+  let best = null;
+  for (const e of others) {
+    const r = hcStreamRank(e);
+    if (r === null || r >= rank) {
+      if (r !== null && r > rank) return null; // not the most detailed stream
+      continue;
+    }
+    if (!best || r < best.r) best = { e, r };
+  }
+  return best ? best.e : null;
+}
+
+// A camera is hidden when its privacy switch is on (or, a camera as its own privacy control, while it is off), or
+// its power switch is off.
+function hcHidden(hass, cam) {
+  const st = (id) => (id ? hass?.states?.[id]?.state : undefined);
+  const privacy = cam.privacy && (cam.privacy.startsWith('camera.') ? st(cam.privacy) === 'off' : st(cam.privacy) === 'on');
+  return !!(privacy || (cam.power && st(cam.power) === 'off'));
+}
+const HC_CAMERA_ON_OFF = 1; // CameraEntityFeature.ON_OFF
 
 // ── Frigate ──────────────────────────────────────────────────────────────────
 // `frigate:` options of the card. player: auto (Home Assistant's player, which the Frigate integration already
@@ -3517,11 +3629,18 @@ function hcCamera(hass, raw, index, fc = HC_FRIGATE_DEFAULTS) {
     const guess = id.replace(/_hd_stream$/, '_sd_stream');
     if (hass?.states?.[guess]) sd = guess;
   }
+  // A stream of a device that has lighter ones (Reolink Clear → Fluent, UniFi High → Low, ONVIF mainstream → substream)
+  if (sd === undefined) sd = hcDeviceSd(hass, id) || undefined;
   // Tapo Cameras (ha-tapo) names it switch.*_privacy_mode
+  // Without a privacy switch, a camera that can be turned off (Arlo, Netatmo) is its own privacy control
+  // (not a Frigate camera: turning it off only pauses Frigate's detection)
   const privacy =
     cam.privacy === false
       ? null
-      : cam.privacy || hcSibling(hass, ctl, 'switch', '_privacy') || hcSibling(hass, ctl, 'switch', '_privacy_mode') || null;
+      : cam.privacy ||
+        hcSibling(hass, ctl, 'switch', '_privacy') ||
+        hcSibling(hass, ctl, 'switch', '_privacy_mode') ||
+        (!frigate && st && (Number(st.attributes?.supported_features) & HC_CAMERA_ON_OFF) ? id : null);
   // Tapo Cameras (ha-tapo): one camera entity whose stream is chosen by its select.*_stream_quality (hd / sd),
   // instead of an SD camera entity next to the HD one. Not for a Frigate camera: Frigate reads the camera itself.
   const quality = sd || frigate ? null : hcSibling(hass, id, 'select', '_stream_quality') || null;
@@ -3539,6 +3658,8 @@ function hcCamera(hass, raw, index, fc = HC_FRIGATE_DEFAULTS) {
     quality: quality,
     power: cam.power || null,
     ptz: hcPtz(hass, cam, ctl, frigate ? id : null),
+    // A preset select of the camera's device (Reolink: select.*_ptz_preset), shown with the pan & tilt arrows
+    preset: cam.preset === false ? null : cam.preset || hcSibling(hass, ctl, 'select', '_ptz_preset') || null,
     motion: motion.length || ctl === id ? motion : hcMotion(hass, {}, ctl),
     player: player,
     // Frigate: its camera name and instance (the integration's proxy), and its SD stream when there is no SD entity
@@ -4372,6 +4493,7 @@ class HomeCameraCard extends HTMLElement {
       this.shadowRoot.addEventListener('click', (ev) => this._onClick(ev));
       this.shadowRoot.addEventListener('keydown', (ev) => this._onKey(ev));
       this.shadowRoot.addEventListener('pointerdown', (ev) => this._onPointerDown(ev));
+      this.shadowRoot.addEventListener('change', (ev) => this._onChange(ev));
     }
     this._headSig = null;
     this._viewSig = null;
@@ -4456,7 +4578,11 @@ class HomeCameraCard extends HTMLElement {
       this._onQuality = (ev) => {
         if (!ev.key || ev.key === HC_QUALITY_KEY) this._update();
       };
-      this._onVisibility = () => this._syncLive();
+      // The page hidden while an arrow is held (phone locked, other tab): its release will never come
+      this._onVisibility = () => {
+        if (document.visibilityState === 'hidden') this._stopRepeat();
+        this._syncLive();
+      };
       // Escape leaves the card's own fullscreen (the browser handles its native one).
       this._onEscape = (ev) => {
         if (ev.key === 'Escape' && this._pseudo) this._setPseudo(this._pseudo, false);
@@ -4581,7 +4707,7 @@ class HomeCameraCard extends HTMLElement {
 
   // A camera is hidden when its privacy switch is on or its power switch is off.
   _hidden(cam) {
-    return (cam.privacy && this._state(cam.privacy) === 'on') || (cam.power && this._state(cam.power) === 'off');
+    return hcHidden(this._hass, cam);
   }
 
   // False for a switch that is unavailable, unknown or missing: toggling it would do nothing (Home Assistant
@@ -5112,7 +5238,8 @@ class HomeCameraCard extends HTMLElement {
     if (!cam) return;
     const full = this._fullscreen(tile);
     const frigateUrl = this._frigateUrl(cam);
-    const sig = JSON.stringify([this._lang(), cam.ptz, full, tile._audio, frigateUrl, cam.switches]);
+    const presets = cam.ptz && cam.preset ? this._hass?.states?.[cam.preset]?.attributes?.options || [] : [];
+    const sig = JSON.stringify([this._lang(), cam.ptz, full, tile._audio, frigateUrl, cam.switches, cam.preset, presets]);
     if (sig === tile._toolsSig) return;
     tile._toolsSig = sig;
 
@@ -5133,7 +5260,9 @@ class HomeCameraCard extends HTMLElement {
             btn(
               `move ${d}`,
               `data-action="move" data-dir="${d}" data-entity="${hcEsc(cam.ptz[d])}"` +
-                (cam.ptz.service === 'frigate' ? ' data-service="frigate"' : ''),
+                (cam.ptz.service ? ` data-service="${cam.ptz.service}"` : '') +
+                (cam.ptz.stop ? ` data-stop="${hcEsc(cam.ptz.stop)}"` : '') +
+                (cam.ptz.service === 'frigate' || cam.ptz.stop ? ' data-cont="1"' : ''),
               HC_PTZ_ICONS[d],
               this._t(`move_${d}`),
             ),
@@ -5152,6 +5281,20 @@ class HomeCameraCard extends HTMLElement {
       )
       .join('');
     tile.classList.toggle('has-frs', cam.switches.length > 0);
+    // Preset positions with the arrows (Reolink's PTZ preset select)
+    let sel = tile.querySelector('.presetsel');
+    if (presets.length) {
+      if (!sel) {
+        sel = document.createElement('select');
+        sel.className = 'presetsel';
+        tile.querySelector('.pad').before(sel);
+      }
+      sel.dataset.preset = cam.preset;
+      sel.setAttribute('aria-label', this._t('ptz_preset'));
+      sel.innerHTML =
+        `<option value="" disabled selected>${hcEsc(this._t('ptz_preset'))}</option>` +
+        presets.map((o) => `<option value="${hcEsc(o)}">${hcEsc(o)}</option>`).join('');
+    } else sel?.remove();
     tile.classList.toggle('has-ptz', !!cam.ptz);
     if (!cam.ptz) tile.classList.remove('ptz-open');
     this._soundIcon(tile);
@@ -5316,16 +5459,30 @@ class HomeCameraCard extends HTMLElement {
   // PTZ: one press per tap, repeated while the arrow is held down.
   _move(b) {
     if (b.classList.contains('dis')) return;
-    // Frigate (ONVIF): the camera moves until it is told to stop (_ptzStop)
+    // Frigate and ONVIF: the camera moves until it is told to stop (_ptzStop)
     if (b.dataset.service === 'frigate') {
       this._call('frigate', 'ptz', { entity_id: b.dataset.entity, action: 'move', argument: b.dataset.dir }).catch(() => {});
+      return;
+    }
+    if (b.dataset.service === 'onvif') {
+      const axis = b.dataset.dir === 'left' || b.dataset.dir === 'right' ? 'pan' : 'tilt';
+      // A short continuous move, repeated while the arrow is held: a lost release never leaves the camera turning
+      this._call('onvif', 'ptz', {
+        entity_id: b.dataset.entity,
+        [axis]: b.dataset.dir.toUpperCase(),
+        move_mode: 'ContinuousMove',
+        speed: 0.5,
+        continuous_duration: 0.6,
+      }).catch(() => {});
       return;
     }
     this._call('button', 'press', { entity_id: b.dataset.entity }).catch(() => {});
   }
 
+  // The end of a continuous move: Frigate's stop, or the stop button (Reolink)
   _ptzStop(b) {
-    this._call('frigate', 'ptz', { entity_id: b.dataset.entity, action: 'stop' }).catch(() => {});
+    if (b.dataset.service === 'frigate') this._call('frigate', 'ptz', { entity_id: b.dataset.entity, action: 'stop' }).catch(() => {});
+    else if (b.dataset.stop) this._call('button', 'press', { entity_id: b.dataset.stop }).catch(() => {});
   }
 
   // ── Frigate events (frigate.events) ──
@@ -5586,8 +5743,8 @@ class HomeCameraCard extends HTMLElement {
     this._stopRepeat();
     this._move(b);
     this._repeatBtn = b;
-    // Frigate: one move from the press, a stop at the release (_stopRepeat), no repeat
-    if (b.dataset.service !== 'frigate') this._repeat = setTimeout(() => {
+    // Continuous moves (Frigate, a stop button): one move from the press, a stop at the release, no repeat
+    if (!b.dataset.cont) this._repeat = setTimeout(() => {
       this._repeat = setInterval(() => {
         // The arrow was re-rendered or its tile removed while held: its pointerup will never come.
         if (!b.isConnected) this._stopRepeat();
@@ -5605,7 +5762,7 @@ class HomeCameraCard extends HTMLElement {
   }
 
   _stopRepeat() {
-    if (this._repeatBtn?.dataset.service === 'frigate' && !this._repeatBtn.classList.contains('dis')) this._ptzStop(this._repeatBtn);
+    if (this._repeatBtn?.dataset.cont && !this._repeatBtn.classList.contains('dis')) this._ptzStop(this._repeatBtn);
     clearTimeout(this._repeat);
     clearInterval(this._repeat);
     this._repeat = null;
@@ -5625,15 +5782,15 @@ class HomeCameraCard extends HTMLElement {
       if ((other?.dataset.quality === 'hd') !== this._hd()) this._toggleQuality();
       return;
     }
-    // Arrow keys move the camera whose pan & tilt arrows are shown (always, in fullscreen).
-    if (ev.key?.startsWith('Arrow')) {
+    // Arrow keys move the camera whose pan & tilt arrows are shown (always, in fullscreen); not in the preset list.
+    if (ev.key?.startsWith('Arrow') && !path.some((n) => n.localName === 'select')) {
       const tile = path.find((n) => n.dataset?.cam);
       const shown = tile && (tile.classList.contains('ptz-open') || this._fullscreen(tile));
       const b = shown && tile.querySelector(`.move.${ev.key.slice(5).toLowerCase()}`);
       if (!b) return;
       ev.preventDefault();
       this._move(b);
-      if (b.dataset.service === 'frigate') setTimeout(() => this._ptzStop(b), HC_PTZ_HOLD_MS);
+      if (b.dataset.cont) setTimeout(() => this._ptzStop(b), HC_PTZ_HOLD_MS);
       return;
     }
     if (ev.key !== 'Enter' && ev.key !== ' ') return;
@@ -5888,6 +6045,13 @@ class HomeCameraCard extends HTMLElement {
       '.thumb .label ha-icon { --mdc-icon-size: 13px; flex: none; }' +
       '.thumb.hidden .label { color: color-mix(in srgb, var(--hc-on) 55%, #fff); }' +
       '.thumb:is(.off, .failed) .label { color: rgba(255,255,255,0.62); }' +
+      // Preset positions, with the arrows (top left of the tile)
+      '.presetsel { display: none; position: absolute; top: 8px; left: 8px; z-index: 2; max-width: calc(100% - 60px); height: 30px; padding: 0 10px;' +
+      ' border-radius: 15px; border: 1px solid var(--hc-glass-line); background: var(--hc-glass); color: #fff; font: inherit; font-size: 13px;' +
+      ' -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); cursor: pointer; }' +
+      '.presetsel option { color: #000; }' +
+      '.tile.ptz-open .presetsel, :is(.tile:fullscreen, .tile.pseudo).has-ptz .presetsel { display: block; }' +
+      '.tile.clip .presetsel { display: none !important; }' +
       // Frigate: detection and recording switches in the bottom right corner (hidden with the pan & tilt pad there and
       // in fullscreen); the name stops before them.
       '.frs { position: absolute; right: 8px; bottom: 8px; z-index: 1; display: flex; gap: 6px; }' +
@@ -5933,8 +6097,18 @@ class HomeCameraCard extends HTMLElement {
     );
   }
 
+  // A preset chosen: the camera goes there; the list shows its placeholder again
+  _onChange(ev) {
+    const sel = ev.composedPath().find((n) => n.dataset?.preset);
+    if (!sel || !sel.value) return;
+    this._call('select', 'select_option', { entity_id: sel.dataset.preset, option: sel.value }).catch(() => {});
+    sel.selectedIndex = 0;
+  }
+
   _onClick(ev) {
     const path = ev.composedPath();
+    // The preset list is a native select: its clicks are its own
+    if (path.some((n) => n.localName === 'select')) return;
     // The controls of a clip playing over a tile are the video's own
     if (path.some((n) => n.classList?.contains?.('clipv'))) return;
     const evEl = path.find((n) => n.dataset?.ev);
@@ -5953,7 +6127,10 @@ class HomeCameraCard extends HTMLElement {
       // One toggle at a time: taps while the switch has not answered are ignored, and so are taps on an
       // unavailable switch (its badge is disabled).
       if (this._isPending(id) || !this._usable(id)) return;
-      this._call(id.split('.')[0], 'toggle', { entity_id: id }).catch(() => {
+      // A camera as its own privacy control: turned on or off (cameras have no toggle action)
+      const [domain] = id.split('.');
+      const service = domain === 'camera' ? (this._state(id) === 'off' ? 'turn_on' : 'turn_off') : 'toggle';
+      this._call(domain, service, { entity_id: id }).catch(() => {
         // Refused (not allowed, entity gone): the badge stops waiting at once instead of spinning for 15 s.
         const p = this._pending?.get(id);
         if (!p) return;
@@ -5984,7 +6161,7 @@ class HomeCameraCard extends HTMLElement {
       // A pointer press already moved the camera (pointerdown); a click without a pointer did not.
       if (ev.type !== 'click' || !ev.detail) {
         this._move(btn);
-        if (btn.dataset.service === 'frigate') setTimeout(() => this._ptzStop(btn), HC_PTZ_HOLD_MS);
+        if (btn.dataset.cont) setTimeout(() => this._ptzStop(btn), HC_PTZ_HOLD_MS);
       }
     } else if (tile.classList.contains('ptz-open')) tile.classList.remove('ptz-open');
     // A tap on the image: fullscreen, and out of it again (arrows or not).
@@ -6035,7 +6212,7 @@ function hcColumns(config, count) {
 }
 
 // ── home-camera-card-editor (visual editor, built on HA's ha-form) ───────────
-const HC_CAMERA_FIELDS = ['name', 'short_name', 'camera', 'sd', 'privacy', 'power', 'ptz', 'motion', 'controls_from', 'player'];
+const HC_CAMERA_FIELDS = ['name', 'short_name', 'camera', 'sd', 'privacy', 'power', 'ptz', 'preset', 'motion', 'controls_from', 'player'];
 
 class HomeCameraCardEditor extends HTMLElement {
   setConfig(config) {
@@ -6063,15 +6240,17 @@ class HomeCameraCardEditor extends HTMLElement {
     const camera = { entity: { domain: 'camera' } };
     const players = HC_PLAYERS.map((v) => ({ value: v, label: t(`ed_player_${v}`) }));
     const sw = { entity: { domain: ['switch', 'input_boolean'] } };
+    const privacySel = { entity: { domain: ['switch', 'input_boolean', 'camera'] } };
     const fields = {
       name: { selector: { text: {} } },
       short_name: { selector: { text: {} } },
       camera: { selector: camera, required: true },
       sd: { selector: camera },
-      privacy: { selector: sw },
+      privacy: { selector: privacySel },
       power: { selector: sw },
       ptz: { selector: { text: {} } },
       motion: { selector: { entity: { domain: 'binary_sensor' } } },
+      preset: { selector: { entity: { domain: 'select' } } },
       controls_from: { selector: camera },
       player: { selector: { select: { mode: 'dropdown', options: players } } },
     };
@@ -6807,7 +6986,14 @@ if (!customElements.get('home-camera-mini-card-editor')) {
 if (!customElements.get('home-camera-card')) {
   pickerDefine('home-camera-card', HomeCameraCard);
   // What the Cameras panel draws its top bar with: the header's picture and its styles, and the camera entries
-  window.HomeCameraKit = { sceneSvg: hcSceneSvg, isNight: hcIsNight, camera: hcCamera, bannerStyle: HC_BANNER_STYLE, qualityEvent: HC_QUALITY_EVENT };
+  window.HomeCameraKit = {
+    sceneSvg: hcSceneSvg,
+    isNight: hcIsNight,
+    camera: hcCamera,
+    hidden: hcHidden,
+    bannerStyle: HC_BANNER_STYLE,
+    qualityEvent: HC_QUALITY_EVENT,
+  };
   window.customCards = window.customCards || [];
   window.customCards.push({
     type: 'home-camera-card',

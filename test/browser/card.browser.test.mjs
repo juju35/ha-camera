@@ -1725,3 +1725,43 @@ test("Frigate events: folded under the grid, unfolded on a tap; an event's clip 
   ]);
   assert.deepEqual(r.got, [["switch", "toggle", "switch.f_detect"]]);
 });
+
+test("Reolink-style PTZ: a press moves, the release presses stop; presets go to their select; a camera turns itself off", async () => {
+  const r = await page.evaluate(async () => {
+    document.body.replaceChildren();
+    const el = document.createElement("home-camera-card");
+    el.setConfig({ cameras: ["camera.g_clear", "camera.porch"] });
+    document.body.appendChild(el);
+    const got = [];
+    const s = (id, state, attrs = {}) => ({ entity_id: id, state, attributes: { supported_features: 2, ...attrs } });
+    const states = {
+      "camera.g_clear": s("camera.g_clear", "idle"),
+      "camera.g_fluent": s("camera.g_fluent", "idle"),
+      "button.g_ptz_left": s("button.g_ptz_left", "unknown"),
+      "button.g_ptz_stop": s("button.g_ptz_stop", "unknown"),
+      "select.g_ptz_preset": s("select.g_ptz_preset", "Gate", { options: ["Gate", "Drive"] }),
+      "camera.porch": s("camera.porch", "idle", { supported_features: 3 }),
+    };
+    const entities = Object.fromEntries(Object.keys(states).map((id) => [id, { entity_id: id, device_id: id.includes(".g_") ? "g" : "p" }]));
+    el.hass = { states, entities, language: "en", callService: (domain, service, data) => got.push([domain, service, data.entity_id, data.option]) };
+    const tile = el.shadowRoot.querySelector('.tile[data-cam="g_clear"]');
+    const left = tile.querySelector(".move.left");
+    left.dispatchEvent(new PointerEvent("pointerdown", { bubbles: true, composed: true, button: 0 }));
+    window.dispatchEvent(new PointerEvent("pointerup"));
+    const sel = tile.querySelector(".presetsel");
+    const options = [...sel.options].map((o) => o.value);
+    sel.value = "Drive";
+    sel.dispatchEvent(new Event("change", { bubbles: true, composed: true }));
+    // The porch camera's badge turns it off
+    el.shadowRoot.querySelector('[data-toggle="camera.porch"]').click();
+    return { got, options, sd: el._cameras()[0].sd };
+  });
+  assert.deepEqual(r.got, [
+    ["button", "press", "button.g_ptz_left", undefined],
+    ["button", "press", "button.g_ptz_stop", undefined],
+    ["select", "select_option", "select.g_ptz_preset", "Drive"],
+    ["camera", "turn_off", "camera.porch", undefined],
+  ]);
+  assert.deepEqual(r.options, ["", "Gate", "Drive"]);
+  assert.equal(r.sd, "camera.g_fluent");
+});

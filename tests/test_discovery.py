@@ -260,3 +260,91 @@ async def test_discover_command_takes_duplicates(hass, hass_ws_client):
         await client.send_json_auto_id(msg)
         result = (await client.receive_json())["result"]
         assert sorted(cam["camera"] for cam in result["cameras"]) == expected
+
+
+def _device(hass, domain, key, name, cameras, extra=()):
+    """A device of `domain` with its camera entities (object ids) and other entities ((domain, object id, key))."""
+    entry = next(iter(hass.config_entries.async_entries(domain)), None)
+    if entry is None:
+        entry = MockConfigEntry(domain=domain)
+        entry.add_to_hass(hass)
+    device = dr.async_get(hass).async_get_or_create(
+        config_entry_id=entry.entry_id, identifiers={(domain, key)}, name=name
+    )
+    reg = er.async_get(hass)
+    for object_id, features in cameras:
+        ent = reg.async_get_or_create(
+            "camera",
+            domain,
+            f"{key}_{object_id}",
+            config_entry=entry,
+            device_id=device.id,
+            suggested_object_id=f"{key}_{object_id}",
+        )
+        hass.states.async_set(ent.entity_id, "idle", {"supported_features": features})
+    for ent_domain, object_id, key_ in extra:
+        ent = reg.async_get_or_create(
+            ent_domain,
+            domain,
+            f"{key}_{object_id}",
+            config_entry=entry,
+            device_id=device.id,
+            suggested_object_id=f"{key}_{object_id}",
+            translation_key=key_,
+        )
+        hass.states.async_set(ent.entity_id, "off")
+
+
+async def test_streams_of_one_device_listed_once_with_their_controls(hass):
+    # Reolink: Fluent, Clear and a snapshot camera; PTZ buttons with a stop button; a privacy mode switch
+    _device(
+        hass,
+        "reolink",
+        "garden",
+        "Garden",
+        [("fluent", 2), ("clear", 2), ("snapshots_clear", 0)],
+        [
+            ("switch", "privacy_mode", "privacy_mode"),
+            *(("button", f"ptz_{d}", f"ptz_{d}") for d in ("left", "right", "up", "down", "stop")),
+        ],
+    )
+    # UniFi Protect: High and Low channels
+    _device(hass, "unifiprotect", "door", "Door", [("high_resolution_channel", 2), ("low_resolution_channel", 2)])
+    # ONVIF: two profiles
+    _device(hass, "onvif", "attic", "Attic", [("profile000_mainstream", 2), ("profile001_substream", 2)])
+    # Arlo: a camera that can be turned off, without a privacy switch
+    _device(hass, "aarlo", "porch", "Porch", [("camera", 3)])
+    cams = {cam["camera"]: cam for cam in discover(hass)}
+    assert set(cams) == {
+        "camera.garden_clear",
+        "camera.door_high_resolution_channel",
+        "camera.attic_profile000_mainstream",
+        "camera.porch_camera",
+    }
+    garden = cams["camera.garden_clear"]
+    assert garden["sd"] == "camera.garden_fluent"
+    assert garden["privacy"] == "switch.garden_privacy_mode"
+    assert garden["ptz"] == {
+        "left": "button.garden_ptz_left",
+        "right": "button.garden_ptz_right",
+        "up": "button.garden_ptz_up",
+        "down": "button.garden_ptz_down",
+        "stop": "button.garden_ptz_stop",
+    }
+    assert cams["camera.door_high_resolution_channel"]["sd"] == "camera.door_low_resolution_channel"
+    assert cams["camera.attic_profile000_mainstream"]["sd"] == "camera.attic_profile001_substream"
+    # The Arlo camera is its own privacy control; the others (no on / off) have none
+    assert cams["camera.porch_camera"]["privacy"] == "camera.porch_camera"
+    assert cams["camera.door_high_resolution_channel"]["privacy"] is None
+
+
+async def test_cameras_of_one_device_that_are_not_streams_stay_apart(hass):
+    # An NVR's channels: nothing in their ids says they are streams of one camera
+    _device(hass, "synology_dsm", "nvr", "NVR", [("garage", 2), ("drive", 2)])
+    assert sorted(cam["camera"] for cam in discover(hass)) == ["camera.nvr_drive", "camera.nvr_garage"]
+
+
+async def test_nvr_channels_with_stream_words_stay_apart(hass):
+    # "main" and "low" in their names, but not the same camera
+    _device(hass, "synology_dsm", "nvr", "NVR", [("main_gate", 2), ("back_low_wall", 2)])
+    assert sorted(cam["camera"] for cam in discover(hass)) == ["camera.nvr_back_low_wall", "camera.nvr_main_gate"]
