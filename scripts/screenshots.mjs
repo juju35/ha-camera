@@ -301,14 +301,17 @@ for (const s of SHOTS) {
 // The Cameras sidebar panel, 1100 x 760, as an administrator (both tabs) sees it: the illustrated top bar, the tabs
 // under it, the filter and tiles, then the wall. A stand-in menu button draws the sidebar toggle.
 const HEADER = { light: { bg: "#03a9f4", text: "#ffffff" }, dark: { bg: "#101e24", text: "#e1e1e1" } };
-for (const theme of ["light", "dark"]) {
-  const page = await browser.newPage({ deviceScaleFactor: 1.5, viewport: { width: 1100, height: 760 } });
-  page.on("pageerror", (err) => console.error(`pageerror (panel ${theme}): ${err.message}`));
+// The panel on a fresh page, at `route`; with `events`, the Frigate mock and a fixed clock in UTC.
+async function openPanel(theme, { config, route = "", events = null }) {
+  const page = await browser.newPage({ deviceScaleFactor: 1.5, viewport: { width: 1100, height: 760 }, ...(events ? { timezoneId: "UTC" } : {}) });
+  page.on("pageerror", (err) => console.error(`pageerror (panel ${route || "cameras"} ${theme}): ${err.message}`));
+  if (events) await page.clock.setFixedTime(FRIGATE_NOW * 1000);
   await page.setContent(`<!doctype html><html><head><meta charset="utf-8"><style>
     :root { ${Object.entries({ ...THEMES[theme], ...COMMON, "--app-header-background-color": HEADER[theme].bg, "--app-header-text-color": HEADER[theme].text }).map(([k, v]) => `${k}:${v};`).join("")} }
     body { margin: 0; background: var(--primary-background-color); color: var(--primary-text-color); font-family: Roboto, "Segoe UI", Helvetica, Arial, sans-serif; }
   </style></head><body></body></html>`);
   await page.addScriptTag({ content: haElements });
+  if (events) await page.addScriptTag({ content: frigateMock });
   await page.addScriptTag({
     content: `customElements.define("ha-menu-button", class extends HTMLElement {
       connectedCallback() { this.innerHTML = '<ha-icon icon="mdi:menu" style="display:flex;padding:8px"></ha-icon>'; }
@@ -316,24 +319,31 @@ for (const theme of ["light", "dark"]) {
   });
   await page.addScriptTag({ content: cardJs });
   await page.addScriptTag({ content: panelJs });
-  await page.evaluate(({ config, hass }) => {
+  await page.evaluate(({ config, hass, route, events }) => {
     window.withSnapshots(hass.states);
     const settings = { configured: true, card: config, title: "", sidebar_title: "Cameras", default_title: "Cameras" };
     const el = document.createElement("home-camera-panel");
     el.panel = { url_path: "cameras", config: {} };
-    el.route = { path: "" };
+    el.route = { path: route };
     el.narrow = false;
     document.body.appendChild(el);
     el.hass = {
       ...hass,
       user: { is_admin: true },
       callService: async () => {},
+      hassUrl: (p) => p,
       connection: { subscribeMessage: (cb) => { setTimeout(() => cb(settings)); return Promise.resolve(() => {}); } },
-      // Settings: one camera of Home Assistant not shown yet
-      callWS: async (msg) =>
-        msg.type === "home_camera/discover" ? { cameras: [{ camera: "camera.garage", name: "Garage", area: "Garage", sd: "camera.garage_sd" }] } : [],
+      // Settings: one camera of Home Assistant not shown yet; Events: the Frigate mock
+      callWS: events
+        ? window.frigateWS(events)
+        : async (msg) =>
+            msg.type === "home_camera/discover" ? { cameras: [{ camera: "camera.garage", name: "Garage", area: "Garage", sd: "camera.garage_sd" }] } : [],
     };
-  }, { config, hass: { states, entities, language: "en", locale: { language: "en" }, themes: { darkMode: theme === "dark" } } });
+  }, { config, route, events, hass: { states, entities, language: "en", locale: { language: "en" }, themes: { darkMode: theme === "dark" } } });
+  return page;
+}
+for (const theme of ["light", "dark"]) {
+  const page = await openPanel(theme, { config });
   await page.waitForTimeout(500);
   await page.locator("home-camera-panel hc-camera-wall .tile").first().hover();
   await page.waitForTimeout(300);
@@ -349,39 +359,7 @@ for (const theme of ["light", "dark"]) {
 // The Events tab of the panel, with Frigate cameras: the day's timeline by hour, the filters and the player of the
 // newest event (wide), then the same on a phone (the player on top).
 for (const theme of ["light", "dark"]) {
-  const page = await browser.newPage({ deviceScaleFactor: 1.5, viewport: { width: 1100, height: 760 }, timezoneId: "UTC" });
-  page.on("pageerror", (err) => console.error(`pageerror (panel events ${theme}): ${err.message}`));
-  await page.clock.setFixedTime(FRIGATE_NOW * 1000);
-  await page.setContent(`<!doctype html><html><head><meta charset="utf-8"><style>
-    :root { ${Object.entries({ ...THEMES[theme], ...COMMON, "--app-header-background-color": HEADER[theme].bg, "--app-header-text-color": HEADER[theme].text }).map(([k, v]) => `${k}:${v};`).join("")} }
-    body { margin: 0; background: var(--primary-background-color); color: var(--primary-text-color); font-family: Roboto, "Segoe UI", Helvetica, Arial, sans-serif; }
-  </style></head><body></body></html>`);
-  await page.addScriptTag({ content: haElements });
-  await page.addScriptTag({ content: frigateMock });
-  await page.addScriptTag({
-    content: `customElements.define("ha-menu-button", class extends HTMLElement {
-      connectedCallback() { this.innerHTML = '<ha-icon icon="mdi:menu" style="display:flex;padding:8px"></ha-icon>'; }
-    });`,
-  });
-  await page.addScriptTag({ content: cardJs });
-  await page.addScriptTag({ content: panelJs });
-  await page.evaluate(({ config, hass, events }) => {
-    window.withSnapshots(hass.states);
-    const settings = { configured: true, card: config, title: "", sidebar_title: "Cameras", default_title: "Cameras" };
-    const el = document.createElement("home-camera-panel");
-    el.panel = { url_path: "cameras", config: {} };
-    el.route = { path: "/events" };
-    el.narrow = false;
-    document.body.appendChild(el);
-    el.hass = {
-      ...hass,
-      user: { is_admin: true },
-      callService: async () => {},
-      hassUrl: (p) => p,
-      connection: { subscribeMessage: (cb) => { setTimeout(() => cb(settings)); return Promise.resolve(() => {}); } },
-      callWS: window.frigateWS(events),
-    };
-  }, { config: frigateConfig, events: FRIGATE_EVENTS, hass: { states, entities, language: "en", locale: { language: "en" }, themes: { darkMode: theme === "dark" } } });
+  const page = await openPanel(theme, { config: frigateConfig, route: "/events", events: FRIGATE_EVENTS });
   await page.waitForTimeout(1500);
   save(`panel-events${theme === "dark" ? "-dark" : ""}.png`, await page.screenshot({ animations: "disabled" }));
   await page.setViewportSize({ width: 420, height: 900 });
