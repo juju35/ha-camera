@@ -1618,3 +1618,47 @@ test("state updates: nothing changes for other entities, a motion patches the he
   assert.equal(r.sameIcon, true, "the header icon was rebuilt");
   assert.deepEqual(r.heights, [0]);
 });
+
+test("Frigate: PTZ moves from the press to the release; SD plays Frigate's sub-stream, else Home Assistant's player", async () => {
+  const r = await page.evaluate(async () => {
+    document.body.replaceChildren();
+    const el = document.createElement("home-camera-card");
+    el.setConfig({ cameras: [{ camera: "camera.f", ptz: "frigate" }] });
+    document.body.appendChild(el);
+    const got = [];
+    const states = { "camera.f": { ...st("camera.f", "streaming"), attributes: { supported_features: 2, camera_name: "f", client_id: "frigate" } } };
+    const signed = [];
+    el.hass = {
+      states,
+      entities: { "camera.f": { entity_id: "camera.f", device_id: "fr", platform: "frigate" } },
+      language: "en",
+      callService: (domain, service, data) => got.push([domain, service, data.action, data.argument]),
+      // No Frigate proxy here: signing fails, so the Frigate player gives way to Home Assistant's
+      callWS: (msg) => {
+        if (msg.type === "auth/sign_path") signed.push(msg.path);
+        return Promise.reject(new Error("no"));
+      },
+    };
+    const tile = el.shadowRoot.querySelector(".tile");
+    const left = tile.querySelector(".move.left");
+    left.dispatchEvent(new PointerEvent("pointerdown", { bubbles: true, composed: true, button: 0 }));
+    window.dispatchEvent(new PointerEvent("pointerup"));
+    const hdPlayer = tile.querySelector("hc-camera-stream").firstElementChild?.localName;
+    if (el._hd()) el._toggleQuality();
+    const sdPlayer = tile.querySelector("hc-camera-stream").firstElementChild?.localName;
+    const source = tile.querySelector("hc-frigate-player")?.source?.stream;
+    for (let i = 0; i < 5; i++) await new Promise((res) => setTimeout(res, 0));
+    const fallback = tile.querySelector("hc-camera-stream").firstElementChild?.localName;
+    el._toggleQuality();
+    return { got, hdPlayer, sdPlayer, source, signed, fallback };
+  });
+  assert.deepEqual(r.got, [
+    ["frigate", "ptz", "move", "left"],
+    ["frigate", "ptz", "stop", undefined],
+  ]);
+  assert.notEqual(r.hdPlayer, "hc-frigate-player");
+  assert.equal(r.sdPlayer, "hc-frigate-player");
+  assert.equal(r.source, "f_sub");
+  assert.deepEqual(r.signed, ["/api/frigate/frigate/webrtc/api/ws?src=f_sub"]);
+  assert.equal(r.fallback, "ha-camera-stream");
+});

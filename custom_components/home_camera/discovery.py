@@ -10,10 +10,18 @@ Each entry also carries the controls found on the camera's device — privacy sw
 sensors — matched by their translation key (Tapo Cameras names its entities in the user's language:
 ``button.salon_gauche`` is ``move_left``) or by the end of their entity id (Tapo: Cameras Control), so they show in
 the panel's editor instead of being guessed by the card.
+
+Frigate: its cameras (the Frigate integration) carry no privacy switch nor PTZ buttons, which stay on the camera's
+own integration (Tapo…). A Frigate camera is paired with that native camera — the only one of its area, else the one
+of its area with the same name — and ``duplicates`` says which of the two is listed: ``frigate`` (the default: the
+Frigate camera, with the native one's privacy switch and PTZ buttons, ``controls_from`` naming it), ``native`` (the
+native camera alone) or ``both``. Frigate's Birdseye view is not a camera of the home and is left out.
 """
 
 from __future__ import annotations
 
+import re
+import unicodedata
 from typing import Any
 
 from homeassistant.core import HomeAssistant
@@ -29,13 +37,17 @@ PTZ_DIRECTIONS = ("left", "right", "up", "down")
 # motion and person, not vehicles or pets), else by device class
 MOTION_KEYS = ("motion", "person")
 MOTION_CLASSES = ("motion", "occupancy", "presence")
+FRIGATE = "frigate"
+BIRDSEYE = "birdseye"
+DUPLICATES = ("frigate", "native", "both")
 
 
-def discover(hass: HomeAssistant) -> list[dict[str, Any]]:
+def discover(hass: HomeAssistant, duplicates: str = "frigate") -> list[dict[str, Any]]:
     """The cameras: ``{"camera", "name", "area", "sd", "privacy", "ptz", "motion"}``.
 
     ``sd``: the SD stream it carries; ``privacy``: switch; ``ptz``: ``{direction: button}``; ``motion``: binary sensors.
-    Each is None (or empty) when not found.
+    Each is None (or empty) when not found. A Frigate camera also has ``"frigate": True`` and, when paired with its
+    native camera, ``controls_from``: that camera (see the module's docstring for ``duplicates``).
     """
     entities = er.async_get(hass)
     devices = dr.async_get(hass)
@@ -52,21 +64,72 @@ def discover(hass: HomeAssistant) -> list[dict[str, Any]]:
     for eid in ids:
         if eid.endswith(SD) and eid.removesuffix(SD) + HD in ids:
             continue  # the SD stream of a listed HD camera
-        sd = eid.removesuffix(HD) + SD if eid.endswith(HD) else None
         entry = entities.async_get(eid)
+        frigate = entry is not None and entry.platform == FRIGATE
+        if frigate and (eid.endswith(f"_{BIRDSEYE}") or BIRDSEYE in (entry.unique_id or "")):
+            continue
+        sd = eid.removesuffix(HD) + SD if eid.endswith(HD) else None
         device = devices.async_get(entry.device_id) if entry and entry.device_id else None
         area_id = (entry.area_id if entry else None) or (device.area_id if device else None)
         area = areas.async_get_area(area_id) if area_id else None
-        found.append(
-            {
-                "camera": eid,
-                "name": _name(hass, eid, entry, device),
-                "area": area.name if area else None,
-                "sd": sd if sd in ids else None,
-                **_controls(hass, entities, entry.device_id if entry else None),
-            }
-        )
+        cam = {
+            "camera": eid,
+            "name": _name(hass, eid, entry, device),
+            "area": area.name if area else None,
+            "sd": sd if sd in ids else None,
+            **_controls(hass, entities, entry.device_id if entry else None),
+        }
+        if frigate:
+            cam["frigate"] = True
+        cam["_device"] = entry.device_id if entry else None
+        found.append(cam)
+    found = _pair_frigate(hass, entities, found, duplicates if duplicates in DUPLICATES else "frigate")
+    for cam in found:
+        cam.pop("_device", None)
     return sorted(found, key=lambda cam: (cam["area"] is None, (cam["area"] or "").casefold(), cam["name"].casefold()))
+
+
+def _key(name: str) -> str:
+    """A name compared without case, accents nor punctuation: "Séjour cam" and "sejour_cam" match."""
+    plain = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode()
+    return re.sub(r"[^a-z0-9]+", "", plain.casefold())
+
+
+def _native(cam: dict[str, Any], natives: list[dict[str, Any]]) -> dict[str, Any] | None:
+    """The native camera of a Frigate camera: the only one of its area, else the one of its area with its name."""
+    same_area = [n for n in natives if n["area"] == cam["area"]] if cam["area"] else []
+    if len(same_area) == 1:
+        return same_area[0]
+    named = [n for n in (same_area or natives) if _key(n["name"]) == _key(cam["name"])]
+    return named[0] if len(named) == 1 else None
+
+
+def _pair_frigate(
+    hass: HomeAssistant, entities: er.EntityRegistry, found: list[dict[str, Any]], duplicates: str
+) -> list[dict[str, Any]]:
+    """Each Frigate camera paired with its native camera; the list kept as ``duplicates`` says."""
+    natives = [cam for cam in found if not cam.get("frigate")]
+    taken: set[str] = set()
+    drop: set[str] = set()
+    for cam in found:
+        if not cam.get("frigate"):
+            continue
+        native = _native(cam, [n for n in natives if n["camera"] not in taken])
+        if native is None:
+            continue
+        taken.add(native["camera"])
+        if duplicates == "native":
+            drop.add(cam["camera"])
+            continue
+        if duplicates == "frigate":
+            drop.add(native["camera"])
+        # Privacy and PTZ from the native camera; motion from Frigate's detections, else the native camera's
+        controls = _controls(hass, entities, native["_device"])
+        cam["controls_from"] = native["camera"]
+        cam["privacy"] = controls["privacy"]
+        cam["ptz"] = controls["ptz"]
+        cam["motion"] = cam["motion"] or controls["motion"]
+    return [cam for cam in found if cam["camera"] not in drop]
 
 
 def _controls(hass: HomeAssistant, entities: er.EntityRegistry, device_id: str | None) -> dict[str, Any]:
@@ -116,7 +179,7 @@ def _name(hass: HomeAssistant, entity_id: str, entry: er.RegistryEntry | None, d
 def card_entry(cam: dict[str, Any]) -> dict[str, Any]:
     """A discovered camera as a camera entry of the card, with the controls found."""
     entry: dict[str, Any] = {"camera": cam["camera"], "name": cam["name"]}
-    for key in ("privacy", "ptz"):
+    for key in ("controls_from", "privacy", "ptz"):
         if cam.get(key):
             entry[key] = cam[key]
     if cam.get("motion"):

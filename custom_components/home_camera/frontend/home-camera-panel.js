@@ -12,7 +12,7 @@
  *
  * https://github.com/juju35/ha-camera
  */
-var HOME_CAMERA_PANEL_VERSION = '4.9.4';
+var HOME_CAMERA_PANEL_VERSION = '4.10.0';
 
 var HomeCameraPanelI18n = {
   en: {
@@ -1222,6 +1222,7 @@ function hcpFindCard(node) {
 // buttons, motion sensors), so they show in the editor; the same entry as the server's discovery.card_entry
 function hcpFoundEntry(cam) {
   var entry = { camera: cam.camera, name: cam.name };
+  if (cam.controls_from) entry.controls_from = cam.controls_from;
   if (cam.privacy) entry.privacy = cam.privacy;
   if (cam.ptz) entry.ptz = cam.ptz;
   if (cam.motion?.length) entry.motion = cam.motion.length === 1 ? cam.motion[0] : cam.motion;
@@ -2481,7 +2482,10 @@ class HomeCameraPanel extends HTMLElement {
   // ── Camera discovery (home_camera/discover): the cameras of Home Assistant the panel does not show yet ──
   async _discover() {
     try {
-      this._found = (await this._hass.callWS({ type: 'home_camera/discover' })).cameras || [];
+      // Frigate: which of a Frigate camera and its native camera is listed, as the edited options say
+      var duplicates = this._formValues()?.card?.frigate?.duplicates || 'frigate';
+      this._foundDuplicates = duplicates;
+      this._found = (await this._hass.callWS({ type: 'home_camera/discover', duplicates: duplicates })).cameras || [];
     } catch (err) {
       console.warn('Home Camera panel: camera discovery failed', err);
       this._found = [];
@@ -2559,6 +2563,8 @@ class HomeCameraPanel extends HTMLElement {
         var cams = values.card?.cameras;
         values.card = Object.assign(cams ? { cameras: cams } : {}, options);
         this._editorConfig = JSON.stringify(options);
+        // Another Frigate duplicates choice: the cameras found are asked again
+        if (this._found && (options.frigate?.duplicates || 'frigate') !== this._foundDuplicates) this._discover();
         this._status = null;
         this._renderStatus();
       });

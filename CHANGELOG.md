@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.10.0 - 2026-11-23
+
+### Features
+- Frigate: a Frigate camera takes the privacy switch and PTZ buttons of its native camera (Tapo…), found by itself in its area (the only one there, else the one with its name) or set with `controls_from`; its motion badge follows Frigate's motion and occupancy sensors.
+- Frigate: SD plays Frigate's go2rtc sub-stream (`frigate.sd_stream`, `{camera}_sub` by default) over WebRTC through the Frigate integration's proxy, on a path signed by Home Assistant; `player: frigate` plays every stream that way, `player: home_assistant` never. A session that brings no picture falls back to Home Assistant's player.
+- Frigate: `ptz: frigate` moves an ONVIF camera with `frigate.ptz`, from the press of an arrow to its release.
+- Frigate: an **Open in Frigate** button on the tiles of Frigate cameras opens `frigate.url`, or the sidebar panel of a Frigate app (Frigate, Frigate Proxy); `frigate.open_in_frigate: false` hides it.
+- Cameras panel: the discovery pairs each Frigate camera with its native camera and lists the Frigate one, the native one or both (`frigate.duplicates`); Frigate's Birdseye view is left out.
+
 ## 4.9.4 - 2026-11-22
 
 ### Performance

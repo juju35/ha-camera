@@ -43,6 +43,7 @@ List the cameras, the cards find their privacy switch, SD stream and PTZ buttons
 - **Cameras** in the sidebar for **every user** — family members without administrator rights included: the card's **illustrated header** is the panel's **top bar**, across the page (as on the ENT ONE panel): the camera drawn in the panel's state, the title with its status pill (live, motion detected, private, unavailable), the cameras live and hidden, and **HD / SD** and the integration (administrators) as round buttons. The tabs sit under it, Cameras with the number of cameras in motion. Then a **filter** by state (**All**, **Motion**, **Private** — a chip only for a state some camera is in) and four **tiles** (motion, live, privacy, offline; Motion and Privacy filter too), the privacy badges as pills (amber for a camera in motion), then a **video wall** edge to edge — as many columns as the screen takes, a camera in motion outlined in amber — and everything the card does (live streams, privacy badges, HD / SD, PTZ, fullscreen)
 - **Settings** tab, for administrators only: a header card (saved or not, the picture being in the top bar), the sidebar title (left empty: *Cameras* in the server's language), the **top bar** (shown, hidden for non-admins, or hidden for everyone: the title bar goes, the tabs and the menu button stay), the **cameras shown** as a list — drag a camera's handle (or use the arrow keys on it) to reorder, the pencil opens its fields — and the card's display options
 - **Camera discovery**: a new entry starts with every camera of Home Assistant, and Settings lists the ones not shown yet, to **Add** one by one or **Add all**, each with the privacy switch, pan and tilt buttons and motion sensors found on its device; a Tapo camera's two entities (`*_hd_stream`, `*_sd_stream`) count as one camera, whose SD stream the HD / SD switch picks
+- **Frigate**: a Frigate camera is paired with its native camera (Tapo…) — the only one of its area, else the one of its area with the same name — and takes its privacy switch and PTZ buttons; **Frigate and native camera** in the card's options says which of the two the discovery lists (the Frigate camera, the native camera, or both)
 - **Copy from a dashboard**: takes the first camera card found on your dashboards, to move a cameras dashboard to the panel in one click
 - Saved settings reach every open panel at once, on every device; the tab is in the address (`/cameras/settings`)
 
@@ -65,6 +66,7 @@ List the cameras, the cards find their privacy switch, SD stream and PTZ buttons
 - Hiding or showing a camera, or switching HD / SD, never reloads the streams of the other cameras
 - Streams stop while the page is hidden (other tab, phone locked) or the card is scrolled off screen, and resume when it comes back
 - **Mini card** (`home-camera-mini-card`): a snapshot of each camera with its name and status, refreshed every 10 seconds instead of a live stream; its detail button (top right) or a tap on a snapshot shows the full card, a click outside folds it back
+- **[Frigate](https://docs.frigate.video/integrations/home-assistant/)** cameras: their privacy switch and PTZ buttons come from their native camera (`controls_from`, found by itself in the same area); SD plays Frigate's go2rtc sub-stream (`{camera}_sub`) through the Frigate integration's proxy, on a path signed by Home Assistant, falling back to Home Assistant's player when it brings no picture; `player: frigate` plays every stream that way; `ptz: frigate` moves an ONVIF camera with `frigate.ptz`, from the press to the release; an **Open in Frigate** button on the tile opens `frigate.url`, or the sidebar panel of a Frigate app (Frigate, Frigate Proxy)
 - Automatic discovery on the camera's device: `switch.*_privacy` (or `*_privacy_mode`), `button.*_move_left/right/up/down`, the motion, occupancy and person `binary_sensor`s, and either the `*_sd_stream` camera next to a `*_hd_stream` one or a `select.*_stream_quality` (see [Supported integrations](#supported-integrations))
 - Visual editor in the dashboard UI (no YAML needed)
 - English, French, German, Spanish, Serbian (Cyrillic and Latin), Italian, Dutch, European Portuguese, Polish, Romanian, Danish, Swedish, Bulgarian, Russian, Ukrainian, Hungarian, Slovak, Czech, Slovenian, Latvian and Greek, follows the Home Assistant language
@@ -79,6 +81,9 @@ Any `camera` entity works. These integrations also bring their controls without 
 |---|---|---|---|---|---|
 | [Tapo Cameras](https://github.com/juju35/ha-tapo) (`tapo_cameras`) | one per camera | `privacy_mode` switch | `stream_quality` select (`hd` / `sd`) of each camera | `move_*` buttons | detection `binary_sensor`s |
 | Tapo: Cameras Control (`tapo_control`) | `*_hd_stream` and `*_sd_stream` | `switch.*_privacy` | the `*_sd_stream` camera | `button.*_move_*` | detection `binary_sensor`s |
+| [Frigate](https://github.com/blakeblackshear/frigate-hass-integration) (`frigate`) | one per camera (Birdseye left out) | its native camera's (`controls_from`) | Frigate's go2rtc sub-stream (`frigate.sd_stream`) | its native camera's buttons, or `ptz: frigate` (`frigate.ptz`, ONVIF) | Frigate's motion and occupancy `binary_sensor`s |
+
+With Frigate, the integration must reach Frigate itself, not the Frigate Proxy app; the proxy's sidebar panel is only where **Open in Frigate** goes. Frigate's sub-stream must exist in its go2rtc configuration (`living_room_sub` for the `living_room` camera, or set `frigate.sd_stream`).
 
 Tapo Cameras names its entities in your language (`button.living_room_left`, `button.salon_gauche`…): the card finds them by their translation key on the camera's device, whatever their entity ids. With Tapo Cameras, the HD / SD switch changes the stream of the camera itself, so every viewer gets the new quality; with a shared `quality_entity`, the switch sets it too.
 
@@ -159,6 +164,16 @@ cameras:
     name: Terrace
     power: switch.terrace_camera_plug
     ptz: false
+  - camera: camera.garden # Frigate
+    controls_from: camera.garden_tapo
+    ptz: frigate
+    player: frigate
+frigate:
+  player: auto
+  sd_stream: "{camera}_sub"
+  instance: frigate
+  url: https://frigate.example.com
+  open_in_frigate: true
 ```
 
 ### Mini card
@@ -193,6 +208,7 @@ The mini card takes the same options as the full card except `layout`, plus `zoo
 | `illustration` | ❌ | `true` | Both cards: the illustrated header (a camera on a wall drawn in the cards' state); `false` for the classic header |
 | `illustration_theme` | ❌ | `auto` | Both cards: `auto` (follows the Home Assistant theme: night with a dark theme, day with a light theme), `day` or `night` |
 | `zoom` | ❌ | `true` | Mini card only: its detail button to the full card; with `false`, a tap on a snapshot opens the camera's dialog |
+| `frigate` | ❌ | — | Frigate cameras, see below |
 | `language` | ❌ | Auto | Force language: `en`, `fr`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` (auto-detects from HA settings) |
 
 **Camera options**
@@ -205,8 +221,21 @@ The mini card takes the same options as the full card except `layout`, plus `zoo
 | `sd` | Camera entity shown in SD; defaults to the `*_sd_stream` next to a `*_hd_stream` camera, else the HD one |
 | `privacy` | Switch hiding the camera when **on**; defaults to the `switch.*_privacy` of the camera's device, `false` for none |
 | `power` | Switch (smart plug) hiding the camera when **off** |
-| `ptz` | PTZ buttons: a prefix (`button.x_move` → `button.x_move_left`, `_right`, `_up`, `_down`), an object `{left, right, up, down}`, or `false`; defaults to the `button.*_move_*` of the camera's device |
+| `ptz` | PTZ buttons: a prefix (`button.x_move` → `button.x_move_left`, `_right`, `_up`, `_down`), an object `{left, right, up, down}`, `frigate` (a Frigate camera moved by `frigate.ptz`, ONVIF), or `false`; defaults to the `button.*_move_*` of the camera's device (`auto`) |
+| `controls_from` | Camera whose device carries the privacy switch, PTZ buttons (and motion sensors, when the camera has none); a Frigate camera defaults to its native camera (the only one of its area, else the one of its area with its name), `false` for none |
+| `player` | Frigate camera: `auto`, `frigate` or `home_assistant`; defaults to `frigate.player` |
 | `motion` | Motion sensor(s) behind the camera's motion badge: an entity id, a list, or `false` for none; defaults to the `binary_sensor`s of the camera's device whose device class is `motion`, `occupancy` or `presence`, or whose id contains `motion`, `occupancy` or `person` |
+
+**Frigate options** (`frigate:`, in the visual editor's *Frigate* section)
+
+| Option | Default | Description |
+|---|---|---|
+| `player` | `auto` | `auto`: Home Assistant's player (the Frigate integration already plays from Frigate's go2rtc), Frigate's sub-stream in SD; `frigate`: always Frigate's go2rtc through the integration's proxy (`/api/frigate/…/webrtc`); `home_assistant`: never |
+| `sd_stream` | `{camera}_sub` | Frigate go2rtc stream played in SD, `{camera}` being the Frigate camera name |
+| `instance` | — | Client id of the Frigate instance, with several Frigate servers; defaults to the camera's own |
+| `url` | — | Address opened by **Open in Frigate**; defaults to the sidebar panel of a Frigate app (Frigate, Frigate Proxy) |
+| `open_in_frigate` | `true` | **Open in Frigate** button on the tiles of Frigate cameras |
+| `duplicates` | `frigate` | Cameras panel only: which of a Frigate camera and its native camera the discovery lists — `frigate`, `native` or `both` |
 
 ## Screenshots
 

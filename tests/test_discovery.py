@@ -164,3 +164,99 @@ async def test_tapo_control_controls_found_by_entity_id(hass):
     assert cam["privacy"] == "switch.living_privacy"
     assert cam["ptz"] == {"left": "button.living_move_left"}
     assert cam["motion"] == ["binary_sensor.living_motion"]
+
+
+def _frigate(hass, name, area=None, *, motion=True):
+    """A Frigate camera: its own device (in ``area``), a camera entity and its motion sensor."""
+    entry = next(iter(hass.config_entries.async_entries("frigate")), None)
+    if entry is None:
+        entry = MockConfigEntry(domain="frigate")
+        entry.add_to_hass(hass)
+    device = dr.async_get(hass).async_get_or_create(
+        config_entry_id=entry.entry_id, identifiers={("frigate", name)}, name=name.capitalize()
+    )
+    if area:
+        dr.async_get(hass).async_update_device(device.id, area_id=ar.async_get(hass).async_get_or_create(area).id)
+    reg = er.async_get(hass)
+    cam = reg.async_get_or_create(
+        "camera", "frigate", f"frigate:camera:{name}", config_entry=entry, device_id=device.id, suggested_object_id=name
+    )
+    hass.states.async_set(cam.entity_id, "streaming", {"camera_name": name, "client_id": "frigate"})
+    if motion:
+        sensor = reg.async_get_or_create(
+            "binary_sensor",
+            "frigate",
+            f"frigate:motion_sensor:{name}",
+            config_entry=entry,
+            device_id=device.id,
+            suggested_object_id=f"{name}_motion",
+            original_device_class="motion",
+        )
+        hass.states.async_set(sensor.entity_id, "off", {"device_class": "motion"})
+    return cam.entity_id
+
+
+async def test_frigate_camera_takes_the_native_cameras_controls(hass):
+    _ha_tapo(hass)
+    reg = er.async_get(hass)
+    dr.async_get(hass).async_update_device(
+        reg.async_get("camera.sejour").device_id, area_id=ar.async_get(hass).async_get_or_create("Living room").id
+    )
+    _frigate(hass, "salon", "Living room")
+    # Birdseye is Frigate's mosaic, not a camera of the home
+    birdseye = reg.async_get_or_create(
+        "camera", "frigate", "frigate:camera:birdseye", config_entry=hass.config_entries.async_entries("frigate")[0]
+    )
+    hass.states.async_set(birdseye.entity_id, "streaming")
+    [cam] = discover(hass)
+    assert cam["camera"] == "camera.salon"
+    assert cam["frigate"] is True
+    assert cam["controls_from"] == "camera.sejour"
+    assert cam["privacy"] == "switch.sejour_mode_prive"
+    assert cam["ptz"]["left"] == "button.sejour_gauche"
+    # Frigate's own motion sensor, not the native camera's
+    assert cam["motion"] == ["binary_sensor.salon_motion"]
+    assert card_entry(cam) == {
+        "camera": "camera.salon",
+        "name": "Salon",
+        "controls_from": "camera.sejour",
+        "privacy": "switch.sejour_mode_prive",
+        "ptz": cam["ptz"],
+        "motion": "binary_sensor.salon_motion",
+    }
+
+    assert [c["camera"] for c in discover(hass, "native")] == ["camera.sejour"]
+    both = discover(hass, "both")
+    assert sorted(c["camera"] for c in both) == ["camera.salon", "camera.sejour"]
+    assert next(c for c in both if c["camera"] == "camera.salon")["controls_from"] == "camera.sejour"
+
+
+async def test_frigate_camera_paired_by_name_when_its_area_has_several(hass):
+    _tapo(hass, "living", "Living room camera", "Living room")
+    _tapo(hass, "garden", "Garden", "Living room")
+    _frigate(hass, "garden", "Living room", motion=False)
+    _frigate(hass, "attic")  # no area, no native camera of its name: listed alone
+    cams = {cam["camera"]: cam for cam in discover(hass)}
+    assert set(cams) == {"camera.attic", "camera.garden", "camera.living_hd_stream"}
+    assert cams["camera.garden"]["controls_from"] == "camera.garden_hd_stream"
+    assert "controls_from" not in cams["camera.attic"]
+    assert cams["camera.attic"]["frigate"] is True
+
+
+async def test_discover_command_takes_duplicates(hass, hass_ws_client):
+    _tapo(hass, "living", "Living room camera", "Living room")
+    _frigate(hass, "living", "Living room")
+    entry = MockConfigEntry(domain=DOMAIN, options={"card": {"cameras": []}, "title": ""})
+    entry.add_to_hass(hass)
+    assert await async_setup_component(hass, "lovelace", {})
+    await hass.config_entries.async_setup(entry.entry_id)
+    client = await hass_ws_client(hass)
+    for duplicates, expected in (
+        (None, ["camera.living"]),
+        ("native", ["camera.living_hd_stream"]),
+        ("both", ["camera.living", "camera.living_hd_stream"]),
+    ):
+        msg = {"type": f"{DOMAIN}/discover"} | ({"duplicates": duplicates} if duplicates else {})
+        await client.send_json_auto_id(msg)
+        result = (await client.receive_json())["result"]
+        assert sorted(cam["camera"] for cam in result["cameras"]) == expected

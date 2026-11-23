@@ -66,7 +66,7 @@ function pickerDefine(tag, Card, options) {
   return customElements.define(tag, lazy, options);
 }
 
-const HOME_CAMERA_CARD_VERSION = '4.9.4';
+const HOME_CAMERA_CARD_VERSION = '4.10.0';
 
 // ── i18n ─────────────────────────────────────────────────────────────────────
 const HcI18n = {
@@ -142,6 +142,27 @@ const HcI18n = {
     ed_theme_auto: 'Automatique (suit le thème)',
     ed_theme_day: 'Jour',
     ed_theme_night: 'Nuit',
+    open_frigate: 'Ouvrir dans Frigate',
+    ed_frigate: 'Frigate',
+    ed_player: 'Lecteur',
+    ed_player_helper: 'Automatique : lecteur de Home Assistant, sous-flux Frigate en SD ; Frigate : toujours le go2rtc de Frigate',
+    ed_player_auto: 'Automatique',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'Flux SD',
+    ed_sd_stream_helper: 'Flux go2rtc de Frigate lu en SD ; {camera} est le nom de la caméra',
+    ed_instance: 'Instance Frigate',
+    ed_instance_helper: 'Client id de l\'instance Frigate, avec plusieurs serveurs Frigate',
+    ed_url: 'Adresse de Frigate',
+    ed_url_helper: 'Ouverte par le bouton Ouvrir dans Frigate ; vide : le panneau de l\'app Frigate',
+    ed_open_in_frigate: 'Bouton Ouvrir dans Frigate',
+    ed_duplicates: 'Caméra dans Frigate et dans sa propre intégration',
+    ed_duplicates_helper: 'Celle que listent les caméras trouvées (interrupteur de confidentialité et boutons PTZ restent à la caméra Frigate)',
+    ed_duplicates_frigate: 'La caméra Frigate',
+    ed_duplicates_native: 'La caméra native',
+    ed_duplicates_both: 'Les deux',
+    cf_controls_from: 'Contrôles de (confidentialité, PTZ)',
+    cf_player: 'Lecteur',
   },
   en: {
     title: 'Cameras',
@@ -215,6 +236,27 @@ const HcI18n = {
     ed_theme_auto: 'Automatic (follows the theme)',
     ed_theme_day: 'Day',
     ed_theme_night: 'Night',
+    open_frigate: 'Open in Frigate',
+    ed_frigate: 'Frigate',
+    ed_player: 'Player',
+    ed_player_helper: 'Automatic: Home Assistant\'s player, Frigate\'s sub-stream for SD; Frigate: always Frigate\'s go2rtc',
+    ed_player_auto: 'Automatic',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'SD stream',
+    ed_sd_stream_helper: 'Frigate go2rtc stream played in SD; {camera} is the camera name',
+    ed_instance: 'Frigate instance',
+    ed_instance_helper: 'Client id of the Frigate instance, with several Frigate servers',
+    ed_url: 'Frigate address',
+    ed_url_helper: 'Opened by the Open in Frigate button; empty: the Frigate app\'s sidebar panel',
+    ed_open_in_frigate: 'Open in Frigate button',
+    ed_duplicates: 'Camera in Frigate and in its own integration',
+    ed_duplicates_helper: 'Which one the cameras found list (its privacy switch and PTZ buttons stay with the Frigate camera)',
+    ed_duplicates_frigate: 'The Frigate camera',
+    ed_duplicates_native: 'The native camera',
+    ed_duplicates_both: 'Both',
+    cf_controls_from: 'Controls from (privacy, PTZ)',
+    cf_player: 'Player',
   },
   de: {
     title: 'Kameras',
@@ -288,6 +330,27 @@ const HcI18n = {
     ed_theme_auto: 'Automatisch (folgt dem Thema)',
     ed_theme_day: 'Tag',
     ed_theme_night: 'Nacht',
+    open_frigate: 'In Frigate öffnen',
+    ed_frigate: 'Frigate',
+    ed_player: 'Player',
+    ed_player_helper: 'Automatisch: Player von Home Assistant, Frigate-Substream für SD; Frigate: immer go2rtc von Frigate',
+    ed_player_auto: 'Automatisch',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'SD-Stream',
+    ed_sd_stream_helper: 'go2rtc-Stream von Frigate für SD; {camera} ist der Kameraname',
+    ed_instance: 'Frigate-Instanz',
+    ed_instance_helper: 'Client-ID der Frigate-Instanz, bei mehreren Frigate-Servern',
+    ed_url: 'Frigate-Adresse',
+    ed_url_helper: 'Vom Button In Frigate öffnen geöffnet; leer: das Seitenleistenpanel der Frigate-App',
+    ed_open_in_frigate: 'Button In Frigate öffnen',
+    ed_duplicates: 'Kamera in Frigate und in ihrer eigenen Integration',
+    ed_duplicates_helper: 'Welche die gefundenen Kameras auflisten (Privatsphäre-Schalter und PTZ-Tasten bleiben bei der Frigate-Kamera)',
+    ed_duplicates_frigate: 'Die Frigate-Kamera',
+    ed_duplicates_native: 'Die native Kamera',
+    ed_duplicates_both: 'Beide',
+    cf_controls_from: 'Steuerung von (Privatsphäre, PTZ)',
+    cf_player: 'Player',
   },
   es: {
     title: 'Cámaras',
@@ -361,6 +424,27 @@ const HcI18n = {
     ed_theme_auto: 'Automático (sigue el tema)',
     ed_theme_day: 'Día',
     ed_theme_night: 'Noche',
+    open_frigate: 'Abrir en Frigate',
+    ed_frigate: 'Frigate',
+    ed_player: 'Reproductor',
+    ed_player_helper: 'Automático: reproductor de Home Assistant, subflujo de Frigate en SD; Frigate: siempre el go2rtc de Frigate',
+    ed_player_auto: 'Automático',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'Flujo SD',
+    ed_sd_stream_helper: 'Flujo go2rtc de Frigate en SD; {camera} es el nombre de la cámara',
+    ed_instance: 'Instancia de Frigate',
+    ed_instance_helper: 'Client id de la instancia de Frigate, con varios servidores Frigate',
+    ed_url: 'Dirección de Frigate',
+    ed_url_helper: 'Abierta por el botón Abrir en Frigate; vacía: el panel de la app Frigate',
+    ed_open_in_frigate: 'Botón Abrir en Frigate',
+    ed_duplicates: 'Cámara en Frigate y en su propia integración',
+    ed_duplicates_helper: 'Cuál listan las cámaras encontradas (el interruptor de privacidad y los botones PTZ quedan en la cámara Frigate)',
+    ed_duplicates_frigate: 'La cámara Frigate',
+    ed_duplicates_native: 'La cámara nativa',
+    ed_duplicates_both: 'Ambas',
+    cf_controls_from: 'Controles de (privacidad, PTZ)',
+    cf_player: 'Reproductor',
   },
   sr: {
     title: 'Камере',
@@ -434,6 +518,27 @@ const HcI18n = {
     ed_theme_auto: 'Аутоматски (прати тему)',
     ed_theme_day: 'Дан',
     ed_theme_night: 'Ноћ',
+    open_frigate: 'Отвори у Frigate',
+    ed_frigate: 'Frigate',
+    ed_player: 'Плејер',
+    ed_player_helper: 'Аутоматски: плејер Home Assistant, подток Frigate за SD; Frigate: увек go2rtc из Frigate',
+    ed_player_auto: 'Аутоматски',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'SD ток',
+    ed_sd_stream_helper: 'go2rtc ток из Frigate за SD; {camera} је назив камере',
+    ed_instance: 'Frigate инстанца',
+    ed_instance_helper: 'Client id Frigate инстанце, кад има више Frigate сервера',
+    ed_url: 'Адреса Frigate',
+    ed_url_helper: 'Отвара је дугме Отвори у Frigate; празно: панел Frigate апликације',
+    ed_open_in_frigate: 'Дугме Отвори у Frigate',
+    ed_duplicates: 'Камера у Frigate и у сопственој интеграцији',
+    ed_duplicates_helper: 'Коју приказују пронађене камере (прекидач приватности и PTZ дугмад остају код Frigate камере)',
+    ed_duplicates_frigate: 'Frigate камера',
+    ed_duplicates_native: 'Изворна камера',
+    ed_duplicates_both: 'Обе',
+    cf_controls_from: 'Контроле из (приватност, PTZ)',
+    cf_player: 'Плејер',
   },
   'sr-Latn': {
     title: 'Kamere',
@@ -507,6 +612,27 @@ const HcI18n = {
     ed_theme_auto: 'Automatski (prati temu)',
     ed_theme_day: 'Dan',
     ed_theme_night: 'Noć',
+    open_frigate: 'Otvori u Frigate',
+    ed_frigate: 'Frigate',
+    ed_player: 'Plejer',
+    ed_player_helper: 'Automatski: plejer Home Assistant, podtok Frigate za SD; Frigate: uvek go2rtc iz Frigate',
+    ed_player_auto: 'Automatski',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'SD tok',
+    ed_sd_stream_helper: 'go2rtc tok iz Frigate za SD; {camera} je naziv kamere',
+    ed_instance: 'Frigate instanca',
+    ed_instance_helper: 'Client id Frigate instance, kad ima više Frigate servera',
+    ed_url: 'Adresa Frigate',
+    ed_url_helper: 'Otvara je dugme Otvori u Frigate; prazno: panel Frigate aplikacije',
+    ed_open_in_frigate: 'Dugme Otvori u Frigate',
+    ed_duplicates: 'Kamera u Frigate i u sopstvenoj integraciji',
+    ed_duplicates_helper: 'Koju prikazuju pronađene kamere (prekidač privatnosti i PTZ dugmad ostaju kod Frigate kamere)',
+    ed_duplicates_frigate: 'Frigate kamera',
+    ed_duplicates_native: 'Izvorna kamera',
+    ed_duplicates_both: 'Obe',
+    cf_controls_from: 'Kontrole iz (privatnost, PTZ)',
+    cf_player: 'Plejer',
   },
   it: {
     title: 'Telecamere',
@@ -580,6 +706,27 @@ const HcI18n = {
     ed_theme_auto: 'Automatico (segue il tema)',
     ed_theme_day: 'Giorno',
     ed_theme_night: 'Notte',
+    open_frigate: 'Apri in Frigate',
+    ed_frigate: 'Frigate',
+    ed_player: 'Lettore',
+    ed_player_helper: 'Automatico: lettore di Home Assistant, sottoflusso di Frigate in SD; Frigate: sempre il go2rtc di Frigate',
+    ed_player_auto: 'Automatico',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'Flusso SD',
+    ed_sd_stream_helper: 'Flusso go2rtc di Frigate in SD; {camera} è il nome della telecamera',
+    ed_instance: 'Istanza Frigate',
+    ed_instance_helper: 'Client id dell\'istanza Frigate, con più server Frigate',
+    ed_url: 'Indirizzo di Frigate',
+    ed_url_helper: 'Aperto dal pulsante Apri in Frigate; vuoto: il pannello dell\'app Frigate',
+    ed_open_in_frigate: 'Pulsante Apri in Frigate',
+    ed_duplicates: 'Telecamera in Frigate e nella sua integrazione',
+    ed_duplicates_helper: 'Quale elencano le telecamere trovate (interruttore privacy e pulsanti PTZ restano alla telecamera Frigate)',
+    ed_duplicates_frigate: 'La telecamera Frigate',
+    ed_duplicates_native: 'La telecamera nativa',
+    ed_duplicates_both: 'Entrambe',
+    cf_controls_from: 'Controlli da (privacy, PTZ)',
+    cf_player: 'Lettore',
   },
   nl: {
     title: 'Camera\'s',
@@ -653,6 +800,27 @@ const HcI18n = {
     ed_theme_auto: 'Automatisch (volgt het thema)',
     ed_theme_day: 'Dag',
     ed_theme_night: 'Nacht',
+    open_frigate: 'Openen in Frigate',
+    ed_frigate: 'Frigate',
+    ed_player: 'Speler',
+    ed_player_helper: 'Automatisch: speler van Home Assistant, substream van Frigate voor SD; Frigate: altijd go2rtc van Frigate',
+    ed_player_auto: 'Automatisch',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'SD-stream',
+    ed_sd_stream_helper: 'go2rtc-stream van Frigate voor SD; {camera} is de cameranaam',
+    ed_instance: 'Frigate-instantie',
+    ed_instance_helper: 'Client-id van de Frigate-instantie, bij meerdere Frigate-servers',
+    ed_url: 'Frigate-adres',
+    ed_url_helper: 'Geopend door de knop Openen in Frigate; leeg: het zijbalkpaneel van de Frigate-app',
+    ed_open_in_frigate: 'Knop Openen in Frigate',
+    ed_duplicates: 'Camera in Frigate en in zijn eigen integratie',
+    ed_duplicates_helper: 'Welke de gevonden camera\'s tonen (privacyschakelaar en PTZ-knoppen blijven bij de Frigate-camera)',
+    ed_duplicates_frigate: 'De Frigate-camera',
+    ed_duplicates_native: 'De eigen camera',
+    ed_duplicates_both: 'Beide',
+    cf_controls_from: 'Bediening van (privacy, PTZ)',
+    cf_player: 'Speler',
   },
   pt: {
     title: 'Câmaras',
@@ -726,6 +894,27 @@ const HcI18n = {
     ed_theme_auto: 'Automático (segue o tema)',
     ed_theme_day: 'Dia',
     ed_theme_night: 'Noite',
+    open_frigate: 'Abrir no Frigate',
+    ed_frigate: 'Frigate',
+    ed_player: 'Leitor',
+    ed_player_helper: 'Automático: leitor do Home Assistant, subfluxo do Frigate em SD; Frigate: sempre o go2rtc do Frigate',
+    ed_player_auto: 'Automático',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'Fluxo SD',
+    ed_sd_stream_helper: 'Fluxo go2rtc do Frigate em SD; {camera} é o nome da câmara',
+    ed_instance: 'Instância Frigate',
+    ed_instance_helper: 'Client id da instância Frigate, com vários servidores Frigate',
+    ed_url: 'Endereço do Frigate',
+    ed_url_helper: 'Aberto pelo botão Abrir no Frigate; vazio: o painel da app Frigate',
+    ed_open_in_frigate: 'Botão Abrir no Frigate',
+    ed_duplicates: 'Câmara no Frigate e na sua própria integração',
+    ed_duplicates_helper: 'Qual listam as câmaras encontradas (interruptor de privacidade e botões PTZ ficam na câmara Frigate)',
+    ed_duplicates_frigate: 'A câmara Frigate',
+    ed_duplicates_native: 'A câmara nativa',
+    ed_duplicates_both: 'Ambas',
+    cf_controls_from: 'Controlos de (privacidade, PTZ)',
+    cf_player: 'Leitor',
   },
   pl: {
     title: 'Kamery',
@@ -799,6 +988,27 @@ const HcI18n = {
     ed_theme_auto: 'Automatycznie (według motywu)',
     ed_theme_day: 'Dzień',
     ed_theme_night: 'Noc',
+    open_frigate: 'Otwórz we Frigate',
+    ed_frigate: 'Frigate',
+    ed_player: 'Odtwarzacz',
+    ed_player_helper: 'Automatycznie: odtwarzacz Home Assistant, podstrumień Frigate dla SD; Frigate: zawsze go2rtc Frigate',
+    ed_player_auto: 'Automatycznie',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'Strumień SD',
+    ed_sd_stream_helper: 'Strumień go2rtc Frigate dla SD; {camera} to nazwa kamery',
+    ed_instance: 'Instancja Frigate',
+    ed_instance_helper: 'Client id instancji Frigate, przy kilku serwerach Frigate',
+    ed_url: 'Adres Frigate',
+    ed_url_helper: 'Otwierany przyciskiem Otwórz we Frigate; pusty: panel aplikacji Frigate',
+    ed_open_in_frigate: 'Przycisk Otwórz we Frigate',
+    ed_duplicates: 'Kamera we Frigate i we własnej integracji',
+    ed_duplicates_helper: 'Którą pokazują znalezione kamery (przełącznik prywatności i przyciski PTZ zostają przy kamerze Frigate)',
+    ed_duplicates_frigate: 'Kamera Frigate',
+    ed_duplicates_native: 'Kamera natywna',
+    ed_duplicates_both: 'Obie',
+    cf_controls_from: 'Sterowanie z (prywatność, PTZ)',
+    cf_player: 'Odtwarzacz',
   },
   ro: {
     title: 'Camere',
@@ -872,6 +1082,27 @@ const HcI18n = {
     ed_theme_auto: 'Automat (urmează tema)',
     ed_theme_day: 'Zi',
     ed_theme_night: 'Noapte',
+    open_frigate: 'Deschide în Frigate',
+    ed_frigate: 'Frigate',
+    ed_player: 'Player',
+    ed_player_helper: 'Automat: playerul Home Assistant, subfluxul Frigate pentru SD; Frigate: mereu go2rtc din Frigate',
+    ed_player_auto: 'Automat',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'Flux SD',
+    ed_sd_stream_helper: 'Flux go2rtc din Frigate pentru SD; {camera} este numele camerei',
+    ed_instance: 'Instanță Frigate',
+    ed_instance_helper: 'Client id al instanței Frigate, cu mai multe servere Frigate',
+    ed_url: 'Adresa Frigate',
+    ed_url_helper: 'Deschisă de butonul Deschide în Frigate; gol: panoul aplicației Frigate',
+    ed_open_in_frigate: 'Butonul Deschide în Frigate',
+    ed_duplicates: 'Cameră în Frigate și în propria integrare',
+    ed_duplicates_helper: 'Pe care o listează camerele găsite (comutatorul de confidențialitate și butoanele PTZ rămân la camera Frigate)',
+    ed_duplicates_frigate: 'Camera Frigate',
+    ed_duplicates_native: 'Camera nativă',
+    ed_duplicates_both: 'Ambele',
+    cf_controls_from: 'Comenzi de la (confidențialitate, PTZ)',
+    cf_player: 'Player',
   },
   da: {
     title: 'Kameraer',
@@ -945,6 +1176,27 @@ const HcI18n = {
     ed_theme_auto: 'Automatisk (følger temaet)',
     ed_theme_day: 'Dag',
     ed_theme_night: 'Nat',
+    open_frigate: 'Åbn i Frigate',
+    ed_frigate: 'Frigate',
+    ed_player: 'Afspiller',
+    ed_player_helper: 'Automatisk: Home Assistants afspiller, Frigates understream til SD; Frigate: altid Frigates go2rtc',
+    ed_player_auto: 'Automatisk',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'SD-stream',
+    ed_sd_stream_helper: 'Frigates go2rtc-stream til SD; {camera} er kameraets navn',
+    ed_instance: 'Frigate-instans',
+    ed_instance_helper: 'Client id for Frigate-instansen, med flere Frigate-servere',
+    ed_url: 'Frigate-adresse',
+    ed_url_helper: 'Åbnes af knappen Åbn i Frigate; tom: Frigate-appens sidepanel',
+    ed_open_in_frigate: 'Knappen Åbn i Frigate',
+    ed_duplicates: 'Kamera i Frigate og i sin egen integration',
+    ed_duplicates_helper: 'Hvilket de fundne kameraer viser (privatlivskontakt og PTZ-knapper bliver hos Frigate-kameraet)',
+    ed_duplicates_frigate: 'Frigate-kameraet',
+    ed_duplicates_native: 'Det oprindelige kamera',
+    ed_duplicates_both: 'Begge',
+    cf_controls_from: 'Styring fra (privatliv, PTZ)',
+    cf_player: 'Afspiller',
   },
   sv: {
     title: 'Kameror',
@@ -1018,6 +1270,27 @@ const HcI18n = {
     ed_theme_auto: 'Automatiskt (följer temat)',
     ed_theme_day: 'Dag',
     ed_theme_night: 'Natt',
+    open_frigate: 'Öppna i Frigate',
+    ed_frigate: 'Frigate',
+    ed_player: 'Spelare',
+    ed_player_helper: 'Automatisk: Home Assistants spelare, Frigates underström för SD; Frigate: alltid Frigates go2rtc',
+    ed_player_auto: 'Automatisk',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'SD-ström',
+    ed_sd_stream_helper: 'Frigates go2rtc-ström för SD; {camera} är kamerans namn',
+    ed_instance: 'Frigate-instans',
+    ed_instance_helper: 'Client id för Frigate-instansen, med flera Frigate-servrar',
+    ed_url: 'Frigate-adress',
+    ed_url_helper: 'Öppnas av knappen Öppna i Frigate; tom: Frigate-appens sidopanel',
+    ed_open_in_frigate: 'Knappen Öppna i Frigate',
+    ed_duplicates: 'Kamera i Frigate och i sin egen integration',
+    ed_duplicates_helper: 'Vilken de hittade kamerorna listar (integritetsbrytare och PTZ-knappar stannar hos Frigate-kameran)',
+    ed_duplicates_frigate: 'Frigate-kameran',
+    ed_duplicates_native: 'Den egna kameran',
+    ed_duplicates_both: 'Båda',
+    cf_controls_from: 'Styrning från (integritet, PTZ)',
+    cf_player: 'Spelare',
   },
   bg: {
     title: 'Камери',
@@ -1091,6 +1364,27 @@ const HcI18n = {
     ed_theme_auto: 'Автоматично (следва темата)',
     ed_theme_day: 'Ден',
     ed_theme_night: 'Нощ',
+    open_frigate: 'Отвори във Frigate',
+    ed_frigate: 'Frigate',
+    ed_player: 'Плейър',
+    ed_player_helper: 'Автоматично: плейърът на Home Assistant, подпотокът на Frigate за SD; Frigate: винаги go2rtc на Frigate',
+    ed_player_auto: 'Автоматично',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'SD поток',
+    ed_sd_stream_helper: 'go2rtc поток на Frigate за SD; {camera} е името на камерата',
+    ed_instance: 'Инстанция на Frigate',
+    ed_instance_helper: 'Client id на инстанцията на Frigate, при няколко сървъра Frigate',
+    ed_url: 'Адрес на Frigate',
+    ed_url_helper: 'Отваря се от бутона Отвори във Frigate; празно: панелът на приложението Frigate',
+    ed_open_in_frigate: 'Бутон Отвори във Frigate',
+    ed_duplicates: 'Камера във Frigate и в собствената ѝ интеграция',
+    ed_duplicates_helper: 'Коя показват намерените камери (превключвателят за поверителност и бутоните PTZ остават при камерата на Frigate)',
+    ed_duplicates_frigate: 'Камерата на Frigate',
+    ed_duplicates_native: 'Собствената камера',
+    ed_duplicates_both: 'И двете',
+    cf_controls_from: 'Управление от (поверителност, PTZ)',
+    cf_player: 'Плейър',
   },
   ru: {
     title: 'Камеры',
@@ -1164,6 +1458,27 @@ const HcI18n = {
     ed_theme_auto: 'Автоматически (по теме)',
     ed_theme_day: 'День',
     ed_theme_night: 'Ночь',
+    open_frigate: 'Открыть во Frigate',
+    ed_frigate: 'Frigate',
+    ed_player: 'Плеер',
+    ed_player_helper: 'Автоматически: плеер Home Assistant, подпоток Frigate для SD; Frigate: всегда go2rtc Frigate',
+    ed_player_auto: 'Автоматически',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'Поток SD',
+    ed_sd_stream_helper: 'Поток go2rtc Frigate для SD; {camera} — имя камеры',
+    ed_instance: 'Экземпляр Frigate',
+    ed_instance_helper: 'Client id экземпляра Frigate, при нескольких серверах Frigate',
+    ed_url: 'Адрес Frigate',
+    ed_url_helper: 'Открывается кнопкой «Открыть во Frigate»; пусто: панель приложения Frigate',
+    ed_open_in_frigate: 'Кнопка «Открыть во Frigate»',
+    ed_duplicates: 'Камера во Frigate и в своей интеграции',
+    ed_duplicates_helper: 'Какую показывают найденные камеры (переключатель приватности и кнопки PTZ остаются у камеры Frigate)',
+    ed_duplicates_frigate: 'Камера Frigate',
+    ed_duplicates_native: 'Собственная камера',
+    ed_duplicates_both: 'Обе',
+    cf_controls_from: 'Управление от (приватность, PTZ)',
+    cf_player: 'Плеер',
   },
   uk: {
     title: 'Камери',
@@ -1237,6 +1552,27 @@ const HcI18n = {
     ed_theme_auto: 'Автоматично (за темою)',
     ed_theme_day: 'День',
     ed_theme_night: 'Ніч',
+    open_frigate: 'Відкрити у Frigate',
+    ed_frigate: 'Frigate',
+    ed_player: 'Програвач',
+    ed_player_helper: 'Автоматично: програвач Home Assistant, підпотік Frigate для SD; Frigate: завжди go2rtc Frigate',
+    ed_player_auto: 'Автоматично',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'Потік SD',
+    ed_sd_stream_helper: 'Потік go2rtc Frigate для SD; {camera} — назва камери',
+    ed_instance: 'Екземпляр Frigate',
+    ed_instance_helper: 'Client id екземпляра Frigate, якщо серверів Frigate кілька',
+    ed_url: 'Адреса Frigate',
+    ed_url_helper: 'Відкривається кнопкою «Відкрити у Frigate»; порожньо: панель застосунку Frigate',
+    ed_open_in_frigate: 'Кнопка «Відкрити у Frigate»',
+    ed_duplicates: 'Камера у Frigate і у власній інтеграції',
+    ed_duplicates_helper: 'Яку показують знайдені камери (перемикач приватності й кнопки PTZ лишаються в камери Frigate)',
+    ed_duplicates_frigate: 'Камера Frigate',
+    ed_duplicates_native: 'Власна камера',
+    ed_duplicates_both: 'Обидві',
+    cf_controls_from: 'Керування від (приватність, PTZ)',
+    cf_player: 'Програвач',
   },
   hu: {
     title: 'Kamerák',
@@ -1310,6 +1646,27 @@ const HcI18n = {
     ed_theme_auto: 'Automatikus (a témát követi)',
     ed_theme_day: 'Nappal',
     ed_theme_night: 'Éjszaka',
+    open_frigate: 'Megnyitás a Frigate-ben',
+    ed_frigate: 'Frigate',
+    ed_player: 'Lejátszó',
+    ed_player_helper: 'Automatikus: a Home Assistant lejátszója, SD-hez a Frigate alfolyama; Frigate: mindig a Frigate go2rtc-je',
+    ed_player_auto: 'Automatikus',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'SD folyam',
+    ed_sd_stream_helper: 'A Frigate go2rtc-folyama SD-hez; {camera} a kamera neve',
+    ed_instance: 'Frigate-példány',
+    ed_instance_helper: 'A Frigate-példány client id-je, több Frigate-szerver esetén',
+    ed_url: 'Frigate címe',
+    ed_url_helper: 'A Megnyitás a Frigate-ben gomb nyitja meg; üresen: a Frigate alkalmazás panelje',
+    ed_open_in_frigate: 'Megnyitás a Frigate-ben gomb',
+    ed_duplicates: 'Kamera a Frigate-ben és a saját integrációjában',
+    ed_duplicates_helper: 'Melyiket listázzák a talált kamerák (az adatvédelmi kapcsoló és a PTZ gombok a Frigate-kameránál maradnak)',
+    ed_duplicates_frigate: 'A Frigate-kamera',
+    ed_duplicates_native: 'A saját kamera',
+    ed_duplicates_both: 'Mindkettő',
+    cf_controls_from: 'Vezérlés innen (adatvédelem, PTZ)',
+    cf_player: 'Lejátszó',
   },
   sk: {
     title: 'Kamery',
@@ -1383,6 +1740,27 @@ const HcI18n = {
     ed_theme_auto: 'Automaticky (podľa témy)',
     ed_theme_day: 'Deň',
     ed_theme_night: 'Noc',
+    open_frigate: 'Otvoriť vo Frigate',
+    ed_frigate: 'Frigate',
+    ed_player: 'Prehrávač',
+    ed_player_helper: 'Automaticky: prehrávač Home Assistant, podstream Frigate pre SD; Frigate: vždy go2rtc Frigate',
+    ed_player_auto: 'Automaticky',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'Stream SD',
+    ed_sd_stream_helper: 'Stream go2rtc Frigate pre SD; {camera} je názov kamery',
+    ed_instance: 'Inštancia Frigate',
+    ed_instance_helper: 'Client id inštancie Frigate, pri viacerých serveroch Frigate',
+    ed_url: 'Adresa Frigate',
+    ed_url_helper: 'Otvorí ju tlačidlo Otvoriť vo Frigate; prázdne: panel aplikácie Frigate',
+    ed_open_in_frigate: 'Tlačidlo Otvoriť vo Frigate',
+    ed_duplicates: 'Kamera vo Frigate a vo vlastnej integrácii',
+    ed_duplicates_helper: 'Ktorú zobrazujú nájdené kamery (prepínač súkromia a tlačidlá PTZ zostávajú pri kamere Frigate)',
+    ed_duplicates_frigate: 'Kamera Frigate',
+    ed_duplicates_native: 'Natívna kamera',
+    ed_duplicates_both: 'Obe',
+    cf_controls_from: 'Ovládanie z (súkromie, PTZ)',
+    cf_player: 'Prehrávač',
   },
   cs: {
     title: 'Kamery',
@@ -1456,6 +1834,27 @@ const HcI18n = {
     ed_theme_auto: 'Automaticky (podle motivu)',
     ed_theme_day: 'Den',
     ed_theme_night: 'Noc',
+    open_frigate: 'Otevřít ve Frigate',
+    ed_frigate: 'Frigate',
+    ed_player: 'Přehrávač',
+    ed_player_helper: 'Automaticky: přehrávač Home Assistant, podstream Frigate pro SD; Frigate: vždy go2rtc Frigate',
+    ed_player_auto: 'Automaticky',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'Stream SD',
+    ed_sd_stream_helper: 'Stream go2rtc Frigate pro SD; {camera} je název kamery',
+    ed_instance: 'Instance Frigate',
+    ed_instance_helper: 'Client id instance Frigate, při více serverech Frigate',
+    ed_url: 'Adresa Frigate',
+    ed_url_helper: 'Otevře ji tlačítko Otevřít ve Frigate; prázdné: panel aplikace Frigate',
+    ed_open_in_frigate: 'Tlačítko Otevřít ve Frigate',
+    ed_duplicates: 'Kamera ve Frigate a ve vlastní integraci',
+    ed_duplicates_helper: 'Kterou zobrazují nalezené kamery (přepínač soukromí a tlačítka PTZ zůstávají u kamery Frigate)',
+    ed_duplicates_frigate: 'Kamera Frigate',
+    ed_duplicates_native: 'Nativní kamera',
+    ed_duplicates_both: 'Obě',
+    cf_controls_from: 'Ovládání z (soukromí, PTZ)',
+    cf_player: 'Přehrávač',
   },
   sl: {
     title: 'Kamere',
@@ -1529,6 +1928,27 @@ const HcI18n = {
     ed_theme_auto: 'Samodejno (sledi temi)',
     ed_theme_day: 'Dan',
     ed_theme_night: 'Noč',
+    open_frigate: 'Odpri v Frigate',
+    ed_frigate: 'Frigate',
+    ed_player: 'Predvajalnik',
+    ed_player_helper: 'Samodejno: predvajalnik Home Assistant, podtok Frigate za SD; Frigate: vedno go2rtc Frigate',
+    ed_player_auto: 'Samodejno',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'Tok SD',
+    ed_sd_stream_helper: 'Tok go2rtc Frigate za SD; {camera} je ime kamere',
+    ed_instance: 'Primerek Frigate',
+    ed_instance_helper: 'Client id primerka Frigate, pri več strežnikih Frigate',
+    ed_url: 'Naslov Frigate',
+    ed_url_helper: 'Odpre ga gumb Odpri v Frigate; prazno: plošča aplikacije Frigate',
+    ed_open_in_frigate: 'Gumb Odpri v Frigate',
+    ed_duplicates: 'Kamera v Frigate in v lastni integraciji',
+    ed_duplicates_helper: 'Katero prikažejo najdene kamere (stikalo zasebnosti in gumbi PTZ ostanejo pri kameri Frigate)',
+    ed_duplicates_frigate: 'Kamera Frigate',
+    ed_duplicates_native: 'Izvorna kamera',
+    ed_duplicates_both: 'Obe',
+    cf_controls_from: 'Upravljanje iz (zasebnost, PTZ)',
+    cf_player: 'Predvajalnik',
   },
   lv: {
     title: 'Kameras',
@@ -1602,6 +2022,27 @@ const HcI18n = {
     ed_theme_auto: 'Automātiski (seko tēmai)',
     ed_theme_day: 'Diena',
     ed_theme_night: 'Nakts',
+    open_frigate: 'Atvērt Frigate',
+    ed_frigate: 'Frigate',
+    ed_player: 'Atskaņotājs',
+    ed_player_helper: 'Automātiski: Home Assistant atskaņotājs, Frigate apakšplūsma SD; Frigate: vienmēr Frigate go2rtc',
+    ed_player_auto: 'Automātiski',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'SD plūsma',
+    ed_sd_stream_helper: 'Frigate go2rtc plūsma SD; {camera} ir kameras nosaukums',
+    ed_instance: 'Frigate instance',
+    ed_instance_helper: 'Frigate instances client id, ja ir vairāki Frigate serveri',
+    ed_url: 'Frigate adrese',
+    ed_url_helper: 'Atver poga Atvērt Frigate; tukšs: Frigate lietotnes panelis',
+    ed_open_in_frigate: 'Poga Atvērt Frigate',
+    ed_duplicates: 'Kamera Frigate un savā integrācijā',
+    ed_duplicates_helper: 'Kuru rāda atrastās kameras (privātuma slēdzis un PTZ pogas paliek pie Frigate kameras)',
+    ed_duplicates_frigate: 'Frigate kamera',
+    ed_duplicates_native: 'Vietējā kamera',
+    ed_duplicates_both: 'Abas',
+    cf_controls_from: 'Vadība no (privātums, PTZ)',
+    cf_player: 'Atskaņotājs',
   },
   el: {
     title: 'Κάμερες',
@@ -1675,6 +2116,27 @@ const HcI18n = {
     ed_theme_auto: 'Αυτόματο (ακολουθεί το θέμα)',
     ed_theme_day: 'Ημέρα',
     ed_theme_night: 'Νύχτα',
+    open_frigate: 'Άνοιγμα στο Frigate',
+    ed_frigate: 'Frigate',
+    ed_player: 'Αναπαραγωγή',
+    ed_player_helper: 'Αυτόματα: η αναπαραγωγή του Home Assistant, η δευτερεύουσα ροή του Frigate για SD· Frigate: πάντα το go2rtc του Frigate',
+    ed_player_auto: 'Αυτόματα',
+    ed_player_frigate: 'Frigate (go2rtc)',
+    ed_player_home_assistant: 'Home Assistant',
+    ed_sd_stream: 'Ροή SD',
+    ed_sd_stream_helper: 'Ροή go2rtc του Frigate για SD· {camera} είναι το όνομα της κάμερας',
+    ed_instance: 'Παρουσία Frigate',
+    ed_instance_helper: 'Client id της παρουσίας Frigate, με πολλούς διακομιστές Frigate',
+    ed_url: 'Διεύθυνση Frigate',
+    ed_url_helper: 'Ανοίγει με το κουμπί Άνοιγμα στο Frigate· κενό: ο πίνακας της εφαρμογής Frigate',
+    ed_open_in_frigate: 'Κουμπί Άνοιγμα στο Frigate',
+    ed_duplicates: 'Κάμερα στο Frigate και στη δική της ενσωμάτωση',
+    ed_duplicates_helper: 'Ποια δείχνουν οι κάμερες που βρέθηκαν (ο διακόπτης απορρήτου και τα κουμπιά PTZ μένουν στην κάμερα Frigate)',
+    ed_duplicates_frigate: 'Η κάμερα Frigate',
+    ed_duplicates_native: 'Η εγγενής κάμερα',
+    ed_duplicates_both: 'Και οι δύο',
+    cf_controls_from: 'Χειρισμός από (απόρρητο, PTZ)',
+    cf_player: 'Αναπαραγωγή',
   },
 };
 
@@ -1833,11 +2295,19 @@ function hcLoadStream(entity) {
   return hcStreamLoad;
 }
 
-// PTZ buttons as { left, right, up, down }: a prefix ("button.x_move" + "_left"…), an object, or found on the device.
-function hcPtz(hass, cam, cameraId) {
-  if (cam.ptz === false) return null;
+// PTZ buttons as { left, right, up, down }: a prefix ("button.x_move" + "_left"…), an object, or found on the device
+// (`auto`, or `buttons`). `frigate`: Frigate's frigate.ptz action on the Frigate camera `frigateId`, as
+// { service: 'frigate', left: frigateId, … } (the camera moves from the press until the release).
+function hcPtz(hass, cam, cameraId, frigateId) {
   const ptz = cam.ptz;
-  if (!ptz) {
+  if (ptz === false || ptz === 'none') return null;
+  if (ptz === 'frigate') {
+    if (!frigateId) return null;
+    const out = { service: 'frigate' };
+    for (const d of HC_PTZ_DIRS) out[d] = frigateId;
+    return out;
+  }
+  if (!ptz || ptz === 'auto' || ptz === 'buttons') {
     // Each direction on its own: translated entity ids share no prefix (Tapo Cameras: *_gauche, *_monter…)
     const found = {};
     for (const d of HC_PTZ_DIRS) {
@@ -1874,11 +2344,90 @@ function hcMotion(hass, cam, cameraId) {
   );
 }
 
-// A camera entry, completed from its device: SD stream, privacy switch and PTZ buttons.
-function hcCamera(hass, raw, index) {
+// ── Frigate ──────────────────────────────────────────────────────────────────
+// `frigate:` options of the card. player: auto (Home Assistant's player, which the Frigate integration already
+// connects to Frigate's go2rtc; Frigate's own sub-stream, sd_stream, for SD), frigate (always Frigate's go2rtc,
+// through the integration's proxy) or home_assistant (never). instance: the Frigate client id, when there are
+// several; else the camera's own. url: Frigate's address for the "Open in Frigate" button, else the sidebar panel
+// of a Frigate app (Frigate, Frigate Proxy…) when there is one. duplicates: the panel's discovery only.
+const HC_FRIGATE_DEFAULTS = {
+  player: 'auto',
+  sd_stream: '{camera}_sub',
+  instance: '',
+  url: '',
+  open_in_frigate: true,
+  duplicates: 'frigate',
+};
+const HC_PLAYERS = ['auto', 'frigate', 'home_assistant'];
+const HC_DUPLICATES = ['frigate', 'native', 'both'];
+function hcFrigateConf(config) {
+  return Object.assign({}, HC_FRIGATE_DEFAULTS, config?.frigate || {});
+}
+
+function hcIsFrigate(hass, id) {
+  const platform = hass?.entities?.[id]?.platform;
+  if (platform) return platform === 'frigate';
+  const attrs = hass?.states?.[id]?.attributes;
+  return !!(attrs?.camera_name && attrs?.client_id);
+}
+
+// A name compared without case, accents nor punctuation: "Séjour cam" and "sejour_cam" match.
+const hcKey = (name) =>
+  String(name || '')
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '');
+
+// The native camera (Tapo…) of a Frigate camera, whose privacy switch and PTZ buttons it takes: the only camera
+// of its area that does not come from Frigate, else the one of its area (or anywhere, without an area) with its name.
+// Indexed once per `hass.entities` object, as the device index.
+const hcNativeIndex = new WeakMap();
+function hcNative(hass, id) {
+  const reg = hass?.entities;
+  if (!reg) return null;
+  let index = hcNativeIndex.get(reg);
+  if (!index) {
+    index = new Map();
+    hcNativeIndex.set(reg, index);
+  }
+  if (index.has(id)) return index.get(id);
+  const area = (e) => e?.area_id || hass.devices?.[e?.device_id]?.area_id || null;
+  const name = (e) => {
+    const dev = hass.devices?.[e?.device_id];
+    return e?.name || dev?.name_by_user || dev?.name || hass.states?.[e?.entity_id]?.attributes?.friendly_name || e?.entity_id;
+  };
+  const own = reg[id];
+  const natives = Object.values(reg).filter(
+    (e) =>
+      e.entity_id.startsWith('camera.') &&
+      e.platform !== 'frigate' &&
+      !e.hidden &&
+      !/_sd_stream$/.test(e.entity_id) &&
+      hass.states?.[e.entity_id],
+  );
+  const where = area(own);
+  const sameArea = where ? natives.filter((e) => area(e) === where) : [];
+  let found = sameArea.length === 1 ? sameArea[0] : null;
+  if (!found) {
+    const key = hcKey(hass.states?.[id]?.attributes?.camera_name || name(own));
+    const named = (sameArea.length ? sameArea : natives).filter((e) => hcKey(name(e)) === key);
+    found = named.length === 1 ? named[0] : null;
+  }
+  const native = found ? found.entity_id : null;
+  index.set(id, native);
+  return native;
+}
+
+// A camera entry, completed from its device: SD stream, privacy switch and PTZ buttons. A Frigate camera takes them
+// from its native camera (controls_from, found by hcNative unless set), and its SD stream from Frigate.
+function hcCamera(hass, raw, index, fc = HC_FRIGATE_DEFAULTS) {
   const cam = typeof raw === 'string' ? { camera: raw } : Object.assign({}, raw);
   const id = cam.camera || cam.entity || '';
   const st = hass?.states?.[id];
+  const frigate = !!id && hcIsFrigate(hass, id);
+  // Where the controls are: the camera itself, or (Frigate) its native camera
+  const ctl = (cam.controls_from === false ? null : cam.controls_from || (frigate ? hcNative(hass, id) : null)) || id;
   let sd = cam.sd;
   if (sd === undefined && /_hd_stream$/.test(id)) {
     const guess = id.replace(/_hd_stream$/, '_sd_stream');
@@ -1888,11 +2437,14 @@ function hcCamera(hass, raw, index) {
   const privacy =
     cam.privacy === false
       ? null
-      : cam.privacy || hcSibling(hass, id, 'switch', '_privacy') || hcSibling(hass, id, 'switch', '_privacy_mode') || null;
+      : cam.privacy || hcSibling(hass, ctl, 'switch', '_privacy') || hcSibling(hass, ctl, 'switch', '_privacy_mode') || null;
   // Tapo Cameras (ha-tapo): one camera entity whose stream is chosen by its select.*_stream_quality (hd / sd),
-  // instead of an SD camera entity next to the HD one
-  const quality = sd ? null : hcSibling(hass, id, 'select', '_stream_quality') || null;
+  // instead of an SD camera entity next to the HD one. Not for a Frigate camera: Frigate reads the camera itself.
+  const quality = sd || frigate ? null : hcSibling(hass, id, 'select', '_stream_quality') || null;
   const name = cam.name || st?.attributes.friendly_name || id;
+  const player = HC_PLAYERS.includes(cam.player) ? cam.player : HC_PLAYERS.includes(fc.player) ? fc.player : 'auto';
+  const fname = st?.attributes?.camera_name || id.replace(/^camera\./, '');
+  const motion = hcMotion(hass, cam, id);
   return {
     key: cam.id || id.replace(/^camera\./, '') || `camera_${index}`,
     camera: id,
@@ -1902,8 +2454,12 @@ function hcCamera(hass, raw, index) {
     privacy: privacy,
     quality: quality,
     power: cam.power || null,
-    ptz: hcPtz(hass, cam, id),
-    motion: hcMotion(hass, cam, id),
+    ptz: hcPtz(hass, cam, ctl, frigate ? id : null),
+    motion: motion.length || ctl === id ? motion : hcMotion(hass, {}, ctl),
+    player: player,
+    // Frigate: its camera name and instance (the integration's proxy), and its SD stream when there is no SD entity
+    frigate: frigate ? { name: fname, instance: fc.instance || st?.attributes?.client_id || '' } : null,
+    sdStream: frigate && !sd && player !== 'home_assistant' && fc.sd_stream ? String(fc.sd_stream).replace('{camera}', fname) : null,
   };
 }
 
@@ -2054,7 +2610,24 @@ const HC_STREAM_FEATURE = 2;
 // the next one asked once the previous one has loaded, at most one every HC_STILL_MS.
 const HC_STILL_MS = 1000;
 const HC_STILL_RETRY_MS = 5000;
-class HcCameraStill extends HTMLElement {
+// The card's own players (still, Frigate): fitted in the tile as Home Assistant's player is (fitMode, aspectRatio).
+class HcFittedPlayer extends HTMLElement {
+  get fitMode() {
+    return this._fit;
+  }
+  set fitMode(v) {
+    this._fit = v;
+    this._apply();
+  }
+  get aspectRatio() {
+    return this._ratio;
+  }
+  set aspectRatio(v) {
+    this._ratio = v;
+    this._apply();
+  }
+}
+class HcCameraStill extends HcFittedPlayer {
   constructor() {
     super();
     this._img = document.createElement('img');
@@ -2078,20 +2651,6 @@ class HcCameraStill extends HTMLElement {
       this._stop();
     }
     if (this.isConnected && !this._timer && !this._next) this._fetch();
-  }
-  get fitMode() {
-    return this._fit;
-  }
-  set fitMode(v) {
-    this._fit = v;
-    this._apply();
-  }
-  get aspectRatio() {
-    return this._ratio;
-  }
-  set aspectRatio(v) {
-    this._ratio = v;
-    this._apply();
   }
   get updateComplete() {
     return Promise.resolve(true);
@@ -2151,6 +2710,179 @@ class HcCameraStill extends HTMLElement {
 }
 if (!customElements.get('hc-camera-still')) pickerDefine('hc-camera-still', HcCameraStill);
 
+// A Frigate camera's stream straight from Frigate's go2rtc: WebRTC negotiated over go2rtc's WebSocket
+// (webrtc/offer, webrtc/answer, webrtc/candidate), through the Frigate integration's proxy
+// (/api/frigate[/<instance>]/webrtc/api/ws?src=<stream>), on a path signed by Home Assistant (a browser WebSocket
+// carries no token). Used for Frigate's sub-stream (SD), or for every stream with `player: frigate`. A session that
+// brings no picture within HC_FRIGATE_TIMEOUT_MS says so (hc-frigate-failed): hc-camera-stream falls back to
+// Home Assistant's player.
+const HC_FRIGATE_TIMEOUT_MS = 15000;
+class HcFrigatePlayer extends HcFittedPlayer {
+  static elementProperties = new Map([['hass', {}]]);
+
+  constructor() {
+    super();
+    this._video = document.createElement('video');
+    this._video.muted = true;
+    this._video.autoplay = true;
+    this._video.playsInline = true;
+    this._video.setAttribute('playsinline', '');
+    this._video.style.cssText = 'display: block; width: 100%; height: 100%; max-height: var(--video-max-height, none);';
+    this._video.addEventListener('loadeddata', () => this._loaded());
+    this._run = 0;
+    this._apply();
+  }
+
+  get hass() {
+    return this._hass;
+  }
+  set hass(v) {
+    this._hass = v;
+    if (this.isConnected && !this._pc && !this._starting && !this._failed) this._start();
+  }
+  get source() {
+    return this._source;
+  }
+  set source(v) {
+    this._source = v;
+  }
+  get muted() {
+    return this._video.muted;
+  }
+  set muted(v) {
+    this._video.muted = !!v;
+  }
+  set posterUrl(v) {
+    if (v) this._video.poster = v;
+  }
+  get updateComplete() {
+    return Promise.resolve(true);
+  }
+
+  _apply() {
+    this._video.style.objectFit = this._fit || 'contain';
+    this._video.style.height = this._ratio ? '100%' : 'auto';
+  }
+
+  connectedCallback() {
+    if (!this._video.isConnected) this.append(this._video);
+    this._start();
+  }
+
+  disconnectedCallback() {
+    this._close();
+  }
+
+  _close() {
+    this._run++;
+    clearTimeout(this._timer);
+    this._timer = null;
+    if (this._ws) {
+      this._ws.onopen = this._ws.onmessage = this._ws.onerror = this._ws.onclose = null;
+      try {
+        this._ws.close();
+      } catch (_e) {
+        // already closed
+      }
+    }
+    this._ws = null;
+    this._pc?.close();
+    this._pc = null;
+    this._video.srcObject = null;
+  }
+
+  _fail() {
+    if (this._failed) return;
+    this._failed = true;
+    this._close();
+    this.dispatchEvent(new Event('hc-frigate-failed', { bubbles: true }));
+  }
+
+  _loaded() {
+    if (this._shown) return;
+    this._shown = true;
+    clearTimeout(this._timer);
+    const media = this._video.srcObject;
+    this.dispatchEvent(new Event('load', { bubbles: true, composed: true }));
+    this.dispatchEvent(
+      new CustomEvent('streams', {
+        detail: { hasAudio: !!media?.getAudioTracks?.().length, hasVideo: true },
+        bubbles: true,
+        composed: true,
+      }),
+    );
+  }
+
+  async _start() {
+    const src = this._source;
+    if (!this._hass?.callWS || !src || this._pc || this._starting || this._failed || !this.isConnected) return;
+    if (typeof RTCPeerConnection !== 'function' || typeof WebSocket !== 'function') {
+      this._fail();
+      return;
+    }
+    this._starting = true;
+    const run = ++this._run;
+    this._timer = setTimeout(() => this._fail(), HC_FRIGATE_TIMEOUT_MS);
+    try {
+      const { path } = await this._hass.callWS({
+        type: 'auth/sign_path',
+        path: `${src.path}?src=${encodeURIComponent(src.stream)}`,
+        expires: 300,
+      });
+      if (run !== this._run) return;
+      const http = this._hass.hassUrl ? this._hass.hassUrl(path) : new URL(path, location.href).href;
+      const pc = new RTCPeerConnection({ iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] });
+      this._pc = pc;
+      pc.addTransceiver('video', { direction: 'recvonly' });
+      pc.addTransceiver('audio', { direction: 'recvonly' });
+      const media = new MediaStream();
+      pc.ontrack = (ev) => {
+        media.addTrack(ev.track);
+        if (this._video.srcObject !== media) this._video.srcObject = media;
+      };
+      pc.onconnectionstatechange = () => {
+        if (pc.connectionState === 'failed') this._fail();
+      };
+      const ws = new WebSocket(http.replace(/^http/, 'ws'));
+      this._ws = ws;
+      const send = (type, value) => {
+        if (ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ type, value }));
+      };
+      pc.onicecandidate = (ev) => send('webrtc/candidate', ev.candidate ? ev.candidate.candidate : '');
+      ws.onopen = async () => {
+        try {
+          const offer = await pc.createOffer();
+          await pc.setLocalDescription(offer);
+          send('webrtc/offer', offer.sdp);
+        } catch (_e) {
+          this._fail();
+        }
+      };
+      ws.onmessage = (ev) => {
+        let msg;
+        try {
+          msg = JSON.parse(ev.data);
+        } catch (_e) {
+          return;
+        }
+        if (msg.type === 'webrtc/answer') pc.setRemoteDescription({ type: 'answer', sdp: msg.value }).catch(() => this._fail());
+        else if (msg.type === 'webrtc/candidate' && msg.value) pc.addIceCandidate({ candidate: msg.value, sdpMid: '0' }).catch(() => {});
+        else if (msg.type === 'error') this._fail();
+      };
+      ws.onerror = () => this._fail();
+      // go2rtc keeps the socket open for the session: closed before the picture, the stream is not there
+      ws.onclose = () => {
+        if (!this._shown) this._fail();
+      };
+    } catch (_e) {
+      if (run === this._run) this._fail();
+    } finally {
+      if (run === this._run) this._starting = false;
+    }
+  }
+}
+if (!customElements.get('hc-frigate-player')) pickerDefine('hc-frigate-player', HcFrigatePlayer);
+
 class HcCameraStream extends HTMLElement {
   // The card gives hass only to a player that declares it; passed on to the inner one if it asks.
   static elementProperties = new Map([['hass', {}]]);
@@ -2160,7 +2892,15 @@ class HcCameraStream extends HTMLElement {
     this._muted = false;
     this._caps = new Map(); // entity → true (WebRTC), false, or the pending request
     this._failed = new Set(); // entities whose WebRTC session brought no video
+    this._frigateFailed = new Set(); // Frigate sources that brought no video: Home Assistant's player instead
+    this._frigate = null;
     this._player = null;
+    this.addEventListener('hc-frigate-failed', (ev) => {
+      ev.stopPropagation();
+      if (ev.target !== this._player || !this._frigate) return;
+      this._frigateFailed.add(this._frigate.key);
+      this._sync();
+    });
     this.addEventListener('streams', (ev) => {
       if (ev.target !== this._player || this._player.localName !== 'ha-web-rtc-player' || ev.detail?.hasVideo !== false)
         return;
@@ -2174,8 +2914,20 @@ class HcCameraStream extends HTMLElement {
   }
   set stateObj(v) {
     // Emptied (a camera going away, or played again on purpose): its WebRTC gets another chance.
-    if (!v && this._obj) this._failed.delete(this._obj.entity_id);
+    if (!v && this._obj) {
+      this._failed.delete(this._obj.entity_id);
+      this._frigateFailed.clear();
+    }
     this._obj = v;
+    this._sync();
+  }
+  // A Frigate source ({ key, path, stream }, see HcFrigatePlayer), or null: Home Assistant's player.
+  get frigate() {
+    return this._frigate;
+  }
+  set frigate(v) {
+    if ((v?.key || null) === (this._frigate?.key || null)) return;
+    this._frigate = v || null;
     this._sync();
   }
   get hass() {
@@ -2245,6 +2997,18 @@ class HcCameraStream extends HTMLElement {
     const obj = this._obj;
     const id = obj?.entity_id;
     const live = !!id && (obj.attributes?.supported_features & HC_STREAM_FEATURE) !== 0;
+    const f = this._frigate;
+    if (live && f && !this._frigateFailed.has(f.key)) {
+      const p = this._player;
+      if (p?.localName !== 'hc-frigate-player' || p.source?.key !== f.key) {
+        const player = document.createElement('hc-frigate-player');
+        player.source = f;
+        const still = obj.attributes?.entity_picture;
+        if (still) player.posterUrl = this._hass?.hassUrl ? this._hass.hassUrl(still) : still;
+        this._use(player);
+      }
+      return;
+    }
     const rtc = live && !this._failed.has(id) ? this._webRtc(id) : false;
     if (rtc === undefined) {
       this._use(null); // nothing until the camera says what it offers: no HLS session for nothing
@@ -2267,7 +3031,7 @@ class HcCameraStream extends HTMLElement {
       }
       return;
     }
-    if (!id && ['ha-web-rtc-player', 'hc-camera-still'].includes(this._player?.localName)) {
+    if (!id && ['ha-web-rtc-player', 'hc-camera-still', 'hc-frigate-player'].includes(this._player?.localName)) {
       this._use(null);
       return;
     }
@@ -2560,7 +3324,7 @@ class HomeCameraCard extends HTMLElement {
   _cameras() {
     const seen = new Set();
     return (this._config.cameras || [])
-      .map((raw, i) => hcCamera(this._hass, raw, i))
+      .map((raw, i) => hcCamera(this._hass, raw, i, hcFrigateConf(this._config)))
       .filter((cam) => cam.camera)
       .map((cam, i) => {
         if (seen.has(cam.key)) cam.key = `${cam.key}_${i}`;
@@ -2641,7 +3405,7 @@ class HomeCameraCard extends HTMLElement {
           this._config.columns,
           this._config.aspect_ratio,
           cams.length,
-          visible.map((cam) => [cam.key, cam.camera, cam.sd, cam.name, cam.ptz, cam.motion]),
+          visible.map((cam) => [cam.key, cam.camera, cam.sd, cam.sdStream, cam.player, cam.frigate, cam.name, cam.ptz, cam.motion]),
         ]);
     if (viewSig !== this._viewSig) {
       this._viewSig = viewSig;
@@ -3042,6 +3806,7 @@ class HomeCameraCard extends HTMLElement {
   _fillTile(tile, cam, hd, single) {
     tile._cam = cam;
     tile._entity = hd || !cam.sd ? cam.camera : cam.sd;
+    tile._stream.frigate = this._frigateSource(cam, hd);
     tile.dataset.cam = cam.key;
     tile.setAttribute('aria-label', cam.name);
     tile.querySelector('.open').title = cam.name;
@@ -3061,7 +3826,8 @@ class HomeCameraCard extends HTMLElement {
     const cam = tile._cam;
     if (!cam) return;
     const full = this._fullscreen(tile);
-    const sig = JSON.stringify([this._lang(), cam.ptz, full, tile._audio]);
+    const frigateUrl = this._frigateUrl(cam);
+    const sig = JSON.stringify([this._lang(), cam.ptz, full, tile._audio, frigateUrl]);
     if (sig === tile._toolsSig) return;
     tile._toolsSig = sig;
 
@@ -3072,13 +3838,20 @@ class HomeCameraCard extends HTMLElement {
     let tools = '';
     if (cam.ptz && !full) tools += btn('ptz', 'data-action="ptz"', 'mdi:arrow-all', this._t('ptz'));
     if (tile._audio) tools += btn('sound', 'data-action="sound"', 'mdi:volume-off', this._t('sound_on'));
+    if (frigateUrl && !full) tools += btn('frigate', 'data-action="frigate"', 'mdi:open-in-new', this._t('open_frigate'));
     if (full) tools += btn('full', 'data-action="fullscreen"', 'mdi:fullscreen-exit', this._t('exit_fullscreen'));
     else tools += btn('details', 'data-action="details"', 'mdi:information-outline', this._t('details'));
     tile.querySelector('.tools').innerHTML = tools;
     tile.querySelector('.pad').innerHTML = cam.ptz
       ? HC_PTZ_DIRS.filter((d) => cam.ptz[d])
           .map((d) =>
-            btn(`move ${d}`, `data-action="move" data-entity="${hcEsc(cam.ptz[d])}"`, HC_PTZ_ICONS[d], this._t(`move_${d}`)),
+            btn(
+              `move ${d}`,
+              `data-action="move" data-dir="${d}" data-entity="${hcEsc(cam.ptz[d])}"` +
+                (cam.ptz.service === 'frigate' ? ' data-service="frigate"' : ''),
+              HC_PTZ_ICONS[d],
+              this._t(`move_${d}`),
+            ),
           )
           .join('')
       : '';
@@ -3242,7 +4015,48 @@ class HomeCameraCard extends HTMLElement {
   // PTZ: one press per tap, repeated while the arrow is held down.
   _move(b) {
     if (b.classList.contains('dis')) return;
+    // Frigate (ONVIF): the camera moves until it is told to stop (_ptzStop)
+    if (b.dataset.service === 'frigate') {
+      this._call('frigate', 'ptz', { entity_id: b.dataset.entity, action: 'move', argument: b.dataset.dir }).catch(() => {});
+      return;
+    }
     this._call('button', 'press', { entity_id: b.dataset.entity }).catch(() => {});
+  }
+
+  _ptzStop(b) {
+    this._call('frigate', 'ptz', { entity_id: b.dataset.entity, action: 'stop' }).catch(() => {});
+  }
+
+  // A Frigate camera's player source: Frigate's go2rtc through the integration's proxy, for its SD sub-stream (auto),
+  // or for every stream (player: frigate). Null: Home Assistant's own player.
+  _frigateSource(cam, hd) {
+    if (!cam.frigate || cam.player === 'home_assistant') return null;
+    let stream = null;
+    if (!hd && cam.sdStream) stream = cam.sdStream;
+    else if (cam.player === 'frigate') stream = cam.frigate.name;
+    if (!stream) return null;
+    const path = `/api/frigate/${cam.frigate.instance ? `${encodeURIComponent(cam.frigate.instance)}/` : ''}webrtc/api/ws`;
+    return { key: `${path}?src=${stream}`, path: path, stream: stream };
+  }
+
+  // Where "Open in Frigate" goes: the `frigate.url` option, else the sidebar panel of a Frigate app (its slug ends
+  // with frigate, or has frigate in it: Frigate, Frigate Proxy…). Null: no button.
+  _frigateUrl(cam) {
+    const fc = hcFrigateConf(this._config);
+    if (!cam?.frigate || fc.open_in_frigate === false) return null;
+    if (fc.url) return String(fc.url);
+    const panels = Object.keys(this._hass?.panels || {}).filter((k) => /frigate/i.test(k));
+    const panel = panels.find((k) => /proxy/i.test(k)) || panels[0];
+    return panel ? `/${panel}` : null;
+  }
+
+  _openFrigate(url) {
+    if (/^https?:\/\//i.test(url)) {
+      window.open(url, '_blank', 'noopener');
+      return;
+    }
+    history.pushState(null, '', url);
+    window.dispatchEvent(new CustomEvent('location-changed', { detail: { replace: false } }));
   }
 
   // A service call as a promise, whether Home Assistant's callService throws, rejects or returns nothing.
@@ -3260,7 +4074,8 @@ class HomeCameraCard extends HTMLElement {
     this._stopRepeat();
     this._move(b);
     this._repeatBtn = b;
-    this._repeat = setTimeout(() => {
+    // Frigate: one move from the press, a stop at the release (_stopRepeat), no repeat
+    if (b.dataset.service !== 'frigate') this._repeat = setTimeout(() => {
       this._repeat = setInterval(() => {
         // The arrow was re-rendered or its tile removed while held: its pointerup will never come.
         if (!b.isConnected) this._stopRepeat();
@@ -3278,6 +4093,7 @@ class HomeCameraCard extends HTMLElement {
   }
 
   _stopRepeat() {
+    if (this._repeatBtn?.dataset.service === 'frigate' && !this._repeatBtn.classList.contains('dis')) this._ptzStop(this._repeatBtn);
     clearTimeout(this._repeat);
     clearInterval(this._repeat);
     this._repeat = null;
@@ -3305,6 +4121,7 @@ class HomeCameraCard extends HTMLElement {
       if (!b) return;
       ev.preventDefault();
       this._move(b);
+      if (b.dataset.service === 'frigate') setTimeout(() => this._ptzStop(b), HC_PTZ_HOLD_MS);
       return;
     }
     if (ev.key !== 'Enter' && ev.key !== ' ') return;
@@ -3596,9 +4413,16 @@ class HomeCameraCard extends HTMLElement {
     else if (action === 'sound') this._toggleSound(tile);
     else if (action === 'fullscreen') this._toggleFullscreen(tile);
     else if (action === 'details') this._moreInfo(tile._cam?.camera || tile._entity);
+    else if (action === 'frigate') {
+      const url = this._frigateUrl(tile._cam);
+      if (url) this._openFrigate(url);
+    }
     else if (action === 'move') {
       // A pointer press already moved the camera (pointerdown); a click without a pointer did not.
-      if (ev.type !== 'click' || !ev.detail) this._move(btn);
+      if (ev.type !== 'click' || !ev.detail) {
+        this._move(btn);
+        if (btn.dataset.service === 'frigate') setTimeout(() => this._ptzStop(btn), HC_PTZ_HOLD_MS);
+      }
     } else if (tile.classList.contains('ptz-open')) tile.classList.remove('ptz-open');
     // A tap on the image: fullscreen, and out of it again (arrows or not).
     else this._toggleFullscreen(tile);
@@ -3648,7 +4472,7 @@ function hcColumns(config, count) {
 }
 
 // ── home-camera-card-editor (visual editor, built on HA's ha-form) ───────────
-const HC_CAMERA_FIELDS = ['name', 'short_name', 'camera', 'sd', 'privacy', 'power', 'ptz', 'motion'];
+const HC_CAMERA_FIELDS = ['name', 'short_name', 'camera', 'sd', 'privacy', 'power', 'ptz', 'motion', 'controls_from', 'player'];
 
 class HomeCameraCardEditor extends HTMLElement {
   setConfig(config) {
@@ -3674,6 +4498,7 @@ class HomeCameraCardEditor extends HTMLElement {
   _schema() {
     const t = (k) => hcT(this._lang(), k);
     const camera = { entity: { domain: 'camera' } };
+    const players = HC_PLAYERS.map((v) => ({ value: v, label: t(`ed_player_${v}`) }));
     const sw = { entity: { domain: ['switch', 'input_boolean'] } };
     const fields = {
       name: { selector: { text: {} } },
@@ -3684,6 +4509,8 @@ class HomeCameraCardEditor extends HTMLElement {
       power: { selector: sw },
       ptz: { selector: { text: {} } },
       motion: { selector: { entity: { domain: 'binary_sensor' } } },
+      controls_from: { selector: camera },
+      player: { selector: { select: { mode: 'dropdown', options: players } } },
     };
     for (const k of HC_CAMERA_FIELDS) fields[k].label = t(`cf_${k}`);
     // section 'camera' (the Cameras panel's Settings): one camera's fields, two by two
@@ -3769,6 +4596,39 @@ class HomeCameraCardEditor extends HTMLElement {
           },
         ],
       },
+      // Frigate cameras: the player, the SD sub-stream, the instance and the "Open in Frigate" button; on the panel,
+      // which of a Frigate camera and its native camera its discovery lists.
+      {
+        type: 'expandable',
+        name: 'frigate',
+        icon: 'mdi:cctv',
+        schema: [
+          {
+            type: 'grid',
+            name: '',
+            schema: [
+              { name: 'player', selector: { select: { mode: 'dropdown', options: players } } },
+              { name: 'sd_stream', selector: { text: {} } },
+              { name: 'instance', selector: { text: {} } },
+              { name: 'url', selector: { text: {} } },
+            ],
+          },
+          { name: 'open_in_frigate', selector: { boolean: {} } },
+          ...(this.section === 'options'
+            ? [
+                {
+                  name: 'duplicates',
+                  selector: {
+                    select: {
+                      mode: 'dropdown',
+                      options: HC_DUPLICATES.map((v) => ({ value: v, label: t(`ed_duplicates_${v}`) })),
+                    },
+                  },
+                },
+              ]
+            : []),
+        ],
+      },
       // Mini card: its detail button (on unless `zoom: false`).
       ...(this.constructor.mini ? [{ name: 'zoom', selector: { boolean: {} } }] : []),
       {
@@ -3835,6 +4695,7 @@ class HomeCameraCardEditor extends HTMLElement {
     // Video wall (the Cameras panel): no column count by default, the wall fits as many as the width takes
     const defaults = this._wall() ? Object.assign({}, HC_DEFAULTS, { columns: undefined }) : HC_DEFAULTS;
     const data = Object.assign({}, defaults, this.constructor.mini ? { zoom: true } : this.panel ? {} : { layout: '' }, this._config);
+    data.frigate = hcFrigateConf(this._config);
     // The object selector edits objects: a camera given as a bare entity id becomes { camera }.
     data.cameras = (data.cameras || []).map((cam) => (typeof cam === 'string' ? { camera: cam } : cam));
     this._form.data = data;
@@ -3862,6 +4723,13 @@ class HomeCameraCardEditor extends HTMLElement {
       if (value[key] === HC_DEFAULTS[key]) delete value[key];
     }
     if (value.zoom === true) delete value.zoom;
+    // frigate: only what differs from its defaults, and no key at all when nothing does
+    if (value.frigate && typeof value.frigate === 'object') {
+      const f = clean(Object.assign({}, value.frigate));
+      for (const key of Object.keys(HC_FRIGATE_DEFAULTS)) if (f[key] === HC_FRIGATE_DEFAULTS[key]) delete f[key];
+      if (Object.keys(f).length) value.frigate = f;
+      else delete value.frigate;
+    }
     if (Array.isArray(value.cameras)) {
       value.cameras = value.cameras.map((cam) => {
         const out = clean(Object.assign({}, cam));
