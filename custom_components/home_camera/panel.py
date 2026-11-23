@@ -8,7 +8,8 @@ shows the home camera card full page, as the cameras dashboard did. Administrato
 - ``home_camera/update_settings`` (administrators): changes the card configuration, the sidebar title and whether
   the panel's top bar is hidden (``hide_toolbar``: never, for the users who are not administrators, or for everyone);
 - ``home_camera/discover`` (administrators): every camera of Home Assistant, for the Settings tab to add the
-  ones the panel does not show yet (``discovery.py``).
+  ones the panel does not show yet (``discovery.py``); ``duplicates`` says which of a Frigate camera and its native
+  camera is listed (``frigate``, ``native`` or ``both``).
 """
 
 from __future__ import annotations
@@ -42,7 +43,7 @@ from .const import (
     TITLES,
     VERSION,
 )
-from .discovery import discover
+from .discovery import DUPLICATES, discover
 
 _ENTITY = re.compile(r"^[a-z_]+\.[a-z0-9_]+$")
 
@@ -167,8 +168,10 @@ async def _ws_update_settings(hass: HomeAssistant, connection: websocket_api.Act
     connection.send_result(msg["id"], _payload(hass))
 
 
-@websocket_api.websocket_command({vol.Required("type"): f"{DOMAIN}/discover"})
+@websocket_api.websocket_command(
+    {vol.Required("type"): f"{DOMAIN}/discover", vol.Optional("duplicates", default="frigate"): vol.In(DUPLICATES)}
+)
 @websocket_api.require_admin
 @callback
 def _ws_discover(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict) -> None:
-    connection.send_result(msg["id"], {"cameras": discover(hass)})
+    connection.send_result(msg["id"], {"cameras": discover(hass, msg["duplicates"])})
