@@ -10,6 +10,12 @@
 
 <p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-camera/main/custom_components/home_camera/brand/icon.png" alt="Home Camera" width="120"></p>
 
+<p align="center">
+  <a href="https://www.tapo.com/"><img src="https://raw.githubusercontent.com/juju35/ha-camera/main/images/tapo.png" alt="Tapo" height="48"></a>
+  &nbsp;&nbsp;
+  <a href="https://frigate.video/"><img src="https://raw.githubusercontent.com/juju35/ha-camera/main/images/frigate.png" alt="Frigate" height="48"></a>
+</p>
+
 Home Assistant integration with a **Cameras sidebar panel for every user** — not only administrators — and the Lovelace cards behind it: **every home camera in one grid**, with a **privacy badge per camera**, an **HD / SD switch** and **PTZ controls**.
 
 List the cameras, the cards find their privacy switch, SD stream and PTZ buttons by themselves.
