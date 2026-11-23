@@ -12,7 +12,7 @@
  *
  * https://github.com/juju35/ha-camera
  */
-var HOME_CAMERA_PANEL_VERSION = '4.11.0';
+var HOME_CAMERA_PANEL_VERSION = '4.12.0';
 
 var HomeCameraPanelI18n = {
   en: {
@@ -2137,7 +2137,8 @@ class HomeCameraPanel extends HTMLElement {
       .map((raw, i) => ({ raw, cam: kit.camera(hass, raw, i) }))
       .filter((x) => x.cam.camera)
       .map(({ raw, cam }) => {
-        var hidden = (cam.privacy && st(cam.privacy) === 'on') || (cam.power && st(cam.power) === 'off');
+        // The card's own rule (a camera as its own privacy control is hidden while off)
+        var hidden = kit.hidden ? kit.hidden(hass, cam) : (cam.privacy && st(cam.privacy) === 'on') || (cam.power && st(cam.power) === 'off');
         var up = !['unavailable', 'unknown', undefined].includes(st(cam.camera));
         var motion = showMotion && !hidden && up && cam.motion.some((id) => st(id) === 'on');
         return { raw, cam, hidden: !!hidden, up, motion };

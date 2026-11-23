@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.12.0 - 2026-11-23
+
+### Features
+- Streams of one camera found on its device: Reolink (Clear / Balanced / Fluent), UniFi Protect (High / Medium / Low), ONVIF profiles (mainstream / substream). The most detailed stream is the camera and the lightest its SD stream, in the panel's discovery and in the cards; Reolink's snapshot cameras are left out.
+- Continuous pan and tilt: Reolink's `ptz_*` buttons move the camera from the press until the release (`ptz_stop`); `ptz: onvif` moves an ONVIF camera with `onvif.ptz`; EZVIZ's `ptz_*` buttons work as step buttons.
+- Preset positions with the arrows: Reolink's `select.*_ptz_preset`, or the new `preset` option.
+- Privacy without a switch: a camera that can be turned off (Arlo, Netatmo) is its own privacy control, hidden while off; `privacy` also takes a camera entity.
+- README: logos and supported integrations for Reolink, UniFi Protect, ONVIF, EZVIZ, Arlo and Netatmo.
+
 ## 4.11.0 - 2026-11-23
 
 ### Features
