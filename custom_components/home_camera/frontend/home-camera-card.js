@@ -3542,7 +3542,8 @@ function hcCamera(hass, raw, index, fc = HC_FRIGATE_DEFAULTS) {
     motion: motion.length || ctl === id ? motion : hcMotion(hass, {}, ctl),
     player: player,
     // Frigate: its camera name and instance (the integration's proxy), and its SD stream when there is no SD entity
-    frigate: frigate ? { name: fname, instance: fc.instance || st?.attributes?.client_id || '' } : null,
+    // The thumbnail and clip proxies need the instance in their path: Frigate's default client id when unknown
+    frigate: frigate ? { name: fname, instance: fc.instance || st?.attributes?.client_id || 'frigate' } : null,
     // Frigate's detection and recording switches of the camera (frigate.badges)
     switches:
       frigate && fc.badges !== false
@@ -3560,6 +3561,7 @@ function hcCamera(hass, raw, index, fc = HC_FRIGATE_DEFAULTS) {
 // thumbnail and clip come through its proxy (/api/frigate/<instance>/thumbnail/<id>, …/notifications/<id>/clip.mp4),
 // on paths signed by Home Assistant (an <img> or a <video> carries no token).
 const HC_EVENTS_MS = 30000; // events asked again at most this often, and soon after a motion ends
+const HC_EVENTS_LIMIT = 50; // events a card asks for: its count reads "50+" beyond
 const HC_LABEL_GROUPS = {
   person: 'person',
   face: 'person',
@@ -3638,6 +3640,12 @@ async function hcSigned(hass, path) {
   if (hit && hit.until > Date.now()) return hit.url;
   const { path: signed } = await hass.callWS({ type: 'auth/sign_path', path, expires: 3600 });
   const url = hass.hassUrl ? hass.hassUrl(signed) : signed;
+  // A long session asks for many thumbnails: the expired paths go first, then the oldest
+  if (hcSignedCache.size >= 500) {
+    const now = Date.now();
+    for (const [k, v] of hcSignedCache) if (v.until <= now) hcSignedCache.delete(k);
+    while (hcSignedCache.size >= 500) hcSignedCache.delete(hcSignedCache.keys().next().value);
+  }
   hcSignedCache.set(path, { url, until: Date.now() + 50 * 60000 });
   return url;
 }
@@ -4592,9 +4600,11 @@ class HomeCameraCard extends HTMLElement {
   }
 
   // Each camera gets a unique key (the same camera listed twice gets two tiles, not one shared tile).
+  // Computed once per hass and config objects: an update asks for them several times (header, view, events)
   _cameras() {
+    if (this._camsMemo?.hass === this._hass && this._camsMemo.config === this._config) return this._camsMemo.cams;
     const seen = new Set();
-    return (this._config.cameras || [])
+    const cams = (this._config.cameras || [])
       .map((raw, i) => hcCamera(this._hass, raw, i, hcFrigateConf(this._config)))
       .filter((cam) => cam.camera)
       .map((cam, i) => {
@@ -4602,6 +4612,8 @@ class HomeCameraCard extends HTMLElement {
         seen.add(cam.key);
         return cam;
       });
+    this._camsMemo = { hass: this._hass, config: this._config, cams };
+    return cams;
   }
 
   // Privacy switches toggled from the card, until Home Assistant reports their new state.
@@ -5347,7 +5359,7 @@ class HomeCameraCard extends HTMLElement {
       this._evAt = Date.now();
       this._evBusy = true;
       const labels = Array.isArray(fc.events_labels) ? fc.events_labels : fc.events_labels ? [fc.events_labels] : null;
-      hcFetchEvents(this._hass, cams, { after: hcStartOfDay(), limit: 50, labels })
+      hcFetchEvents(this._hass, cams, { after: hcStartOfDay(), limit: HC_EVENTS_LIMIT, labels })
         .then((events) => {
           this._events = events;
           this._renderEvents();
@@ -5388,7 +5400,7 @@ class HomeCameraCard extends HTMLElement {
     if (!open) {
       const last = this._events[0];
       const n = this._events.length;
-      const title = this._t(compact ? 'ev_title_short' : 'ev_title', { n });
+      const title = this._t(compact ? 'ev_title_short' : 'ev_title', { n: n >= HC_EVENTS_LIMIT ? `${n}+` : n });
       // The mini card: the object, the camera and when, without the "Last:" lead
       const sub = last && compact
         ? [hcLabelName(lang, last.label), single ? '' : camName(last), hcWhen(lang, last.start_time)].filter(Boolean).join(' · ')
@@ -5415,7 +5427,7 @@ class HomeCameraCard extends HTMLElement {
       const rows = shown.slice(0, limit).map((ev) => {
         const name = hcLabelName(lang, ev.label);
         return (
-          `<div class="evrow${ev.has_clip === false ? ' noclip' : ''}" data-ev="play" data-id="${hcEsc(ev.id)}" role="button" tabindex="0" title="${hcEsc(ev.has_clip === false ? this._t('ev_no_clip') : name)}">` +
+          `<div class="evrow${ev.has_clip === false || !ev.end_time ? ' noclip' : ''}" data-ev="play" data-id="${hcEsc(ev.id)}" role="button" tabindex="0" title="${hcEsc(ev.has_clip === false ? this._t('ev_no_clip') : name)}">` +
           `${thumb(ev, 'th')}<div class="tx"><div class="k"><ha-icon icon="${hcLabelIcon(ev.label)}" class="g-${hcLabelGroup(ev.label)}"></ha-icon>` +
           `${hcEsc(single ? name : `${name} · ${camName(ev)}`)}</div><div class="s">${hcEsc(`${hcWhen(lang, ev.start_time)} · ${hcDuration(lang, ev)}`)}</div></div>` +
           `<span class="sc">${hcEsc(hcScore(lang, ev))}</span></div>`
@@ -5451,7 +5463,8 @@ class HomeCameraCard extends HTMLElement {
       this._renderEvents();
     } else if (what === 'play') {
       const ev = this._events?.find((e) => e.id === el.dataset.id);
-      if (ev && ev.has_clip !== false) this._playClip(ev);
+      // Frigate writes the clip once the event ends
+      if (ev && ev.has_clip !== false && ev.end_time) this._playClip(ev);
     }
   }
 
@@ -6560,11 +6573,15 @@ class HcFrigateTimeline extends HTMLElement {
       const events = cams.length
         ? await hcFetchEvents(this._hass, cams, { after: hcStartOfDay(day), before: hcStartOfDay(day + 1), limit: 500, labels })
         : [];
-      if (day !== this._day) return;
+      if (day !== this._day) return; // another day asked meanwhile: loaded below
       this._events = events;
       if (day === 0) this.dispatchEvent(new CustomEvent('hc-events-count', { detail: { count: events.length }, bubbles: true, composed: true }));
     } finally {
       this._busy = false;
+    }
+    if (day !== this._day) {
+      this._load();
+      return;
     }
     this._render();
   }
@@ -6677,7 +6694,7 @@ class HcFrigateTimeline extends HTMLElement {
       `<div class="meta"><div><div class="t">${hcEsc(title)}</div><div class="s">${hcEsc([when, hcDuration(lang, ev), score && this._t('tl_score', { s: score })].filter(Boolean).join(' · '))}</div></div>` +
       '<div class="acts">' +
       (ev.cam ? `<span class="act" data-do="live" role="button" tabindex="0"><ha-icon icon="${live ? 'mdi:play-box-outline' : 'mdi:cctv'}"></ha-icon>${hcEsc(this._t(live ? 'tl_clip' : 'ev_live_btn'))}</span>` : '') +
-      (ev.has_clip !== false ? `<a class="act dl" download role="button" tabindex="0"><ha-icon icon="mdi:download"></ha-icon>${hcEsc(this._t('tl_download'))}</a>` : '') +
+      (ev.has_clip !== false && ev.end_time ? `<a class="act dl" download role="button" tabindex="0"><ha-icon icon="mdi:download"></ha-icon>${hcEsc(this._t('tl_download'))}</a>` : '') +
       '</div></div>';
     const screen = host.querySelector('.screen');
     if (live) {
@@ -6694,8 +6711,8 @@ class HcFrigateTimeline extends HTMLElement {
       hcLoadStream(ev.cam.entity).catch(() => {});
       return;
     }
-    if (ev.has_clip === false) {
-      screen.insertAdjacentHTML('beforeend', `<span class="hint">${hcEsc(this._t('ev_no_clip'))}</span>`);
+    if (ev.has_clip === false || !ev.end_time) {
+      screen.insertAdjacentHTML('beforeend', `<span class="hint">${hcEsc(this._t(ev.end_time ? 'ev_no_clip' : 'ev_live'))}</span>`);
       return;
     }
     try {
