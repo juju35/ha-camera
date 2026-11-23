@@ -367,3 +367,54 @@ test("the top bar shows the state of the cameras, the wall comes right under the
   assert.equal(r.all, 3);
   assert.equal(r.header, false, "the card's own header is left to the top bar");
 });
+
+test("Frigate cameras bring an Events tab, for every user, with the day's timeline and today's count", async () => {
+  const r = await page.evaluate(async () => {
+    const now = Date.now() / 1000;
+    await open({ admin: false, card: { cameras: ["camera.a", "camera.f"] } }, "/events");
+    const hass = makeHass({ admin: false, card: { cameras: ["camera.a", "camera.f"] } });
+    hass.states["camera.f"] = { entity_id: "camera.f", state: "idle", attributes: { camera_name: "f", client_id: "frigate" } };
+    hass.entities = { "camera.f": { entity_id: "camera.f", platform: "frigate" } };
+    const callWS = hass.callWS;
+    hass.callWS = async (msg) => {
+      if (msg.type === "frigate/events/get")
+        return [
+          { id: "e1", camera: "f", label: "person", start_time: now - 30, end_time: now - 10, has_clip: true },
+          { id: "e2", camera: "f", label: "dog", start_time: now - 4000, end_time: now - 3990, has_clip: true },
+        ];
+      if (msg.type === "auth/sign_path") return { path: `${msg.path}?authSig=x` };
+      return callWS(msg);
+    };
+    document.body.replaceChildren();
+    const el = document.createElement("home-camera-panel");
+    el.panel = { url_path: "cameras", config: {} };
+    el.route = { path: "/events" };
+    document.body.appendChild(el);
+    el.hass = hass;
+    window.panel = el;
+    await new Promise((res) => setTimeout(res, 150));
+    const tl = $("#tab-events hc-frigate-timeline");
+    const items = [...(tl?.shadowRoot.querySelectorAll(".it") || [])].map((i) => i.querySelector(".k span").textContent);
+    return {
+      tabs: tabs(),
+      active: $(".tab.active")?.dataset.tab,
+      items,
+      selected: tl?.shadowRoot.querySelector(".it.sel")?.dataset.id,
+      video: tl?.shadowRoot.querySelector(".screen video")?.getAttribute("src"),
+      // The newest event is selected, its clip not downloaded until it is played
+      preload: tl?.shadowRoot.querySelector(".screen video")?.preload,
+      autoplay: tl?.shadowRoot.querySelector(".screen video")?.autoplay,
+      count: $("#tabbtn-events .cnt")?.textContent,
+      inactive: (panel._goTab("cameras"), tl.active),
+    };
+  });
+  assert.deepEqual(r.tabs, ["cameras", "events"]);
+  assert.equal(r.active, "events");
+  assert.deepEqual(r.items, ["Person", "Dog"]);
+  assert.equal(r.selected, "e1");
+  assert.equal(r.video, "/api/frigate/frigate/notifications/e1/clip.mp4?authSig=x");
+  assert.equal(r.preload, "none");
+  assert.equal(r.autoplay, false);
+  assert.equal(r.count, "2");
+  assert.equal(r.inactive, false);
+});

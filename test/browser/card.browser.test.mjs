@@ -1662,3 +1662,66 @@ test("Frigate: PTZ moves from the press to the release; SD plays Frigate's sub-s
   assert.deepEqual(r.signed, ["/api/frigate/frigate/webrtc/api/ws?src=f_sub"]);
   assert.equal(r.fallback, "ha-camera-stream");
 });
+
+test("Frigate events: folded under the grid, unfolded on a tap; an event's clip plays in its tile, Live goes back", async () => {
+  const r = await page.evaluate(async () => {
+    document.body.replaceChildren();
+    const el = document.createElement("home-camera-card");
+    el.setConfig({ cameras: ["camera.f"] });
+    document.body.appendChild(el);
+    const now = Date.now() / 1000;
+    const got = [];
+    const states = {
+      "camera.f": { ...st("camera.f", "streaming"), attributes: { supported_features: 2, camera_name: "f", client_id: "frigate" } },
+      "switch.f_detect": st("switch.f_detect", "on"),
+      "switch.f_recordings": st("switch.f_recordings", "off"),
+    };
+    el.hass = {
+      states,
+      entities: {
+        "camera.f": { entity_id: "camera.f", device_id: "fr", platform: "frigate" },
+        "switch.f_detect": { entity_id: "switch.f_detect", device_id: "fr", platform: "frigate" },
+        "switch.f_recordings": { entity_id: "switch.f_recordings", device_id: "fr", platform: "frigate" },
+      },
+      language: "en",
+      callService: (domain, service, data) => got.push([domain, service, data.entity_id]),
+      callWS: async (msg) => {
+        if (msg.type === "frigate/events/get")
+          return [
+            { id: "e1", camera: "f", label: "person", start_time: now - 60, end_time: now - 40, has_clip: true },
+            { id: "e2", camera: "f", label: "cat", start_time: now - 600, end_time: now - 590, has_clip: true },
+          ];
+        if (msg.type === "auth/sign_path") return { path: `${msg.path}?authSig=x` };
+        throw new Error("no");
+      },
+    };
+    await new Promise((res) => setTimeout(res, 20));
+    const root = el.shadowRoot;
+    const fold = root.querySelector(".events .evfold");
+    const folded = { title: fold?.querySelector(".k").textContent, thumbs: fold?.querySelectorAll(".th").length };
+    fold.click();
+    const rows = [...root.querySelectorAll(".evrow")].map((r) => r.querySelector(".k").textContent);
+    const chips = [...root.querySelectorAll(".events .chip")].map((c) => c.textContent);
+    root.querySelector('.evrow[data-id="e1"]').click();
+    await new Promise((res) => setTimeout(res, 20));
+    const tile = root.querySelector(".tile");
+    const clip = { src: tile.querySelector(".clipv")?.getAttribute("src"), live: tile.querySelector("hc-camera-stream").stateObj };
+    tile.querySelector(".livebtn").click();
+    const back = { video: !!tile.querySelector(".clipv"), live: tile.querySelector("hc-camera-stream").stateObj?.entity_id };
+    // Frigate's switches on the tile
+    const pills = [...tile.querySelectorAll(".frs .btn")].map((b) => [b.dataset.action, b.classList.contains("off")]);
+    tile.querySelector(".frs .fdetect").click();
+    return { folded, rows, chips, clip, back, pills, got };
+  });
+  assert.deepEqual(r.folded, { title: "Events · 2 today", thumbs: 2 });
+  assert.deepEqual(r.rows, ["Person", "Cat"]);
+  assert.deepEqual(r.chips, ["All", "Person", "Animal"]);
+  assert.equal(r.clip.src, "/api/frigate/frigate/notifications/e1/clip.mp4?authSig=x");
+  assert.equal(r.clip.live, undefined);
+  assert.deepEqual(r.back, { video: false, live: "camera.f" });
+  assert.deepEqual(r.pills, [
+    ["fdetect", false],
+    ["frec", true],
+  ]);
+  assert.deepEqual(r.got, [["switch", "toggle", "switch.f_detect"]]);
+});

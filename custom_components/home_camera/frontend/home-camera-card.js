@@ -66,7 +66,7 @@ function pickerDefine(tag, Card, options) {
   return customElements.define(tag, lazy, options);
 }
 
-const HOME_CAMERA_CARD_VERSION = '4.10.0';
+const HOME_CAMERA_CARD_VERSION = '4.11.0';
 
 // ── i18n ─────────────────────────────────────────────────────────────────────
 const HcI18n = {
@@ -163,6 +163,55 @@ const HcI18n = {
     ed_duplicates_both: 'Les deux',
     cf_controls_from: 'Contrôles de (confidentialité, PTZ)',
     cf_player: 'Lecteur',
+    ev_title: 'Événements · {n} aujourd’hui',
+    ev_title_short: 'Événements · {n}',
+    ev_heading: 'Événements',
+    ev_today: 'aujourd’hui',
+    ev_none: 'Aucun événement aujourd’hui',
+    ev_last: 'Dernier : {l} · {c}, {t}',
+    ev_all: 'Tous',
+    ev_group_person: 'Personne',
+    ev_group_animal: 'Animal',
+    ev_group_vehicle: 'Véhicule',
+    ev_group_other: 'Autre',
+    ev_live: 'en cours',
+    ev_live_btn: 'Direct',
+    ev_no_clip: 'Pas de clip pour cet événement',
+    ev_expand: 'Afficher les événements',
+    ev_collapse: 'Masquer les événements',
+    detect_on: 'Détection active : toucher pour la couper',
+    detect_off: 'Détection coupée : toucher pour l’activer',
+    rec_on: 'Enregistrement actif : toucher pour le couper',
+    rec_off: 'Enregistrement coupé : toucher pour l’activer',
+    obj_person: 'Personne',
+    obj_car: 'Voiture',
+    obj_truck: 'Camion',
+    obj_bus: 'Bus',
+    obj_motorcycle: 'Moto',
+    obj_bicycle: 'Vélo',
+    obj_cat: 'Chat',
+    obj_dog: 'Chien',
+    obj_bird: 'Oiseau',
+    obj_horse: 'Cheval',
+    obj_package: 'Colis',
+    obj_face: 'Visage',
+    obj_license_plate: 'Plaque',
+    tl_today: 'Aujourd’hui',
+    tl_yesterday: 'Hier',
+    tl_prev_day: 'Jour précédent',
+    tl_next_day: 'Jour suivant',
+    tl_all_cameras: 'Toutes les caméras',
+    tl_download: 'Télécharger',
+    tl_empty: 'Aucun événement ce jour-là',
+    tl_select: 'Choisissez un événement pour lire son clip',
+    tl_score: 'score {s}',
+    tl_clip: 'Clip',
+    tl_live_badge: 'Direct · {c}',
+    ed_events: 'Événements',
+    ed_events_helper: 'Les événements du jour des caméras Frigate, sous la grille',
+    ed_events_expanded: 'Événements dépliés',
+    ed_events_limit: 'Événements listés',
+    ed_badges: 'Boutons détection et enregistrement',
   },
   en: {
     title: 'Cameras',
@@ -257,6 +306,55 @@ const HcI18n = {
     ed_duplicates_both: 'Both',
     cf_controls_from: 'Controls from (privacy, PTZ)',
     cf_player: 'Player',
+    ev_title: 'Events · {n} today',
+    ev_title_short: 'Events · {n}',
+    ev_heading: 'Events',
+    ev_today: 'today',
+    ev_none: 'No events today',
+    ev_last: 'Last: {l} · {c}, {t}',
+    ev_all: 'All',
+    ev_group_person: 'Person',
+    ev_group_animal: 'Animal',
+    ev_group_vehicle: 'Vehicle',
+    ev_group_other: 'Other',
+    ev_live: 'in progress',
+    ev_live_btn: 'Live',
+    ev_no_clip: 'No clip for this event',
+    ev_expand: 'Show the events',
+    ev_collapse: 'Hide the events',
+    detect_on: 'Detection on: tap to turn it off',
+    detect_off: 'Detection off: tap to turn it on',
+    rec_on: 'Recording on: tap to turn it off',
+    rec_off: 'Recording off: tap to turn it on',
+    obj_person: 'Person',
+    obj_car: 'Car',
+    obj_truck: 'Truck',
+    obj_bus: 'Bus',
+    obj_motorcycle: 'Motorcycle',
+    obj_bicycle: 'Bicycle',
+    obj_cat: 'Cat',
+    obj_dog: 'Dog',
+    obj_bird: 'Bird',
+    obj_horse: 'Horse',
+    obj_package: 'Package',
+    obj_face: 'Face',
+    obj_license_plate: 'Licence plate',
+    tl_today: 'Today',
+    tl_yesterday: 'Yesterday',
+    tl_prev_day: 'Previous day',
+    tl_next_day: 'Next day',
+    tl_all_cameras: 'All cameras',
+    tl_download: 'Download',
+    tl_empty: 'No events this day',
+    tl_select: 'Choose an event to play its clip',
+    tl_score: 'score {s}',
+    tl_clip: 'Clip',
+    tl_live_badge: 'Live · {c}',
+    ed_events: 'Events',
+    ed_events_helper: 'The day’s events of the Frigate cameras, under the grid',
+    ed_events_expanded: 'Events unfolded',
+    ed_events_limit: 'Events listed',
+    ed_badges: 'Detection and recording buttons',
   },
   de: {
     title: 'Kameras',
@@ -351,6 +449,55 @@ const HcI18n = {
     ed_duplicates_both: 'Beide',
     cf_controls_from: 'Steuerung von (Privatsphäre, PTZ)',
     cf_player: 'Player',
+    ev_title: 'Ereignisse · {n} heute',
+    ev_title_short: 'Ereignisse · {n}',
+    ev_heading: 'Ereignisse',
+    ev_today: 'heute',
+    ev_none: 'Heute keine Ereignisse',
+    ev_last: 'Zuletzt: {l} · {c}, {t}',
+    ev_all: 'Alle',
+    ev_group_person: 'Person',
+    ev_group_animal: 'Tier',
+    ev_group_vehicle: 'Fahrzeug',
+    ev_group_other: 'Andere',
+    ev_live: 'läuft',
+    ev_live_btn: 'Live',
+    ev_no_clip: 'Kein Clip für dieses Ereignis',
+    ev_expand: 'Ereignisse anzeigen',
+    ev_collapse: 'Ereignisse ausblenden',
+    detect_on: 'Erkennung an: tippen zum Ausschalten',
+    detect_off: 'Erkennung aus: tippen zum Einschalten',
+    rec_on: 'Aufnahme an: tippen zum Ausschalten',
+    rec_off: 'Aufnahme aus: tippen zum Einschalten',
+    obj_person: 'Person',
+    obj_car: 'Auto',
+    obj_truck: 'Lkw',
+    obj_bus: 'Bus',
+    obj_motorcycle: 'Motorrad',
+    obj_bicycle: 'Fahrrad',
+    obj_cat: 'Katze',
+    obj_dog: 'Hund',
+    obj_bird: 'Vogel',
+    obj_horse: 'Pferd',
+    obj_package: 'Paket',
+    obj_face: 'Gesicht',
+    obj_license_plate: 'Kennzeichen',
+    tl_today: 'Heute',
+    tl_yesterday: 'Gestern',
+    tl_prev_day: 'Vorheriger Tag',
+    tl_next_day: 'Nächster Tag',
+    tl_all_cameras: 'Alle Kameras',
+    tl_download: 'Herunterladen',
+    tl_empty: 'Keine Ereignisse an diesem Tag',
+    tl_select: 'Wähle ein Ereignis, um seinen Clip abzuspielen',
+    tl_score: 'Score {s}',
+    tl_clip: 'Clip',
+    tl_live_badge: 'Live · {c}',
+    ed_events: 'Ereignisse',
+    ed_events_helper: 'Die Ereignisse des Tages der Frigate-Kameras, unter dem Raster',
+    ed_events_expanded: 'Ereignisse ausgeklappt',
+    ed_events_limit: 'Angezeigte Ereignisse',
+    ed_badges: 'Tasten für Erkennung und Aufnahme',
   },
   es: {
     title: 'Cámaras',
@@ -445,6 +592,55 @@ const HcI18n = {
     ed_duplicates_both: 'Ambas',
     cf_controls_from: 'Controles de (privacidad, PTZ)',
     cf_player: 'Reproductor',
+    ev_title: 'Eventos · {n} hoy',
+    ev_title_short: 'Eventos · {n}',
+    ev_heading: 'Eventos',
+    ev_today: 'hoy',
+    ev_none: 'Ningún evento hoy',
+    ev_last: 'Último: {l} · {c}, {t}',
+    ev_all: 'Todos',
+    ev_group_person: 'Persona',
+    ev_group_animal: 'Animal',
+    ev_group_vehicle: 'Vehículo',
+    ev_group_other: 'Otro',
+    ev_live: 'en curso',
+    ev_live_btn: 'En directo',
+    ev_no_clip: 'Sin clip para este evento',
+    ev_expand: 'Mostrar los eventos',
+    ev_collapse: 'Ocultar los eventos',
+    detect_on: 'Detección activa: toca para desactivarla',
+    detect_off: 'Detección desactivada: toca para activarla',
+    rec_on: 'Grabación activa: toca para desactivarla',
+    rec_off: 'Grabación desactivada: toca para activarla',
+    obj_person: 'Persona',
+    obj_car: 'Coche',
+    obj_truck: 'Camión',
+    obj_bus: 'Autobús',
+    obj_motorcycle: 'Moto',
+    obj_bicycle: 'Bicicleta',
+    obj_cat: 'Gato',
+    obj_dog: 'Perro',
+    obj_bird: 'Pájaro',
+    obj_horse: 'Caballo',
+    obj_package: 'Paquete',
+    obj_face: 'Cara',
+    obj_license_plate: 'Matrícula',
+    tl_today: 'Hoy',
+    tl_yesterday: 'Ayer',
+    tl_prev_day: 'Día anterior',
+    tl_next_day: 'Día siguiente',
+    tl_all_cameras: 'Todas las cámaras',
+    tl_download: 'Descargar',
+    tl_empty: 'Ningún evento ese día',
+    tl_select: 'Elige un evento para reproducir su clip',
+    tl_score: 'puntuación {s}',
+    tl_clip: 'Clip',
+    tl_live_badge: 'En directo · {c}',
+    ed_events: 'Eventos',
+    ed_events_helper: 'Los eventos del día de las cámaras Frigate, bajo la cuadrícula',
+    ed_events_expanded: 'Eventos desplegados',
+    ed_events_limit: 'Eventos mostrados',
+    ed_badges: 'Botones de detección y grabación',
   },
   sr: {
     title: 'Камере',
@@ -539,6 +735,55 @@ const HcI18n = {
     ed_duplicates_both: 'Обе',
     cf_controls_from: 'Контроле из (приватност, PTZ)',
     cf_player: 'Плејер',
+    ev_title: 'Догађаји · {n} данас',
+    ev_title_short: 'Догађаји · {n}',
+    ev_heading: 'Догађаји',
+    ev_today: 'данас',
+    ev_none: 'Данас нема догађаја',
+    ev_last: 'Последњи: {l} · {c}, {t}',
+    ev_all: 'Сви',
+    ev_group_person: 'Особа',
+    ev_group_animal: 'Животиња',
+    ev_group_vehicle: 'Возило',
+    ev_group_other: 'Остало',
+    ev_live: 'у току',
+    ev_live_btn: 'Уживо',
+    ev_no_clip: 'Нема снимка за овај догађај',
+    ev_expand: 'Прикажи догађаје',
+    ev_collapse: 'Сакриј догађаје',
+    detect_on: 'Детекција укључена: додирните да је искључите',
+    detect_off: 'Детекција искључена: додирните да је укључите',
+    rec_on: 'Снимање укључено: додирните да га искључите',
+    rec_off: 'Снимање искључено: додирните да га укључите',
+    obj_person: 'Особа',
+    obj_car: 'Аутомобил',
+    obj_truck: 'Камион',
+    obj_bus: 'Аутобус',
+    obj_motorcycle: 'Мотоцикл',
+    obj_bicycle: 'Бицикл',
+    obj_cat: 'Мачка',
+    obj_dog: 'Пас',
+    obj_bird: 'Птица',
+    obj_horse: 'Коњ',
+    obj_package: 'Пакет',
+    obj_face: 'Лице',
+    obj_license_plate: 'Регистарска таблица',
+    tl_today: 'Данас',
+    tl_yesterday: 'Јуче',
+    tl_prev_day: 'Претходни дан',
+    tl_next_day: 'Следећи дан',
+    tl_all_cameras: 'Све камере',
+    tl_download: 'Преузми',
+    tl_empty: 'Тог дана нема догађаја',
+    tl_select: 'Изаберите догађај да пустите његов снимак',
+    tl_score: 'оцена {s}',
+    tl_clip: 'Снимак',
+    tl_live_badge: 'Уживо · {c}',
+    ed_events: 'Догађаји',
+    ed_events_helper: 'Данашњи догађаји Frigate камера, испод мреже',
+    ed_events_expanded: 'Догађаји отворени',
+    ed_events_limit: 'Приказани догађаји',
+    ed_badges: 'Дугмад за детекцију и снимање',
   },
   'sr-Latn': {
     title: 'Kamere',
@@ -633,6 +878,55 @@ const HcI18n = {
     ed_duplicates_both: 'Obe',
     cf_controls_from: 'Kontrole iz (privatnost, PTZ)',
     cf_player: 'Plejer',
+    ev_title: 'Događaji · {n} danas',
+    ev_title_short: 'Događaji · {n}',
+    ev_heading: 'Događaji',
+    ev_today: 'danas',
+    ev_none: 'Danas nema događaja',
+    ev_last: 'Poslednji: {l} · {c}, {t}',
+    ev_all: 'Svi',
+    ev_group_person: 'Osoba',
+    ev_group_animal: 'Životinja',
+    ev_group_vehicle: 'Vozilo',
+    ev_group_other: 'Ostalo',
+    ev_live: 'u toku',
+    ev_live_btn: 'Uživo',
+    ev_no_clip: 'Nema snimka za ovaj događaj',
+    ev_expand: 'Prikaži događaje',
+    ev_collapse: 'Sakrij događaje',
+    detect_on: 'Detekcija uključena: dodirnite da je isključite',
+    detect_off: 'Detekcija isključena: dodirnite da je uključite',
+    rec_on: 'Snimanje uključeno: dodirnite da ga isključite',
+    rec_off: 'Snimanje isključeno: dodirnite da ga uključite',
+    obj_person: 'Osoba',
+    obj_car: 'Automobil',
+    obj_truck: 'Kamion',
+    obj_bus: 'Autobus',
+    obj_motorcycle: 'Motocikl',
+    obj_bicycle: 'Bicikl',
+    obj_cat: 'Mačka',
+    obj_dog: 'Pas',
+    obj_bird: 'Ptica',
+    obj_horse: 'Konj',
+    obj_package: 'Paket',
+    obj_face: 'Lice',
+    obj_license_plate: 'Registarska tablica',
+    tl_today: 'Danas',
+    tl_yesterday: 'Juče',
+    tl_prev_day: 'Prethodni dan',
+    tl_next_day: 'Sledeći dan',
+    tl_all_cameras: 'Sve kamere',
+    tl_download: 'Preuzmi',
+    tl_empty: 'Tog dana nema događaja',
+    tl_select: 'Izaberite događaj da pustite njegov snimak',
+    tl_score: 'ocena {s}',
+    tl_clip: 'Snimak',
+    tl_live_badge: 'Uživo · {c}',
+    ed_events: 'Događaji',
+    ed_events_helper: 'Današnji događaji Frigate kamera, ispod mreže',
+    ed_events_expanded: 'Događaji otvoreni',
+    ed_events_limit: 'Prikazani događaji',
+    ed_badges: 'Dugmad za detekciju i snimanje',
   },
   it: {
     title: 'Telecamere',
@@ -727,6 +1021,55 @@ const HcI18n = {
     ed_duplicates_both: 'Entrambe',
     cf_controls_from: 'Controlli da (privacy, PTZ)',
     cf_player: 'Lettore',
+    ev_title: 'Eventi · {n} oggi',
+    ev_title_short: 'Eventi · {n}',
+    ev_heading: 'Eventi',
+    ev_today: 'oggi',
+    ev_none: 'Nessun evento oggi',
+    ev_last: 'Ultimo: {l} · {c}, {t}',
+    ev_all: 'Tutti',
+    ev_group_person: 'Persona',
+    ev_group_animal: 'Animale',
+    ev_group_vehicle: 'Veicolo',
+    ev_group_other: 'Altro',
+    ev_live: 'in corso',
+    ev_live_btn: 'Diretta',
+    ev_no_clip: 'Nessuna clip per questo evento',
+    ev_expand: 'Mostra gli eventi',
+    ev_collapse: 'Nascondi gli eventi',
+    detect_on: 'Rilevamento attivo: tocca per disattivarlo',
+    detect_off: 'Rilevamento disattivato: tocca per attivarlo',
+    rec_on: 'Registrazione attiva: tocca per disattivarla',
+    rec_off: 'Registrazione disattivata: tocca per attivarla',
+    obj_person: 'Persona',
+    obj_car: 'Auto',
+    obj_truck: 'Camion',
+    obj_bus: 'Autobus',
+    obj_motorcycle: 'Moto',
+    obj_bicycle: 'Bicicletta',
+    obj_cat: 'Gatto',
+    obj_dog: 'Cane',
+    obj_bird: 'Uccello',
+    obj_horse: 'Cavallo',
+    obj_package: 'Pacco',
+    obj_face: 'Volto',
+    obj_license_plate: 'Targa',
+    tl_today: 'Oggi',
+    tl_yesterday: 'Ieri',
+    tl_prev_day: 'Giorno precedente',
+    tl_next_day: 'Giorno successivo',
+    tl_all_cameras: 'Tutte le telecamere',
+    tl_download: 'Scarica',
+    tl_empty: 'Nessun evento in questo giorno',
+    tl_select: 'Scegli un evento per riprodurne la clip',
+    tl_score: 'punteggio {s}',
+    tl_clip: 'Clip',
+    tl_live_badge: 'Diretta · {c}',
+    ed_events: 'Eventi',
+    ed_events_helper: 'Gli eventi del giorno delle telecamere Frigate, sotto la griglia',
+    ed_events_expanded: 'Eventi espansi',
+    ed_events_limit: 'Eventi elencati',
+    ed_badges: 'Pulsanti rilevamento e registrazione',
   },
   nl: {
     title: 'Camera\'s',
@@ -821,6 +1164,55 @@ const HcI18n = {
     ed_duplicates_both: 'Beide',
     cf_controls_from: 'Bediening van (privacy, PTZ)',
     cf_player: 'Speler',
+    ev_title: 'Gebeurtenissen · {n} vandaag',
+    ev_title_short: 'Gebeurtenissen · {n}',
+    ev_heading: 'Gebeurtenissen',
+    ev_today: 'vandaag',
+    ev_none: 'Vandaag geen gebeurtenissen',
+    ev_last: 'Laatste: {l} · {c}, {t}',
+    ev_all: 'Alle',
+    ev_group_person: 'Persoon',
+    ev_group_animal: 'Dier',
+    ev_group_vehicle: 'Voertuig',
+    ev_group_other: 'Overig',
+    ev_live: 'bezig',
+    ev_live_btn: 'Live',
+    ev_no_clip: 'Geen clip voor deze gebeurtenis',
+    ev_expand: 'Gebeurtenissen tonen',
+    ev_collapse: 'Gebeurtenissen verbergen',
+    detect_on: 'Detectie aan: tik om uit te zetten',
+    detect_off: 'Detectie uit: tik om aan te zetten',
+    rec_on: 'Opname aan: tik om uit te zetten',
+    rec_off: 'Opname uit: tik om aan te zetten',
+    obj_person: 'Persoon',
+    obj_car: 'Auto',
+    obj_truck: 'Vrachtwagen',
+    obj_bus: 'Bus',
+    obj_motorcycle: 'Motor',
+    obj_bicycle: 'Fiets',
+    obj_cat: 'Kat',
+    obj_dog: 'Hond',
+    obj_bird: 'Vogel',
+    obj_horse: 'Paard',
+    obj_package: 'Pakket',
+    obj_face: 'Gezicht',
+    obj_license_plate: 'Kenteken',
+    tl_today: 'Vandaag',
+    tl_yesterday: 'Gisteren',
+    tl_prev_day: 'Vorige dag',
+    tl_next_day: 'Volgende dag',
+    tl_all_cameras: 'Alle camera’s',
+    tl_download: 'Downloaden',
+    tl_empty: 'Geen gebeurtenissen op deze dag',
+    tl_select: 'Kies een gebeurtenis om de clip af te spelen',
+    tl_score: 'score {s}',
+    tl_clip: 'Clip',
+    tl_live_badge: 'Live · {c}',
+    ed_events: 'Gebeurtenissen',
+    ed_events_helper: 'De gebeurtenissen van vandaag van de Frigate-camera’s, onder het raster',
+    ed_events_expanded: 'Gebeurtenissen uitgeklapt',
+    ed_events_limit: 'Getoonde gebeurtenissen',
+    ed_badges: 'Knoppen voor detectie en opname',
   },
   pt: {
     title: 'Câmaras',
@@ -915,6 +1307,55 @@ const HcI18n = {
     ed_duplicates_both: 'Ambas',
     cf_controls_from: 'Controlos de (privacidade, PTZ)',
     cf_player: 'Leitor',
+    ev_title: 'Eventos · {n} hoje',
+    ev_title_short: 'Eventos · {n}',
+    ev_heading: 'Eventos',
+    ev_today: 'hoje',
+    ev_none: 'Nenhum evento hoje',
+    ev_last: 'Último: {l} · {c}, {t}',
+    ev_all: 'Todos',
+    ev_group_person: 'Pessoa',
+    ev_group_animal: 'Animal',
+    ev_group_vehicle: 'Veículo',
+    ev_group_other: 'Outro',
+    ev_live: 'em curso',
+    ev_live_btn: 'Em direto',
+    ev_no_clip: 'Sem clip para este evento',
+    ev_expand: 'Mostrar os eventos',
+    ev_collapse: 'Ocultar os eventos',
+    detect_on: 'Deteção ativa: toque para a desligar',
+    detect_off: 'Deteção desligada: toque para a ativar',
+    rec_on: 'Gravação ativa: toque para a desligar',
+    rec_off: 'Gravação desligada: toque para a ativar',
+    obj_person: 'Pessoa',
+    obj_car: 'Carro',
+    obj_truck: 'Camião',
+    obj_bus: 'Autocarro',
+    obj_motorcycle: 'Mota',
+    obj_bicycle: 'Bicicleta',
+    obj_cat: 'Gato',
+    obj_dog: 'Cão',
+    obj_bird: 'Pássaro',
+    obj_horse: 'Cavalo',
+    obj_package: 'Encomenda',
+    obj_face: 'Rosto',
+    obj_license_plate: 'Matrícula',
+    tl_today: 'Hoje',
+    tl_yesterday: 'Ontem',
+    tl_prev_day: 'Dia anterior',
+    tl_next_day: 'Dia seguinte',
+    tl_all_cameras: 'Todas as câmaras',
+    tl_download: 'Transferir',
+    tl_empty: 'Nenhum evento neste dia',
+    tl_select: 'Escolha um evento para reproduzir o clip',
+    tl_score: 'pontuação {s}',
+    tl_clip: 'Clip',
+    tl_live_badge: 'Em direto · {c}',
+    ed_events: 'Eventos',
+    ed_events_helper: 'Os eventos do dia das câmaras Frigate, por baixo da grelha',
+    ed_events_expanded: 'Eventos expandidos',
+    ed_events_limit: 'Eventos listados',
+    ed_badges: 'Botões de deteção e gravação',
   },
   pl: {
     title: 'Kamery',
@@ -1009,6 +1450,55 @@ const HcI18n = {
     ed_duplicates_both: 'Obie',
     cf_controls_from: 'Sterowanie z (prywatność, PTZ)',
     cf_player: 'Odtwarzacz',
+    ev_title: 'Zdarzenia · {n} dziś',
+    ev_title_short: 'Zdarzenia · {n}',
+    ev_heading: 'Zdarzenia',
+    ev_today: 'dziś',
+    ev_none: 'Brak zdarzeń dzisiaj',
+    ev_last: 'Ostatnie: {l} · {c}, {t}',
+    ev_all: 'Wszystkie',
+    ev_group_person: 'Osoba',
+    ev_group_animal: 'Zwierzę',
+    ev_group_vehicle: 'Pojazd',
+    ev_group_other: 'Inne',
+    ev_live: 'w toku',
+    ev_live_btn: 'Na żywo',
+    ev_no_clip: 'Brak klipu dla tego zdarzenia',
+    ev_expand: 'Pokaż zdarzenia',
+    ev_collapse: 'Ukryj zdarzenia',
+    detect_on: 'Wykrywanie włączone: dotknij, aby wyłączyć',
+    detect_off: 'Wykrywanie wyłączone: dotknij, aby włączyć',
+    rec_on: 'Nagrywanie włączone: dotknij, aby wyłączyć',
+    rec_off: 'Nagrywanie wyłączone: dotknij, aby włączyć',
+    obj_person: 'Osoba',
+    obj_car: 'Samochód',
+    obj_truck: 'Ciężarówka',
+    obj_bus: 'Autobus',
+    obj_motorcycle: 'Motocykl',
+    obj_bicycle: 'Rower',
+    obj_cat: 'Kot',
+    obj_dog: 'Pies',
+    obj_bird: 'Ptak',
+    obj_horse: 'Koń',
+    obj_package: 'Paczka',
+    obj_face: 'Twarz',
+    obj_license_plate: 'Tablica rejestracyjna',
+    tl_today: 'Dziś',
+    tl_yesterday: 'Wczoraj',
+    tl_prev_day: 'Poprzedni dzień',
+    tl_next_day: 'Następny dzień',
+    tl_all_cameras: 'Wszystkie kamery',
+    tl_download: 'Pobierz',
+    tl_empty: 'Brak zdarzeń tego dnia',
+    tl_select: 'Wybierz zdarzenie, aby odtworzyć klip',
+    tl_score: 'wynik {s}',
+    tl_clip: 'Klip',
+    tl_live_badge: 'Na żywo · {c}',
+    ed_events: 'Zdarzenia',
+    ed_events_helper: 'Dzisiejsze zdarzenia kamer Frigate, pod siatką',
+    ed_events_expanded: 'Zdarzenia rozwinięte',
+    ed_events_limit: 'Wyświetlane zdarzenia',
+    ed_badges: 'Przyciski wykrywania i nagrywania',
   },
   ro: {
     title: 'Camere',
@@ -1103,6 +1593,55 @@ const HcI18n = {
     ed_duplicates_both: 'Ambele',
     cf_controls_from: 'Comenzi de la (confidențialitate, PTZ)',
     cf_player: 'Player',
+    ev_title: 'Evenimente · {n} azi',
+    ev_title_short: 'Evenimente · {n}',
+    ev_heading: 'Evenimente',
+    ev_today: 'azi',
+    ev_none: 'Niciun eveniment azi',
+    ev_last: 'Ultimul: {l} · {c}, {t}',
+    ev_all: 'Toate',
+    ev_group_person: 'Persoană',
+    ev_group_animal: 'Animal',
+    ev_group_vehicle: 'Vehicul',
+    ev_group_other: 'Altele',
+    ev_live: 'în curs',
+    ev_live_btn: 'În direct',
+    ev_no_clip: 'Niciun clip pentru acest eveniment',
+    ev_expand: 'Afișează evenimentele',
+    ev_collapse: 'Ascunde evenimentele',
+    detect_on: 'Detecție pornită: atingeți pentru a o opri',
+    detect_off: 'Detecție oprită: atingeți pentru a o porni',
+    rec_on: 'Înregistrare pornită: atingeți pentru a o opri',
+    rec_off: 'Înregistrare oprită: atingeți pentru a o porni',
+    obj_person: 'Persoană',
+    obj_car: 'Mașină',
+    obj_truck: 'Camion',
+    obj_bus: 'Autobuz',
+    obj_motorcycle: 'Motocicletă',
+    obj_bicycle: 'Bicicletă',
+    obj_cat: 'Pisică',
+    obj_dog: 'Câine',
+    obj_bird: 'Pasăre',
+    obj_horse: 'Cal',
+    obj_package: 'Colet',
+    obj_face: 'Față',
+    obj_license_plate: 'Număr de înmatriculare',
+    tl_today: 'Azi',
+    tl_yesterday: 'Ieri',
+    tl_prev_day: 'Ziua anterioară',
+    tl_next_day: 'Ziua următoare',
+    tl_all_cameras: 'Toate camerele',
+    tl_download: 'Descarcă',
+    tl_empty: 'Niciun eveniment în această zi',
+    tl_select: 'Alegeți un eveniment pentru a reda clipul',
+    tl_score: 'scor {s}',
+    tl_clip: 'Clip',
+    tl_live_badge: 'În direct · {c}',
+    ed_events: 'Evenimente',
+    ed_events_helper: 'Evenimentele zilei ale camerelor Frigate, sub grilă',
+    ed_events_expanded: 'Evenimente desfășurate',
+    ed_events_limit: 'Evenimente afișate',
+    ed_badges: 'Butoane de detecție și înregistrare',
   },
   da: {
     title: 'Kameraer',
@@ -1197,6 +1736,55 @@ const HcI18n = {
     ed_duplicates_both: 'Begge',
     cf_controls_from: 'Styring fra (privatliv, PTZ)',
     cf_player: 'Afspiller',
+    ev_title: 'Hændelser · {n} i dag',
+    ev_title_short: 'Hændelser · {n}',
+    ev_heading: 'Hændelser',
+    ev_today: 'i dag',
+    ev_none: 'Ingen hændelser i dag',
+    ev_last: 'Seneste: {l} · {c}, {t}',
+    ev_all: 'Alle',
+    ev_group_person: 'Person',
+    ev_group_animal: 'Dyr',
+    ev_group_vehicle: 'Køretøj',
+    ev_group_other: 'Andet',
+    ev_live: 'i gang',
+    ev_live_btn: 'Live',
+    ev_no_clip: 'Intet klip til denne hændelse',
+    ev_expand: 'Vis hændelserne',
+    ev_collapse: 'Skjul hændelserne',
+    detect_on: 'Registrering til: tryk for at slå fra',
+    detect_off: 'Registrering fra: tryk for at slå til',
+    rec_on: 'Optagelse til: tryk for at slå fra',
+    rec_off: 'Optagelse fra: tryk for at slå til',
+    obj_person: 'Person',
+    obj_car: 'Bil',
+    obj_truck: 'Lastbil',
+    obj_bus: 'Bus',
+    obj_motorcycle: 'Motorcykel',
+    obj_bicycle: 'Cykel',
+    obj_cat: 'Kat',
+    obj_dog: 'Hund',
+    obj_bird: 'Fugl',
+    obj_horse: 'Hest',
+    obj_package: 'Pakke',
+    obj_face: 'Ansigt',
+    obj_license_plate: 'Nummerplade',
+    tl_today: 'I dag',
+    tl_yesterday: 'I går',
+    tl_prev_day: 'Forrige dag',
+    tl_next_day: 'Næste dag',
+    tl_all_cameras: 'Alle kameraer',
+    tl_download: 'Download',
+    tl_empty: 'Ingen hændelser denne dag',
+    tl_select: 'Vælg en hændelse for at afspille dens klip',
+    tl_score: 'score {s}',
+    tl_clip: 'Klip',
+    tl_live_badge: 'Live · {c}',
+    ed_events: 'Hændelser',
+    ed_events_helper: 'Dagens hændelser fra Frigate-kameraerne, under gitteret',
+    ed_events_expanded: 'Hændelser foldet ud',
+    ed_events_limit: 'Viste hændelser',
+    ed_badges: 'Knapper til registrering og optagelse',
   },
   sv: {
     title: 'Kameror',
@@ -1291,6 +1879,55 @@ const HcI18n = {
     ed_duplicates_both: 'Båda',
     cf_controls_from: 'Styrning från (integritet, PTZ)',
     cf_player: 'Spelare',
+    ev_title: 'Händelser · {n} i dag',
+    ev_title_short: 'Händelser · {n}',
+    ev_heading: 'Händelser',
+    ev_today: 'i dag',
+    ev_none: 'Inga händelser i dag',
+    ev_last: 'Senaste: {l} · {c}, {t}',
+    ev_all: 'Alla',
+    ev_group_person: 'Person',
+    ev_group_animal: 'Djur',
+    ev_group_vehicle: 'Fordon',
+    ev_group_other: 'Övrigt',
+    ev_live: 'pågår',
+    ev_live_btn: 'Live',
+    ev_no_clip: 'Inget klipp för den här händelsen',
+    ev_expand: 'Visa händelserna',
+    ev_collapse: 'Dölj händelserna',
+    detect_on: 'Detektering på: tryck för att stänga av',
+    detect_off: 'Detektering av: tryck för att slå på',
+    rec_on: 'Inspelning på: tryck för att stänga av',
+    rec_off: 'Inspelning av: tryck för att slå på',
+    obj_person: 'Person',
+    obj_car: 'Bil',
+    obj_truck: 'Lastbil',
+    obj_bus: 'Buss',
+    obj_motorcycle: 'Motorcykel',
+    obj_bicycle: 'Cykel',
+    obj_cat: 'Katt',
+    obj_dog: 'Hund',
+    obj_bird: 'Fågel',
+    obj_horse: 'Häst',
+    obj_package: 'Paket',
+    obj_face: 'Ansikte',
+    obj_license_plate: 'Registreringsskylt',
+    tl_today: 'I dag',
+    tl_yesterday: 'I går',
+    tl_prev_day: 'Föregående dag',
+    tl_next_day: 'Nästa dag',
+    tl_all_cameras: 'Alla kameror',
+    tl_download: 'Ladda ner',
+    tl_empty: 'Inga händelser den här dagen',
+    tl_select: 'Välj en händelse för att spela upp dess klipp',
+    tl_score: 'poäng {s}',
+    tl_clip: 'Klipp',
+    tl_live_badge: 'Live · {c}',
+    ed_events: 'Händelser',
+    ed_events_helper: 'Dagens händelser från Frigate-kamerorna, under rutnätet',
+    ed_events_expanded: 'Händelser utfällda',
+    ed_events_limit: 'Visade händelser',
+    ed_badges: 'Knappar för detektering och inspelning',
   },
   bg: {
     title: 'Камери',
@@ -1385,6 +2022,55 @@ const HcI18n = {
     ed_duplicates_both: 'И двете',
     cf_controls_from: 'Управление от (поверителност, PTZ)',
     cf_player: 'Плейър',
+    ev_title: 'Събития · {n} днес',
+    ev_title_short: 'Събития · {n}',
+    ev_heading: 'Събития',
+    ev_today: 'днес',
+    ev_none: 'Няма събития днес',
+    ev_last: 'Последно: {l} · {c}, {t}',
+    ev_all: 'Всички',
+    ev_group_person: 'Човек',
+    ev_group_animal: 'Животно',
+    ev_group_vehicle: 'Превозно средство',
+    ev_group_other: 'Друго',
+    ev_live: 'в ход',
+    ev_live_btn: 'На живо',
+    ev_no_clip: 'Няма клип за това събитие',
+    ev_expand: 'Покажи събитията',
+    ev_collapse: 'Скрий събитията',
+    detect_on: 'Разпознаването е включено: докоснете, за да го изключите',
+    detect_off: 'Разпознаването е изключено: докоснете, за да го включите',
+    rec_on: 'Записът е включен: докоснете, за да го изключите',
+    rec_off: 'Записът е изключен: докоснете, за да го включите',
+    obj_person: 'Човек',
+    obj_car: 'Кола',
+    obj_truck: 'Камион',
+    obj_bus: 'Автобус',
+    obj_motorcycle: 'Мотор',
+    obj_bicycle: 'Велосипед',
+    obj_cat: 'Котка',
+    obj_dog: 'Куче',
+    obj_bird: 'Птица',
+    obj_horse: 'Кон',
+    obj_package: 'Пратка',
+    obj_face: 'Лице',
+    obj_license_plate: 'Регистрационен номер',
+    tl_today: 'Днес',
+    tl_yesterday: 'Вчера',
+    tl_prev_day: 'Предишен ден',
+    tl_next_day: 'Следващ ден',
+    tl_all_cameras: 'Всички камери',
+    tl_download: 'Изтегли',
+    tl_empty: 'Няма събития в този ден',
+    tl_select: 'Изберете събитие, за да пуснете клипа му',
+    tl_score: 'резултат {s}',
+    tl_clip: 'Клип',
+    tl_live_badge: 'На живо · {c}',
+    ed_events: 'Събития',
+    ed_events_helper: 'Днешните събития на камерите Frigate, под мрежата',
+    ed_events_expanded: 'Разгънати събития',
+    ed_events_limit: 'Показани събития',
+    ed_badges: 'Бутони за разпознаване и запис',
   },
   ru: {
     title: 'Камеры',
@@ -1479,6 +2165,55 @@ const HcI18n = {
     ed_duplicates_both: 'Обе',
     cf_controls_from: 'Управление от (приватность, PTZ)',
     cf_player: 'Плеер',
+    ev_title: 'События · {n} сегодня',
+    ev_title_short: 'События · {n}',
+    ev_heading: 'События',
+    ev_today: 'сегодня',
+    ev_none: 'Сегодня событий нет',
+    ev_last: 'Последнее: {l} · {c}, {t}',
+    ev_all: 'Все',
+    ev_group_person: 'Человек',
+    ev_group_animal: 'Животное',
+    ev_group_vehicle: 'Транспорт',
+    ev_group_other: 'Другое',
+    ev_live: 'идёт',
+    ev_live_btn: 'Прямой эфир',
+    ev_no_clip: 'Для этого события нет клипа',
+    ev_expand: 'Показать события',
+    ev_collapse: 'Скрыть события',
+    detect_on: 'Обнаружение включено: нажмите, чтобы выключить',
+    detect_off: 'Обнаружение выключено: нажмите, чтобы включить',
+    rec_on: 'Запись включена: нажмите, чтобы выключить',
+    rec_off: 'Запись выключена: нажмите, чтобы включить',
+    obj_person: 'Человек',
+    obj_car: 'Автомобиль',
+    obj_truck: 'Грузовик',
+    obj_bus: 'Автобус',
+    obj_motorcycle: 'Мотоцикл',
+    obj_bicycle: 'Велосипед',
+    obj_cat: 'Кошка',
+    obj_dog: 'Собака',
+    obj_bird: 'Птица',
+    obj_horse: 'Лошадь',
+    obj_package: 'Посылка',
+    obj_face: 'Лицо',
+    obj_license_plate: 'Номерной знак',
+    tl_today: 'Сегодня',
+    tl_yesterday: 'Вчера',
+    tl_prev_day: 'Предыдущий день',
+    tl_next_day: 'Следующий день',
+    tl_all_cameras: 'Все камеры',
+    tl_download: 'Скачать',
+    tl_empty: 'В этот день событий нет',
+    tl_select: 'Выберите событие, чтобы воспроизвести клип',
+    tl_score: 'оценка {s}',
+    tl_clip: 'Клип',
+    tl_live_badge: 'Прямой эфир · {c}',
+    ed_events: 'События',
+    ed_events_helper: 'События дня камер Frigate под сеткой',
+    ed_events_expanded: 'События развёрнуты',
+    ed_events_limit: 'Показываемые события',
+    ed_badges: 'Кнопки обнаружения и записи',
   },
   uk: {
     title: 'Камери',
@@ -1573,6 +2308,55 @@ const HcI18n = {
     ed_duplicates_both: 'Обидві',
     cf_controls_from: 'Керування від (приватність, PTZ)',
     cf_player: 'Програвач',
+    ev_title: 'Події · {n} сьогодні',
+    ev_title_short: 'Події · {n}',
+    ev_heading: 'Події',
+    ev_today: 'сьогодні',
+    ev_none: 'Сьогодні подій немає',
+    ev_last: 'Остання: {l} · {c}, {t}',
+    ev_all: 'Усі',
+    ev_group_person: 'Людина',
+    ev_group_animal: 'Тварина',
+    ev_group_vehicle: 'Транспорт',
+    ev_group_other: 'Інше',
+    ev_live: 'триває',
+    ev_live_btn: 'Наживо',
+    ev_no_clip: 'Для цієї події немає кліпу',
+    ev_expand: 'Показати події',
+    ev_collapse: 'Сховати події',
+    detect_on: 'Виявлення ввімкнено: торкніться, щоб вимкнути',
+    detect_off: 'Виявлення вимкнено: торкніться, щоб увімкнути',
+    rec_on: 'Запис увімкнено: торкніться, щоб вимкнути',
+    rec_off: 'Запис вимкнено: торкніться, щоб увімкнути',
+    obj_person: 'Людина',
+    obj_car: 'Автомобіль',
+    obj_truck: 'Вантажівка',
+    obj_bus: 'Автобус',
+    obj_motorcycle: 'Мотоцикл',
+    obj_bicycle: 'Велосипед',
+    obj_cat: 'Кіт',
+    obj_dog: 'Собака',
+    obj_bird: 'Птах',
+    obj_horse: 'Кінь',
+    obj_package: 'Посилка',
+    obj_face: 'Обличчя',
+    obj_license_plate: 'Номерний знак',
+    tl_today: 'Сьогодні',
+    tl_yesterday: 'Учора',
+    tl_prev_day: 'Попередній день',
+    tl_next_day: 'Наступний день',
+    tl_all_cameras: 'Усі камери',
+    tl_download: 'Завантажити',
+    tl_empty: 'Цього дня подій немає',
+    tl_select: 'Виберіть подію, щоб відтворити кліп',
+    tl_score: 'оцінка {s}',
+    tl_clip: 'Кліп',
+    tl_live_badge: 'Наживо · {c}',
+    ed_events: 'Події',
+    ed_events_helper: 'Події дня камер Frigate під сіткою',
+    ed_events_expanded: 'Події розгорнуто',
+    ed_events_limit: 'Показані події',
+    ed_badges: 'Кнопки виявлення й запису',
   },
   hu: {
     title: 'Kamerák',
@@ -1667,6 +2451,55 @@ const HcI18n = {
     ed_duplicates_both: 'Mindkettő',
     cf_controls_from: 'Vezérlés innen (adatvédelem, PTZ)',
     cf_player: 'Lejátszó',
+    ev_title: 'Események · {n} ma',
+    ev_title_short: 'Események · {n}',
+    ev_heading: 'Események',
+    ev_today: 'ma',
+    ev_none: 'Ma nincs esemény',
+    ev_last: 'Utolsó: {l} · {c}, {t}',
+    ev_all: 'Mind',
+    ev_group_person: 'Személy',
+    ev_group_animal: 'Állat',
+    ev_group_vehicle: 'Jármű',
+    ev_group_other: 'Egyéb',
+    ev_live: 'folyamatban',
+    ev_live_btn: 'Élő',
+    ev_no_clip: 'Ehhez az eseményhez nincs klip',
+    ev_expand: 'Események megjelenítése',
+    ev_collapse: 'Események elrejtése',
+    detect_on: 'Észlelés be: koppintson a kikapcsoláshoz',
+    detect_off: 'Észlelés ki: koppintson a bekapcsoláshoz',
+    rec_on: 'Felvétel be: koppintson a kikapcsoláshoz',
+    rec_off: 'Felvétel ki: koppintson a bekapcsoláshoz',
+    obj_person: 'Személy',
+    obj_car: 'Autó',
+    obj_truck: 'Teherautó',
+    obj_bus: 'Busz',
+    obj_motorcycle: 'Motor',
+    obj_bicycle: 'Kerékpár',
+    obj_cat: 'Macska',
+    obj_dog: 'Kutya',
+    obj_bird: 'Madár',
+    obj_horse: 'Ló',
+    obj_package: 'Csomag',
+    obj_face: 'Arc',
+    obj_license_plate: 'Rendszám',
+    tl_today: 'Ma',
+    tl_yesterday: 'Tegnap',
+    tl_prev_day: 'Előző nap',
+    tl_next_day: 'Következő nap',
+    tl_all_cameras: 'Minden kamera',
+    tl_download: 'Letöltés',
+    tl_empty: 'Ezen a napon nincs esemény',
+    tl_select: 'Válasszon egy eseményt a klip lejátszásához',
+    tl_score: 'pontszám {s}',
+    tl_clip: 'Klip',
+    tl_live_badge: 'Élő · {c}',
+    ed_events: 'Események',
+    ed_events_helper: 'A Frigate-kamerák napi eseményei a rács alatt',
+    ed_events_expanded: 'Események kinyitva',
+    ed_events_limit: 'Megjelenített események',
+    ed_badges: 'Észlelés és felvétel gombok',
   },
   sk: {
     title: 'Kamery',
@@ -1761,6 +2594,55 @@ const HcI18n = {
     ed_duplicates_both: 'Obe',
     cf_controls_from: 'Ovládanie z (súkromie, PTZ)',
     cf_player: 'Prehrávač',
+    ev_title: 'Udalosti · {n} dnes',
+    ev_title_short: 'Udalosti · {n}',
+    ev_heading: 'Udalosti',
+    ev_today: 'dnes',
+    ev_none: 'Dnes žiadne udalosti',
+    ev_last: 'Posledná: {l} · {c}, {t}',
+    ev_all: 'Všetky',
+    ev_group_person: 'Osoba',
+    ev_group_animal: 'Zviera',
+    ev_group_vehicle: 'Vozidlo',
+    ev_group_other: 'Iné',
+    ev_live: 'prebieha',
+    ev_live_btn: 'Naživo',
+    ev_no_clip: 'Pre túto udalosť nie je klip',
+    ev_expand: 'Zobraziť udalosti',
+    ev_collapse: 'Skryť udalosti',
+    detect_on: 'Detekcia zapnutá: ťuknutím ju vypnete',
+    detect_off: 'Detekcia vypnutá: ťuknutím ju zapnete',
+    rec_on: 'Nahrávanie zapnuté: ťuknutím ho vypnete',
+    rec_off: 'Nahrávanie vypnuté: ťuknutím ho zapnete',
+    obj_person: 'Osoba',
+    obj_car: 'Auto',
+    obj_truck: 'Nákladné auto',
+    obj_bus: 'Autobus',
+    obj_motorcycle: 'Motocykel',
+    obj_bicycle: 'Bicykel',
+    obj_cat: 'Mačka',
+    obj_dog: 'Pes',
+    obj_bird: 'Vták',
+    obj_horse: 'Kôň',
+    obj_package: 'Balík',
+    obj_face: 'Tvár',
+    obj_license_plate: 'EČV',
+    tl_today: 'Dnes',
+    tl_yesterday: 'Včera',
+    tl_prev_day: 'Predchádzajúci deň',
+    tl_next_day: 'Nasledujúci deň',
+    tl_all_cameras: 'Všetky kamery',
+    tl_download: 'Stiahnuť',
+    tl_empty: 'V tento deň žiadne udalosti',
+    tl_select: 'Vyberte udalosť na prehranie klipu',
+    tl_score: 'skóre {s}',
+    tl_clip: 'Klip',
+    tl_live_badge: 'Naživo · {c}',
+    ed_events: 'Udalosti',
+    ed_events_helper: 'Dnešné udalosti kamier Frigate pod mriežkou',
+    ed_events_expanded: 'Udalosti rozbalené',
+    ed_events_limit: 'Zobrazené udalosti',
+    ed_badges: 'Tlačidlá detekcie a nahrávania',
   },
   cs: {
     title: 'Kamery',
@@ -1855,6 +2737,55 @@ const HcI18n = {
     ed_duplicates_both: 'Obě',
     cf_controls_from: 'Ovládání z (soukromí, PTZ)',
     cf_player: 'Přehrávač',
+    ev_title: 'Události · {n} dnes',
+    ev_title_short: 'Události · {n}',
+    ev_heading: 'Události',
+    ev_today: 'dnes',
+    ev_none: 'Dnes žádné události',
+    ev_last: 'Poslední: {l} · {c}, {t}',
+    ev_all: 'Vše',
+    ev_group_person: 'Osoba',
+    ev_group_animal: 'Zvíře',
+    ev_group_vehicle: 'Vozidlo',
+    ev_group_other: 'Jiné',
+    ev_live: 'probíhá',
+    ev_live_btn: 'Živě',
+    ev_no_clip: 'Pro tuto událost není klip',
+    ev_expand: 'Zobrazit události',
+    ev_collapse: 'Skrýt události',
+    detect_on: 'Detekce zapnutá: klepnutím ji vypnete',
+    detect_off: 'Detekce vypnutá: klepnutím ji zapnete',
+    rec_on: 'Nahrávání zapnuté: klepnutím ho vypnete',
+    rec_off: 'Nahrávání vypnuté: klepnutím ho zapnete',
+    obj_person: 'Osoba',
+    obj_car: 'Auto',
+    obj_truck: 'Nákladní auto',
+    obj_bus: 'Autobus',
+    obj_motorcycle: 'Motocykl',
+    obj_bicycle: 'Kolo',
+    obj_cat: 'Kočka',
+    obj_dog: 'Pes',
+    obj_bird: 'Pták',
+    obj_horse: 'Kůň',
+    obj_package: 'Balík',
+    obj_face: 'Obličej',
+    obj_license_plate: 'SPZ',
+    tl_today: 'Dnes',
+    tl_yesterday: 'Včera',
+    tl_prev_day: 'Předchozí den',
+    tl_next_day: 'Další den',
+    tl_all_cameras: 'Všechny kamery',
+    tl_download: 'Stáhnout',
+    tl_empty: 'V tento den žádné události',
+    tl_select: 'Vyberte událost pro přehrání klipu',
+    tl_score: 'skóre {s}',
+    tl_clip: 'Klip',
+    tl_live_badge: 'Živě · {c}',
+    ed_events: 'Události',
+    ed_events_helper: 'Dnešní události kamer Frigate pod mřížkou',
+    ed_events_expanded: 'Události rozbalené',
+    ed_events_limit: 'Zobrazené události',
+    ed_badges: 'Tlačítka detekce a nahrávání',
   },
   sl: {
     title: 'Kamere',
@@ -1949,6 +2880,55 @@ const HcI18n = {
     ed_duplicates_both: 'Obe',
     cf_controls_from: 'Upravljanje iz (zasebnost, PTZ)',
     cf_player: 'Predvajalnik',
+    ev_title: 'Dogodki · {n} danes',
+    ev_title_short: 'Dogodki · {n}',
+    ev_heading: 'Dogodki',
+    ev_today: 'danes',
+    ev_none: 'Danes ni dogodkov',
+    ev_last: 'Zadnji: {l} · {c}, {t}',
+    ev_all: 'Vsi',
+    ev_group_person: 'Oseba',
+    ev_group_animal: 'Žival',
+    ev_group_vehicle: 'Vozilo',
+    ev_group_other: 'Drugo',
+    ev_live: 'poteka',
+    ev_live_btn: 'V živo',
+    ev_no_clip: 'Za ta dogodek ni posnetka',
+    ev_expand: 'Pokaži dogodke',
+    ev_collapse: 'Skrij dogodke',
+    detect_on: 'Zaznavanje vklopljeno: tapnite za izklop',
+    detect_off: 'Zaznavanje izklopljeno: tapnite za vklop',
+    rec_on: 'Snemanje vklopljeno: tapnite za izklop',
+    rec_off: 'Snemanje izklopljeno: tapnite za vklop',
+    obj_person: 'Oseba',
+    obj_car: 'Avto',
+    obj_truck: 'Tovornjak',
+    obj_bus: 'Avtobus',
+    obj_motorcycle: 'Motor',
+    obj_bicycle: 'Kolo',
+    obj_cat: 'Mačka',
+    obj_dog: 'Pes',
+    obj_bird: 'Ptica',
+    obj_horse: 'Konj',
+    obj_package: 'Paket',
+    obj_face: 'Obraz',
+    obj_license_plate: 'Registrska tablica',
+    tl_today: 'Danes',
+    tl_yesterday: 'Včeraj',
+    tl_prev_day: 'Prejšnji dan',
+    tl_next_day: 'Naslednji dan',
+    tl_all_cameras: 'Vse kamere',
+    tl_download: 'Prenesi',
+    tl_empty: 'Ta dan ni dogodkov',
+    tl_select: 'Izberite dogodek za predvajanje posnetka',
+    tl_score: 'ocena {s}',
+    tl_clip: 'Posnetek',
+    tl_live_badge: 'V živo · {c}',
+    ed_events: 'Dogodki',
+    ed_events_helper: 'Današnji dogodki kamer Frigate pod mrežo',
+    ed_events_expanded: 'Dogodki razprti',
+    ed_events_limit: 'Prikazani dogodki',
+    ed_badges: 'Gumba za zaznavanje in snemanje',
   },
   lv: {
     title: 'Kameras',
@@ -2043,6 +3023,55 @@ const HcI18n = {
     ed_duplicates_both: 'Abas',
     cf_controls_from: 'Vadība no (privātums, PTZ)',
     cf_player: 'Atskaņotājs',
+    ev_title: 'Notikumi · {n} šodien',
+    ev_title_short: 'Notikumi · {n}',
+    ev_heading: 'Notikumi',
+    ev_today: 'šodien',
+    ev_none: 'Šodien notikumu nav',
+    ev_last: 'Pēdējais: {l} · {c}, {t}',
+    ev_all: 'Visi',
+    ev_group_person: 'Persona',
+    ev_group_animal: 'Dzīvnieks',
+    ev_group_vehicle: 'Transportlīdzeklis',
+    ev_group_other: 'Cits',
+    ev_live: 'notiek',
+    ev_live_btn: 'Tiešraide',
+    ev_no_clip: 'Šim notikumam nav klipa',
+    ev_expand: 'Rādīt notikumus',
+    ev_collapse: 'Paslēpt notikumus',
+    detect_on: 'Noteikšana ieslēgta: pieskarieties, lai izslēgtu',
+    detect_off: 'Noteikšana izslēgta: pieskarieties, lai ieslēgtu',
+    rec_on: 'Ierakstīšana ieslēgta: pieskarieties, lai izslēgtu',
+    rec_off: 'Ierakstīšana izslēgta: pieskarieties, lai ieslēgtu',
+    obj_person: 'Persona',
+    obj_car: 'Automašīna',
+    obj_truck: 'Kravas auto',
+    obj_bus: 'Autobuss',
+    obj_motorcycle: 'Motocikls',
+    obj_bicycle: 'Velosipēds',
+    obj_cat: 'Kaķis',
+    obj_dog: 'Suns',
+    obj_bird: 'Putns',
+    obj_horse: 'Zirgs',
+    obj_package: 'Paka',
+    obj_face: 'Seja',
+    obj_license_plate: 'Numura zīme',
+    tl_today: 'Šodien',
+    tl_yesterday: 'Vakar',
+    tl_prev_day: 'Iepriekšējā diena',
+    tl_next_day: 'Nākamā diena',
+    tl_all_cameras: 'Visas kameras',
+    tl_download: 'Lejupielādēt',
+    tl_empty: 'Šajā dienā notikumu nav',
+    tl_select: 'Izvēlieties notikumu, lai atskaņotu tā klipu',
+    tl_score: 'vērtējums {s}',
+    tl_clip: 'Klips',
+    tl_live_badge: 'Tiešraide · {c}',
+    ed_events: 'Notikumi',
+    ed_events_helper: 'Frigate kameru šodienas notikumi zem režģa',
+    ed_events_expanded: 'Notikumi izvērsti',
+    ed_events_limit: 'Rādītie notikumi',
+    ed_badges: 'Noteikšanas un ierakstīšanas pogas',
   },
   el: {
     title: 'Κάμερες',
@@ -2137,6 +3166,55 @@ const HcI18n = {
     ed_duplicates_both: 'Και οι δύο',
     cf_controls_from: 'Χειρισμός από (απόρρητο, PTZ)',
     cf_player: 'Αναπαραγωγή',
+    ev_title: 'Συμβάντα · {n} σήμερα',
+    ev_title_short: 'Συμβάντα · {n}',
+    ev_heading: 'Συμβάντα',
+    ev_today: 'σήμερα',
+    ev_none: 'Κανένα συμβάν σήμερα',
+    ev_last: 'Τελευταίο: {l} · {c}, {t}',
+    ev_all: 'Όλα',
+    ev_group_person: 'Άτομο',
+    ev_group_animal: 'Ζώο',
+    ev_group_vehicle: 'Όχημα',
+    ev_group_other: 'Άλλο',
+    ev_live: 'σε εξέλιξη',
+    ev_live_btn: 'Ζωντανά',
+    ev_no_clip: 'Δεν υπάρχει κλιπ για αυτό το συμβάν',
+    ev_expand: 'Εμφάνιση συμβάντων',
+    ev_collapse: 'Απόκρυψη συμβάντων',
+    detect_on: 'Ανίχνευση ενεργή: πατήστε για απενεργοποίηση',
+    detect_off: 'Ανίχνευση ανενεργή: πατήστε για ενεργοποίηση',
+    rec_on: 'Εγγραφή ενεργή: πατήστε για απενεργοποίηση',
+    rec_off: 'Εγγραφή ανενεργή: πατήστε για ενεργοποίηση',
+    obj_person: 'Άτομο',
+    obj_car: 'Αυτοκίνητο',
+    obj_truck: 'Φορτηγό',
+    obj_bus: 'Λεωφορείο',
+    obj_motorcycle: 'Μοτοσυκλέτα',
+    obj_bicycle: 'Ποδήλατο',
+    obj_cat: 'Γάτα',
+    obj_dog: 'Σκύλος',
+    obj_bird: 'Πουλί',
+    obj_horse: 'Άλογο',
+    obj_package: 'Δέμα',
+    obj_face: 'Πρόσωπο',
+    obj_license_plate: 'Πινακίδα',
+    tl_today: 'Σήμερα',
+    tl_yesterday: 'Χθες',
+    tl_prev_day: 'Προηγούμενη μέρα',
+    tl_next_day: 'Επόμενη μέρα',
+    tl_all_cameras: 'Όλες οι κάμερες',
+    tl_download: 'Λήψη',
+    tl_empty: 'Κανένα συμβάν αυτή τη μέρα',
+    tl_select: 'Επιλέξτε ένα συμβάν για να παίξει το κλιπ του',
+    tl_score: 'βαθμολογία {s}',
+    tl_clip: 'Κλιπ',
+    tl_live_badge: 'Ζωντανά · {c}',
+    ed_events: 'Συμβάντα',
+    ed_events_helper: 'Τα σημερινά συμβάντα των καμερών Frigate, κάτω από το πλέγμα',
+    ed_events_expanded: 'Συμβάντα ανεπτυγμένα',
+    ed_events_limit: 'Εμφανιζόμενα συμβάντα',
+    ed_badges: 'Κουμπιά ανίχνευσης και εγγραφής',
   },
 };
 
@@ -2254,7 +3332,7 @@ function hcSibling(hass, cameraId, domain, suffix) {
 // True when an event path goes through one of the card's own controls (privacy toggle, HD/SD switch,
 // tile buttons, including the one covering the image that opens the camera).
 function hcOwnControl(path) {
-  return path.some((n) => n.dataset?.toggle || n.dataset?.quality || n.dataset?.action);
+  return path.some((n) => n.dataset?.toggle || n.dataset?.quality || n.dataset?.action || n.dataset?.ev);
 }
 
 // "16:9", "4/3" or 1.5 as a width / height ratio; 16:9 when missing or invalid.
@@ -2357,6 +3435,12 @@ const HC_FRIGATE_DEFAULTS = {
   url: '',
   open_in_frigate: true,
   duplicates: 'frigate',
+  // The events of the Frigate cameras, under the grid: folded unless events_expanded; events_labels (YAML) keeps
+  // some objects only. badges: Frigate's detection and recording switches on the tiles.
+  events: true,
+  events_expanded: false,
+  events_limit: 5,
+  badges: true,
 };
 const HC_PLAYERS = ['auto', 'frigate', 'home_assistant'];
 const HC_DUPLICATES = ['frigate', 'native', 'both'];
@@ -2459,8 +3543,195 @@ function hcCamera(hass, raw, index, fc = HC_FRIGATE_DEFAULTS) {
     player: player,
     // Frigate: its camera name and instance (the integration's proxy), and its SD stream when there is no SD entity
     frigate: frigate ? { name: fname, instance: fc.instance || st?.attributes?.client_id || '' } : null,
+    // Frigate's detection and recording switches of the camera (frigate.badges)
+    switches:
+      frigate && fc.badges !== false
+        ? [
+            ['fdetect', hcSibling(hass, id, 'switch', '_detect')],
+            ['frec', hcSibling(hass, id, 'switch', '_recordings')],
+          ].filter(([, e]) => e)
+        : [],
     sdStream: frigate && !sd && player !== 'home_assistant' && fc.sd_stream ? String(fc.sd_stream).replace('{camera}', fname) : null,
   };
+}
+
+// ── Frigate events ───────────────────────────────────────────────────────────
+// The Frigate integration's own WebSocket command (frigate/events/get) gives a camera's tracked objects; their
+// thumbnail and clip come through its proxy (/api/frigate/<instance>/thumbnail/<id>, …/notifications/<id>/clip.mp4),
+// on paths signed by Home Assistant (an <img> or a <video> carries no token).
+const HC_EVENTS_MS = 30000; // events asked again at most this often, and soon after a motion ends
+const HC_LABEL_GROUPS = {
+  person: 'person',
+  face: 'person',
+  cat: 'animal',
+  dog: 'animal',
+  bird: 'animal',
+  horse: 'animal',
+  sheep: 'animal',
+  cow: 'animal',
+  bear: 'animal',
+  deer: 'animal',
+  car: 'vehicle',
+  truck: 'vehicle',
+  bus: 'vehicle',
+  motorcycle: 'vehicle',
+  bicycle: 'vehicle',
+  boat: 'vehicle',
+  license_plate: 'vehicle',
+};
+const HC_LABEL_ICONS = {
+  person: 'mdi:walk',
+  face: 'mdi:face-recognition',
+  cat: 'mdi:cat',
+  dog: 'mdi:dog',
+  bird: 'mdi:bird',
+  horse: 'mdi:horse',
+  car: 'mdi:car',
+  truck: 'mdi:truck',
+  bus: 'mdi:bus',
+  motorcycle: 'mdi:motorbike',
+  bicycle: 'mdi:bicycle',
+  boat: 'mdi:sail-boat',
+  package: 'mdi:package-variant-closed',
+};
+const HC_EVENT_GROUPS = ['person', 'animal', 'vehicle', 'other'];
+const hcLabelGroup = (label) => HC_LABEL_GROUPS[label] || 'other';
+const hcLabelIcon = (label) => HC_LABEL_ICONS[label] || 'mdi:shape-outline';
+function hcLabelName(lang, label) {
+  const key = `obj_${label}`;
+  const txt = hcT(lang, key);
+  if (txt !== key) return txt;
+  const s = String(label || '').replace(/_/g, ' ');
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+// The events of Frigate cameras ({ name, instance }) since `after` (epoch seconds), newest first, one request per
+// Frigate instance. A failed instance gives none (the integration missing, an old version).
+async function hcFetchEvents(hass, cams, { after, before, limit = 50, labels } = {}) {
+  const byInstance = new Map();
+  for (const cam of cams) {
+    if (!byInstance.has(cam.instance)) byInstance.set(cam.instance, new Set());
+    byInstance.get(cam.instance).add(cam.name);
+  }
+  const lists = await Promise.all(
+    [...byInstance].map(async ([instance, names]) => {
+      const msg = { type: 'frigate/events/get', instance_id: instance || 'frigate', cameras: [...names], limit };
+      if (after) msg.after = Math.floor(after);
+      if (before) msg.before = Math.floor(before);
+      if (labels?.length) msg.labels = labels;
+      try {
+        let res = await hass.callWS(msg);
+        if (typeof res === 'string') res = JSON.parse(res);
+        return (Array.isArray(res) ? res : []).map((ev) => Object.assign({}, ev, { instance }));
+      } catch (_e) {
+        return [];
+      }
+    }),
+  );
+  return lists.flat().sort((a, b) => (b.start_time || 0) - (a.start_time || 0));
+}
+
+// Signed paths, kept until shortly before they expire (an hour), so a redraw never signs again.
+const hcSignedCache = new Map();
+async function hcSigned(hass, path) {
+  const hit = hcSignedCache.get(path);
+  if (hit && hit.until > Date.now()) return hit.url;
+  const { path: signed } = await hass.callWS({ type: 'auth/sign_path', path, expires: 3600 });
+  const url = hass.hassUrl ? hass.hassUrl(signed) : signed;
+  hcSignedCache.set(path, { url, until: Date.now() + 50 * 60000 });
+  return url;
+}
+// Thumbnails ([data-thumb] elements) signed and loaded only once they come near the screen: a long day of events
+// asks for the few shown, not for hundreds.
+const hcThumbIo = new WeakMap(); // root → { io, hass }
+function hcLazyThumbs(hass, root) {
+  const els = root.querySelectorAll('[data-thumb]');
+  let entry = hcThumbIo.get(root);
+  const load = (el) => {
+    hcSigned(entry?.hass || hass, el.dataset.thumb)
+      .then((url) => {
+        el.style.backgroundImage = `url("${url}")`;
+      })
+      .catch(() => {});
+  };
+  if (typeof IntersectionObserver !== 'function') {
+    els.forEach(load);
+    return;
+  }
+  if (!entry) {
+    entry = { hass, io: null };
+    entry.io = new IntersectionObserver(
+      (seen) => {
+        for (const s of seen) {
+          if (!s.isIntersecting) continue;
+          entry.io.unobserve(s.target);
+          load(s.target);
+        }
+      },
+      { rootMargin: '300px' },
+    );
+    hcThumbIo.set(root, entry);
+  }
+  entry.hass = hass;
+  // The rows drawn before are gone: only the new ones are watched
+  entry.io.disconnect();
+  for (const el of els) entry.io.observe(el);
+}
+const hcFrigateBase = (instance) => `/api/frigate/${instance ? `${encodeURIComponent(instance)}/` : ''}`;
+const hcThumbPath = (ev) => `${hcFrigateBase(ev.instance)}thumbnail/${encodeURIComponent(ev.id)}`;
+const hcClipPath = (ev) => `${hcFrigateBase(ev.instance)}notifications/${encodeURIComponent(ev.id)}/clip.mp4`;
+
+const hcStartOfDay = (offset = 0) => {
+  const d = new Date();
+  d.setHours(0, 0, 0, 0);
+  d.setDate(d.getDate() + offset);
+  return d.getTime() / 1000;
+};
+
+// "4 min ago" within the hour, the time today, else the weekday and time.
+function hcWhen(lang, epoch) {
+  const ms = epoch * 1000;
+  const ago = Date.now() - ms;
+  try {
+    if (ago >= 0 && ago < 3600000) {
+      const rtf = new Intl.RelativeTimeFormat(lang, { numeric: 'auto', style: 'short' });
+      return rtf.format(-Math.max(0, Math.round(ago / 60000)), 'minute');
+    }
+    const opts = ms >= hcStartOfDay() * 1000 ? { hour: '2-digit', minute: '2-digit' } : { weekday: 'short', hour: '2-digit', minute: '2-digit' };
+    return new Date(ms).toLocaleString(lang, opts);
+  } catch (_e) {
+    return new Date(ms).toLocaleTimeString();
+  }
+}
+function hcTime(lang, epoch) {
+  try {
+    return new Date(epoch * 1000).toLocaleTimeString(lang, { hour: '2-digit', minute: '2-digit' });
+  } catch (_e) {
+    return new Date(epoch * 1000).toLocaleTimeString();
+  }
+}
+// "18 s", "1 min 12 s"; an event still going on: "in progress".
+function hcDuration(lang, ev) {
+  if (!ev.end_time) return hcT(lang, 'ev_live');
+  const s = Math.max(0, Math.round(ev.end_time - ev.start_time));
+  const unit = (n, u) => {
+    try {
+      return new Intl.NumberFormat(lang, { style: 'unit', unit: u, unitDisplay: 'short' }).format(n);
+    } catch (_e) {
+      return `${n} ${u === 'minute' ? 'min' : 's'}`;
+    }
+  };
+  if (s < 60) return unit(s, 'second');
+  return s % 60 ? `${unit(Math.floor(s / 60), 'minute')} ${unit(s % 60, 'second')}` : unit(s / 60, 'minute');
+}
+function hcScore(lang, ev) {
+  const v = ev.data?.top_score ?? ev.top_score ?? ev.data?.score ?? ev.score;
+  if (typeof v !== 'number') return '';
+  try {
+    return new Intl.NumberFormat(lang, { style: 'percent' }).format(v);
+  } catch (_e) {
+    return `${Math.round(v * 100)} %`;
+  }
 }
 
 // HD / SD choice of the cards without quality_entity, shared by every card of the browser.
@@ -3413,6 +4684,7 @@ class HomeCameraCard extends HTMLElement {
       else this._renderView(visible, hd, cams.length);
     }
     this._syncMotion();
+    this._syncEvents();
   }
 
   // Motion badge of each tile and snapshot: shown while one of its camera's motion sensors is on.
@@ -3754,6 +5026,7 @@ class HomeCameraCard extends HTMLElement {
 
   // A tile leaving the grid: it gives back the page scroll if it covered the screen, and stops a held arrow.
   _dropTile(tile) {
+    this._stopClip(tile, true);
     if (tile === this._pseudo) this._setPseudo(tile, false);
     if (this._repeatBtn && tile.contains(this._repeatBtn)) this._stopRepeat();
   }
@@ -3827,7 +5100,7 @@ class HomeCameraCard extends HTMLElement {
     if (!cam) return;
     const full = this._fullscreen(tile);
     const frigateUrl = this._frigateUrl(cam);
-    const sig = JSON.stringify([this._lang(), cam.ptz, full, tile._audio, frigateUrl]);
+    const sig = JSON.stringify([this._lang(), cam.ptz, full, tile._audio, frigateUrl, cam.switches]);
     if (sig === tile._toolsSig) return;
     tile._toolsSig = sig;
 
@@ -3855,10 +5128,23 @@ class HomeCameraCard extends HTMLElement {
           )
           .join('')
       : '';
+    let frs = tile.querySelector('.frs');
+    if (!frs) {
+      frs = document.createElement('div');
+      frs.className = 'frs';
+      tile.querySelector('.pad').before(frs);
+    }
+    frs.innerHTML = cam.switches
+      .map(([action, entity]) =>
+        btn(action, `data-action="${action}" data-entity="${hcEsc(entity)}"`, action === 'fdetect' ? 'mdi:motion-sensor' : 'mdi:record-rec', ''),
+      )
+      .join('');
+    tile.classList.toggle('has-frs', cam.switches.length > 0);
     tile.classList.toggle('has-ptz', !!cam.ptz);
     if (!cam.ptz) tile.classList.remove('ptz-open');
     this._soundIcon(tile);
     this._syncPtz(tile);
+    this._syncFrigate(tile);
   }
 
   // Live state of every tile: the camera's state object, and which PTZ buttons can be pressed.
@@ -3875,7 +5161,9 @@ class HomeCameraCard extends HTMLElement {
       // Older Home Assistant versions take hass; newer ones read it from the page (Lit context) and
       // do not declare it, so it is only given to a player that asks for it.
       if (stream.constructor.elementProperties?.has?.('hass')) stream.hass = this._hass;
-      const obj = ok && !paused ? st : undefined;
+      // A clip playing over the tile: its live stream stops meanwhile; the clip itself pauses off screen
+      const obj = ok && !paused && !tile._clip ? st : undefined;
+      if (tile._clip && paused) tile.querySelector('.clipv')?.pause();
       // A new camera (or the same one coming back) loads again: spinner until its first frame, and
       // its sound is unknown until its player says. A mere state update keeps both.
       // (Not while a replay has emptied the player on purpose.)
@@ -3896,6 +5184,7 @@ class HomeCameraCard extends HTMLElement {
       if (replay) this._replay(tile);
       else if (stream.stateObj !== obj && !tile._replaying) stream.stateObj = obj;
       this._syncPtz(tile);
+      this._syncFrigate(tile);
     }
   }
 
@@ -4025,6 +5314,216 @@ class HomeCameraCard extends HTMLElement {
 
   _ptzStop(b) {
     this._call('frigate', 'ptz', { entity_id: b.dataset.entity, action: 'stop' }).catch(() => {});
+  }
+
+  // ── Frigate events (frigate.events) ──
+  // The Frigate cameras of the card, as frigate/events/get takes them.
+  _eventCams() {
+    return this._cameras()
+      .filter((cam) => cam.frigate)
+      .map((cam) => ({ name: cam.frigate.name, instance: cam.frigate.instance, key: cam.key, title: cam.name }));
+  }
+
+  // Asked again at most every HC_EVENTS_MS, soon after a motion of a Frigate camera ends, never while the card is
+  // off screen or on the wall (the panel has its own Events tab).
+  _syncEvents() {
+    const fc = hcFrigateConf(this._config);
+    const cams = fc.events === false || this._wall ? [] : this._eventCams();
+    if (!cams.length) {
+      this._events = null;
+      this._evEl?.remove();
+      return;
+    }
+    const motion = this._cameras()
+      .filter((cam) => cam.frigate)
+      .map((cam) => cam.motion.some((id) => this._state(id) === 'on'))
+      .join();
+    const ended = this._evMotion !== undefined && motion !== this._evMotion;
+    this._evMotion = motion;
+    const sig = JSON.stringify([cams.map((c) => [c.name, c.instance]), fc.events_labels || null]);
+    const stale = sig !== this._evSig || Date.now() - (this._evAt || 0) > HC_EVENTS_MS;
+    if (!this._evBusy && !this._paused() && this._hass?.callWS && (stale || ended)) {
+      this._evSig = sig;
+      this._evAt = Date.now();
+      this._evBusy = true;
+      const labels = Array.isArray(fc.events_labels) ? fc.events_labels : fc.events_labels ? [fc.events_labels] : null;
+      hcFetchEvents(this._hass, cams, { after: hcStartOfDay(), limit: 50, labels })
+        .then((events) => {
+          this._events = events;
+          this._renderEvents();
+        })
+        .finally(() => {
+          this._evBusy = false;
+        });
+    }
+    this._renderEvents();
+  }
+
+  // The events block, last in the view: folded (count, last event, three thumbnails) or the list with its filters.
+  _renderEvents() {
+    const view = this.shadowRoot?.querySelector('.view');
+    if (!view || !this._events) return;
+    const fc = hcFrigateConf(this._config);
+    const lang = this._lang();
+    const compact = this._compact();
+    if (this._evOpen === undefined) this._evOpen = !!fc.events_expanded;
+    const open = this._evOpen && !compact;
+    const cams = this._eventCams();
+    const camName = (ev) => cams.find((c) => c.name === ev.camera && c.instance === ev.instance)?.title || ev.camera;
+    const groups = HC_EVENT_GROUPS.filter((g) => this._events.some((ev) => hcLabelGroup(ev.label) === g));
+    if (this._evFilter && !groups.includes(this._evFilter)) this._evFilter = null;
+    const shown = this._events.filter((ev) => !this._evFilter || hcLabelGroup(ev.label) === this._evFilter);
+    const limit = Math.max(1, Number(fc.events_limit) || HC_FRIGATE_DEFAULTS.events_limit);
+    const single = cams.length === 1;
+    const sig = JSON.stringify([lang, open, compact, this._evFilter, limit, this._events.map((ev) => [ev.id, ev.end_time, ev.label]), Math.floor(Date.now() / 60000)]);
+    if (!this._evEl) {
+      this._evEl = document.createElement('div');
+      this._evEl.className = 'events';
+    }
+    if (this._evEl.parentNode !== view || view.lastElementChild !== this._evEl) view.appendChild(this._evEl);
+    if (sig === this._evRendered) return;
+    this._evRendered = sig;
+    const thumb = (ev, cls) =>
+      `<span class="${cls}" data-thumb="${hcEsc(hcThumbPath(ev))}" role="img" aria-label="${hcEsc(hcLabelName(lang, ev.label))}"></span>`;
+    if (!open) {
+      const last = this._events[0];
+      const n = this._events.length;
+      const title = this._t(compact ? 'ev_title_short' : 'ev_title', { n });
+      // The mini card: the object, the camera and when, without the "Last:" lead
+      const sub = last && compact
+        ? [hcLabelName(lang, last.label), single ? '' : camName(last), hcWhen(lang, last.start_time)].filter(Boolean).join(' · ')
+        : last
+        ? this._t('ev_last', { l: hcLabelName(lang, last.label), c: single ? '' : camName(last), t: hcWhen(lang, last.start_time) })
+            .replace(/ · ,/, ',')
+            .replace(/ · $/, '')
+        : this._t('ev_none');
+      this._evEl.innerHTML =
+        `<div class="evfold${compact ? ' mini' : ''}" data-ev="toggle" role="button" tabindex="0" aria-expanded="false" title="${hcEsc(this._t('ev_expand'))}">` +
+        '<ha-icon icon="mdi:history"></ha-icon>' +
+        `<div class="tx"><div class="k">${hcEsc(n ? title : this._t('ev_title_short', { n: 0 }))}</div><div class="s">${hcEsc(sub)}</div></div>` +
+        `<div class="stack">${this._events.slice(0, compact ? 1 : 3).map((ev) => thumb(ev, 'th')).join('')}</div>` +
+        '<ha-icon class="chev" icon="mdi:chevron-down"></ha-icon></div>';
+    } else {
+      const chips = groups.length > 1
+        ? `<span class="chips">${['all', ...groups]
+            .map((g) => {
+              const on = (this._evFilter || 'all') === g;
+              return `<span class="chip${on ? ' on' : ''}" data-ev="filter" data-group="${g}" role="button" tabindex="0" aria-pressed="${on}">${hcEsc(this._t(g === 'all' ? 'ev_all' : `ev_group_${g}`))}</span>`;
+            })
+            .join('')}</span>`
+        : '';
+      const rows = shown.slice(0, limit).map((ev) => {
+        const name = hcLabelName(lang, ev.label);
+        return (
+          `<div class="evrow${ev.has_clip === false ? ' noclip' : ''}" data-ev="play" data-id="${hcEsc(ev.id)}" role="button" tabindex="0" title="${hcEsc(ev.has_clip === false ? this._t('ev_no_clip') : name)}">` +
+          `${thumb(ev, 'th')}<div class="tx"><div class="k"><ha-icon icon="${hcLabelIcon(ev.label)}" class="g-${hcLabelGroup(ev.label)}"></ha-icon>` +
+          `${hcEsc(single ? name : `${name} · ${camName(ev)}`)}</div><div class="s">${hcEsc(`${hcWhen(lang, ev.start_time)} · ${hcDuration(lang, ev)}`)}</div></div>` +
+          `<span class="sc">${hcEsc(hcScore(lang, ev))}</span></div>`
+        );
+      });
+      this._evEl.innerHTML =
+        `<div class="evlist"><div class="evhead"><span class="t">${hcEsc(this._t('ev_heading'))}</span><small>${hcEsc(this._t('ev_today'))}</small>${chips}` +
+        `<span class="chev" data-ev="toggle" role="button" tabindex="0" aria-expanded="true" title="${hcEsc(this._t('ev_collapse'))}" aria-label="${hcEsc(this._t('ev_collapse'))}"><ha-icon icon="mdi:chevron-up"></ha-icon></span></div>` +
+        (rows.length ? rows.join('') : `<div class="evnone">${hcEsc(this._t('ev_none'))}</div>`) +
+        '</div>';
+    }
+    // Thumbnails on signed paths, asked once each, only for the rows on screen
+    hcLazyThumbs(this._hass, this._evEl);
+  }
+
+  _onEvent(el, ev) {
+    const what = el.dataset.ev;
+    if (what === 'toggle') {
+      // The mini card opens its full view with the list
+      if (this._compact()) {
+        this._evOpen = true;
+        this._setZoom?.(true);
+        return;
+      }
+      this._evOpen = !this._evOpen;
+      this._evRendered = null;
+      this._renderEvents();
+      // Keyboard use (no click count) keeps the focus on the toggle
+      if (!ev?.detail) this._evEl?.querySelector('[data-ev="toggle"]')?.focus({ preventScroll: true });
+    } else if (what === 'filter') {
+      this._evFilter = el.dataset.group === 'all' ? null : el.dataset.group;
+      this._evRendered = null;
+      this._renderEvents();
+    } else if (what === 'play') {
+      const ev = this._events?.find((e) => e.id === el.dataset.id);
+      if (ev && ev.has_clip !== false) this._playClip(ev);
+    }
+  }
+
+  // An event's clip in its camera's tile, over the live stream (which stops meanwhile), with a Live button back.
+  // A camera without a tile here (hidden): the clip opens in a new tab.
+  async _playClip(ev) {
+    const cam = this._eventCams().find((c) => c.name === ev.camera && c.instance === ev.instance);
+    const tile = cam && this._tiles?.get(cam.key);
+    let url;
+    try {
+      url = await hcSigned(this._hass, hcClipPath(ev));
+    } catch (_e) {
+      return;
+    }
+    if (!tile?.isConnected) {
+      window.open(url, '_blank', 'noopener');
+      return;
+    }
+    // One clip at a time in the card
+    for (const t of this._tiles?.values() || []) this._stopClip(t, true);
+    tile._clip = ev.id;
+    const video = document.createElement('video');
+    video.className = 'clipv';
+    video.preload = 'metadata';
+    video.src = url;
+    video.controls = true;
+    video.autoplay = true;
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute('playsinline', '');
+    const back = document.createElement('span');
+    back.className = 'btn livebtn';
+    back.dataset.action = 'live';
+    back.setAttribute('role', 'button');
+    back.tabIndex = 0;
+    back.innerHTML = `<ha-icon icon="mdi:cctv"></ha-icon><span>${hcEsc(this._t('ev_live_btn'))}</span>`;
+    tile.append(video, back);
+    tile.classList.add('clip');
+    this._syncTiles();
+    tile.scrollIntoView?.({ block: 'nearest', behavior: 'smooth' });
+  }
+
+  _stopClip(tile, quiet) {
+    if (!tile?._clip) return;
+    tile._clip = null;
+    const video = tile.querySelector('.clipv');
+    if (video) {
+      // Stops its download too
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+      video.remove();
+    }
+    tile.querySelector('.livebtn')?.remove();
+    tile.classList.remove('clip');
+    if (!quiet) this._syncTiles();
+  }
+
+  // Frigate's detection and recording switches of a tile: lit while on, dimmed while off, greyed while unavailable.
+  _syncFrigate(tile) {
+    for (const b of tile.querySelectorAll('.frs .btn')) {
+      const state = this._state(b.dataset.entity);
+      const on = state === 'on';
+      b.classList.toggle('off', !on);
+      b.classList.toggle('dis', !this._usable(b.dataset.entity));
+      const label = this._t(`${b.dataset.action === 'fdetect' ? 'detect' : 'rec'}_${on ? 'on' : 'off'}`);
+      if (b.title !== label) {
+        b.title = label;
+        b.setAttribute('aria-label', label);
+        b.setAttribute('aria-pressed', String(on));
+      }
+    }
   }
 
   // A Frigate camera's player source: Frigate's go2rtc through the integration's proxy, for its SD sub-stream (auto),
@@ -4376,12 +5875,60 @@ class HomeCameraCard extends HTMLElement {
       '.thumb .label ha-icon { --mdc-icon-size: 13px; flex: none; }' +
       '.thumb.hidden .label { color: color-mix(in srgb, var(--hc-on) 55%, #fff); }' +
       '.thumb:is(.off, .failed) .label { color: rgba(255,255,255,0.62); }' +
+      // Frigate: detection and recording switches in the bottom right corner (hidden with the pan & tilt pad there and
+      // in fullscreen); the name stops before them.
+      '.frs { position: absolute; right: 8px; bottom: 8px; z-index: 1; display: flex; gap: 6px; }' +
+      '.frs .btn:not(.off) { color: #fff; } .frs .btn.frec:not(.off) ha-icon { color: #ff5a52; }' +
+      '.frs .btn.off { color: rgba(255,255,255,0.55); } .frs .btn.dis { opacity: 0.45; cursor: default; }' +
+      '.tile.ptz-open .frs, :is(.tile:fullscreen, .tile.pseudo) .frs, .tile.clip .frs { display: none; }' +
+      '.tile.has-frs:not(.ptz-open) .label { max-width: calc(100% - 96px); }' +
+      // An event's clip over the tile, with its Live button back
+      '.clipv { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; z-index: 2; }' +
+      '.livebtn { position: absolute; top: 8px; left: 8px; z-index: 3; width: auto; padding: 0 12px 0 10px; gap: 6px; border-radius: 15px; font-size: 13px; font-weight: 500; }' +
+      '.tile.clip .tools, .tile.clip .label { display: none; }' +
+      // The events of the Frigate cameras under the grid: folded (a row) or listed
+      '.events { margin-top: 12px; min-width: 0; }' +
+      'ha-card.solo .events { margin: 12px; }' +
+      '.evfold { display: flex; align-items: center; gap: 10px; padding: 8px 10px 8px 12px; border-radius: 12px; cursor: pointer;' +
+      ' background: var(--secondary-background-color, rgba(127,127,127,0.1)); -webkit-tap-highlight-color: transparent; }' +
+      '.evfold:focus-visible, .events [data-ev]:focus-visible { outline: 2px solid var(--primary-color, #03a9f4); outline-offset: 1px; }' +
+      '.evfold > ha-icon { --mdc-icon-size: 20px; color: var(--warning-color, #ffa600); flex: none; }' +
+      '.evfold .tx, .evrow .tx { flex: 1; min-width: 0; }' +
+      '.evfold .k { font-size: 14px; font-weight: 500; }' +
+      '.evfold .s, .evrow .s { font-size: 12px; color: var(--secondary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
+      '.evfold .stack { display: flex; flex: none; padding-left: 12px; }' +
+      '.evfold .stack .th { width: 44px; height: 28px; border-radius: 6px; margin-left: -12px; border: 2px solid var(--card-background-color, #fff);' +
+      ' background: #20232a center / cover; }' +
+      '.evfold.mini { gap: 8px; padding: 6px 8px 6px 10px; margin-top: 10px; } .evfold.mini .k { font-size: 13px; }' +
+      '.events .chev { --mdc-icon-size: 22px; color: var(--secondary-text-color); display: inline-flex; cursor: pointer; border-radius: 50%; }' +
+      '.evhead { display: flex; align-items: center; gap: 8px; padding: 10px 0 6px; border-top: 1px solid var(--divider-color); }' +
+      '.evhead .t { font-size: 14px; font-weight: 500; } .evhead small { font-size: 12px; color: var(--secondary-text-color); }' +
+      '.evhead .chips { margin-left: auto; display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }' +
+      '.evhead .chips + .chev { margin-left: 2px; } .evhead small + .chev { margin-left: auto; }' +
+      '.events .chip { font-size: 12px; padding: 2px 9px; border-radius: 10px; cursor: pointer; background: var(--secondary-background-color, rgba(127,127,127,0.1)); }' +
+      '.events .chip.on { background: color-mix(in srgb, var(--primary-color, #03a9f4) 18%, transparent); color: var(--primary-color, #03a9f4); }' +
+      '.evrow { display: flex; gap: 10px; align-items: center; padding: 7px 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }' +
+      '.evrow + .evrow { border-top: 1px solid var(--divider-color); }' +
+      '.evrow .th { flex: none; width: 76px; height: 43px; border-radius: 7px; background: #20232a center / cover; }' +
+      '.evrow.noclip { cursor: default; } .evrow:not(.noclip):hover .k { color: var(--primary-color, #03a9f4); }' +
+      '.evrow .k { font-size: 13px; font-weight: 500; display: flex; gap: 6px; align-items: center; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
+      '.evrow .k ha-icon { --mdc-icon-size: 16px; flex: none; color: var(--warning-color, #ffa600); } .evrow .k ha-icon.g-animal { color: #26a69a; }' +
+      '.evrow .k ha-icon.g-vehicle { color: #5c6bc0; } .evrow .k ha-icon.g-other { color: var(--secondary-text-color); }' +
+      '.evrow .sc { font-size: 12px; color: var(--secondary-text-color); flex: none; }' +
+      '.evnone { font-size: 13px; color: var(--secondary-text-color); padding: 8px 0; }' +
       '</style>'
     );
   }
 
   _onClick(ev) {
     const path = ev.composedPath();
+    // The controls of a clip playing over a tile are the video's own
+    if (path.some((n) => n.classList?.contains?.('clipv'))) return;
+    const evEl = path.find((n) => n.dataset?.ev);
+    if (evEl) {
+      this._onEvent(evEl, ev);
+      return;
+    }
     const q = path.find((n) => n.dataset?.quality)?.dataset.quality;
     if (q) {
       if ((q === 'hd') !== this._hd()) this._toggleQuality();
@@ -4413,7 +5960,10 @@ class HomeCameraCard extends HTMLElement {
     else if (action === 'sound') this._toggleSound(tile);
     else if (action === 'fullscreen') this._toggleFullscreen(tile);
     else if (action === 'details') this._moreInfo(tile._cam?.camera || tile._entity);
-    else if (action === 'frigate') {
+    else if (action === 'live') this._stopClip(tile);
+    else if (action === 'fdetect' || action === 'frec') {
+      if (!btn.classList.contains('dis')) this._call('switch', 'toggle', { entity_id: btn.dataset.entity }).catch(() => {});
+    } else if (action === 'frigate') {
       const url = this._frigateUrl(tile._cam);
       if (url) this._openFrigate(url);
     }
@@ -4613,7 +6163,17 @@ class HomeCameraCardEditor extends HTMLElement {
               { name: 'url', selector: { text: {} } },
             ],
           },
-          { name: 'open_in_frigate', selector: { boolean: {} } },
+          {
+            type: 'grid',
+            name: '',
+            schema: [
+              { name: 'open_in_frigate', selector: { boolean: {} } },
+              { name: 'badges', selector: { boolean: {} } },
+              { name: 'events', selector: { boolean: {} } },
+              { name: 'events_expanded', selector: { boolean: {} } },
+            ],
+          },
+          { name: 'events_limit', selector: { number: { min: 1, max: 20, step: 1, mode: 'box' } } },
           ...(this.section === 'options'
             ? [
                 {
@@ -4837,6 +6397,378 @@ class HomeCameraMiniCard extends HomeCameraCard {
 
 // The Cameras panel's video wall: the card's camera grid drawn bare, in a plain element (no <ha-card>, no header).
 // An element of the panel's own, like hc-camera-stream: not a dashboard card (not listed in the card picker).
+// ── hc-frigate-timeline: the Events tab of the Cameras panel ─────────────────
+// The day's events of the Frigate cameras of the panel's card as a timeline, grouped by hour, newest first: the day
+// (previous / next), a filter by camera and by object, and a player for the selected event (its clip, or its
+// camera live, and a download link). Wide: the timeline on the left, the player on the right; narrow: the player
+// on top. It says how many events today has (hc-events-count), for the panel's tab.
+const HC_TIMELINE_STYLE = `
+  :host { display: block; container-type: inline-size; color: var(--primary-text-color); }
+  .bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .day { display: inline-flex; align-items: center; gap: 2px; font-size: 15px; font-weight: 500; margin-right: 6px; }
+  .day button { all: unset; display: inline-flex; border-radius: 50%; padding: 2px; cursor: pointer; color: var(--secondary-text-color); }
+  .day button[disabled] { opacity: .35; cursor: default; }
+  .day button:focus-visible, .chip:focus-visible, .it:focus-visible, .act:focus-visible { outline: 2px solid var(--primary-color, #03a9f4); outline-offset: 1px; }
+  .day ha-icon { --mdc-icon-size: 22px; }
+  .chip { font-size: 13px; padding: 4px 11px; border-radius: 14px; cursor: pointer; display: inline-flex; gap: 5px; align-items: center;
+    background: var(--card-background-color, #fff); border: 1px solid var(--divider-color); user-select: none; }
+  .chip.on { background: color-mix(in srgb, var(--primary-color, #03a9f4) 16%, transparent); border-color: transparent; color: var(--primary-color, #03a9f4); }
+  .chip ha-icon { --mdc-icon-size: 15px; }
+  .sep { width: 1px; height: 20px; background: var(--divider-color); margin: 0 4px; }
+  .body { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
+  .player { order: -1; }
+  @container (min-width: 860px) { .body { grid-template-columns: 400px minmax(0, 1fr); } .player { order: 0; position: sticky; top: 12px; } }
+  .lane, .player { background: var(--card-background-color, #fff); border: 1px solid var(--divider-color); border-radius: 12px; overflow: hidden; }
+  .lane { padding: 6px 14px 10px; }
+  .hr { display: grid; grid-template-columns: 46px 18px minmax(0, 1fr); }
+  .hr .h { font-size: 12px; color: var(--secondary-text-color); padding-top: 12px; }
+  .hr .ax { position: relative; } .hr .ax::before { content: ""; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--divider-color); }
+  .items { padding: 4px 0; min-width: 0; }
+  .it { position: relative; display: flex; gap: 10px; align-items: center; padding: 6px 8px 6px 26px; margin-left: -18px; border-radius: 10px; cursor: pointer; }
+  .it:hover { background: color-mix(in srgb, var(--primary-text-color) 5%, transparent); }
+  .it .dot { position: absolute; left: 3px; top: 50%; margin-top: -6px; width: 12px; height: 12px; border-radius: 50%; box-sizing: border-box;
+    background: var(--card-background-color, #fff); border: 2px solid var(--g); }
+  .it.sel { background: color-mix(in srgb, var(--primary-color, #03a9f4) 12%, transparent); }
+  .it.sel .dot { background: var(--primary-color, #03a9f4); border-color: var(--primary-color, #03a9f4); }
+  .it .th { flex: none; width: 72px; height: 41px; border-radius: 7px; background: #20232a center / cover; }
+  .it .tx { flex: 1; min-width: 0; }
+  .it .k { font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 5px; min-width: 0; }
+  .it .k span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .it .k ha-icon { --mdc-icon-size: 15px; color: var(--g); flex: none; }
+  .it .s, .it .tm { font-size: 12px; color: var(--secondary-text-color); } .it .tm { flex: none; }
+  .g-person { --g: var(--warning-color, #ffa600); } .g-animal { --g: #26a69a; } .g-vehicle { --g: #5c6bc0; } .g-other { --g: var(--secondary-text-color); }
+  .none { padding: 28px 12px; text-align: center; color: var(--secondary-text-color); font-size: 14px; }
+  .screen { aspect-ratio: 16 / 9; background: #000; position: relative; display: flex; align-items: center; justify-content: center; }
+  .screen video, .screen hc-camera-stream { width: 100%; height: 100%; display: block; object-fit: contain; }
+  .screen .badge { position: absolute; left: 12px; top: 12px; z-index: 1; font-size: 12px; font-weight: 500; color: #fff; background: rgba(0,0,0,.55);
+    padding: 4px 10px; border-radius: 12px; display: flex; gap: 6px; align-items: center; }
+  .screen .badge i { width: 8px; height: 8px; border-radius: 50%; background: var(--warning-color, #ffa600); }
+  .screen .badge.live i { background: #e53935; }
+  .screen .hint { color: rgba(255,255,255,.7); font-size: 14px; padding: 16px; text-align: center; }
+  .meta { display: flex; gap: 12px; align-items: center; padding: 12px 14px; flex-wrap: wrap; }
+  .meta .t { font-size: 15px; font-weight: 500; } .meta .s { font-size: 13px; color: var(--secondary-text-color); }
+  .meta .acts { margin-left: auto; display: flex; gap: 8px; }
+  .act { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; padding: 6px 12px; border-radius: 16px;
+    border: 1px solid var(--divider-color); color: var(--primary-text-color); }
+  .act ha-icon { --mdc-icon-size: 17px; }
+`;
+class HcFrigateTimeline extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this._day = 0; // 0: today, -1: yesterday…
+    this._cams = null; // camera filter: null for every camera, else a Set of keys
+    this._groups = null; // object filter: null for every object, else a Set of groups
+    this._events = [];
+    this.shadowRoot.addEventListener('click', (ev) => this._onClick(ev));
+    this.shadowRoot.addEventListener('keydown', (ev) => {
+      if ((ev.key === 'Enter' || ev.key === ' ') && ev.composedPath().some((n) => n.dataset?.do)) {
+        ev.preventDefault();
+        this._onClick(ev);
+      }
+    });
+  }
+
+  set config(config) {
+    this._config = config || {};
+    this._sig = null;
+    this._load();
+  }
+  get config() {
+    return this._config;
+  }
+  set hass(hass) {
+    const first = !this._hass;
+    this._hass = hass;
+    if (this._stream) this._stream.hass = hass;
+    // Today: asked again every HC_EVENTS_MS while it is shown
+    if (first || (this._day === 0 && this.isConnected && this._active !== false && document.visibilityState !== 'hidden' && Date.now() - (this._at || 0) > HC_EVENTS_MS)) this._load();
+  }
+  get hass() {
+    return this._hass;
+  }
+
+  // false while its tab is not shown (or the page is hidden): the clip pauses, the live stream closes
+  set active(v) {
+    this._active = !!v;
+    this._applyActive();
+    if (this._active) this._load();
+  }
+  get active() {
+    return this._active !== false;
+  }
+
+  _applyActive() {
+    const on = this._active !== false && document.visibilityState !== 'hidden';
+    const video = this.shadowRoot.querySelector('.screen video');
+    if (!on) video?.pause();
+    if (this._stream) this._stream.stateObj = on ? this._liveObj : undefined;
+  }
+
+  // The player's media let go: a clip stops downloading, a live stream closes
+  _stopMedia() {
+    const video = this.shadowRoot.querySelector('.screen video');
+    if (video) {
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+    }
+    if (this._stream) this._stream.stateObj = undefined;
+    this._stream = null;
+    this._liveObj = undefined;
+  }
+
+  connectedCallback() {
+    this._onVisible = this._onVisible || (() => this._applyActive());
+    document.addEventListener('visibilitychange', this._onVisible);
+    this._load();
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener('visibilitychange', this._onVisible);
+    this._stopMedia();
+    this._psig = null;
+  }
+
+  _lang() {
+    return hcLang(this._config?.language || this._hass?.language || 'en');
+  }
+  _t(k, vars) {
+    let txt = hcT(this._lang(), k);
+    for (const [name, v] of Object.entries(vars || {})) txt = txt.replace(`{${name}}`, v);
+    return txt;
+  }
+
+  // The Frigate cameras of the card
+  _frigateCams() {
+    const fc = hcFrigateConf(this._config);
+    return (this._config?.cameras || [])
+      .map((raw, i) => hcCamera(this._hass, raw, i, fc))
+      .filter((cam) => cam.frigate)
+      .map((cam) => ({ key: cam.key, entity: cam.camera, name: cam.frigate.name, instance: cam.frigate.instance, title: cam.name }));
+  }
+
+  async _load() {
+    if (!this._hass?.callWS || !this._config || !this.isConnected || this._busy) return;
+    const cams = this._frigateCams();
+    this._busy = true;
+    this._at = Date.now();
+    const day = this._day;
+    try {
+      const fc = hcFrigateConf(this._config);
+      const labels = Array.isArray(fc.events_labels) ? fc.events_labels : fc.events_labels ? [fc.events_labels] : null;
+      const events = cams.length
+        ? await hcFetchEvents(this._hass, cams, { after: hcStartOfDay(day), before: hcStartOfDay(day + 1), limit: 500, labels })
+        : [];
+      if (day !== this._day) return;
+      this._events = events;
+      if (day === 0) this.dispatchEvent(new CustomEvent('hc-events-count', { detail: { count: events.length }, bubbles: true, composed: true }));
+    } finally {
+      this._busy = false;
+    }
+    this._render();
+  }
+
+  _shown() {
+    const cams = this._frigateCams();
+    const camOf = (ev) => cams.find((c) => c.name === ev.camera && c.instance === ev.instance);
+    return this._events
+      .map((ev) => Object.assign({}, ev, { cam: camOf(ev) }))
+      .filter((ev) => (!this._cams || (ev.cam && this._cams.has(ev.cam.key))) && (!this._groups || this._groups.has(hcLabelGroup(ev.label))));
+  }
+
+  _render() {
+    const lang = this._lang();
+    const cams = this._frigateCams();
+    const shown = this._shown();
+    if (this._sel && !shown.some((ev) => ev.id === this._sel)) this._sel = null;
+    if (!this._sel && shown.length && !this._liveCam) this._sel = shown[0].id;
+    const groups = HC_EVENT_GROUPS.filter((g) => this._events.some((ev) => hcLabelGroup(ev.label) === g));
+    const sig = JSON.stringify([lang, this._day, [...(this._cams || [])], [...(this._groups || [])], this._sel, this._liveCam,
+      shown.map((ev) => [ev.id, ev.end_time]), cams.map((c) => c.key), Math.floor(Date.now() / 60000)]);
+    if (sig === this._sig) return;
+    this._sig = sig;
+    const dayName = this._day === 0 ? this._t('tl_today') : this._day === -1 ? this._t('tl_yesterday')
+      : new Date(hcStartOfDay(this._day) * 1000).toLocaleDateString(lang, { weekday: 'long', day: 'numeric', month: 'long' });
+    const chip = (on, attrs, label, icon) =>
+      `<span class="chip${on ? ' on' : ''}" ${attrs} role="button" tabindex="0" aria-pressed="${on}">${icon ? `<ha-icon icon="${icon}"></ha-icon>` : ''}${hcEsc(label)}</span>`;
+    const groupIcon = { person: 'mdi:walk', animal: 'mdi:paw', vehicle: 'mdi:car', other: 'mdi:shape-outline' };
+    let bar =
+      `<span class="day"><button data-do="prev" aria-label="${hcEsc(this._t('tl_prev_day'))}" title="${hcEsc(this._t('tl_prev_day'))}"><ha-icon icon="mdi:chevron-left"></ha-icon></button>` +
+      `<span>${hcEsc(dayName.charAt(0).toUpperCase() + dayName.slice(1))}</span>` +
+      `<button data-do="next" aria-label="${hcEsc(this._t('tl_next_day'))}" title="${hcEsc(this._t('tl_next_day'))}"${this._day >= 0 ? ' disabled' : ''}><ha-icon icon="mdi:chevron-right"></ha-icon></button></span>`;
+    if (cams.length > 1) {
+      bar += chip(!this._cams, 'data-do="cam" data-key=""', this._t('tl_all_cameras'));
+      bar += cams.map((c) => chip(!!this._cams?.has(c.key), `data-do="cam" data-key="${hcEsc(c.key)}"`, c.title)).join('');
+    }
+    if (groups.length > 1) {
+      if (cams.length > 1) bar += '<span class="sep"></span>';
+      bar += groups.map((g) => chip(!this._groups || this._groups.has(g), `data-do="group" data-group="${g}"`, this._t(`ev_group_${g}`), groupIcon[g])).join('');
+    }
+    // The timeline, by hour
+    const hours = [];
+    for (const ev of shown) {
+      const h = new Date(ev.start_time * 1000).getHours();
+      if (!hours.length || hours[hours.length - 1].h !== h) hours.push({ h, items: [] });
+      hours[hours.length - 1].items.push(ev);
+    }
+    const hourLabel = (h) => {
+      try {
+        return new Date(2000, 0, 1, h).toLocaleTimeString(lang, { hour: 'numeric' });
+      } catch (_e) {
+        return `${h} h`;
+      }
+    };
+    const lane = hours.length
+      ? hours
+          .map(
+            ({ h, items }) =>
+              `<div class="hr"><div class="h">${hcEsc(hourLabel(h))}</div><div class="ax"></div><div class="items">` +
+              items
+                .map((ev) => {
+                  const name = hcLabelName(lang, ev.label);
+                  const score = hcScore(lang, ev);
+                  return (
+                    `<div class="it g-${hcLabelGroup(ev.label)}${ev.id === this._sel && !this._liveCam ? ' sel' : ''}" data-do="sel" data-id="${hcEsc(ev.id)}" role="button" tabindex="0">` +
+                    `<span class="dot"></span><span class="th" data-thumb="${hcEsc(hcThumbPath(ev))}"></span>` +
+                    `<div class="tx"><div class="k"><ha-icon icon="${hcLabelIcon(ev.label)}"></ha-icon><span>${hcEsc(cams.length > 1 ? `${name} · ${ev.cam?.title || ev.camera}` : name)}</span></div>` +
+                    `<div class="s">${hcEsc([hcDuration(lang, ev), score].filter(Boolean).join(' · '))}</div></div>` +
+                    `<span class="tm">${hcEsc(hcTime(lang, ev.start_time))}</span></div>`
+                  );
+                })
+                .join('') +
+              '</div></div>',
+          )
+          .join('')
+      : `<div class="none">${hcEsc(this._t('tl_empty'))}</div>`;
+    // The player stays when the timeline is drawn again (a refresh, a new minute): a clip keeps playing
+    if (!this._body) {
+      this.shadowRoot.innerHTML = `<style>${HC_TIMELINE_STYLE}</style><div class="bar"></div><div class="body"><div class="lane"></div><div class="player"></div></div>`;
+      this._body = true;
+    }
+    this.shadowRoot.querySelector('.bar').innerHTML = bar;
+    this.shadowRoot.querySelector('.lane').innerHTML = lane;
+    this._renderPlayer(shown);
+    hcLazyThumbs(this._hass, this.shadowRoot);
+  }
+
+  // The selected event's clip, or its camera live. Drawn again only when the selection changes. Only the selected
+  // clip is ever asked for, and the one selected on opening (the newest) waits for its play button: no download
+  // until it is wanted.
+  async _renderPlayer(shown) {
+    const host = this.shadowRoot.querySelector('.player');
+    const lang = this._lang();
+    const ev = shown.find((e) => e.id === this._sel);
+    const psig = JSON.stringify([lang, this._sel, this._liveCam, ev?.end_time, !!ev, shown.length > 0]);
+    if (psig === this._psig && host.childElementCount) return;
+    this._psig = psig;
+    this._stopMedia();
+    if (!ev) {
+      host.innerHTML = `<div class="screen"><span class="hint">${hcEsc(this._t(shown.length ? 'tl_select' : 'tl_empty'))}</span></div>`;
+      return;
+    }
+    const title = `${hcLabelName(lang, ev.label)} · ${ev.cam?.title || ev.camera}`;
+    const when = this._day === 0 ? hcTime(lang, ev.start_time)
+      : new Date(ev.start_time * 1000).toLocaleString(lang, { weekday: 'short', hour: '2-digit', minute: '2-digit' });
+    const score = hcScore(lang, ev);
+    const live = this._liveCam && ev.cam && this._liveCam === ev.cam.key;
+    host.innerHTML =
+      `<div class="screen"><span class="badge${live ? ' live' : ''}"><i></i>${hcEsc(live ? this._t('tl_live_badge', { c: ev.cam.title }) : `${this._t('tl_clip')} · ${ev.cam?.title || ev.camera} · ${hcTime(lang, ev.start_time)}`)}</span></div>` +
+      `<div class="meta"><div><div class="t">${hcEsc(title)}</div><div class="s">${hcEsc([when, hcDuration(lang, ev), score && this._t('tl_score', { s: score })].filter(Boolean).join(' · '))}</div></div>` +
+      '<div class="acts">' +
+      (ev.cam ? `<span class="act" data-do="live" role="button" tabindex="0"><ha-icon icon="${live ? 'mdi:play-box-outline' : 'mdi:cctv'}"></ha-icon>${hcEsc(this._t(live ? 'tl_clip' : 'ev_live_btn'))}</span>` : '') +
+      (ev.has_clip !== false ? `<a class="act dl" download role="button" tabindex="0"><ha-icon icon="mdi:download"></ha-icon>${hcEsc(this._t('tl_download'))}</a>` : '') +
+      '</div></div>';
+    const screen = host.querySelector('.screen');
+    if (live) {
+      const st = this._hass?.states?.[ev.cam.entity];
+      const stream = document.createElement('hc-camera-stream');
+      stream.muted = true;
+      stream.fitMode = 'contain';
+      stream.aspectRatio = 16 / 9;
+      stream.hass = this._hass;
+      screen.appendChild(stream);
+      this._stream = stream;
+      this._liveObj = st && st.state !== 'unavailable' ? st : undefined;
+      stream.stateObj = this._active !== false ? this._liveObj : undefined;
+      hcLoadStream(ev.cam.entity).catch(() => {});
+      return;
+    }
+    if (ev.has_clip === false) {
+      screen.insertAdjacentHTML('beforeend', `<span class="hint">${hcEsc(this._t('ev_no_clip'))}</span>`);
+      return;
+    }
+    try {
+      const url = await hcSigned(this._hass, hcClipPath(ev));
+      if (!screen.isConnected) return;
+      const video = document.createElement('video');
+      // The poster: the event's thumbnail; the clip itself loads when played (or at once when chosen)
+      hcSigned(this._hass, hcThumbPath(ev))
+        .then((poster) => {
+          video.poster = poster;
+        })
+        .catch(() => {});
+      const chosen = this._chosen;
+      video.preload = chosen ? 'auto' : 'none';
+      video.src = url;
+      video.controls = true;
+      video.autoplay = chosen && this._active !== false;
+      video.muted = true;
+      video.playsInline = true;
+      video.setAttribute('playsinline', '');
+      screen.appendChild(video);
+      const dl = host.querySelector('.dl');
+      if (dl) {
+        dl.href = url;
+        dl.setAttribute('download', `${ev.camera}-${ev.id}.mp4`);
+      }
+    } catch (_e) {
+      screen.insertAdjacentHTML('beforeend', `<span class="hint">${hcEsc(this._t('ev_no_clip'))}</span>`);
+    }
+  }
+
+  _onClick(ev) {
+    const el = ev.composedPath().find((n) => n.dataset?.do);
+    if (!el || el.disabled) return;
+    const what = el.dataset.do;
+    if (what === 'prev' || what === 'next') {
+      this._day = Math.min(0, this._day + (what === 'next' ? 1 : -1));
+      this._sel = null;
+      this._chosen = false;
+      this._liveCam = null;
+      this._events = [];
+      this._sig = null;
+      this._render();
+      this._load();
+      return;
+    }
+    if (what === 'cam') {
+      const key = el.dataset.key;
+      if (!key) this._cams = null;
+      else {
+        const next = new Set(this._cams || []);
+        next.has(key) ? next.delete(key) : next.add(key);
+        this._cams = next.size ? next : null;
+      }
+    } else if (what === 'group') {
+      const all = HC_EVENT_GROUPS.filter((g) => this._events.some((e) => hcLabelGroup(e.label) === g));
+      const next = new Set(this._groups || all);
+      next.has(el.dataset.group) ? next.delete(el.dataset.group) : next.add(el.dataset.group);
+      this._groups = next.size && next.size < all.length ? next : null;
+    } else if (what === 'sel') {
+      this._sel = el.dataset.id;
+      this._liveCam = null;
+      this._chosen = true;
+    } else if (what === 'live') {
+      const sel = this._shown().find((e) => e.id === this._sel);
+      this._liveCam = this._liveCam ? null : sel?.cam?.key || null;
+      this._chosen = true;
+    } else return;
+    this._render();
+  }
+}
+if (!customElements.get('hc-frigate-timeline')) customElements.define('hc-frigate-timeline', HcFrigateTimeline);
+
 class HcCameraWall extends HomeCameraCard {
   static get shell() {
     return 'div';

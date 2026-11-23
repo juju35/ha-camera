@@ -44,6 +44,7 @@ List the cameras, the cards find their privacy switch, SD stream and PTZ buttons
 - **Settings** tab, for administrators only: a header card (saved or not, the picture being in the top bar), the sidebar title (left empty: *Cameras* in the server's language), the **top bar** (shown, hidden for non-admins, or hidden for everyone: the title bar goes, the tabs and the menu button stay), the **cameras shown** as a list — drag a camera's handle (or use the arrow keys on it) to reorder, the pencil opens its fields — and the card's display options
 - **Camera discovery**: a new entry starts with every camera of Home Assistant, and Settings lists the ones not shown yet, to **Add** one by one or **Add all**, each with the privacy switch, pan and tilt buttons and motion sensors found on its device; a Tapo camera's two entities (`*_hd_stream`, `*_sd_stream`) count as one camera, whose SD stream the HD / SD switch picks
 - **Frigate**: a Frigate camera is paired with its native camera (Tapo…) — the only one of its area, else the one of its area with the same name — and takes its privacy switch and PTZ buttons; **Frigate and native camera** in the card's options says which of the two the discovery lists (the Frigate camera, the native camera, or both)
+- **Events** tab (when the panel shows Frigate cameras, for every user): the day's Frigate events as a timeline grouped by hour — previous / next day, a filter by camera and by object (person, animal, vehicle) — and a player for the selected event: its clip, its camera live, a download link; side by side on a wide screen, the player on top on a phone. The tab shows today's count. Only the clip chosen is ever downloaded (the newest one, selected on opening, waits for its play button), thumbnails load as they scroll into view, and the clip pauses and the live stream closes when another tab is shown
 - **Copy from a dashboard**: takes the first camera card found on your dashboards, to move a cameras dashboard to the panel in one click
 - Saved settings reach every open panel at once, on every device; the tab is in the address (`/cameras/settings`)
 
@@ -67,6 +68,8 @@ List the cameras, the cards find their privacy switch, SD stream and PTZ buttons
 - Streams stop while the page is hidden (other tab, phone locked) or the card is scrolled off screen, and resume when it comes back
 - **Mini card** (`home-camera-mini-card`): a snapshot of each camera with its name and status, refreshed every 10 seconds instead of a live stream; its detail button (top right) or a tap on a snapshot shows the full card, a click outside folds it back
 - **[Frigate](https://docs.frigate.video/integrations/home-assistant/)** cameras: their privacy switch and PTZ buttons come from their native camera (`controls_from`, found by itself in the same area); SD plays Frigate's go2rtc sub-stream (`{camera}_sub`) through the Frigate integration's proxy, on a path signed by Home Assistant, falling back to Home Assistant's player when it brings no picture; `player: frigate` plays every stream that way; `ptz: frigate` moves an ONVIF camera with `frigate.ptz`, from the press to the release; an **Open in Frigate** button on the tile opens `frigate.url`, or the sidebar panel of a Frigate app (Frigate, Frigate Proxy)
+- **Frigate events** under the grid (both cards): folded into one row — today's count, the last event, its thumbnails — or unfolded into the list of the latest events (object, camera, time, duration, score) with a filter by object; a tap on an event plays its clip in its camera's tile (the live stream stops meanwhile, one clip at a time), **Live** goes back; the mini card's row opens the full card with the list. Asked again every 30 seconds and when a motion ends, never while the card is off screen; thumbnails load only once on screen
+- **Frigate switches** on the tiles: detection and recording, lit or dimmed by their state, a tap toggles them
 - Automatic discovery on the camera's device: `switch.*_privacy` (or `*_privacy_mode`), `button.*_move_left/right/up/down`, the motion, occupancy and person `binary_sensor`s, and either the `*_sd_stream` camera next to a `*_hd_stream` one or a `select.*_stream_quality` (see [Supported integrations](#supported-integrations))
 - Visual editor in the dashboard UI (no YAML needed)
 - English, French, German, Spanish, Serbian (Cyrillic and Latin), Italian, Dutch, European Portuguese, Polish, Romanian, Danish, Swedish, Bulgarian, Russian, Ukrainian, Hungarian, Slovak, Czech, Slovenian, Latvian and Greek, follows the Home Assistant language
@@ -174,6 +177,11 @@ frigate:
   instance: frigate
   url: https://frigate.example.com
   open_in_frigate: true
+  badges: true
+  events: true
+  events_expanded: false
+  events_limit: 5
+  events_labels: [person, cat, dog]
 ```
 
 ### Mini card
@@ -235,6 +243,11 @@ The mini card takes the same options as the full card except `layout`, plus `zoo
 | `instance` | — | Client id of the Frigate instance, with several Frigate servers; defaults to the camera's own |
 | `url` | — | Address opened by **Open in Frigate**; defaults to the sidebar panel of a Frigate app (Frigate, Frigate Proxy) |
 | `open_in_frigate` | `true` | **Open in Frigate** button on the tiles of Frigate cameras |
+| `badges` | `true` | Frigate's detection and recording switches (`switch.*_detect`, `switch.*_recordings`) on the tiles |
+| `events` | `true` | Today's events of the Frigate cameras under the grid, and the panel's **Events** tab |
+| `events_expanded` | `false` | The events listed at once instead of folded into a row (full card) |
+| `events_limit` | `5` | Events listed when unfolded |
+| `events_labels` | — | YAML only: objects kept (`[person, car]`), for the card and the panel |
 | `duplicates` | `frigate` | Cameras panel only: which of a Frigate camera and its native camera the discovery lists — `frigate`, `native` or `both` |
 
 ## Screenshots

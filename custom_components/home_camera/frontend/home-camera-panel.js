@@ -12,10 +12,11 @@
  *
  * https://github.com/juju35/ha-camera
  */
-var HOME_CAMERA_PANEL_VERSION = '4.10.0';
+var HOME_CAMERA_PANEL_VERSION = '4.11.0';
 
 var HomeCameraPanelI18n = {
   en: {
+    events: 'Events',
     cameras: 'Cameras',
     settings: 'Settings',
     sidebar_title: 'Sidebar title',
@@ -69,6 +70,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Switch between HD and SD",
   },
   fr: {
+    events: 'Événements',
     cameras: 'Caméras',
     settings: 'Réglages',
     sidebar_title: 'Titre dans la barre latérale',
@@ -122,6 +124,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Basculer entre HD et SD",
   },
   de: {
+    events: 'Ereignisse',
     cameras: 'Kameras',
     settings: 'Einstellungen',
     sidebar_title: 'Titel in der Seitenleiste',
@@ -175,6 +178,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Zwischen HD und SD wechseln",
   },
   es: {
+    events: 'Eventos',
     cameras: 'Cámaras',
     settings: 'Ajustes',
     sidebar_title: 'Título en la barra lateral',
@@ -228,6 +232,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Cambiar entre HD y SD",
   },
   sr: {
+    events: 'Догађаји',
     cameras: 'Камере',
     settings: 'Подешавања',
     sidebar_title: 'Наслов у бочној траци',
@@ -281,6 +286,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Пребацивање између HD и SD квалитета",
   },
   'sr-Latn': {
+    events: 'Događaji',
     cameras: 'Kamere',
     settings: 'Podešavanja',
     sidebar_title: 'Naslov u bočnoj traci',
@@ -334,6 +340,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Prebacivanje između HD i SD kvaliteta",
   },
   it: {
+    events: 'Eventi',
     cameras: 'Telecamere',
     settings: 'Impostazioni',
     sidebar_title: 'Titolo nella barra laterale',
@@ -387,6 +394,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Passa da HD a SD e viceversa",
   },
   nl: {
+    events: 'Gebeurtenissen',
     cameras: "Camera's",
     settings: 'Instellingen',
     sidebar_title: 'Titel in de zijbalk',
@@ -440,6 +448,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Wisselen tussen HD en SD",
   },
   pt: {
+    events: 'Eventos',
     cameras: 'Câmaras',
     settings: 'Definições',
     sidebar_title: 'Título na barra lateral',
@@ -493,6 +502,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Alternar entre HD e SD",
   },
   pl: {
+    events: 'Zdarzenia',
     cameras: 'Kamery',
     settings: 'Ustawienia',
     sidebar_title: 'Tytuł na pasku bocznym',
@@ -546,6 +556,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Przełącz między HD a SD",
   },
   ro: {
+    events: 'Evenimente',
     cameras: 'Camere',
     settings: 'Setări',
     sidebar_title: 'Titlu în bara laterală',
@@ -599,6 +610,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Comutați între HD și SD",
   },
   da: {
+    events: 'Hændelser',
     cameras: 'Kameraer',
     settings: 'Indstillinger',
     sidebar_title: 'Titel i sidepanelet',
@@ -652,6 +664,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Skift mellem HD og SD",
   },
   sv: {
+    events: 'Händelser',
     cameras: 'Kameror',
     settings: 'Inställningar',
     sidebar_title: 'Titel i sidofältet',
@@ -705,6 +718,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Växla mellan HD och SD",
   },
   bg: {
+    events: 'Събития',
     cameras: 'Камери',
     settings: 'Настройки',
     sidebar_title: 'Заглавие в страничната лента',
@@ -758,6 +772,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Превключване между HD и SD",
   },
   ru: {
+    events: 'События',
     cameras: 'Камеры',
     settings: 'Настройки',
     sidebar_title: 'Заголовок на боковой панели',
@@ -811,6 +826,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Переключение между HD и SD",
   },
   uk: {
+    events: 'Події',
     cameras: 'Камери',
     settings: 'Налаштування',
     sidebar_title: 'Заголовок на бічній панелі',
@@ -864,6 +880,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Перемикання між HD і SD",
   },
   hu: {
+    events: 'Események',
     cameras: 'Kamerák',
     settings: 'Beállítások',
     sidebar_title: 'Cím az oldalsávban',
@@ -917,6 +934,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Váltás HD és SD között",
   },
   sk: {
+    events: 'Udalosti',
     cameras: 'Kamery',
     settings: 'Nastavenia',
     sidebar_title: 'Názov v bočnom paneli',
@@ -970,6 +988,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Prepnúť medzi HD a SD",
   },
   cs: {
+    events: 'Události',
     cameras: 'Kamery',
     settings: 'Nastavení',
     sidebar_title: 'Název v postranním panelu',
@@ -1023,6 +1042,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Přepnout mezi HD a SD",
   },
   sl: {
+    events: 'Dogodki',
     cameras: 'Kamere',
     settings: 'Nastavitve',
     sidebar_title: 'Naslov v stranski vrstici',
@@ -1076,6 +1096,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Preklopi med HD in SD",
   },
   lv: {
+    events: 'Notikumi',
     cameras: 'Kameras',
     settings: 'Iestatījumi',
     sidebar_title: 'Virsraksts sānjoslā',
@@ -1129,6 +1150,7 @@ var HomeCameraPanelI18n = {
     quality_hint: "Pārslēgt starp HD un SD",
   },
   el: {
+    events: 'Συμβάντα',
     cameras: 'Κάμερες',
     settings: 'Ρυθμίσεις',
     sidebar_title: 'Τίτλος στην πλαϊνή μπάρα',
@@ -1183,7 +1205,7 @@ var HomeCameraPanelI18n = {
   },
 };
 
-var HCP_TABS = ['cameras', 'settings'];
+var HCP_TABS = ['cameras', 'events', 'settings'];
 var HCP_CARD = 'home-camera-card';
 // The video wall the panel draws its cameras with: an element of the card file, not a dashboard card.
 var HCP_WALL = 'hc-camera-wall';
@@ -1809,6 +1831,7 @@ class HomeCameraPanel extends HTMLElement {
     if (this._card) this._card.hass = hass;
     if (this._editor) this._editor.hass = hass;
     if (this._camEditor) this._camEditor.hass = hass;
+    if (this._timeline) this._timeline.hass = hass;
     if (first) this._start();
     else if (this._lang() !== langBefore || this._admin() !== adminBefore) this._render();
     else if (this._tab === 'settings') this._renderBanner();
@@ -1860,9 +1883,25 @@ class HomeCameraPanel extends HTMLElement {
     return !!this._hass?.user?.is_admin;
   }
 
-  // Settings is the administrators' only
+  // Events when the card shows Frigate cameras (and frigate.events is not off), for every user; Settings is the
+  // administrators' only
   _tabs() {
-    return this._admin() ? HCP_TABS : ['cameras'];
+    var tabs = ['cameras'];
+    if (this._hasEvents()) tabs.push('events');
+    if (this._admin()) tabs.push('settings');
+    return tabs;
+  }
+
+  _hasEvents() {
+    var card = this._data?.card;
+    if (!card || card.frigate?.events === false) return false;
+    return (card.cameras || []).some((cam) => {
+      var id = typeof cam === 'string' ? cam : cam?.camera;
+      var platform = this._hass?.entities?.[id]?.platform;
+      if (platform) return platform === 'frigate';
+      var attrs = this._hass?.states?.[id]?.attributes;
+      return !!(attrs?.camera_name && attrs?.client_id);
+    });
   }
 
   // Full code when it has a table (sr-Latn), else its base (de-AT → de), else English
@@ -1896,6 +1935,7 @@ class HomeCameraPanel extends HTMLElement {
       this._cardError = true;
     }
     this._renderCameras();
+    if (this._tab === 'events') this._renderEvents();
   }
 
   // The settings at once, then on every change (saved here or on another device). The connection resubscribes
@@ -1914,7 +1954,10 @@ class HomeCameraPanel extends HTMLElement {
 
   _onSettings(data) {
     var dirty = this._dirty();
+    var tabsBefore = JSON.stringify(this._tabs());
     this._data = data;
+    // Frigate cameras added or removed: the Events tab comes or goes
+    if (JSON.stringify(this._tabs()) !== tabsBefore) this._render();
     this._loadError = null;
     // Unsaved edits are kept; otherwise the form follows what was saved (here or elsewhere)
     if (!dirty) this._draft = null;
@@ -1962,6 +2005,39 @@ class HomeCameraPanel extends HTMLElement {
     if (main) main.className = tab;
     this._syncBare();
     if (tab === 'settings') this._renderSettings();
+    if (tab === 'events') this._renderEvents();
+    // The timeline's clip and live stream run only while its tab is shown
+    if (this._timeline) this._timeline.active = tab === 'events';
+  }
+
+  // ── Events tab: the card's Frigate timeline (hc-frigate-timeline, from the card file) ──
+  _renderEvents() {
+    var section = this.shadowRoot?.getElementById?.('tab-events');
+    if (!section || !this._data || !customElements.get('hc-frigate-timeline')) return;
+    if (!this._timeline) {
+      this._timeline = document.createElement('hc-frigate-timeline');
+      // Today's count on the tab
+      this._timeline.addEventListener('hc-events-count', (ev) => {
+        this._eventCount = ev.detail?.count || 0;
+        this._renderEventCount();
+      });
+    }
+    if (this._timeline.parentNode !== section) section.replaceChildren(this._timeline);
+    var json = JSON.stringify(this._data.card || {});
+    if (json !== this._timelineConfig) {
+      this._timelineConfig = json;
+      this._timeline.hass = this._hass;
+      this._timeline.config = this._data.card || {};
+    }
+    this._renderEventCount();
+  }
+
+  _renderEventCount() {
+    var tab = this.shadowRoot?.getElementById?.('tabbtn-events');
+    if (!tab) return;
+    var n = this._eventCount || 0;
+    var label = `${hcpEsc(this._t('events'))}${n ? `<span class="cnt">${n}</span>` : ''}`;
+    if (tab.innerHTML !== label) tab.innerHTML = label;
   }
 
   // The title bar hidden as saved (never, for the users who are not administrators, or for everyone); the tabs stay.
@@ -2017,6 +2093,7 @@ class HomeCameraPanel extends HTMLElement {
       <div class="tabs" role="tablist"${tabs.length < 2 ? ' hidden' : ''}><ha-menu-button class="tabmenu"></ha-menu-button>${tabs.map((tab) => this._tabHtml(tab)).join('')}</div>
       <main class="${this._tab}">
         <section class="column" id="tab-cameras" role="tabpanel" aria-labelledby="tabbtn-cameras"></section>
+        <section class="column" id="tab-events" role="tabpanel" aria-labelledby="tabbtn-events"></section>
         <section class="column" id="tab-settings" role="tabpanel" aria-labelledby="tabbtn-settings"></section>
       </main>`;
     this._menu = root.querySelector('.toolbar ha-menu-button');
