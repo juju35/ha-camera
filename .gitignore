@@ -7,3 +7,6 @@ __pycache__/
 .ruff_cache/
 custom_components/home_camera/frontend/*.i18n.*.js
 *.zip
+# Assembled from src/ by scripts/build-frontend.mjs (not committed)
+custom_components/home_camera/frontend/home-camera-card.js
+custom_components/home_camera/frontend/home-camera-panel.js

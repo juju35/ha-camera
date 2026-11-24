@@ -1,11 +1,13 @@
-// Builds the integration's frontend files as the release ships them: the card and the panel are copied from
-// custom_components/home_camera/frontend/ to dist/, and the card's translations are split out (English stays in
-// the bundle, every other language goes to dist/home-camera-card.i18n.<lang>.js, scripts/i18n-split.mjs).
+// Builds the integration's frontend files as the release ships them: the card and the panel are assembled from
+// src/ into custom_components/home_camera/frontend/ (scripts/build-frontend.mjs), copied from there to dist/, and
+// the card's translations are split out (English stays in the bundle, every other language goes to
+// dist/home-camera-card.i18n.<lang>.js, scripts/i18n-split.mjs).
 // The panel keeps every language: Home Assistant does not wait for a panel's language file as it does for a card.
 // Usage: node scripts/build.mjs          → dist/ (browser tests, screenshots; not committed)
 //        node scripts/build.mjs --into  → the same, then copied into custom_components/home_camera/frontend/ (release zip)
 import { copyFileSync, mkdirSync, readdirSync, readFileSync, rmSync } from "node:fs";
 import { fileURLToPath } from "node:url";
+import "./build-frontend.mjs";
 import { splitDist } from "./i18n-split.mjs";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
