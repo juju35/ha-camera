@@ -42,8 +42,8 @@ carries the new version, updated together in one commit:
 1. `CHANGELOG.md` → add a "## X.Y.Z - YYYY-MM-DD" section at the top (`### Features` | `Fixes` | `Performance` | `Maintenance`).
 2. `custom_components/home_camera/manifest.json` → `"version": "X.Y.Z"`.
 3. `custom_components/home_camera/const.py` → `VERSION = "X.Y.Z"`.
-4. `custom_components/home_camera/frontend/home-camera-card.js` → `HOME_CAMERA_CARD_VERSION = 'X.Y.Z'`.
-5. `custom_components/home_camera/frontend/home-camera-panel.js` → `HOME_CAMERA_PANEL_VERSION = 'X.Y.Z'`.
+4. `src/home-camera-card/version.js` → `HOME_CAMERA_CARD_VERSION = 'X.Y.Z'`.
+5. `src/home-camera-panel/version.js` → `HOME_CAMERA_PANEL_VERSION = 'X.Y.Z'`.
 6. `package.json` → `"version": "X.Y.Z"`.
 7. `package-lock.json` → run `npm install` so its version matches (CI checks it).
 - Bump rule: `fix` → patch, `feat` → minor, breaking change → major.
@@ -63,6 +63,11 @@ carries the new version, updated together in one commit:
 
 ## Supported integrations
 This builds on other Home Assistant integrations, so keep the `## Supported integrations` section (title verbatim) listing the HA integrations it works on top of, with a link to each.
+
+## Source layout
+- The card and the panel are ES modules in `src/home-camera-card/` and `src/home-camera-panel/` (entry `src/<stem>/index.js`), assembled by `scripts/build-frontend.mjs` (`scripts/bundle.mjs`) into `custom_components/home_camera/frontend/<stem>.js`, the classic script the integration serves: modules concatenated in the order of the entry file, import lines removed, `export` dropped. `scripts/build.mjs` runs it first (`npm run build`, `check`, `test:browser`), `npm test` too (pretest). The assembled files are **not committed** (gitignored).
+- Modules share one scope, so top-level names stay unique across modules; a new module must be listed in its `index.js`.
+- Translations: one file per language in `src/<stem>/i18n/<lang>.js` (`export default { … };`), gathered by the table file next to them and rebuilt into a single object literal at build for `scripts/i18n-split.mjs`.
 
 ## Translations
 - English is the source. Keep every language in sync when a user-facing string changes.

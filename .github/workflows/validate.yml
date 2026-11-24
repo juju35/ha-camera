@@ -33,8 +33,8 @@ jobs:
         run: |
           VERSION="$(jq -r .version custom_components/home_camera/manifest.json)"
           grep -q "VERSION = \"$VERSION\"" custom_components/home_camera/const.py || { echo "::error file=custom_components/home_camera/const.py::version $VERSION not found in const.py"; exit 1; }
-          grep -q "HOME_CAMERA_CARD_VERSION = '$VERSION'" custom_components/home_camera/frontend/home-camera-card.js || { echo "::error file=custom_components/home_camera/frontend/home-camera-card.js::version $VERSION not found in the card"; exit 1; }
-          grep -q "HOME_CAMERA_PANEL_VERSION = '$VERSION'" custom_components/home_camera/frontend/home-camera-panel.js || { echo "::error file=custom_components/home_camera/frontend/home-camera-panel.js::version $VERSION not found in the panel"; exit 1; }
+          grep -q "HOME_CAMERA_CARD_VERSION = '$VERSION'" src/home-camera-card/version.js || { echo "::error file=src/home-camera-card/version.js::version $VERSION not found in the card"; exit 1; }
+          grep -q "HOME_CAMERA_PANEL_VERSION = '$VERSION'" src/home-camera-panel/version.js || { echo "::error file=src/home-camera-panel/version.js::version $VERSION not found in the panel"; exit 1; }
           grep -q "\"version\": \"$VERSION\"" package.json || { echo "::error file=package.json::version $VERSION not found in package.json"; exit 1; }
           test "$(node -p "require('./package-lock.json').version")" = "$VERSION" || { echo "::error file=package-lock.json::package-lock.json is not at $VERSION (npm install)"; exit 1; }
           grep -q "^## $VERSION " CHANGELOG.md || { echo "::error file=CHANGELOG.md::no '## $VERSION' entry in CHANGELOG.md"; exit 1; }

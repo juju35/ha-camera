@@ -322,19 +322,19 @@ Discovery looks at the entities of the camera's device in the entity registry, b
 
 ```bash
 npm install
-npm run build        # copies the card and the panel into dist/ and splits the card's translations, as the release does
+npm run build        # assembles the card and the panel from src/, copies them into dist/ and splits the card's translations, as the release does
 npm run check        # builds and checks the card and the panel (run in CI)
-npm test             # unit tests
+npm test             # unit tests (assembles the card and the panel first)
 npm run test:browser # runs the built card and panel in Chromium with stand-ins for Home Assistant (run in CI)
 npm run screenshots  # renders the card and the panel with mock cameras into screenshots/ (and the live/loading gifs, needs ffmpeg)
 pip install -r requirements_test.txt && pytest  # the integration's tests
 ```
 
-The sources of the card and the panel live in `custom_components/home_camera/frontend/` with every language; `dist/` is not committed.
+The sources of the card and the panel are ES modules under `src/home-camera-card/` and `src/home-camera-panel/` (entry `index.js`, translations one file per language in `i18n/`); `scripts/build-frontend.mjs` (run by `npm run build`) assembles each into the classic script `custom_components/home_camera/frontend/<stem>.js`. The modules share one scope, so top-level names stay unique across them, and a new module must be listed in its `index.js`. Neither the assembled files nor `dist/` are committed.
 
 ### Releasing
 
-1. Bump the version in `manifest.json`, `const.py`, the card (`HOME_CAMERA_CARD_VERSION`), the panel (`HOME_CAMERA_PANEL_VERSION`) and `package.json`
+1. Bump the version in `manifest.json`, `const.py`, the card (`HOME_CAMERA_CARD_VERSION` in `src/home-camera-card/version.js`), the panel (`HOME_CAMERA_PANEL_VERSION` in `src/home-camera-panel/version.js`) and `package.json`
 2. Add a `## <version>` section at the top of [CHANGELOG.md](https://github.com/juju35/ha-camera/blob/main/CHANGELOG.md)
 3. Push to `main`: the **Release** workflow splits the card's translations, builds `home_camera.zip`, creates the tag and the GitHub release with the changelog section as notes
 

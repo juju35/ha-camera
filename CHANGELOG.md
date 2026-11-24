@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.12.1 - 2026-11-24
+
+### Maintenance
+- The card and the panel are split into ES modules: `src/home-camera-card/` and `src/home-camera-panel/` (entry `index.js` in each), cut at their sections, with the translations in one file per language (`i18n/<lang>.js`). `scripts/build-frontend.mjs` (run by `scripts/build.mjs`) assembles them back, in their original order, into the same `home-camera-card.js` and `home-camera-panel.js` the integration serves; they are no longer committed. The release zip is unchanged.
+
 ## 4.12.0 - 2026-11-23
 
 ### Features
