@@ -3,7 +3,7 @@
 // import lines removed, `export` keywords dropped, translation tables rebuilt as one literal). The assembled files are
 // not committed: scripts/build.mjs runs this first (npm run build, check, test:browser), and npm test before the tests.
 // Usage: node scripts/build-frontend.mjs
-import { existsSync, readdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { bundle } from "./bundle.mjs";
 
@@ -11,6 +11,7 @@ const root = fileURLToPath(new URL("..", import.meta.url));
 const [domain] = readdirSync(`${root}custom_components`);
 const out = `custom_components/${domain}/frontend`;
 
+mkdirSync(`${root}${out}`, { recursive: true }); // the folder holds no committed file
 for (const stem of readdirSync(`${root}src`).sort()) {
   if (!existsSync(`${root}src/${stem}/index.js`)) continue;
   const code = bundle(`src/${stem}/index.js`);
