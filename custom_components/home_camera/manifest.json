@@ -1,6 +1,7 @@
 {
   "domain": "home_camera",
   "name": "Home Camera",
+  "categories": ["security_safety.cameras"],
   "codeowners": ["@juju35"],
   "config_flow": true,
   "dependencies": ["frontend", "http", "lovelace", "panel_custom"],
