@@ -12,4 +12,4 @@
  *
  * https://github.com/juju35/ha-camera
  */
-export var HOME_CAMERA_PANEL_VERSION = '4.12.1';
+export var HOME_CAMERA_PANEL_VERSION = '4.12.2';
