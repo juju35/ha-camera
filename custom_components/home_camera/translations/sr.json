@@ -12,8 +12,8 @@
   },
   "issues": {
     "legacy_dashboard_install": {
-      "title": "Стари унос контролне табле Home Camera Card је и даље инсталиран",
-      "description": "Картица је и даље инсталирана као унос типа **Контролна табла** од пре верзије 4.0 (фасцикла `{folder}`). Marketplace сада за њега преузима `home_camera.zip`, па ажурирања не успевају уз грешку „The installed content has no home_camera.zip“.\n\nУ **Подешавања → Marketplace** отворите унос Home Camera типа **Контролна табла** и уклоните га. Задржите унос типа **Интеграција**: он већ пружа картице и ваше контролне табле настављају да раде. Затим поново покрените Home Assistant."
+      "title": "Home Camera је и даље регистрован као Dashboard унос у Marketplace-у",
+      "description": "Home Camera је и даље регистрован у Marketplace-у као **Dashboard** репозиторијум, као пре 4.0. Marketplace за њега преузима `home_camera.zip`, па инсталације и ажурирања не успевају уз \"The installed content has no home_camera.zip\". Деинсталација и поновна инсталација не помажу: унос остаје типа Dashboard.\n\n1. У **Подешавања → Marketplace** деинсталирајте унос Home Camera типа **Dashboard** ако је инсталиран.\n2. Отворите **Додај са линка** и уклоните `juju35/ha-camera` / `juju35/ha-home-camera-card` под **Додато са линкова**.\n3. Поново додајте `{url}` са типом **Интеграција**, ажурирајте га одатле, па поново покрените Home Assistant.\n\nВаше контролне табле и даље раде: интеграција пружа исте картице."
     }
   }
 }

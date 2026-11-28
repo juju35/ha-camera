@@ -1,7 +1,7 @@
 """Constants for the Home Camera integration."""
 
 DOMAIN = "home_camera"
-VERSION = "4.12.2"
+VERSION = "4.12.3"
 
 # Files served by the integration (their own base, so the panel's route never shadows them)
 URL_BASE = f"/{DOMAIN}"
@@ -13,6 +13,13 @@ LEGACY_CARD_PATH = "ha-home-camera-card/home-camera-card.js"
 # while one is there, the Marketplace keeps a Dashboard entry whose updates fail, so a repair says to remove it
 LEGACY_PLUGIN_DIRS = ("ha-home-camera-card", "ha-camera")
 ISSUE_LEGACY_DASHBOARD = "legacy_dashboard_install"
+# The Marketplace's records (.storage/marketplace.repositories, keyed by GitHub repository id): a record of this
+# repository under another category than integration (the Dashboard one of before 4.0) fails every install and update,
+# even with nothing left in www/community/, and uninstalling keeps it under Added from links
+MARKETPLACE_STORE = "marketplace.repositories"
+REPOSITORY_ID = "1430837094"
+REPOSITORY_URL = "https://github.com/juju35/ha-camera"
+REPOSITORY_NAMES = ("juju35/ha-camera", "juju35/ha-home-camera-card")
 
 # The sidebar panel: every user sees it, only administrators get its Settings tab
 PANEL_PATH = "cameras"

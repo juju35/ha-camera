@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.12.3 - 2026-11-28
+
+### Fixes
+- The repair for the old **Dashboard** entry of before 4.0 also shows when the Marketplace still keeps this repository as a Dashboard repository with nothing left in `www/community/` (an install that failed, or one uninstalled and installed again, which keeps its category), the case where every update fails with *"The installed content has no home_camera.zip"*. Its text now says to remove the repository under **Add from link → Added from links** and add it again as an **Integration**.
+
 ## 4.12.2 - 2026-11-27
 
 ### Fixes

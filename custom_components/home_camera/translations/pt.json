@@ -12,8 +12,8 @@
   },
   "issues": {
     "legacy_dashboard_install": {
-      "title": "Entrada antiga de painel do Home Camera Card ainda instalada",
-      "description": "O cartão continua instalado como entrada de **Painel** anterior à 4.0 (pasta `{folder}`). O Marketplace descarrega agora `home_camera.zip` para ela, pelo que as atualizações falham com «The installed content has no home_camera.zip».\n\nEm **Definições → Marketplace**, abra a entrada Home Camera do tipo **Painel** e remova-a. Mantenha a entrada do tipo **Integração**: já disponibiliza os cartões e os seus painéis continuam a funcionar. Depois reinicie o Home Assistant."
+      "title": "Home Camera ainda registado como entrada de painel no Marketplace",
+      "description": "O Home Camera continua registado no Marketplace como repositório de **Painel**, como antes da 4.0. O Marketplace transfere `home_camera.zip` para ele, por isso as instalações e atualizações falham com \"The installed content has no home_camera.zip\". Desinstalar e voltar a instalar não resolve: a entrada continua a ser de Painel.\n\n1. Em **Definições → Marketplace**, desinstale a entrada Home Camera do tipo **Painel** se estiver instalada.\n2. Abra **Adicionar a partir de ligação** e remova `juju35/ha-camera` / `juju35/ha-home-camera-card` em **Adicionados a partir de ligações**.\n3. Adicione de novo `{url}` com o tipo **Integração**, atualize-o a partir daí e reinicie o Home Assistant.\n\nOs seus painéis continuam a funcionar: a integração fornece os mesmos cartões."
     }
   }
 }

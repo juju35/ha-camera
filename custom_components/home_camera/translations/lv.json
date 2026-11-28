@@ -12,8 +12,8 @@
   },
   "issues": {
     "legacy_dashboard_install": {
-      "title": "Vecais Home Camera Card informācijas paneļa ieraksts joprojām ir instalēts",
-      "description": "Kartīte joprojām ir instalēta kā **Informācijas panelis** ieraksts no laika pirms 4.0 (mape `{folder}`). Marketplace tagad tam lejupielādē `home_camera.zip`, tāpēc atjauninājumi neizdodas ar kļūdu “The installed content has no home_camera.zip”.\n\nSadaļā **Iestatījumi → Marketplace** atveriet Home Camera ierakstu ar tipu **Informācijas panelis** un noņemiet to. Paturiet ierakstu ar tipu **Integrācija**: tas jau nodrošina kartītes, un jūsu informācijas paneļi turpina darboties. Pēc tam restartējiet Home Assistant."
+      "title": "Home Camera joprojām reģistrēts kā informācijas paneļa ieraksts Marketplace",
+      "description": "Home Camera joprojām ir reģistrēts Marketplace kā **Informācijas paneļa** repozitorijs, kā pirms 4.0. Marketplace tam lejupielādē `home_camera.zip`, tāpēc instalēšana un atjaunināšana neizdodas ar \"The installed content has no home_camera.zip\". Atinstalēšana un atkārtota instalēšana nepalīdz: ieraksts paliek Informācijas paneļa tipa.\n\n1. Sadaļā **Iestatījumi → Marketplace** atinstalējiet Home Camera ierakstu ar tipu **Informācijas panelis**, ja tas ir instalēts.\n2. Atveriet **Pievienot no saites** un noņemiet `juju35/ha-camera` / `juju35/ha-home-camera-card` sadaļā **Pievienoti no saitēm**.\n3. Vēlreiz pievienojiet `{url}` ar tipu **Integrācija**, atjauniniet to no turienes un restartējiet Home Assistant.\n\nJūsu informācijas paneļi turpina darboties: integrācija nodrošina tās pašas kartītes."
     }
   }
 }

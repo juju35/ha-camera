@@ -15,6 +15,7 @@ from homeassistant.core import CoreState, Event, HomeAssistant
 from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers import issue_registry as ir
 from homeassistant.helpers.typing import ConfigType
+from homeassistant.util.json import load_json
 
 from .const import (
     CARD_URL,
@@ -22,8 +23,12 @@ from .const import (
     ISSUE_LEGACY_DASHBOARD,
     LEGACY_CARD_PATH,
     LEGACY_PLUGIN_DIRS,
+    MARKETPLACE_STORE,
     PANEL_PATH,
     PANEL_URL,
+    REPOSITORY_ID,
+    REPOSITORY_NAMES,
+    REPOSITORY_URL,
     URL_BASE,
     VERSION,
 )
@@ -90,13 +95,14 @@ async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None:
 
 
 async def _async_check_legacy_dashboard(hass: HomeAssistant) -> None:
-    """Raise a repair while the card installed as a Marketplace Dashboard entry before 4.0 is still there.
+    """Raise a repair while the Marketplace still holds this repository as a Dashboard entry (before 4.0).
 
-    That entry downloads the integration's home_camera.zip as a dashboard plugin, so its updates fail
-    ("The installed content has no home_camera.zip"); removing it from the Marketplace fixes them.
+    That entry downloads the integration's home_camera.zip as a dashboard plugin, so its installs and updates fail
+    ("The installed content has no home_camera.zip"). Seen from its files in www/community/, or from its record in
+    the Marketplace's storage when nothing was written (an install that failed, or one uninstalled and added again).
     """
-    found = await hass.async_add_executor_job(_legacy_plugin_dir, Path(hass.config.path("www", "community")))
-    if found is None:
+    found = await hass.async_add_executor_job(_legacy_dashboard_entry, Path(hass.config.path()))
+    if not found:
         ir.async_delete_issue(hass, DOMAIN, ISSUE_LEGACY_DASHBOARD)
         return
     ir.async_create_issue(
@@ -107,17 +113,37 @@ async def _async_check_legacy_dashboard(hass: HomeAssistant) -> None:
         is_persistent=False,
         severity=ir.IssueSeverity.WARNING,
         translation_key=ISSUE_LEGACY_DASHBOARD,
-        translation_placeholders={"folder": f"www/community/{found}"},
-        learn_more_url="https://github.com/juju35/ha-camera#readme",
+        translation_placeholders={"url": REPOSITORY_URL},
+        learn_more_url=f"{REPOSITORY_URL}#readme",
     )
 
 
-def _legacy_plugin_dir(community: Path) -> str | None:
-    """The www/community/ folder of the old dashboard plugin, if it is still installed."""
-    for name in LEGACY_PLUGIN_DIRS:
-        folder = community / name
-        if any(folder.glob("home-camera-card.js*")):
-            return name
+def _legacy_dashboard_entry(config: Path) -> bool:
+    """Whether the old dashboard plugin is still installed or still recorded by the Marketplace."""
+    community = config / "www" / "community"
+    if any(any((community / name).glob("home-camera-card.js*")) for name in LEGACY_PLUGIN_DIRS):
+        return True
+    return _marketplace_category(config / ".storage" / MARKETPLACE_STORE) not in (None, "integration")
+
+
+def _marketplace_category(store: Path) -> str | None:
+    """The category the Marketplace keeps this repository under, None when it has no record of it."""
+    if not store.is_file():
+        return None
+    try:
+        data = load_json(store)
+    except Exception:  # noqa: BLE001 - another integration's file: never fail the setup over it
+        _LOGGER.debug("Unreadable %s", store, exc_info=True)
+        return None
+    records = data.get("data") if isinstance(data, dict) else None
+    if not isinstance(records, dict):
+        return None
+    for key, record in records.items():
+        if not isinstance(record, dict):
+            continue
+        name = str(record.get("full_name", "")).lower()
+        if str(key) == REPOSITORY_ID or name in REPOSITORY_NAMES:
+            return record.get("category")
     return None
 
 

@@ -12,8 +12,8 @@
   },
   "issues": {
     "legacy_dashboard_install": {
-      "title": "Ancienne entrée tableau de bord Home Camera Card encore installée",
-      "description": "La carte est encore installée comme entrée **Tableau de bord** d'avant la 4.0 (dossier `{folder}`). Le Marketplace télécharge maintenant `home_camera.zip` pour elle, ses mises à jour échouent donc avec « The installed content has no home_camera.zip ».\n\nDans **Paramètres → Marketplace**, ouvrez l'entrée Home Camera de type **Tableau de bord** et supprimez-la. Gardez l'entrée **Intégration** : elle sert déjà les cartes et vos tableaux de bord continuent de fonctionner. Redémarrez ensuite Home Assistant."
+      "title": "Home Camera encore enregistré comme entrée tableau de bord du Marketplace",
+      "description": "Home Camera est encore enregistré dans le Marketplace comme dépôt **Tableau de bord**, comme avant la 4.0. Le Marketplace télécharge `home_camera.zip` pour lui, ses installations et mises à jour échouent donc avec \"The installed content has no home_camera.zip\". Désinstaller puis réinstaller ne suffit pas : l'entrée reste de type Tableau de bord.\n\n1. Dans **Paramètres → Marketplace**, désinstallez l'entrée Home Camera de type **Tableau de bord** si elle est installée.\n2. Ouvrez **Ajouter depuis un lien** et supprimez `juju35/ha-camera` / `juju35/ha-home-camera-card` sous **Ajoutés depuis des liens**.\n3. Ajoutez à nouveau `{url}` avec le type **Intégration**, mettez-le à jour depuis cette entrée, puis redémarrez Home Assistant.\n\nVos tableaux de bord continuent de fonctionner : l'intégration sert les mêmes cartes."
     }
   }
 }
