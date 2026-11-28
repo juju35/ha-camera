@@ -13,7 +13,7 @@
   "issues": {
     "legacy_dashboard_install": {
       "title": "Home Camera sigue registrado como entrada de panel en el Marketplace",
-      "description": "Home Camera sigue registrado en el Marketplace como repositorio de **Panel**, como antes de la 4.0. El Marketplace descarga `home_camera.zip` para él, así que sus instalaciones y actualizaciones fallan con \"The installed content has no home_camera.zip\". Desinstalarlo y volver a instalarlo no ayuda: la entrada sigue siendo de Panel.\n\n1. En **Ajustes → Marketplace**, desinstala la entrada Home Camera de tipo **Panel** si está instalada.\n2. Abre **Añadir desde enlace** y elimina `juju35/ha-camera` / `juju35/ha-home-camera-card` en **Añadidos desde enlaces**.\n3. Añade de nuevo `https://github.com/juju35/ha-camera` con el tipo **Integración**, actualízalo desde ahí y reinicia Home Assistant.\n\nTus paneles siguen funcionando: la integración sirve las mismas tarjetas."
+      "description": "Home Camera sigue registrado en el Marketplace como repositorio de **Panel**, como antes de la 4.0. El Marketplace descarga `home_camera.zip` para él, así que sus instalaciones y actualizaciones fallan con \"The installed content has no home_camera.zip\". Desinstalarlo y volver a instalarlo no ayuda: la entrada sigue siendo de Panel.\n\n1. En **Ajustes → Marketplace**, desinstala la entrada Home Camera de tipo **Panel** si está instalada.\n2. Abre **Añadir desde enlace** y elimina `juju35/ha-camera` / `juju35/ha-home-camera-card` en **Añadidos desde enlaces**.\n3. Añade de nuevo `{url}` con el tipo **Integración**, actualízalo desde ahí y reinicia Home Assistant.\n\nTus paneles siguen funcionando: la integración sirve las mismas tarjetas."
     }
   }
 }

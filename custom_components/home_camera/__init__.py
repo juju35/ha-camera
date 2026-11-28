@@ -28,6 +28,7 @@ from .const import (
     PANEL_URL,
     REPOSITORY_ID,
     REPOSITORY_NAMES,
+    REPOSITORY_URL,
     URL_BASE,
     VERSION,
 )
@@ -112,7 +113,8 @@ async def _async_check_legacy_dashboard(hass: HomeAssistant) -> None:
         is_persistent=False,
         severity=ir.IssueSeverity.WARNING,
         translation_key=ISSUE_LEGACY_DASHBOARD,
-        learn_more_url="https://github.com/juju35/ha-camera#readme",
+        translation_placeholders={"url": REPOSITORY_URL},
+        learn_more_url=f"{REPOSITORY_URL}#readme",
     )
 
 

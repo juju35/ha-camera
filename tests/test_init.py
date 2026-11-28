@@ -243,7 +243,9 @@ async def test_repair_while_the_marketplace_keeps_a_dashboard_record(hass, entry
     records = {key: {"full_name": name, "category": "plugin", "installed": False}}
     store = await hass.async_add_executor_job(_marketplace_store, hass, records)
     await _setup(hass, entry)
-    assert ir.async_get(hass).async_get_issue(DOMAIN, ISSUE_LEGACY_DASHBOARD) is not None
+    issue = ir.async_get(hass).async_get_issue(DOMAIN, ISSUE_LEGACY_DASHBOARD)
+    assert issue is not None
+    assert issue.translation_placeholders == {"url": "https://github.com/juju35/ha-camera"}
     # Removed under Added from links and added again as an integration: the repair goes at the next start
     await hass.config_entries.async_unload(entry.entry_id)
     records[key]["category"] = "integration"

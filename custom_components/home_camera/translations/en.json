@@ -13,7 +13,7 @@
   "issues": {
     "legacy_dashboard_install": {
       "title": "Home Camera still registered as a Marketplace dashboard entry",
-      "description": "Home Camera is still registered in the Marketplace as a **Dashboard** repository, as before 4.0. The Marketplace downloads `home_camera.zip` for it, so its installs and updates fail with \"The installed content has no home_camera.zip\". Uninstalling and installing it again does not help: the entry stays a Dashboard one.\n\n1. In **Settings → Marketplace**, uninstall the Home Camera entry of type **Dashboard** if it is installed.\n2. Open **Add from link** and remove `juju35/ha-camera` / `juju35/ha-home-camera-card` under **Added from links**.\n3. Add `https://github.com/juju35/ha-camera` again with the type **Integration**, update it from there, then restart Home Assistant.\n\nYour dashboards keep working: the integration serves the same cards."
+      "description": "Home Camera is still registered in the Marketplace as a **Dashboard** repository, as before 4.0. The Marketplace downloads `home_camera.zip` for it, so its installs and updates fail with \"The installed content has no home_camera.zip\". Uninstalling and installing it again does not help: the entry stays a Dashboard one.\n\n1. In **Settings → Marketplace**, uninstall the Home Camera entry of type **Dashboard** if it is installed.\n2. Open **Add from link** and remove `juju35/ha-camera` / `juju35/ha-home-camera-card` under **Added from links**.\n3. Add `{url}` again with the type **Integration**, update it from there, then restart Home Assistant.\n\nYour dashboards keep working: the integration serves the same cards."
     }
   }
 }

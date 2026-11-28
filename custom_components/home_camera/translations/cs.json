@@ -13,7 +13,7 @@
   "issues": {
     "legacy_dashboard_install": {
       "title": "Home Camera je stále registrován jako záznam dashboardu v Marketplace",
-      "description": "Home Camera je v Marketplace stále registrován jako repozitář typu **Dashboard**, jako před 4.0. Marketplace pro něj stahuje `home_camera.zip`, takže instalace a aktualizace selhávají s chybou \"The installed content has no home_camera.zip\". Odinstalace a nová instalace nepomohou: záznam zůstává typu Dashboard.\n\n1. V **Nastavení → Marketplace** odinstalujte záznam Home Camera typu **Dashboard**, pokud je nainstalován.\n2. Otevřete **Přidat z odkazu** a odeberte `juju35/ha-camera` / `juju35/ha-home-camera-card` v části **Přidáno z odkazů**.\n3. Znovu přidejte `https://github.com/juju35/ha-camera` s typem **Integrace**, aktualizujte jej odtud a restartujte Home Assistant.\n\nVaše dashboardy fungují dál: integrace poskytuje stejné karty."
+      "description": "Home Camera je v Marketplace stále registrován jako repozitář typu **Dashboard**, jako před 4.0. Marketplace pro něj stahuje `home_camera.zip`, takže instalace a aktualizace selhávají s chybou \"The installed content has no home_camera.zip\". Odinstalace a nová instalace nepomohou: záznam zůstává typu Dashboard.\n\n1. V **Nastavení → Marketplace** odinstalujte záznam Home Camera typu **Dashboard**, pokud je nainstalován.\n2. Otevřete **Přidat z odkazu** a odeberte `juju35/ha-camera` / `juju35/ha-home-camera-card` v části **Přidáno z odkazů**.\n3. Znovu přidejte `{url}` s typem **Integrace**, aktualizujte jej odtud a restartujte Home Assistant.\n\nVaše dashboardy fungují dál: integrace poskytuje stejné karty."
     }
   }
 }

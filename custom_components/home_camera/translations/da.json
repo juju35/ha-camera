@@ -13,7 +13,7 @@
   "issues": {
     "legacy_dashboard_install": {
       "title": "Home Camera stadig registreret som dashboard-post i Marketplace",
-      "description": "Home Camera er stadig registreret i Marketplace som et **Dashboard**-repository, som før 4.0. Marketplace downloader `home_camera.zip` til det, så installationer og opdateringer fejler med \"The installed content has no home_camera.zip\". Afinstallation og geninstallation hjælper ikke: posten forbliver en Dashboard-post.\n\n1. Afinstaller under **Indstillinger → Marketplace** Home Camera-posten af typen **Dashboard**, hvis den er installeret.\n2. Åbn **Tilføj fra link** og fjern `juju35/ha-camera` / `juju35/ha-home-camera-card` under **Tilføjet fra links**.\n3. Tilføj `https://github.com/juju35/ha-camera` igen med typen **Integration**, opdater den derfra, og genstart Home Assistant.\n\nDine dashboards fungerer stadig: integrationen leverer de samme kort."
+      "description": "Home Camera er stadig registreret i Marketplace som et **Dashboard**-repository, som før 4.0. Marketplace downloader `home_camera.zip` til det, så installationer og opdateringer fejler med \"The installed content has no home_camera.zip\". Afinstallation og geninstallation hjælper ikke: posten forbliver en Dashboard-post.\n\n1. Afinstaller under **Indstillinger → Marketplace** Home Camera-posten af typen **Dashboard**, hvis den er installeret.\n2. Åbn **Tilføj fra link** og fjern `juju35/ha-camera` / `juju35/ha-home-camera-card` under **Tilføjet fra links**.\n3. Tilføj `{url}` igen med typen **Integration**, opdater den derfra, og genstart Home Assistant.\n\nDine dashboards fungerer stadig: integrationen leverer de samme kort."
     }
   }
 }

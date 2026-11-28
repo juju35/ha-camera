@@ -13,7 +13,7 @@
   "issues": {
     "legacy_dashboard_install": {
       "title": "Home Camera nog geregistreerd als dashboarditem in de Marketplace",
-      "description": "Home Camera staat in de Marketplace nog geregistreerd als **Dashboard**-repository, zoals vóór 4.0. De Marketplace downloadt er `home_camera.zip` voor, dus installaties en updates mislukken met \"The installed content has no home_camera.zip\". Verwijderen en opnieuw installeren helpt niet: het item blijft een Dashboard-item.\n\n1. Verwijder in **Instellingen → Marketplace** het Home Camera-item van het type **Dashboard** als het geïnstalleerd is.\n2. Open **Toevoegen via link** en verwijder `juju35/ha-camera` / `juju35/ha-home-camera-card` onder **Toegevoegd via links**.\n3. Voeg `https://github.com/juju35/ha-camera` opnieuw toe met het type **Integratie**, werk het daar bij en herstart Home Assistant.\n\nJe dashboards blijven werken: de integratie levert dezelfde kaarten."
+      "description": "Home Camera staat in de Marketplace nog geregistreerd als **Dashboard**-repository, zoals vóór 4.0. De Marketplace downloadt er `home_camera.zip` voor, dus installaties en updates mislukken met \"The installed content has no home_camera.zip\". Verwijderen en opnieuw installeren helpt niet: het item blijft een Dashboard-item.\n\n1. Verwijder in **Instellingen → Marketplace** het Home Camera-item van het type **Dashboard** als het geïnstalleerd is.\n2. Open **Toevoegen via link** en verwijder `juju35/ha-camera` / `juju35/ha-home-camera-card` onder **Toegevoegd via links**.\n3. Voeg `{url}` opnieuw toe met het type **Integratie**, werk het daar bij en herstart Home Assistant.\n\nJe dashboards blijven werken: de integratie levert dezelfde kaarten."
     }
   }
 }

@@ -18,6 +18,7 @@ ISSUE_LEGACY_DASHBOARD = "legacy_dashboard_install"
 # even with nothing left in www/community/, and uninstalling keeps it under Added from links
 MARKETPLACE_STORE = "marketplace.repositories"
 REPOSITORY_ID = "1430837094"
+REPOSITORY_URL = "https://github.com/juju35/ha-camera"
 REPOSITORY_NAMES = ("juju35/ha-camera", "juju35/ha-home-camera-card")
 
 # The sidebar panel: every user sees it, only administrators get its Settings tab

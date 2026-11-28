@@ -13,7 +13,7 @@
   "issues": {
     "legacy_dashboard_install": {
       "title": "Home Camera je i dalje registrovan kao Dashboard unos u Marketplace-u",
-      "description": "Home Camera je i dalje registrovan u Marketplace-u kao **Dashboard** repozitorijum, kao pre 4.0. Marketplace za njega preuzima `home_camera.zip`, pa instalacije i ažuriranja ne uspevaju uz \"The installed content has no home_camera.zip\". Deinstalacija i ponovna instalacija ne pomažu: unos ostaje tipa Dashboard.\n\n1. U **Podešavanja → Marketplace** deinstalirajte unos Home Camera tipa **Dashboard** ako je instaliran.\n2. Otvorite **Dodaj sa linka** i uklonite `juju35/ha-camera` / `juju35/ha-home-camera-card` pod **Dodato sa linkova**.\n3. Ponovo dodajte `https://github.com/juju35/ha-camera` sa tipom **Integracija**, ažurirajte ga odatle, pa ponovo pokrenite Home Assistant.\n\nVaše kontrolne table i dalje rade: integracija pruža iste kartice."
+      "description": "Home Camera je i dalje registrovan u Marketplace-u kao **Dashboard** repozitorijum, kao pre 4.0. Marketplace za njega preuzima `home_camera.zip`, pa instalacije i ažuriranja ne uspevaju uz \"The installed content has no home_camera.zip\". Deinstalacija i ponovna instalacija ne pomažu: unos ostaje tipa Dashboard.\n\n1. U **Podešavanja → Marketplace** deinstalirajte unos Home Camera tipa **Dashboard** ako je instaliran.\n2. Otvorite **Dodaj sa linka** i uklonite `juju35/ha-camera` / `juju35/ha-home-camera-card` pod **Dodato sa linkova**.\n3. Ponovo dodajte `{url}` sa tipom **Integracija**, ažurirajte ga odatle, pa ponovo pokrenite Home Assistant.\n\nVaše kontrolne table i dalje rade: integracija pruža iste kartice."
     }
   }
 }

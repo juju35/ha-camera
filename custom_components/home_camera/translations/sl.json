@@ -13,7 +13,7 @@
   "issues": {
     "legacy_dashboard_install": {
       "title": "Home Camera je še vedno registriran kot vnos nadzorne plošče v Marketplace",
-      "description": "Home Camera je v Marketplace še vedno registriran kot repozitorij tipa **Nadzorna plošča**, kot pred 4.0. Marketplace zanj prenese `home_camera.zip`, zato namestitve in posodobitve spodletijo z \"The installed content has no home_camera.zip\". Odstranitev in ponovna namestitev ne pomagata: vnos ostane tipa Nadzorna plošča.\n\n1. V **Nastavitve → Marketplace** odstranite vnos Home Camera tipa **Nadzorna plošča**, če je nameščen.\n2. Odprite **Dodaj s povezave** in odstranite `juju35/ha-camera` / `juju35/ha-home-camera-card` pod **Dodano s povezav**.\n3. Znova dodajte `https://github.com/juju35/ha-camera` s tipom **Integracija**, ga od tam posodobite in znova zaženite Home Assistant.\n\nVaše nadzorne plošče še naprej delujejo: integracija ponuja iste kartice."
+      "description": "Home Camera je v Marketplace še vedno registriran kot repozitorij tipa **Nadzorna plošča**, kot pred 4.0. Marketplace zanj prenese `home_camera.zip`, zato namestitve in posodobitve spodletijo z \"The installed content has no home_camera.zip\". Odstranitev in ponovna namestitev ne pomagata: vnos ostane tipa Nadzorna plošča.\n\n1. V **Nastavitve → Marketplace** odstranite vnos Home Camera tipa **Nadzorna plošča**, če je nameščen.\n2. Odprite **Dodaj s povezave** in odstranite `juju35/ha-camera` / `juju35/ha-home-camera-card` pod **Dodano s povezav**.\n3. Znova dodajte `{url}` s tipom **Integracija**, ga od tam posodobite in znova zaženite Home Assistant.\n\nVaše nadzorne plošče še naprej delujejo: integracija ponuja iste kartice."
     }
   }
 }
