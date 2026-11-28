@@ -12,8 +12,8 @@
   },
   "issues": {
     "legacy_dashboard_install": {
-      "title": "Alter Dashboard-Eintrag Home Camera Card noch installiert",
-      "description": "Die Karte ist noch als **Dashboard**-Eintrag aus der Zeit vor 4.0 installiert (Ordner `{folder}`). Der Marketplace lädt dafür jetzt `home_camera.zip` herunter, daher schlagen die Updates mit „The installed content has no home_camera.zip“ fehl.\n\nÖffne unter **Einstellungen → Marketplace** den Home-Camera-Eintrag vom Typ **Dashboard** und entferne ihn. Behalte den Eintrag vom Typ **Integration**: Er stellt die Karten bereits bereit, deine Dashboards funktionieren weiter. Starte danach Home Assistant neu."
+      "title": "Home Camera noch als Dashboard-Eintrag im Marketplace registriert",
+      "description": "Home Camera ist im Marketplace noch als **Dashboard**-Repository registriert, wie vor 4.0. Der Marketplace lädt dafür `home_camera.zip` herunter, daher schlagen Installationen und Updates mit \"The installed content has no home_camera.zip\" fehl. Deinstallieren und erneut installieren hilft nicht: Der Eintrag bleibt ein Dashboard-Eintrag.\n\n1. Deinstalliere unter **Einstellungen → Marketplace** den Home-Camera-Eintrag vom Typ **Dashboard**, falls er installiert ist.\n2. Öffne **Über Link hinzufügen** und entferne `juju35/ha-camera` / `juju35/ha-home-camera-card` unter **Über Links hinzugefügt**.\n3. Füge `https://github.com/juju35/ha-camera` erneut mit dem Typ **Integration** hinzu, aktualisiere es dort und starte Home Assistant neu.\n\nDeine Dashboards funktionieren weiter: Die Integration stellt dieselben Karten bereit."
     }
   }
 }

@@ -12,8 +12,8 @@
   },
   "issues": {
     "legacy_dashboard_install": {
-      "title": "Gammal instrumentpanelspost för Home Camera Card är fortfarande installerad",
-      "description": "Kortet är fortfarande installerat som en **Instrumentpanel**-post från före 4.0 (mappen `{folder}`). Marketplace hämtar nu `home_camera.zip` för den, så uppdateringarna misslyckas med \"The installed content has no home_camera.zip\".\n\nÖppna Home Camera-posten av typen **Instrumentpanel** under **Inställningar → Marketplace** och ta bort den. Behåll posten av typen **Integration**: den tillhandahåller redan korten och dina instrumentpaneler fortsätter att fungera. Starta sedan om Home Assistant."
+      "title": "Home Camera fortfarande registrerat som dashboard-post i Marketplace",
+      "description": "Home Camera är fortfarande registrerat i Marketplace som ett **Dashboard**-repository, som före 4.0. Marketplace laddar ner `home_camera.zip` för det, så installationer och uppdateringar misslyckas med \"The installed content has no home_camera.zip\". Att avinstallera och installera igen hjälper inte: posten förblir en Dashboard-post.\n\n1. Avinstallera under **Inställningar → Marketplace** Home Camera-posten av typen **Dashboard** om den är installerad.\n2. Öppna **Lägg till från länk** och ta bort `juju35/ha-camera` / `juju35/ha-home-camera-card` under **Tillagda från länkar**.\n3. Lägg till `https://github.com/juju35/ha-camera` igen med typen **Integration**, uppdatera den därifrån och starta om Home Assistant.\n\nDina dashboards fungerar fortfarande: integrationen tillhandahåller samma kort."
     }
   }
 }

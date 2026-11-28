@@ -1,5 +1,6 @@
 """Setup, config flow, the panel open to every user, the card resource and the panel's WebSocket commands."""
 
+import json
 import shutil
 from pathlib import Path
 from unittest.mock import patch
@@ -218,13 +219,53 @@ async def test_repair_while_the_old_dashboard_entry_is_installed(hass, entry, fo
     await hass.async_add_executor_job(lambda: plugin.mkdir(parents=True))
     await hass.async_add_executor_job((plugin / "home-camera-card.js.gz").write_bytes, b"")
     await _setup(hass, entry)
-    issue = ir.async_get(hass).async_get_issue(DOMAIN, ISSUE_LEGACY_DASHBOARD)
-    assert issue is not None
-    assert issue.translation_placeholders == {"folder": f"www/community/{folder}"}
+    assert ir.async_get(hass).async_get_issue(DOMAIN, ISSUE_LEGACY_DASHBOARD) is not None
     # Removed from the Marketplace: the repair goes at the next start
     await hass.config_entries.async_unload(entry.entry_id)
     await hass.async_add_executor_job(shutil.rmtree, plugin)
     await hass.config_entries.async_setup(entry.entry_id)
+    assert ir.async_get(hass).async_get_issue(DOMAIN, ISSUE_LEGACY_DASHBOARD) is None
+
+
+def _marketplace_store(hass, records):
+    store = Path(hass.config.path(".storage", "marketplace.repositories"))
+    store.parent.mkdir(parents=True, exist_ok=True)
+    store.write_text(json.dumps({"version": 1, "minor_version": 1, "key": "marketplace.repositories", "data": records}))
+    return store
+
+
+@pytest.mark.parametrize(
+    ("key", "name"),
+    [("1430837094", "juju35/ha-camera"), ("1430837094", "juju35/ha-home-camera-card"), ("1", "Juju35/HA-Camera")],
+)
+async def test_repair_while_the_marketplace_keeps_a_dashboard_record(hass, entry, key, name):
+    # Nothing in www/community/ (the plugin install failed, or it was uninstalled and added again): the record says it
+    records = {key: {"full_name": name, "category": "plugin", "installed": False}}
+    store = await hass.async_add_executor_job(_marketplace_store, hass, records)
+    await _setup(hass, entry)
+    assert ir.async_get(hass).async_get_issue(DOMAIN, ISSUE_LEGACY_DASHBOARD) is not None
+    # Removed under Added from links and added again as an integration: the repair goes at the next start
+    await hass.config_entries.async_unload(entry.entry_id)
+    records[key]["category"] = "integration"
+    await hass.async_add_executor_job(store.write_text, json.dumps({"version": 1, "data": records}))
+    await hass.config_entries.async_setup(entry.entry_id)
+    assert ir.async_get(hass).async_get_issue(DOMAIN, ISSUE_LEGACY_DASHBOARD) is None
+
+
+@pytest.mark.parametrize(
+    "content",
+    [
+        json.dumps({"data": {"1430837094": {"full_name": "juju35/ha-camera", "category": "integration"}}}),
+        json.dumps({"data": {"42": {"full_name": "someone/ha-camera", "category": "plugin"}}}),
+        json.dumps({"data": ["not", "a", "dict"]}),
+        "not json",
+    ],
+)
+async def test_no_repair_from_other_marketplace_records(hass, entry, content):
+    store = Path(hass.config.path(".storage", "marketplace.repositories"))
+    await hass.async_add_executor_job(lambda: store.parent.mkdir(parents=True, exist_ok=True))
+    await hass.async_add_executor_job(store.write_text, content)
+    await _setup(hass, entry)
     assert ir.async_get(hass).async_get_issue(DOMAIN, ISSUE_LEGACY_DASHBOARD) is None
 
 

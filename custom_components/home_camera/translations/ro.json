@@ -12,8 +12,8 @@
   },
   "issues": {
     "legacy_dashboard_install": {
-      "title": "Intrare veche de tablou de bord Home Camera Card încă instalată",
-      "description": "Cardul este încă instalat ca intrare **Tablou de bord** de dinainte de 4.0 (dosarul `{folder}`). Marketplace descarcă acum `home_camera.zip` pentru ea, așa că actualizările eșuează cu „The installed content has no home_camera.zip”.\n\nÎn **Setări → Marketplace**, deschide intrarea Home Camera de tip **Tablou de bord** și elimin-o. Păstrează intrarea de tip **Integrare**: aceasta oferă deja cardurile, iar tablourile tale de bord continuă să funcționeze. Apoi repornește Home Assistant."
+      "title": "Home Camera încă înregistrat ca intrare tablou de bord în Marketplace",
+      "description": "Home Camera este încă înregistrat în Marketplace ca depozit **Tablou de bord**, ca înainte de 4.0. Marketplace descarcă `home_camera.zip` pentru el, așa că instalările și actualizările eșuează cu \"The installed content has no home_camera.zip\". Dezinstalarea și reinstalarea nu ajută: intrarea rămâne de tip Tablou de bord.\n\n1. În **Setări → Marketplace**, dezinstalați intrarea Home Camera de tip **Tablou de bord** dacă este instalată.\n2. Deschideți **Adăugare din link** și eliminați `juju35/ha-camera` / `juju35/ha-home-camera-card` de la **Adăugate din linkuri**.\n3. Adăugați din nou `https://github.com/juju35/ha-camera` cu tipul **Integrare**, actualizați-l de acolo, apoi reporniți Home Assistant.\n\nTablourile de bord continuă să funcționeze: integrarea oferă aceleași carduri."
     }
   }
 }

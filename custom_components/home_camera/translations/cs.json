@@ -12,8 +12,8 @@
   },
   "issues": {
     "legacy_dashboard_install": {
-      "title": "Starý záznam ovládacího panelu Home Camera Card je stále nainstalován",
-      "description": "Karta je stále nainstalována jako záznam typu **Ovládací panel** z doby před verzí 4.0 (složka `{folder}`). Marketplace pro něj nyní stahuje `home_camera.zip`, takže aktualizace selhávají s chybou „The installed content has no home_camera.zip“.\n\nV **Nastavení → Marketplace** otevřete záznam Home Camera typu **Ovládací panel** a odeberte jej. Ponechte záznam typu **Integrace**: ten už karty poskytuje a vaše ovládací panely dál fungují. Poté restartujte Home Assistant."
+      "title": "Home Camera je stále registrován jako záznam dashboardu v Marketplace",
+      "description": "Home Camera je v Marketplace stále registrován jako repozitář typu **Dashboard**, jako před 4.0. Marketplace pro něj stahuje `home_camera.zip`, takže instalace a aktualizace selhávají s chybou \"The installed content has no home_camera.zip\". Odinstalace a nová instalace nepomohou: záznam zůstává typu Dashboard.\n\n1. V **Nastavení → Marketplace** odinstalujte záznam Home Camera typu **Dashboard**, pokud je nainstalován.\n2. Otevřete **Přidat z odkazu** a odeberte `juju35/ha-camera` / `juju35/ha-home-camera-card` v části **Přidáno z odkazů**.\n3. Znovu přidejte `https://github.com/juju35/ha-camera` s typem **Integrace**, aktualizujte jej odtud a restartujte Home Assistant.\n\nVaše dashboardy fungují dál: integrace poskytuje stejné karty."
     }
   }
 }
